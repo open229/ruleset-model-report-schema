@@ -1,0 +1,840 @@
+---
+# Enumerations2019ASHRAE901.schema.yaml
+# The purpose file is to provide a separated source from the main schema file in the generator 
+# format for enumerations related to ASHRAE Standard 90.1-2019, both normative and informative.
+
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE229"
+  Title: "Enumerations from ASHRAE 90.1-2019"
+  Description: "Schema addition for ASHRAE 229 related to enumerations found in ASHRAE Standard 90.1-2019"
+
+CompliancePathType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    CODE_COMPLIANT:
+      Description: "Code Compliance"
+    BEYOND_CODE:
+      Description: "Beyond Code"
+
+LightingSpaceType2019ASHRAE901T951:
+  # Table 9.5.1 Building Area Types  
+  Object Type: "Enumeration"
+  Enumerators:
+    AUTOMOTIVE_FACILITY:
+      Description: "Automotive facility"
+    CONVENTION_CENTER:
+      Description: "Convention center"
+    COURTHOUSE:
+      Description: "Courthouse"
+    DINING_BAR_LOUNGE_LEISURE:
+      Description: "Dining: Bar lounge/leisure"
+    DINING_CAFETERIA_FAST_FOOD:
+      Description: "Dining: Cafeteria/fast food"
+    DINING_FAMILY:
+      Description: "Dining: Family"
+    DORMITORY:
+      Description: "Dormitory"
+    EXERCISE_CENTER:
+      Description: "Exercise center"
+    FIRE_STATION:
+      Description: "Fire station"
+    GYMNASIUM:
+      Description: "Gymnasium"
+    HEALTH_CARE_CLINIC:
+      Description: "Health-care clinic"
+    HOSPITAL:
+      Description: "Hospital"
+    HOTEL_MOTEL:
+      Description: "Hotel/motel"
+    LIBRARY:
+      Description: "Library"
+    MANUFACTURING_FACILITY:
+      Description: "Manufacturing facility"
+    MOTION_PICTURE_THEATER:
+      Description: "Motion picture theater"
+    MULTIFAMILY:
+      Description: "Multifamily"
+    MUSEUM:
+      Description: "Museum"
+    OFFICE:
+      Description: "Office"
+    PARKING_GARAGE:
+      Description: "Parking garage"
+    PENITENTIARY:
+      Description: "Penitentiary"
+    PERFORMING_ARTS_THEATER:
+      Description: "Performing arts theater"
+    POLICE_STATION:
+      Description: "Police station"
+    POST_OFFICE:
+      Description: "Post office"
+    RELIGIOUS_FACILITY:
+      Description: "Religious facility"
+    RETAIL:
+      Description: "Retail"
+    SCHOOL_UNIVERSITY:
+      Description: "School/university"
+    SPORTS_ARENA:
+      Description: "Sports arena"
+    TOWN_HALL:
+      Description: "Town hall"
+    TRANSPORTATION:
+      Description: "Transportation"
+    WAREHOUSE:
+      Description: "Warehouse"
+    WORKSHOP:
+      Description: "Workshop"
+
+LightingSpaceType2019ASHRAE901T961:
+  # Table 9.6.1 Space Types  
+  Object Type: "Enumeration"
+  Enumerators:
+    ATRIUM_LOW:
+      Description: "Atrium - Low"
+    ATRIUM_MEDIUM:
+      Description: "Atrium - Medium"
+    ATRIUM_HIGH:
+      Description: "Atrium - High"
+    AUDIENCE_SEATING_AREA_AUDITORIUM:
+      Description: "Audience Seating Area - Auditorium"
+    AUDIENCE_SEATING_AREA_GYMNASIUM:
+      Description: "Audience Seating Area - Gymnasium"
+    AUDIENCE_SEATING_AREA_MOTION_PICTURE_THEATER:
+      Description: "Audience Seating Area - Motion picture theater"
+    AUDIENCE_SEATING_AREA_PENITENTIARY:
+      Description: "Audience Seating Area - Penitentiary"
+    AUDIENCE_SEATING_AREA_PERFORMING_ARTS_THEATER:
+      Description: "Audience Seating Area - Performing arts theater"
+    AUDIENCE_SEATING_AREA_RELIGIOUS_FACILITY:
+      Description: "Audience Seating Area - Religious facility"
+    AUDIENCE_SEATING_AREA_SPORTS_ARENA:
+      Description: "Audience Seating Area - Sports arena"
+    AUDIENCE_SEATING_AREA_ALL_OTHER:
+      Description: "Audience Seating Area - All other"
+    BANKING_ACTIVITY_AREA:
+      Description: "Banking Activity Area"
+    CLASSROOM_LECTURE_HALL_TRAINING_ROOM_PENITENTIARY:
+      Description: "Classroom/Lecture Hall/Training Room - Penitentiary"
+    CLASSROOM_LECTURE_HALL_TRAINING_ROOM_ALL_OTHER:
+      Description: "Classroom/Lecture Hall/Training Room - All other"
+    CONFERENCE_MEETING_MULTIPURPOSE_ROOM:
+      Description: "Conference/Meeting/Multipurpose Room"
+    CONFINEMENT_CELLS:
+      Description: "Confinement Cells"
+    COPY_PRINT_ROOM:
+      Description: "Copy/Print Room"
+    CORRIDOR_FACILITY_FOR_THE_VISUALLY_IMPAIRED:
+      Description: "Corridor - Facility for the visually impaired (and not used primarily by the staff)"
+    CORRIDOR_HOSPITAL:
+      Description: "Corridor - Hospital"
+    CORRIDOR_ALL_OTHERS:
+      Description: "Corridor - All others"
+    COURT_ROOM:
+      Description: "Court room"
+    COMPUTER_ROOM:
+      Description: "Computer Room"
+    DINING_AREA_PENITENTIARY:
+      Description: "Dining Area - Penitentiary"
+    DINING_AREA_FACILITY_FOR_THE_VISUALLY_IMPAIRED:
+      Description: "Dining Area - Facility for the visually impaired (and not used primarily by the staff)"
+    DINING_AREA_BAR_LOUNGE_OR_LEISURE_DINING:
+      Description: "Dining Area - Bar/lounge or leisure dining"
+    DINING_AREA_CAFETERIA_OR_FAST_FOOD_DINING:
+      Description: "Dining Area - Cafeteria or fast food dining"
+    DINING_AREA_FAMILY_DINING:
+      Description: "Dining Area - Family dining"
+    DINING_AREA_ALL_OTHERS:
+      Description: "Dining Area - All others"
+    ELECTRICAL_MECHANICAL_ROOM:
+      Description: "Electrical/Mechanical Room"
+    EMERGENCY_VEHICLE_GARAGE:
+      Description: "Emergency Vehicle Garage"
+    FOOD_PREPARATION_AREA:
+      Description: "Food Preparation Area"
+    GUEST_ROOM:
+      Description: "Guest Room"
+    LABORATORY_IN_OR_AS_A_CLASSROOM:
+      Description: "Laboratory - In or as a classroom"
+    LABORATORY_ALL_OTHERS:
+      Description: "Laboratory - All others"
+    LAUNDRY_WASHING_AREA:
+      Description: "Laundry/Washing Area"
+    LOADING_DOCK_INTERIOR:
+      Description: "Loading Dock, Interior"
+    LOBBY_FACILITY_FOR_THE_VISUALLY_IMPAIRED:
+      Description: "Lobby - Facility for the visually impaired (and not used primarily by the staff)"
+    LOBBY_ELEVATOR:
+      Description: "Lobby - Elevator"
+    LOBBY_HOTEL:
+      Description: "Lobby - Hotel"
+    LOBBY_MOTION_PICTURE_THEATER:
+      Description: "Lobby - Motion picture theater"
+    LOBBY_PERFORMING_ARTS_THEATER:
+      Description: "Lobby - Performing arts theater"
+    LOBBY_ALL_OTHERS:
+      Description: "Lobby - All others"
+    LOCKER_ROOM:
+      Description: "Locker Room"
+    LOUNGE_BREAKROOM_HEALTH_CARE_FACILITY:
+      Description: "Lounge/Breakroom - Health care facility"
+    LOUNGE_BREAKROOM_ALL_OTHERS:
+      Description: "Lounge/Breakroom - All others"
+    OFFICE_ENCLOSED_AND_SMALL:
+      Description: "Office - Enclosed and small"
+    OFFICE_ENCLOSED_AND_LARGE:
+      Description: "Office - Enclosed and large"
+    OFFICE_OPEN_PLAN:
+      Description: "Office - Open plan"
+    PARKING_AREA_INTERIOR:
+      Description: "Parking Area, Interior"
+    PHARMACY_AREA:
+      Description: "Pharmacy Area"
+    RESTROOM_FACILITY_FOR_THE_VISUALLY_IMPAIRED:
+      Description: "Restroom - Facility for the visually impaired (and not used primarily by the staff)"
+    RESTROOM_ALL_OTHERS:
+      Description: "Restroom - All others"
+    SALES_AREA:
+      Description: "Sales Area"
+    SEATING_AREA_GENERAL:
+      Description: "Seating Area, General"
+    STAIRWAY:
+      Description: "Stairway"
+    STAIRWELL:
+      Description: "Stairwell"
+    STORAGE_ROOM_SMALL:
+      Description: "Storage Room - Small"
+    STORAGE_ROOM_LARGE:
+      Description: "Storage Room - Large"
+    VEHICULAR_MAINTENANCE_AREA:
+      Description: "Vehicular Maintenance Area"
+    WORKSHOP:
+      Description: "Workshop"
+    FACILITY_FOR_THE_VISUALLY_IMPAIRED_CHAPEL:
+      Description: "Facility for the Visually Impaired - Chapel (used primarily by residents)"
+    FACILITY_FOR_THE_VISUALLY_IMPAIRED_RECREATION_ROOM_COMMON_LIVING_ROOM:
+      Description: "Facility for the Visually Impaired - Recreatio nroom/common living room (and not used primarily by staff)"
+    CONVENTION_CENTER_EXHIBIT_SPACE:
+      Description: "Convention Center — Exhibit Space"
+    DORMITORY_LIVING_QUARTERS:
+      Description: "Dormitory — Living Quarters"
+    FIRE_STATION_SLEEPING_QUARTERS:
+      Description: "Fire Station — Sleeping Quarters"
+    GYMNASIUM_FITNESS_CENTER_EXERCISE_AREA:
+      Description: "Gymnasium/Fitness Center - Exercise area"
+    GYMNASIUM_FITNESS_CENTER_PLAYING_AREA:
+      Description: "Gymnasium/Fitness Center - Playing area"
+    HEALTHCARE_FACILITY_EXAM_TREATMENT_ROOM:
+      Description: "Healthcare Facility - Exam/treatment room"
+    HEALTHCARE_FACILITY_IMAGING_ROOM:
+      Description: "Healthcare Facility - Imaging room"
+    HEALTHCARE_FACILITY_MEDICAL_SUPPLY_ROOM:
+      Description: "Healthcare Facility - Medical supply room"
+    HEALTHCARE_FACILITY_NURSERY:
+      Description: "Healthcare Facility - Nursery"
+    HEALTHCARE_FACILITY_NURSES_STATION:
+      Description: "Healthcare Facility - Nurse’s station"
+    HEALTHCARE_FACILITY_OPERATING_ROOM:
+      Description: "Healthcare Facility - Operating room"
+    HEALTHCARE_FACILITY_PATIENT_ROOM:
+      Description: "Healthcare Facility - Patient room"
+    HEALTHCARE_FACILITY_PHYSICAL_THERAPY_ROOM:
+      Description: "Healthcare Facility - Physical therapy room"
+    HEALTHCARE_FACILITY_RECOVERY_ROOM:
+      Description: "Healthcare Facility - Recovery room"
+    LIBRARY_READING_AREA:
+      Description: "Library - Reading area"
+    LIBRARY_STACKS:
+      Description: "Library - Stacks"
+    MANUFACTURING_FACILITY_DETAILED_MANUFACTURING_AREA:
+      Description: "Manufacturing Facility - Detailed manufacturing area"
+    MANUFACTURING_FACILITY_EQUIPMENTROOM:
+      Description: "Manufacturing Facility - Equipment room"
+    MANUFACTURING_FACILITY_EXTRA_HIGH_BAY_AREA:
+      Description: "Manufacturing Facility - Extra high bay area"
+    MANUFACTURING_FACILITY_HIGH_BAY_AREA:
+      Description: "Manufacturing Facility - High bay area"
+    MANUFACTURING_FACILITY_LOW_BAY_AREA:
+      Description: "Manufacturing Facility - Low bay area"
+    MUSEUM_GENERAL_EXHIBITION_AREA:
+      Description: "Museum - General exhibition area"
+    MUSEUM_RESTORATION_ROOM:
+      Description: "Museum - Restoration room"
+    PERFORMING_ARTS_THEATER_DRESSING_ROOM:
+      Description: "Performing Arts Theater — Dressing Room"
+    POST_OFFICE_SORTING_AREA:
+      Description: "Post Office — Sorting Area"
+    RELIGIOUS_FACILITY_FELLOWSHIP_HALL:
+      Description: "Religious Facility - Fellowship hall"
+    RELIGIOUS_FACILITY_WORSHIP_PULPIT_CHOIR_AREA:
+      Description: "Religious Facility - Worship/pulpit/choir area"
+    RETAIL_FACILITIES_DRESSING_FITTING_ROOM:
+      Description: "Retail Facilities - Dressing/fitting room"
+    RETAIL_FACILITIES_MALL_CONCOURSE:
+      Description: "Retail Facilities - Mall concourse"
+    SPORTS_ARENA_PLAYING_AREA_CLASS_I_FACILITY:
+      Description: "Sports Arena — Playing Area - Class I facility"
+    SPORTS_ARENA_PLAYING_AREA_CLASS_II_FACILITY:
+      Description: "Sports Arena — Playing Area - Class II facility"
+    SPORTS_ARENA_PLAYING_AREA_CLASS_III_FACILITY:
+      Description: "Sports Arena — Playing Area - Class III facility"
+    SPORTS_ARENA_PLAYING_AREA_CLASS_IV_FACILITY:
+      Description: "Sports Arena — Playing Area - Class IV facility"
+    TRANSPORTATION_FACILITY_BAGGAGE_CAROUSEL_AREA:
+      Description: "Transportation Facility - Baggage/carousel area"
+    TRANSPORTATION_FACILITY_AIRPORT_CONCOURSE:
+      Description: "Transportation Facility - Airport concourse"
+    TRANSPORTATION_FACILITY_TICKET_COUNTER:
+      Description: "Transportation Facility - Ticket counter"
+    WAREHOUSE_STORAGE_AREA_MEDIUM_TO_BULKY_PALLETIZED_ITEMS:
+      Description: "Warehouse — Storage Area - Medium to bulky, palletized items"
+    WAREHOUSE_STORAGE_AREA_SMALLER_HAND_CARRIED_ITEMS:
+      Description: "Warehouse — Storage Area - Smaller, hand-carried items"
+
+ExteriorLightingAreas2019ASHRAE901TableG36:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table G3.6
+    UNCOVERED_PARKING_LOTS_AND_DRIVES:
+      Description: "Uncovered parking lots and drives"
+    WALKWAY_NARROW:
+      Description: "Walkway - narrow"
+      Notes: "Less than 10 ft wide"
+    WALKWAY_WIDE:
+      Description: "Walkway - wide"
+      Notes: "10 ft wide or greater"
+    PLAZA_AREAS:
+      Description: "Plaza Areas"
+    SPECIAL_FEATURE_AREAS:
+      Description: "Special Feature Areas"
+    STAIRWAYS:
+      Description: "Stairways"
+    MAIN_ENTRANCE_DOOR:
+      Description: "Main entrance door"
+    OTHER_ENTRANCE_OR_EXIT_DOORS:
+      Description: "Other entrance or exit doors"
+    EXTERIOR_CANOPIES:
+      Description: "Exterior canopies"
+    OUTDOOR_SALES_OPEN_AREAS:
+      Description: "Outdoor sales - open areas"
+    STREET_FRONTAGE:
+      Description: "Street frontage"
+    NON_TRADABLE_FACADE:
+      Description: "Non-tradable facade"
+
+ExteriorLightingZones2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table 9.4.2-1
+    ZONE_0_UNDEVELOPED:
+      Description: "Zone 0 - undeveloped"
+      Notes: "Undeveloped areas within national parks, state parks, forest land, rural areas, and other undeveloped areas as defined by the authority having jurisdiction"
+    ZONE_1_DEVELOPED_RURAL_AND_PARK:
+      Description: "Zone 1 - developed rural and park"
+      Notes: "Developed areas of national parks, state parks, forest land, and rural areas"
+    ZONE_2_RESIDENTIAL_NEIGHBORHOOD:
+      Description: "Zone 2 - residential neighborhood"
+      Notes: "Areas predominantly consisting of residential zoning, neighborhood business districts, light industrial with limited nighttime use and residential mixed use areas"
+    ZONE_3_ALL_OTHER_AREAS:
+      Description: "Zone 3 - all other areas"
+    ZONE_4_HIGH_ACTIVITY_COMMERCIAL:
+      Description: "Zone 4 - high-activity commercial"
+      Notes: "High-activity commercial districts in major metropolitan areas as designated by the local jurisdiction"
+
+
+# These ventilation space types are from ASHRAE Standard 62.1-2016 plus addenda which is referenced in 90.1-2019.
+# Used 62.1-2019 to construct the list
+VentilationSpaceType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    ANIMAL_FACILITIES_ANIMAL_EXAM_ROOM_VETERINARY_OFFICE:
+      Description: "Animal Facilities - Animal exam room (veterinary office)"
+    ANIMAL_FACILITIES_ANIMAL_IMAGING_MRI_CT_PET:
+      Description: "Animal Facilities - Animal imaging (MRI/CT/PET)"
+    ANIMAL_FACILITIES_ANIMAL_OPERATING_ROOMS:
+      Description: "Animal Facilities - Animal operating rooms"
+    ANIMAL_FACILITIES_ANIMAL_POSTOPERATIVE_RECOVERY_ROOM:
+      Description: "Animal Facilities - Animal postoperative recovery room"
+    ANIMAL_FACILITIES_ANIMAL_PREPARATION_ROOMS:
+      Description: "Animal Facilities - Animal preparation rooms"
+    ANIMAL_FACILITIES_ANIMAL_PROCEDURE_ROOM:
+      Description: "Animal Facilities - Animal procedure room"
+    ANIMAL_FACILITIES_ANIMAL_SURGERY_SCRUB:
+      Description: "Animal Facilities - Animal surgery scrub"
+    ANIMAL_FACILITIES_LARGE_ANIMAL_HOLDING_ROOM:
+      Description: "Animal Facilities - Large-animal holding room"
+    ANIMAL_FACILITIES_NECROPSY:
+      Description: "Animal Facilities - Necropsy"
+    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_STATIC_CAGES:
+      Description: "Animal Facilities - Small-animal-cage room (static cages)"
+    ANIMAL_FACILITIES_SMALL_ANIMAL_CAGE_ROOM_VENTILATED_CAGES:
+      Description: "Animal Facilities - Small-animal-cage room (ventilated cages)"
+    CORRECTIONAL_FACILITIES_BOOKING_WAITING:
+      Description: "Correctional Facilities - Booking/waiting"
+    CORRECTIONAL_FACILITIES_CELL:
+      Description: "Correctional Facilities - Cell"
+    CORRECTIONAL_FACILITIES_DAYROOM:
+      Description: "Correctional Facilities - Dayroom"
+    CORRECTIONAL_FACILITIES_GUARD_STATIONS:
+      Description: "Correctional Facilities - Guard stations"
+    EDUCATIONAL_FACILITIES_ART_CLASSROOM:
+      Description: "Educational Facilities - Art classroom"
+    EDUCATIONAL_FACILITIES_CLASSROOMS_AGES_5_TO_8:
+      Description: "Educational Facilities - Classrooms (ages 5 to 8)"
+    EDUCATIONAL_FACILITIES_CLASSROOMS_AGE_9_PLUS:
+      Description: "Educational Facilities - Classrooms (age 9 plus)"
+    EDUCATIONAL_FACILITIES_COMPUTER_LAB:
+      Description: "Educational Facilities - Computer lab"
+    EDUCATIONAL_FACILITIES_DAYCARE_SICKROOM:
+      Description: "Educational Facilities - Daycare sickroom"
+    EDUCATIONAL_FACILITIES_DAYCARE_THROUGH_AGE_4:
+      Description: "Educational Facilities - Daycare (through age 4)"
+    EDUCATIONAL_FACILITIES_LECTURE_CLASSROOM:
+      Description: "Educational Facilities - Lecture classroom"
+    EDUCATIONAL_FACILITIES_LECTURE_HALL_FIXED_SEATS:
+      Description: "Educational Facilities - Lecture hall (fixed seats)"
+    EDUCATIONAL_FACILITIES_LIBRARIES:
+      Description: "Educational Facilities - Libraries"
+    EDUCATIONAL_FACILITIES_MEDIA_CENTER:
+      Description: "Educational Facilities - Media center"
+    EDUCATIONAL_FACILITIES_MULTIUSE_ASSEMBLY:
+      Description: "Educational Facilities - Multiuse assembly"
+    EDUCATIONAL_FACILITIES_MUSIC_THEATER_DANCE:
+      Description: "Educational Facilities - Music/theater/dance"
+    EDUCATIONAL_FACILITIES_SCIENCE_LABORATORIES:
+      Description: "Educational Facilities - Science laboratories"
+    EDUCATIONAL_FACILITIES_UNIVERSITY_COLLEGE_LABORATORIES:
+      Description: "Educational Facilities - University/college laboratories"
+    EDUCATIONAL_FACILITIES_WOOD_METAL_SHOP:
+      Description: "Educational Facilities - Wood/metal shop"
+    FOOD_AND_BEVERAGE_SERVICE_BARS_COCKTAIL_LOUNGES:
+      Description: "Food and Beverage Service - Bars, cocktail lounges"
+    FOOD_AND_BEVERAGE_SERVICE_CAFETERIA_FAST_FOOD_DINING:
+      Description: "Food and Beverage Service - Cafeteria/fast-food dining"
+    FOOD_AND_BEVERAGE_SERVICE_KITCHEN_COOKING:
+      Description: "Food and Beverage Service - Kitchen (cooking)"
+    FOOD_AND_BEVERAGE_SERVICE_RESTAURANT_DINING_ROOMS:
+      Description: "Food and Beverage Service - Restaurant dining rooms"
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_BREAK_ROOMS:
+      Description: "Food and Beverage Service, General - Break rooms"
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_COFFEE_STATIONS:
+      Description: "Food and Beverage Service, General - Coffee stations"
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CONFERENCE_MEETING:
+      Description: "Food and Beverage Service, General - Conference/meeting"
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_CORRIDORS:
+      Description: "Food and Beverage Service, General - Corridors"
+    FOOD_AND_BEVERAGE_SERVICE_GENERAL_OCCUPIABLE_STORAGE_ROOMS_FOR_LIQUIDS_OR_GELS:
+      Description: "Food and Beverage Service, General - Occupiable storage rooms for liquids or gels"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_BARRACKS_SLEEPING_AREAS:
+      Description: "Hotels, Motels, Resorts, Dormitories - Barracks sleeping areas"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_BEDROOM_LIVING_ROOM:
+      Description: "Hotels, Motels, Resorts, Dormitories - Bedroom/living room"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_CENTRAL:
+      Description: "Hotels, Motels, Resorts, Dormitories - Laundry rooms, central"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LAUNDRY_ROOMS_WITHIN_DWELLING_UNITS:
+      Description: "Hotels, Motels, Resorts, Dormitories - Laundry rooms within dwelling units"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_LOBBIES_PREFUNCTION:
+      Description: "Hotels, Motels, Resorts, Dormitories - Lobbies/prefunction"
+    HOTELS_MOTELS_RESORTS_DORMITORIES_MULTIPURPOSE_ASSEMBLY:
+      Description: "Hotels, Motels, Resorts, Dormitories - Multipurpose assembly"
+    MISCELLANEOUS_SPACES_BANKS_OR_BANK_LOBBIES:
+      Description: "Miscellaneous Spaces - Banks or bank lobbies"
+    MISCELLANEOUS_SPACES_BANK_VAULTS_SAFE_DEPOSIT:
+      Description: "Miscellaneous Spaces - Bank vaults/safe deposit"
+    MISCELLANEOUS_SPACES_COMPUTER_NOT_PRINTING:
+      Description: "Miscellaneous Spaces - Computer (not printing)"
+    MISCELLANEOUS_SPACES_FREEZER_AND_REFRIGERATED_SPACES:
+      Description: "Miscellaneous Spaces - Freezer and refrigerated spaces (<50°F [10°C])"
+    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_NOT_USED:
+      Description: "Miscellaneous Spaces - Manufacturing where hazardous materials are not used"
+    MISCELLANEOUS_SPACES_MANUFACTURING_WHERE_HAZARDOUS_MATERIALS_ARE_USED_EXCLUDES_HEAVY_INDUSTRIAL_AND_CHEMICAL_PROCESSES:
+      Description: "Miscellaneous Spaces - Manufacturing where hazardous materials are used (excludes heavy industrial and chemical processes)"
+    MISCELLANEOUS_SPACES_PHARMACY_PREP_AREA:
+      Description: "Miscellaneous Spaces - Pharmacy (prep. area)"
+    MISCELLANEOUS_SPACES_PHOTO_STUDIOS:
+      Description: "Miscellaneous Spaces - Photo studios"
+    MISCELLANEOUS_SPACES_SHIPPING_RECEIVING:
+      Description: "Miscellaneous Spaces - Shipping/receiving"
+    MISCELLANEOUS_SPACES_SORTING_PACKING_LIGHT_ASSEMBLY:
+      Description: "Miscellaneous Spaces - Sorting, packing, light assembly"
+    MISCELLANEOUS_SPACES_TELEPHONE_CLOSETS:
+      Description: "Miscellaneous Spaces - Telephone closets"
+    MISCELLANEOUS_SPACES_TRANSPORTATION_WAITING:
+      Description: "Miscellaneous Spaces - Transportation waiting"
+    MISCELLANEOUS_SPACES_WAREHOUSES:
+      Description: "Miscellaneous Spaces - Warehouses"
+    OFFICE_BUILDINGS_BREAKROOMS:
+      Description: "Office Buildings - Breakrooms"
+    OFFICE_BUILDINGS_MAIN_ENTRY_LOBBIES:
+      Description: "Office Buildings - Main entry lobbies"
+    OFFICE_BUILDINGS_OCCUPIABLE_STORAGE_ROOMS_FOR_DRY_MATERIALS:
+      Description: "Office Buildings - Occupiable storage rooms for dry materials"
+    OFFICE_BUILDINGS_OFFICE_SPACE:
+      Description: "Office Buildings - Office space"
+    OFFICE_BUILDINGS_RECEPTION_AREAS:
+      Description: "Office Buildings - Reception areas"
+    OFFICE_BUILDINGS_TELEPHONE_DATA_ENTRY:
+      Description: "Office Buildings - Telephone/data entry"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_BIRTHING_ROOM:
+      Description: "Outpatient Health Care Facilities - Birthing room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_CLASS_1_IMAGING_ROOMS:
+      Description: "Outpatient Health Care Facilities - Class 1 imaging rooms"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_DENTAL_OPERATORY:
+      Description: "Outpatient Health Care Facilities - Dental operatory"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_GENERAL_EXAMINATION_ROOM:
+      Description: "Outpatient Health Care Facilities - General examination room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_OTHER_DENTAL_TREATMENT_AREAS:
+      Description: "Outpatient Health Care Facilities - Other dental treatment areas"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_EXERCISE_AREA:
+      Description: "Outpatient Health Care Facilities - Physical therapy exercise area"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPY_INDIVIDUAL_ROOM:
+      Description: "Outpatient Health Care Facilities - Physical therapy individual room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PHYSICAL_THERAPEUTIC_POOL_AREA:
+      Description: "Outpatient Health Care Facilities - Physical therapeutic pool area"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PROSTHETICS_AND_ORTHOTICS_ROOM:
+      Description: "Outpatient Health Care Facilities - Prosthetics and orthotics room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_CONSULTATION_ROOM:
+      Description: "Outpatient Health Care Facilities - Psychiatric consultation room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_EXAMINATION_ROOM:
+      Description: "Outpatient Health Care Facilities - Psychiatric examination room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_GROUP_ROOM:
+      Description: "Outpatient Health Care Facilities - Psychiatric group room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_PSYCHIATRIC_SECLUSION_ROOM:
+      Description: "Outpatient Health Care Facilities - Psychiatric seclusion room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_SPEECH_THERAPY_ROOM:
+      Description: "Outpatient Health Care Facilities - Speech therapy room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_EXAMINATION_ROOM:
+      Description: "Outpatient Health Care Facilities - Urgent care examination room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_OBSERVATION_ROOM:
+      Description: "Outpatient Health Care Facilities - Urgent care observation room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TREATMENT_ROOM:
+      Description: "Outpatient Health Care Facilities - Urgent care treatment room"
+    OUTPATIENT_HEALTH_CARE_FACILITIES_URGENT_CARE_TRIAGE_ROOM:
+      Description: "Outpatient Health Care Facilities - Urgent care triage room"
+    PUBLIC_ASSEMBLY_SPACES_AUDITORIUM_SEATING_AREA:
+      Description: "Public Assembly Spaces - Auditorium seating area"
+    PUBLIC_ASSEMBLY_SPACES_COURTROOMS:
+      Description: "Public Assembly Spaces - Courtrooms"
+    PUBLIC_ASSEMBLY_SPACES_LEGISLATIVE_CHAMBERS:
+      Description: "Public Assembly Spaces - Legislative chambers"
+    PUBLIC_ASSEMBLY_SPACES_LIBRARIES:
+      Description: "Public Assembly Spaces - Libraries"
+    PUBLIC_ASSEMBLY_SPACES_LOBBIES:
+      Description: "Public Assembly Spaces - Lobbies"
+    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_CHILDRENS:
+      Description: "Public Assembly Spaces - Museums (children's)"
+    PUBLIC_ASSEMBLY_SPACES_MUSEUMS_GALLERIES:
+      Description: "Public Assembly Spaces - Museums/galleries"
+    PUBLIC_ASSEMBLY_SPACES_PLACES_OF_RELIGIOUS_WORSHIP:
+      Description: "Public Assembly Spaces - Places of religious worship"
+    RETAIL_SALES_EXCEPT_OTHER_SPECIFIC_RETAIL:
+      Description: "Retail - Sales (except other specific retail)"
+    RETAIL_BARBERSHOP:
+      Description: "Retail - Barbershop"
+    RETAIL_BEAUTY_AND_NAIL_SALONS:
+      Description: "Retail - Beauty and nail salons"
+    RETAIL_COIN_OPERATED_LAUNDRIES:
+      Description: "Retail - Coin-operated laundries"
+    RETAIL_MALL_COMMON_AREAS:
+      Description: "Retail - Mall common areas"
+    RETAIL_PET_SHOPS_ANIMAL_AREAS:
+      Description: "Retail - Pet shops (animal areas)"
+    RETAIL_SUPERMARKET:
+      Description: "Retail - Supermarket"
+    SPORTS_AND_ENTERTAINMENT_BOWLING_ALLEY_SEATING:
+      Description: "Sports and Entertainment - Bowling alley (seating)"
+    SPORTS_AND_ENTERTAINMENT_DISCO_DANCE_FLOORS:
+      Description: "Sports and Entertainment - Disco/dance floors"
+    SPORTS_AND_ENTERTAINMENT_GAMBLING_CASINOS:
+      Description: "Sports and Entertainment - Gambling casinos"
+    SPORTS_AND_ENTERTAINMENT_GAME_ARCADES:
+      Description: "Sports and Entertainment - Game arcades"
+    SPORTS_AND_ENTERTAINMENT_GYM_SPORTS_ARENA_PLAY_AREA:
+      Description: "Sports and Entertainment - Gym, sports arena (play area)"
+    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_AEROBICS_ROOM:
+      Description: "Sports and Entertainment - Health club/aerobics room"
+    SPORTS_AND_ENTERTAINMENT_HEALTH_CLUB_WEIGHT_ROOMS:
+      Description: "Sports and Entertainment - Health club/weight rooms"
+    SPORTS_AND_ENTERTAINMENT_SPECTATOR_AREAS:
+      Description: "Sports and Entertainment - Spectator areas"
+    SPORTS_AND_ENTERTAINMENT_STAGES_STUDIOS:
+      Description: "Sports and Entertainment - Stages, studios"
+    SPORTS_AND_ENTERTAINMENT_SWIMMING_POOL_AND_DECK:
+      Description: "Sports and Entertainment - Swimming (pool and deck)"
+    TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS:
+      Description: "Transient Residential - Common corridors"
+    TRANSIENT_RESIDENTIAL_DWELLING_UNIT:
+      Description: "Transient Residential - Dwelling unit"
+
+ServiceWaterHeatingSpaceType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+# Table G3.1.1-2 Baseline Service Water-Heating System  
+# The list is very similar to the first portion of LightingSpaceType2019ASHRAE901 but has a few differences and does not include Table 9.6.1 space types
+    AUTOMOTIVE_FACILITY:
+      Description: "Automotive facility"
+    CONVENIENCE_STORE:   # this does not appear in lighting space types
+      Description: "Convenience store"
+    CONVENTION_CENTER:
+      Description: "Convention center"
+    COURTHOUSE:
+      Description: "Courthouse"
+    DINING_BAR_LOUNGE_LEISURE:
+      Description: "Dining: Bar lounge/leisure"
+    DINING_CAFETERIA_FAST_FOOD:
+      Description: "Dining: Cafeteria/fast food"
+    DINING_FAMILY:
+      Description: "Dining: Family"
+    DORMITORY:
+      Description: "Dormitory"
+    EXERCISE_CENTER:
+      Description: "Exercise center"
+    FIRE_STATION:
+      Description: "Fire station"
+    GYMNASIUM:
+      Description: "Gymnasium"
+    HEALTH_CARE_CLINIC:
+      Description: "Health-care clinic"
+    HOSPITAL_AND_OUTPATIENT_SURGERY:  # this is different in lighting space types
+      Description: "Hospital and outpatient surgery center"
+    HOTEL:  # this is different in lighting space types
+      Description: "Hotel"
+    LIBRARY:
+      Description: "Library"
+    MANUFACTURING_FACILITY:
+      Description: "Manufacturing facility"
+    MOTEL:  # this is different in lighting space types
+      Description: "Motel"
+    MOTION_PICTURE_THEATER:
+      Description: "Motion picture theater"
+    MULTIFAMILY:
+      Description: "Multifamily"
+    MUSEUM:
+      Description: "Museum"
+    OFFICE:
+      Description: "Office"
+    PARKING_GARAGE:
+      Description: "Parking garage"
+    PENITENTIARY:
+      Description: "Penitentiary"
+    PERFORMING_ARTS_THEATER:
+      Description: "Performing arts theater"
+    POLICE_STATION:
+      Description: "Police station"
+    POST_OFFICE:
+      Description: "Post office"
+    RELIGIOUS_FACILITY:
+      Description: "Religious facility"
+    RETAIL:
+      Description: "Retail"
+    SCHOOL_UNIVERSITY:
+      Description: "School/university"
+    SPORTS_ARENA:
+      Description: "Sports arena"
+    TOWN_HALL:
+      Description: "Town hall"
+    TRANSPORTATION:
+      Description: "Transportation"
+    WAREHOUSE:
+      Description: "Warehouse"
+    WORKSHOP:
+      Description: "Workshop"
+    ALL_OTHERS:  # this is different in lighting space types    
+      Description: "All others"
+ 
+ClimateZone2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    CZ0A:
+      Description: "Extremely Hot - Humid"
+    CZ0B:
+      Description: "Extremely Hot - Dry"
+    CZ1A:
+      Description: "Very Hot - Humid"
+    CZ1B:
+      Description: "Very Hot - Dry"
+    CZ2A:
+      Description: "Hot - Humid"
+    CZ2B:
+      Description: "Hot - Dry"
+    CZ3A:
+      Description: "Warm - Humid"
+    CZ3B:
+      Description: "Warm - Dry"
+    CZ3C:
+      Description: "Warm - Marine"
+    CZ4A:
+      Description: "Mixed - Humid"
+    CZ4B:
+      Description: "Mixed - Dry"
+    CZ4C:
+      Description: "Mixed - Marine"
+    CZ5A:
+      Description: "Cool - Humid"
+    CZ5B:
+      Description: "Cool - Dry"
+    CZ5C:
+      Description: "Cool - Marine"
+    CZ6A:
+      Description: "Cold - Humid"
+    CZ6B:
+      Description: "Cold - Dry"
+    CZ7:
+      Description: "Very cold"
+    CZ8:
+      Description: "Subarctic/arctic"
+
+
+VerticalFenestrationBuildingAreaType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    GROCERY_STORE:
+      Description: "Grocery store"
+    HEALTHCARE_OUTPATIENT:
+      Description: "Healthcare (outpatient)"
+    HOSPITAL:
+      Description: "Hospital"
+    HOTEL_MOTEL_SMALL:
+      Description: "Hotel/motel - Small"
+    HOTEL_MOTEL_LARGE:
+      Description: "Hotel/motel - Large"
+    OFFICE_SMALL:
+      Description: "Office - Small"
+    OFFICE_MEDIUM:
+      Description: "Office - Medium"
+    OFFICE_LARGE:
+      Description: "Office - Large"
+    RESTAURANT_QUICK_SERVICE:
+      Description: "Restaurant (quick service)"
+    RESTAURANT_FULL_SERVICE:
+      Description: "Restaurant (full service)"
+    RETAIL_STAND_ALONE:
+      Description: "Retail (stand alone)"
+    RETAIL_STRIP_MALL:
+      Description: "Retail (strip mall)"
+    SCHOOL_PRIMARY:
+      Description: "School (primary)"
+    SCHOOL_SECONDARY_AND_UNIVERSITY:
+      Description: "School (secondary and university)"
+    WAREHOUSE_NONREFRIGERATED:
+      Description: "Warehouse (nonrefrigerated)"
+
+
+RefrigerationType2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    COMMERCIAL_REFRIGERATION:
+      Description: "Commercial refrigeration"
+    COMMERCIAL_REFRIGERATOR_SOLID_DOOR:
+      Description: "Commercial refrigerator solid door"
+    COMMERCIAL_REFRIGERATOR_TRANSPARENT_DOOR:
+      Description: "Commercial refrigerator transparent door"
+    COMMERCIAL_FREEZER_SOLID_DOOR:
+      Description: "Commercial freezer solid door"
+    COMMERCIAL_FREEZER_TRANSPARENT_DOOR:
+      Description: "Commercial freezer transparent door"
+    COMMERCIAL_PULLDOWN_REFRIGERATOR:
+      Description: "Commercial pulldown refrigerator"
+    COMMERCIAL_REFRIGERATOR_FREEZER_SOLID_DOOR:
+      Description: "Commercial refrigerator freezer solid door"
+    OTHER:
+      Description: "Other"
+    
+
+RefrigerationClass2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    VOP_RC_M:
+      Description: "Vertical open - Remote condensing - Medium temperature"
+    SVO_RC_M: 
+      Description: "Semivertical open - Remote condensing - Medium temperature"
+    HZO_RC_M: 
+      Description: "Horizontal open  -Remote condensing - Medium temperature"
+    VOP_RC_L: 
+      Description: "Vertical open - Remote condensing - Low temperature"
+    HZO_RC_L: 
+      Description: "Horizontal open - Remote condensing - Low temperature"
+    VCT_RC_M: 
+      Description: "Vertical transparent door - Remote condensing - Medium temperature"
+    VCT_RC_L:
+      Description: "Vertical transparent door - Remote condensing - Low temperature"
+    SOC_RC_M: 
+      Description: "Service over counter - Remote condensing - Medium temperature"
+    VOP_SC_M: 
+      Description: "Vertical open - Self-contained - Medium temperature"
+    SVO_SC_M: 
+      Description: "Semivertical open - Self-contained - Medium temperature"
+    HZO_SC_M: 
+      Description: "Horizontal open - Self-contained - Medium temperature"
+    HZO_SC_L: 
+      Description: "Horizontal open - Self-contained - Low temperature"
+    VCT_SC_I:
+      Description: "Vertical transparent door - Self-contained - Ice cream"
+    VCS_SC_I:
+      Description: "Vertical solid door - Self-contained - Ice cream"
+    HCT_SC_I:
+      Description: "Horizontal transparent door - Self-contained - Ice cream"
+    SVO_RC_L: 
+      Description: "Semivertical open - Remote condensing - Low temperature"
+    VOP_RC_I:
+      Description: "Vertical open - Remote condensing - Ice cream"
+    SVO_RC_I:
+      Description: "Semivertical open - Remote condensing - Ice cream"
+    HZO_RC_I:
+      Description: "Horizontal open - Remote condensing - Ice cream"
+    VCT_RC_I:
+      Description: "Vertical transparent door - Remote condensing - Ice cream"
+    HCT_RC_M: 
+      Description: "Horizontal transparent door - Remote condensing - Medium temperature"
+    HCT_RC_L: 
+      Description: "Horizontal transparent door - Remote condensing - Low temperature"
+    HCT_RC_I:
+      Description: "Horizontal transparent door - Remote condensing - Ice cream"
+    VCS_RC_M: 
+      Description: "Vertical solid door - Remote condensing - Medium temperature"
+    VCS_RC_L:
+      Description: "Vertical solid door - Remote condensing - Low temperature"
+    VCS_RC_I:
+      Description: "Vertical solid door - Remote condensing - Ice cream"
+    HCS_RC_M: 
+      Description: "Horizontal solid door - Remote condensing - Medium temperature"
+    HCS_RC_L:
+      Description: "Horizontal solid door - Remote condensing - Low temperature"
+    HCS_RC_I:
+      Description: "Horizontal solid door - Remote condensing - Ice cream"
+    SOC_RC_L:
+      Description: "Service over counter - Remote condensing - Low temperature"
+    SOC_RC_I:
+      Description: "Service over counter - Remote condensing - Ice cream"
+    VOP_SC_L:
+      Description: "Vertical open - Self contained - Low temperature"
+    VOP_SC_I:
+      Description: "Vertical open - Self-contained - Ice cream"
+    SVO_SC_L: 
+      Description: "Semivertical open - Self-contained - Low temperature"
+    SVO_SC_I:
+      Description: "Semivertical open - Self-contained - Ice cream"
+    HZO_SC_I:
+      Description: "Horizontal open - Self-contained - Ice cream"
+    SOC_SC_I:
+      Description: "Service over counter - Self-contained - Ice cream"
+    HCS_SC_I:
+      Description: "Horizontal solid door - Self-contained - Ice cream"
+    
+PrescribedSchedules2019ASHRAE901:
+  Object Type: "Enumeration"
+  Enumerators:
+    NOT_APPLICABLE:
+      Description: "No prescribed schedules for Appendix G of ASHRAE Standard 90.1-2019. This field may be relavent for other rulesets."
+
+
+
+
+
+
+
+
+
+
+

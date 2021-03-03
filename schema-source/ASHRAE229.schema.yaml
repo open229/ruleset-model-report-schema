@@ -1,0 +1,1014 @@
+# ASHRAE229.schema.yaml
+# The purpose of this "open229 schema" is to provide a single source generator format from which
+# all open229 standard materials, both normative and informative, will be created.
+
+# YAML single-source files will be created in accordance with the open229 schema.
+
+# Meta
+
+Schema:
+  Object Type: "Meta"
+  Title: "ASHRAE 229"
+  Description: "Base schema for ASHRAE 229 representations"
+  Version: "0.0.1"
+  References:
+    - "Enumerations2019ASHRAE901"
+  Root Data Group: "ASHRAE229"
+
+# Data Types
+
+Integer:
+  Object Type: "Data Type"
+  Description: "A positive or negative whole number (i.e., a number that can be written without a fractional part)."
+  JSON Schema Type: integer
+  Examples:
+    - "3"
+    - "19"
+    - "-4"
+
+Numeric:
+  Object Type: "Data Type"
+  Description: "A number that may include a fractional part with optional leading sign and optional exponent (engineering notation)."
+  JSON Schema Type: number
+  Examples:
+    - "3.43"
+    - "0"
+    - "-4"
+    - "1.03e4"
+
+Boolean:
+  Object Type: "Data Type"
+  Description: "True or false."
+  JSON Schema Type: boolean
+  Examples:
+    - "true"
+    - "false"
+
+String:
+  Object Type: "Data Type"
+  Description: "A sequence of characters of any length using any (specified) character set."
+  JSON Schema Type: string
+  Examples:
+    - "Indirect evaporative cooler"
+
+"Null":
+  Object Type: "Data Type"
+  Description: "Indicator that no value is provided. Only used in combination with other data types, e.g., 'Number/Null'."
+  JSON Schema Type: "null"
+  Examples:
+    - "null"
+
+# Common Data Groups
+ASHRAE229:
+  Object Type: "Data Group"
+  Data Elements:
+    transformers:
+      Description: "Electrical transformers at the building site"
+      Data Type: "[{Transformer}]"
+      Notes: "Contains a list of transformers that convert electricity from a higher voltage to one used by the building, exterior lighting, and other services at the site."
+    buildings:
+      Description: "Buildings on the site"
+      Data Type: "[{Building}]"
+      Notes: "Contains a list of buildings on the site (often just one)."
+    calendar:
+      Description: "Information on the calendar used with the simulation."
+      Data Type: "{Calendar}"
+    schedules:
+      Description: "Schedules for internal loads, thermostats, equipment operation and control, and any other need."
+      Data Type: "[{Schedule}]"
+      Notes: "Contains a list of schedules used in model."
+    weather:
+      Description: "Information on the local weather conditions used with the simulation."
+      Data Type: "{Weather}"
+    overall_simulation_outputs:
+      Description: "Outputs from the simluation summed for all buildings in the simulation."
+      Data Type: "{OverallSimulationOutputs}"
+    building_rotation_angles: 
+      Description: "A list of angles that building simulations are performed and results are provided."
+      Data Type: "[Numeric]"
+      Units: "degrees"
+      Notes: "List of angles that the building has been rotated."
+    
+
+Building:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name of the Building"
+      Data Type: "String"
+      Required: True
+    number_of_floors:
+      Description: "Number of floors"
+      Data Type: "Numeric"
+      Range: ">=0"
+    building_segments:
+      Description: "Large portions of a building that share a building area type"
+      Data Type: "[{BuildingSegment}]"
+      Notes: "Contains a list of building segments in the building."
+    is_new:
+      Description: "Indicates whether building is a new construction (true) or existing (false). Projects that include additions will be modeled as two buildings - one new and one existing, as curtain rules such as baseline fenestration area will apply differently to each portion"
+      Data Type: "Boolean"
+    compliance_path:
+      Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
+      Data Type: "<CompliancePathType2019ASHRAE901>"
+    elevators:
+      Description: "Elevators"
+      Data Type: "[{Elevator}]"
+      Notes: "Contains a list of elevators in the building."
+    refrigeration_components:
+      Description: "Refrigeration"
+      Data Type: "[{Refrigeration}]"
+      Notes: "Contains a list of refrigeration components in the building."
+    open_time:
+      Description: "Time that the building opens."
+      Data Type: "Numeric"
+      Range: ">=1, <=24"
+      Notes: "The general time that the building is first opened during normal weekdays from 1 to 24"
+    close_time:
+      Description: "Time that the building closes."
+      Data Type: "Numeric"
+      Range: ">=1, <=24"
+      Notes: "The general time that the building is closed during normal weekdays from 1 to 24"
+
+BuildingSegment:    
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    thermal_blocks:
+      Description: "Thermal blocks in the building"
+      Data Type: "[{ThermalBlock}]"
+      Notes: "Contains a list of thermal blocks in the building."
+    heating_ventilation_air_conditioning_systems:
+      Description: "HVAC systems in the building"
+      Data Type: "[{HeatingVentilationAirConditioningSystem}]"
+      Notes: "Contains a list of HVAC systems in the building."
+    service_water_heating_systems:
+      Description: "Service water heating systems in the building"
+      Data Type: "[{ServiceWaterHeatingSystem}]"
+      Notes: "Contains a list of service water heating systems in the building."
+    area_type_vertical_fenestration:
+      Description: "Building area classification used for vertical fenestration"
+      Data Type: "<VerticalFenestrationBuildingAreaType2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+
+ThermalBlock:
+  Object Type: "Data Group"
+  Data Elements:
+    zones:
+      Description: "Zones in the building"
+      Data Type: "[{Zone}]"
+      Notes: "Contains a list of zones in the building."
+    served_by_heating_ventilation_air_conditioning_systems:
+      Description: "HVAC systems serving the thermal block"
+      Data Type: "[String]"
+      Notes: "Contains a list of IDs of the HVAC systems serving the thermal block - from Unique Identification Number in HeatingVentilationAirConditioningSystem."
+
+Zone:
+  Object Type: "Data Group"
+  Data Elements:
+    spaces:
+      Description: "Spaces in the building"
+      Data Type: "[{Space}]"
+      Notes: "Contains a list of spaces in the building."
+
+Space:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name fo the Space"
+      Data Type: "String"
+      Required: True
+    surfaces:
+      Description: "Surfaces surrounding the space"
+      Data Type: "[{Surface}]"
+      Notes: "Contains a list of surfaces that define the space."
+    floor_area:
+      Description: "The floor area of a space within the building, including basements, mezzanine and intermediate-floored tiers, and penthouses with a headroom height of 7.5 ft or greater. It is measured from the exterior faces of walls or from the center-line of walls separating buildings, but excluding covered walkways, open roofed-over areas, porches and similar spaces, pipe trenches, exterior terraces or steps, chimneys, roof overhangs, and similar features."
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+    floor_to_ceiling_height:
+      Description: "The height from the floor of the space to the ceiling"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m"
+    floor_area_basis_for_exterior:
+      Description: "The basis of the measurement location related to floor area for exterior walls."
+      Data Type: "<FloorAreaBasis>"
+    floor_area_basis_for_interior:
+      Description: "The basis of the measurement location related to floor area for interior walls."
+      Data Type: "<FloorAreaBasis>"
+    conditioning_type:
+      Description: "Space conditioning category"
+      Data Type: "<ConditioningType>"
+    space_function:
+      Description: "Generic function for the space."
+      Data Type: "<SpaceFunctionType>"
+      Notes: "The enumeration is based on the standard used."
+    lighting_space_type:
+      Description: "Lighting space type classification"
+      Data Type: "(<LightingSpaceType2019ASHRAE901T951>, <LightingSpaceType2019ASHRAE901T961>)"
+      Notes: "The enumeration is based on the standard used."
+    ventilations_space_type:
+      Description: "Ventilation space type classification"
+      Data Type: "<VentilationSpaceType2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+    service_water_heating_space_type:
+      Description: "Service water heating space type classification"
+      Data Type: "<ServiceWaterHeatingSpaceType2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+    infiltration_modeling_method:
+      Description: "The software methodology chosen for modeling infiltration"
+      Data Type: "String"
+    infiltration_equivalent_full_load_hours:
+      Description: "Annual sum of hourly fractions of infiltration schedule"
+      # this field may be replaced by a function EFLH()
+      Data Type: "Numeric"
+      Units: "hr"
+      Range: ">=0"
+    receptacle_control_credit_taken:
+      Description: "The receptacle control credit was taken"
+      Data Type: "Boolean"
+    receptacle_baseline_exception_taken:
+      Description: "The excpetion that receptacle power or schedule can be different in the baseline has been taken."
+      Data Type: "Boolean"
+    receptacle_power:
+      Description: "Peak power consumed by the receptacles."
+      Data Type: "Numeric"
+      Units: "W"
+    receptacle_schedule_name:
+      Description: "Receptacle schedule name"
+      Data Type: "String"
+    receptacle_control_credit:
+      Description: "A multiplier for the fraction of space plug load power applied tothe receptacle controlled credit."
+      Data Type: "Numeric"
+      Range: ">=0"
+
+FloorAreaBasis:
+  Object Type: "Enumeration"
+  Enumerators:
+    CENTER:
+      Description: "Center line of the wall"
+      Display Text: "The area is measured to the center line of the wall when standing within the space."
+    NEAR_SIDE:
+      Description: "Near side of the wall"
+      Display Text: "The area is measured to the line on the near side of the wall when standing within the space."
+    FAR_SIDE:
+      Description: "Far side of the wall"
+      Display Text: "The area is measured to the line on the far side of the wall when standing within the space."
+
+ConditioningType:
+  Object Type: "Enumeration"
+  Enumerators:
+    HEATED_AND_COOLED:
+      Description: "Heated and cooled"
+    HEATED_ONLY:
+      Description: "Heated only"
+    SEMIHEATED:
+      Description: "Semiheated"
+    UNCONDITIONED:
+      Description: "Unconditioned"
+    PLENUM:
+      Description: "Plenum"
+
+SpaceFunctionType:
+  Object Type: "Enumeration"
+  Enumerators:
+    LABORATORY:
+      Description: "Laboratory"
+    KITCHEN:
+      Description: "Kitchen"
+    OTHER:
+      Description: "Other"
+
+Surface:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name fo the Space"
+      Data Type: "String"
+      Required: True
+    fenestration_subsurfaces:
+      Description: "Fenestration suburfaces that are on the surface"
+      Data Type: "[{Fenestration}]"
+      Notes: "Contains a list of surfaces that define the space."
+    classification: 
+      Description: "Classification for the surface."
+      Data Type: "<SurfaceClassificationType>"
+      Notes: "Options for surface being interior or exterior wall, floor, or ceiling."
+    tilt:
+      Description: "Angle between vertical and the surface outward normal" 
+      Data Type: "Numeric"
+      Units: "degrees"
+      Notes: "Example value would be 0 = roof, 90 = wall, 180 = downward facing surface (exterior floor)"
+    azimuth:
+      Description: "Clockwise angle between North and the horizontal projection of the wall's outward normal."
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "degrees"
+      Notes: "Example values would be 0 = north, 90 = East, 180 = South, 270 = West"
+    adjacent_to:
+      Description: "Used to classify the conditions on the surface."
+      Data Type: "<SurfaceAdjacentTo>"
+      Notes: "Determines whether this is an (a) exterior surface if adjacent to ambient, (b) slab-on-grad or below grade surface if adjacent to ground, or (c) interior surface if adjacent to another thermal block."
+    adjacent_space_id:
+      Description: "ID of the adjacent space for interior surface"
+      Data Type: "String"
+    does_cast_shade:
+      Description: "Determines whether the surface is modeled as casting shade on other exterior surfaces"
+      Data Type: "Boolean"
+    construction:
+      Description: "Construction description of surface."
+      Data Type: "{Construction}"
+      
+Construction:
+  Object Type: "Data Group"
+  Data Elements:
+    surface_construction_input_option:
+      Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
+      Data Type: "<SurfaceConstructionInputOptions>"
+    area:
+      Description: "area of the surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+      Notes: "Measured from interior face area. It is the gross area of the wall and includes the area of all subsurfaces."
+    layers:
+      Description: "List of names of layer descriptions starting from the outside surface"
+      Data Type: "[String]"
+    insulation_location:
+      Description: "The location of the insulation related to the surface"
+      Data Type: "String"  # this might make sense as an enumeration but I'm not sure the source of the options
+    u_factor:
+      Description: "suface U-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "W/m2-K"
+    c_factor:
+      Description: "surface C-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "W/m2-K"
+    f_factor:
+      Description: "surface F-factor"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "W/m-K"
+    r_value:
+      Description: "r-value of the insulation for the surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "K-m2/W"
+    reflectance_thermal_exterior:
+      Description: "Thermal reflectance of long wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_thermal_exterior:
+      Description: "Thermal absorptance of long wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_solar_exterior:
+      Description: "Thermal reflectance of short wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_solar_exterior:
+      Description: "Thermal absorptance of short wavelength radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_visible_exterior:
+      Description: "Thermal reflectance of visible radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_exterior:
+      Description: "Thermal absorptance of visible radiation on the exterior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_thermal_interior:
+      Description: "Thermal reflectance of long wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_thermal_interior:
+      Description: "Thermal absorptance of long wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_solar_interior:
+      Description: "Thermal reflectance of short wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_solar_interior:
+      Description: "Thermal absorptance of short wavelength radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    reflectance_visible_interior:
+      Description: "Thermal reflectance of visible radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    absorptance_visible_interior:
+      Description: "Thermal absorptance of visible radiation on the interior surface."
+      Data Type: "Numeric"
+      Range: ">=0"
+    has_radiant_heating:
+      Description: "Includes embedded radiant heating elements"
+      Data Type: "Boolean"
+    has_radiant_cooling:
+      Description: "Includes embedded radiant cooling elements"
+      Data Type: "Boolean"
+
+SurfaceClassificationType:
+  Object Type: "Enumeration"
+  Enumerators:
+    WALL:
+      Description: "Vertical or nearly vertical wall"
+    FLOOR:
+      Description: "Floor"
+    CEILING:
+      Description: "Ceiling"
+    
+SurfaceAdjacentTo:
+  Object Type: "Enumeration"
+  Enumerators:
+    AMBIENT:
+      Description: "Exterior wall or roof which is adjacent to the exterior ambient environments."
+    GROUND:
+      Description: "Slab-on-grad or below grade surface if adjacent to ground."
+    INTERIOR:
+      Description: "Interior surface if adjacent to another thermal block."
+    IDENTICAL:
+      Description: "Surface adjacent to a environment identical to the zone."
+    UNHEATED:
+      Description: "Surface adjacent to a environment that is not heated but enclosed."
+
+SurfaceConstructionInputOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    LAYERS:
+      Description: "Construction is entered layer-by-layer."
+    SIMPLIFIED:
+      Description: "Construction is entered by R-value only."
+
+Fenestration:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name of the fenestration subsurface"
+      Data Type: "String"
+      Required: True
+    classification:
+      Description: "Classification for the fenestration being window, skylight, door."
+      Data Type: "<FenestrationClassificationType>"
+    area:
+      Description: "Area of fenestration including glass and framing"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"
+    international_glazing_database_id:
+      Description: "International Glazing Database ID Number"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Notes: "See https://windows.lbl.gov/software/igdb for ID numbers"
+    u_factor:
+      Description: "Fenestration U-factor"
+      Data Type: "Numeric"
+      Units: "W/m2-K"
+      Range: ">=0"
+    solar_heat_gain_coefficient:
+      Description: "Fenestration SHGC"
+      Data Type: "Numeric"
+      Range: ">=0"
+    visible_transmittance:
+      Description: "Fenestration VT"
+      Data Type: "Numeric"
+      Range: ">=0"
+    light_to_solar_gain_ratio:
+      Description: "Fenestration LSG"
+      Data Type: "Numeric"
+      Range: ">=0"
+    depth_of_overhang:
+      Description: "Distance from the edge of the overhang to the fenestration surface."
+      Data Type: "Numeric"
+      Units: "m"
+      Range: ">=0"
+    has_shading_projections:
+      Description: "Identifies whether fenestration has side fins, overhangs or not flush with wall"
+      Data Type: "Boolean"
+    has_manual_interior_shades:
+      Description: "Are there manually-operated interior shading such as blinds, curtains or shades"
+      Data Type: "Boolean"
+    has_automatic_shades:
+      Description: "Are there automatic interior shading such as blinds, curtains or shades"
+      Data Type: "Boolean"
+    
+FenestrationClassificationType:
+  Object Type: "Enumeration"
+  Enumerators:
+    WINDOW:
+      Description: "Window"
+    SKYLIGHT:
+      Description: "Skylight"
+    DOOR:
+      Description: "Door"
+      # Usually a substantial fraction of the door needs to be glazed to be considered fenestration
+    PLASTIC_PANEL:
+      Description: "Plastic panel"
+    CLERESTORIES:
+      Description: "Clerestories"
+    ROOF_MONITOR:
+      Description: "Roof monitor"
+    GLASS_BLOCK:
+      Description: "Glass block"
+ 
+Transformer:
+  Object Type: "Data Group"
+  Data Elements:
+    name:
+      Description: "Transformer Name"
+      Data Type: "String"
+      Required: True
+    type:
+      Description: "The type of transformer"
+      Data Type: "<TransformerType>"
+    phase:
+      Description: "The number of electrical phases"
+      Data Type: "<ElectricalPhase>"
+    efficiency:
+      Description: "Transformer efficiency"
+      Data Type: "Numeric"
+      Range: ">=0, <=1"
+      Notes: "Expresses the efficiency of the transformer as a fraction from 0 to 1, where 1 would represent 100% efficiency."
+    capacity:
+      Description: "Rated Capacity of the Transformer"
+      Data Type: "Numeric"
+      Units: "V-A"
+      Range: ">=0"
+    peak_load:
+      Description: "Annual Peak electric load on the transformer"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">=0"
+      Notes: "Peak electric load on the transfomer based on an annual simulation with typical weather file."
+    
+TransformerType:
+  Object Type: "Enumeration"
+  Enumerators:
+    DRY_TYPE:
+      Description: "Dry Type"
+    FLUID_FILLED:
+      Description: "Fluid Filled"
+    OTHER:
+      Description: "Other"
+
+ElectricalPhase:
+  Object Type: "Enumeration"
+  Enumerators:
+    SINGLE_PHASE:
+      Description: "Single Phase"
+    THREE_PHASE:
+      Description: "Three Phase"
+
+Schedule:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name of the Schedule"
+      Data Type: "String"
+      Required: True
+    purpose:
+      Description: "The purpose of schedule"
+      Data Type: "String"
+      Notes: "Describe the purpose of the schedule and how it can be used. Not an enumerations. The purpose assigned by BEM tool should match across RMRs. Examples include thermostat, multiplier for lighting, availability for equipment."
+    values:
+      Description: "Hourly Values of Schedule"
+      Data Type: "[Numeric][8760]"
+      Notes: "Can also use functions like EFLH(), MAX(), MIN() to determine overall characteristics for the list of schedule values."
+    units_of_values:
+      Description: "The units associated witht the values of the schedule"
+      Data Type: "String"
+      Notes: "For certain schedule purposes, the values may be represented by units such as C for temperature or W for power."
+    prescribed_schedule:
+      Description: "True if any schedule values have changed from what appears in the schedule library"
+      Data Type: "<PrescribedSchedules2019ASHRAE901>"
+    
+    
+Calendar:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    day_of_week_for_january_1:
+      Description: "Day of the week for January 1"
+      Data Type: "<DayOfWeek>"
+    is_leap_year:
+      Description: "The schedules assume it is a leap year"
+      Data Type: "Boolean"
+    is_daylight_savings_time:
+      Description: "The schedules adjust for daylight Savings Time"
+      Data Type: "Boolean"
+
+DayOfWeek:
+  Object Type: "Enumeration"
+  Enumerators:
+    SUNDAY:
+      Description: "Sunday"
+    MONDAY:
+      Description: "Monday"
+    TUESDAY:
+      Description: "Tuesday"
+    WEDNESDAY:
+      Description: "Wednesday"
+    THURSDAY:
+      Description: "Thursday"
+    FRIDAY:
+      Description: "Friday"
+    SATURDAY:
+      Description: "Saturday"
+
+Weather:
+  Object Type: "Data Group"
+  Data Elements:
+    monthly_ground_temperature:
+      Description: "Modeled monthly ground temperatures"
+      Data Type: "[Numeric][1..12]"
+      Units: "C"
+    climate_zone:
+      Description: "The designation of the climate zone where the building is located"
+      Data Type: "<ClimateZone2019ASHRAE901>"
+      Required: True
+      Notes: "The enumeration is based on the standard used."
+
+Elevator:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name of the elevator"
+      Data Type: "String"
+      Required: True
+    motor_power:
+      Description: "Elevator peak motor power"
+      Data Type: "Numeric"
+      Units: "W"
+    cab_counterweight:
+      Description: "Elevator car counterweight"
+      Data Type: "Numeric"
+      Units: "kg"
+    cab_weight:
+      Description: "Weight of elevator car"
+      Data Type: "Numeric"
+      Units: "kg"
+    design_elevator_load:
+      Description: "Elevator load at which to operate"
+      Data Type: "Numeric"
+      Units: "kg"
+    speed:
+      Description: "Design speed of the elevator"
+      Data Type: "Numeric"
+      Units: "m/s"
+    cab_area:
+      Description: "Floor area of elevator cab"
+      Data Type: "Numeric"
+      Units: "m2"
+    cab_lighting_power:
+      Description: "Lighitng power of cab"
+      Data Type: "Numeric"
+      Units: "W"
+    cab_ventilation_fan_power:
+      Description: "Ventilation fan power of cab"
+      Data Type: "Numeric"
+      Units: "W"
+    cab_ventilation_fan_flow:
+      Description: "Airflow of cab ventfan"
+      Data Type: "Numeric"
+      Units: "L/s"
+    cab_motor_schedule:
+      Description: "Elevator motor operation schedule name"
+      Data Type: "String"
+    cab_ventilation_fan_schedule:
+      Description: "Elevator ventilation fan operation schedule name"
+      Data Type: "String"
+    cab_lighting_schedule:
+      Description: "Elevator lighting schedule name"
+      Data Type: "String"
+    cab_motor_schedule_equivalent_full_load_hours:
+      Description: "Elevator motor operation schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
+      Range: ">=0, <=8760"
+      Units: "hr"
+    cab_ventilation_fan_schedule_equivalent_full_load_hours:
+      Description: "Elevator ventfan operation schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
+      Range: ">=0, <=8760"
+      Units: "hr"
+    cab_lighting_schedule_equivalent_full_load_hours:
+      Description: "Elevator lighitng schedule equivalent full load hours"
+      Data Type: "Numeric"  # this field may be replaced by a function EFLH()
+      Range: ">=0, <=8760"
+      Units: "hr"
+
+HeatingVentilationAirConditioningSystem:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    sensible_cool_output_capacity: 
+      Description: "Result from the simulation of the sensible cooling capacity"
+      Data Type: "[Numeric]"
+      Range: ">=0"
+      Units: "W/m2"
+      Notes: "If multiple values are provided, they correspond to rotated building orientations"
+    heat_output_capacity:
+      Description: "Result from the simulation of the heating capacity"
+      Data Type: "[Numeric]"
+      Range: ">=0"
+      Units: "W/m2"
+      Notes: "If multiple values are provided, they correspond to rotated building orientations"
+
+ServiceWaterHeatingSystem:
+  Object Type: "Data Group"
+  Data Elements:
+    loop_name:
+      Description: "Name of service water heating system loop"
+      Data Type: "String"
+    area_type:
+      Description: "Service Water Heating Loop Area Type"
+      Data Type: "<ServiceWaterHeatingSpaceType2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+    design_flow:
+      Description: "Design Flowrate of service water heating loop"
+      Data Type: "Numeric"
+      Units: "L/s" # use gpm for IP
+    supply_temperature:
+      Description: "Design supply temperature setpoint of service water heating loop"
+      Data Type: "Numeric"
+      Units: "C"
+    flow_schedule:
+      Description: "service water heating Loop flow schedule name"
+      Data Type: "String"
+    annual_entering_water_temperature:
+      Description: "Annual service main or annual ground temperature used for service water heating calculations entering water temperature	degrees"
+      Data Type: "Numeric"
+      Units: "C"
+    monthly_entering_water_temperature:
+      Description: "Monthly service main or ground temperatures used for service water heating entering water temperature	degrees"
+      Data Type: "[Numeric][1..12]"
+      Units: "C"
+      Notes: "Arrayed variable with 12 values for monthly entering water temperature"
+    entering_water_temperature_type:
+      Description: "Method of determining service water heating entering water temperature"
+      Data Type: "<ServiceWaterHeatingEnteringWaterTemperatureInputOptions>"
+    heater_name:
+      Description: "Service water heating heater name"
+      Data Type: "String"
+    heater_fuel_type:
+      Description: "Service water heating heater fuel type"
+      Data Type: "<FuelTypeOptions>"
+    heater_efficiency:
+      Description: "Service water heating heater efficiency"
+      Data Type: "Numeric"
+      Range: ">=0"
+
+ServiceWaterHeatingEnteringWaterTemperatureInputOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    ANNUAL_MAIN:
+      Description: "Annual main entering water temperature option"
+    MONTHLY_MAIN:
+      Description: "Monthly main entering water temperature option"
+    ANNUAL_GROUND:
+      Description: "Annual ground entering water temperature option"
+    MONTHLY_GROUND:
+      Description: "Monthly ground entering water temperature option"
+
+FuelTypeOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    ELECTRICITY:
+      Description: "Electricity"
+    NATURAL_GAS:
+      Description: "Natural gas"
+
+InteriorLighting:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique ID assigned to each interior lighting fixture(s) reported in an RMR"
+      Data Type: "Numeric"
+      Range: ">0"
+    name:
+      Description: "Interior lighting fixture name"
+      Data Type: "String"
+    type:
+      Description: "The type of interior lighting fixture"
+      Data Type: "<LightingSpaceType2019ASHRAE901>"
+    norminal_wattage:
+      Description: "Nominal capacity of interior lighting fixtures"
+      Data Type: "Numeric"
+      Units: "W"
+    power:
+      Description: "Total power of all fixtures in a specific functional area"
+      Data Type: "Numeric"
+      Units: "W"
+    designed_power:
+      Description: "Total designed power of all fixtures in a specific functional area"
+      Data Type: "Numeric"
+      Units: "W"
+    with_occupancy_sensor:
+      Description: "The flag for occ sensor is modeled with interior lighting"
+      Data Type: "Boolean"
+    with_auto_controls:
+      Description: "The flag for automatic lighting control is modeled with interior lighting	none"
+      Data Type: "Boolean"
+    with_manual_on_sensor:
+      Description: "The flag for manual-on automatic lighting control for interior lighting"
+      Data Type: "Boolean"
+    with_partial_auto_on_sensor:
+      Description: "The flag for partial-auto-on automatic lighting control for interior lighting"
+      Data Type: "Boolean"
+    multiplier:
+      Description: "Multiplier for interior lighting specifications"
+      Data Type: "Numeric"
+      Range: ">0"
+    area:
+      Description: "Space area for interior lighting"
+      Data Type: "Numeric"
+      Units: "m2"    # use ft2 for IP units
+      Range: ">0"
+    with_other_auto_controls:
+      Description: "Automatic interial lighting controls other than occupancy sensor"
+      Data Type: "Boolean"
+
+ExteriorLighting:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique ID assigned to each exterior lighting fixture(s) reported in an RMR"
+      Data Type: "Numeric"
+      Range: ">0"
+    name:
+      Description: "Exterior lighting fixture name"
+      Data Type: "String"
+    type:
+      Description: "The type of exterior lighting fixture	none"
+      Data Type: "<ExteriorLightingAreas2019ASHRAE901TableG36>"
+    area:
+      Description: "Area of the exterior functional space."
+      Data Type: "Numeric"
+      Units: "m2"    # use ft2 for IP units
+      Range: ">0"
+    norminal_wattage:
+      Description: "Nominal capacity of exterior lighting fixtures"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">0"
+    fixture_height:
+      Description: "Installation height of exterior fixture"
+      Data Type: "Numeric"
+      Units: "m"     # use ft for IP units
+      Range: ">0"
+    power:
+      Description: "Total exterior lighting power of all fixtures in a specific functional area"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">0"
+    designed_power:
+      Description: "Total designed exterior lighting power of all fixtures in a specific functional area"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">0"
+    trade_light_power:
+      Description: "Exterior Lighting power for tradable surface"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">=0"
+    non_trade_light_power:
+      Description: "Exterior Lighting power for non-tradable surface"
+      Data Type: "Numeric"
+      Units: "W"
+      Range: ">=0"
+    site_zone_type:
+      Description: "Site zone type for Sec 9.4.2"
+      Data Type: "<ExteriorLightingZones2019ASHRAE901>"
+    parking_area:
+      Description: "Area of exterior parking space"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"    # use ft2 for IP units
+    tradable_surface_type:
+      Description: "Type of tradable surfaces for exterior lighting"
+      Data Type: "String"
+      Data Type: "<ExteriorLightingAreas2019ASHRAE901TableG36>"
+    tradable_surface_area:
+      Description: "Area of tradable surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m2"    # use ft2 for IP units
+    tradable_surface_linear_footage:
+      Description: "Linear feet of tradable surface"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m"     # use ft for IP units
+    has_walkway:
+      Description: "If the building has an exterior walkway"
+      Data Type: "Boolean"
+    tradable_walkway_width_footage:
+      Description: "Width of the exterior walkway"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m"     # use ft for IP units
+    tradable_opening_width_footage:
+      Description: "Width of an exterior opening"
+      Data Type: "Numeric"
+      Range: ">=0"
+      Units: "m"     # use ft for IP units
+    multiplier:
+      Description: "Multiplier for exterior lighting specifications"
+      Data Type: "Numeric"
+      Range: ">0"
+
+
+Refrigeration:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique Identification Number"
+      Data Type: "Numeric"
+      Required: True
+    name:
+      Description: "Name of the refrigeration component"
+      Data Type: "String"
+      Required: True
+    type:
+      Description: "Refrigeration equipment type"
+      Data Type: "<RefrigerationType2019ASHRAE901>"
+    equipment_class:
+      Description: "Equipment Class from referenced standard"
+      Data Type: "<RefrigerationClass2019ASHRAE901>"
+    energy_per_day:
+      Description: "Rated electrical energy use per day"
+      Data Type: "Numeric"
+      Units: "kWh"
+    case_volume:
+      Description: "volume of a refrigerated case in cubic meters"
+      Data Type: "Numeric"
+      Units: "m3"
+    total_display_area:
+      Description: "display area of a refrigerated case in square meters"
+      Data Type: "Numeric"
+      Units: "m2"
+
+OverallSimulationOutputs:
+  Object Type: "Data Group"
+  Data Elements:
+    refrigeration_energy_enduse:
+      Description: "Annual refrigeration energy end use from simulation output"
+      Data Type: "Numeric"
+      Units: "kWh"
+    service_water_heating_annual_enduse_electricity:
+      Description: "Annual electricity energy end_use for SWH loops"
+      Data Type: "Numeric"
+      Units: "kWh"
+      Range: ">=0"
+    service_water_heating_annual_enduse_fossilfuel:
+      Description: "Annual fossil fuel energy end_use for SWH loops"
+      Data Type: "Numeric"
+      Units: "J" # use MMBTU for IP units
+      Range: ">=0"
+
+
+
+
+
+
+
+
+
+
