@@ -1,0 +1,20 @@
+---
+# EnumerationsRESNET.schema.yaml
+# The purpose file is to provide a separated source from the main schema file in the generator 
+# format for enumerations related to ASHRAE Standard 90.1-2019, both normative and informative.
+
+Schema:
+  Object Type: "Meta"
+  References:
+    - "ASHRAE229"
+  Title: "Enumerations from RESNET"
+  Description: "Schema addition for ASHRAE 229 related to enumerations found in RESNET publications."
+
+AdditionalSurfaceAdjacentToRESNET:
+  Object Type: "Enumeration"
+  Enumerators:
+    MULTIFAMILY_BUFFER_SPACE:
+      Description: "Multifamily Buffer Space"
+    COMMON_WALL:
+      Description: "Common Wall"
+
