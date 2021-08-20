@@ -185,10 +185,8 @@ LightingSpaceType2019ASHRAE901TG37:
       Description: "Judges Chambers"
     DWELLING_UNIT:
       Description: "Dwelling Unit"
-    LABORATORY_IN_OR_AS_A_CLASSROOM:
-      Description: "Laboratory - In or as a classroom"
-    LABORATORY_ALL_OTHERS:
-      Description: "Laboratory - All others"
+    LABORATORY_EXCEPT_IN_OR_AS_A_CLASSROOM:
+      Description: "Laboratory - Except in or as a classroom"
     LAUNDRY_WASHING_AREA:
       Description: "Laundry/Washing Area"
     LOADING_DOCK_INTERIOR:
