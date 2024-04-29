@@ -1,6 +1,6 @@
-# Resources for RMD Generator Developers
+# Resources for RPD Generator Developers
 
-The current page contains a collection of resources for developers of RMD generation tools. 
+The current page contains a collection of resources for developers of RPD generation tools. 
 
 The [first public review](https://osr.ashrae.org/Online-Comment-Database/ShowDoc2/Table/DocumentAttachments/FileName/4308-Std229P_1st_PPR_Draft_chair_approved.zip/download/false) is runing from April 5, 2024 to June 4, 2024. It is unlikely to be avaialble after that time.
 
@@ -11,9 +11,9 @@ The document includes many different links to other resources including:
 [Master List of Rule Tests Spreadsheet](https://1drv.ms/x/s!AoRQkE5gaWd5jSkkKuZMK2V81iVY?e=WZPW05)
 
 
-## Example RMD Generator Implementations
+## Example RPD Generator Implementations
 
-The following is a list of software that generated RMD files:
+The following is a list of software that generated RPD files:
 
 [EnergyPlus createRulesetModelDescription](https://github.com/JasonGlazer/createRulesetModelDescription) - open source
 
@@ -27,6 +27,10 @@ So far the only know Ruleset Checking Tool (RCT) under development is:
 
 This includes:
 
+[Example RPD files](https://github.com/pnnl/ruleset-checking-tool/tree/master/examples/chicago_demo)
+
+[More example RPD files for different system types](https://github.com/pnnl/ruleset-checking-tool/tree/master/rct229/ruletest_engine/ruletest_jsons/ashrae9012019/system_types)
+
 [Rule pseudo code - Ruleset Defintion Strategy documents](https://github.com/pnnl/ruleset-checking-tool/blob/master/docs/_toc.md) 
 
 [Ruleset for 90.1-2019s](https://github.com/pnnl/ruleset-checking-tool/tree/master/rct229/rulesets/ashrae9012019) 
@@ -34,6 +38,8 @@ This includes:
 [Rule Tests](https://github.com/pnnl/ruleset-checking-tool/tree/master/rct229/ruletest_engine/ruletest_jsons) 
 
 [Example outputs](https://github.com/pnnl/ruleset-checking-tool/tree/develop/examples/output)
+
+
 
 
 ## Schema Videos
