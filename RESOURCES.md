@@ -27,6 +27,8 @@ So far the only know Ruleset Checking Tool (RCT) under development is:
 
 This includes:
 
+[Example RMD files](https://github.com/pnnl/ruleset-checking-tool/tree/master/examples/chicago_demo)
+
 [Rule pseudo code - Ruleset Defintion Strategy documents](https://github.com/pnnl/ruleset-checking-tool/blob/master/docs/_toc.md) 
 
 [Ruleset for 90.1-2019s](https://github.com/pnnl/ruleset-checking-tool/tree/master/rct229/rulesets/ashrae9012019) 
@@ -34,6 +36,8 @@ This includes:
 [Rule Tests](https://github.com/pnnl/ruleset-checking-tool/tree/master/rct229/ruletest_engine/ruletest_jsons) 
 
 [Example outputs](https://github.com/pnnl/ruleset-checking-tool/tree/develop/examples/output)
+
+
 
 
 ## Schema Videos
