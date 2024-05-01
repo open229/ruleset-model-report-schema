@@ -2,7 +2,7 @@
 
 The current page contains a collection of resources for developers of RPD generation tools. 
 
-The [first public review](https://osr.ashrae.org/Online-Comment-Database/ShowDoc2/Table/DocumentAttachments/FileName/4308-Std229P_1st_PPR_Draft_chair_approved.zip/download/false) is runing from April 5, 2024 to June 4, 2024. It is unlikely to be avaialble after that time.
+The [first public review](https://osr.ashrae.org/Online-Comment-Database/ShowDoc2/Table/DocumentAttachments/FileName/4308-Std229P_1st_PPR_Draft_chair_approved.zip/download/false) is runing from April 5, 2024 to June 4, 2024. It is unlikely to be available after that time.
 
 The document includes many different links to other resources including:
 
