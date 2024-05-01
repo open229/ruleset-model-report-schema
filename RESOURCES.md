@@ -15,7 +15,7 @@ The document includes many different links to other resources including:
 
 The following is a list of software that generated RPD files:
 
-[EnergyPlus createRulesetModelDescription](https://github.com/JasonGlazer/createRulesetModelDescription) - open source
+[EnergyPlus createRulesetProjectDescription](https://github.com/JasonGlazer/createRulesetProjectDescription) - open source
 
 More are expected to be added in the future.
 
