@@ -6542,6 +6542,7 @@ ServiceWaterHeatingUse:
     served_by_distribution_system:
       Description: "ID fo the ServiceWaterHeatingDistributionSystem that serves this end use"
       Data Type: "Reference"
+      Required: True
       Notes: "From CBECC-Res. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
