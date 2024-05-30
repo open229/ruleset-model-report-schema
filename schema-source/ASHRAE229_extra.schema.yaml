@@ -4648,8 +4648,12 @@ PumpSpeedControlOptions:
   Enumerators:
     FIXED_SPEED:
       Description: "Fixed speed"
+    TWO_SPEED:
+      Description: "Two Speed"
     VARIABLE_SPEED:
       Description: "Variable speed"
+    OTHER:
+      Description: "Other"
 
 PumpSpecificationMethodOptions:
   Object Type: "Enumeration"
