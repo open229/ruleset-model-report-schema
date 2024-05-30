@@ -695,9 +695,9 @@ Zone:
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: "unknown"
     served_by_service_water_heating_system:
-      Description: "A service water heating system serving the zone"
+      Description: "A service water heating system distribution serving the zone"
       Data Type: "Reference"
-      Notes: "Contains a single ID of the service water heating system serving the zone - from Unique Identification Number in ServiceWaterHeatingSystem. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
+      Notes: "Contains the ID of the service water heating distribution system serving the zone. The ID is a unique identification for a specific ServiceWaterHeatingSystem data group. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
