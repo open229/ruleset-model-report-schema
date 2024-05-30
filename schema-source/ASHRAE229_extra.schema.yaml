@@ -5575,8 +5575,9 @@ ServiceWaterHeatingDistributionSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: "unknown"
     service_water_piping:
-      Description: "Other service water piping connected to this one as children."
+      Description: "Connected service water piping"
       Data Type: "[{ServiceWaterPiping}]"
+      Notes: "Contains a list of service water piping that is associated with this service water heater distribution system."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
