@@ -990,8 +990,12 @@ StatusOptions:
       Description: "Existing"
     EXISTING_PLUS_NEW:
       Description: "Existing plus new"
+    FUTURE:
+      Description: "Future"
     ALTERED:
       Description: "Altered"
+    ALTERED_ROOF_SURFACE:
+      Description: "Altered roof surface"
     OTHER:
       Description: "Other"
 
