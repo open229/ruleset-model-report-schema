@@ -5975,6 +5975,15 @@ ServiceWaterHeatingEquipment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: "unknown"
+    draw_pattern:
+      Description: "Draw pattern"
+      Data Type: "<DrawPatternOptions>"
+      Notes: "Draw pattern referes to the water draw profile in the uniform energy factor test"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     first_hour_rating:
       Description: "First hour rating volume"
       Data Type: "Numeric"
@@ -6199,6 +6208,20 @@ ComponentLocationOptions:
       Description: "Underground"
     UNCONDITIONED:
       Description: "Unconditioned"
+    OTHER:
+      Description: "Other"
+
+DrawPatternOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    VERY_SMALL:
+      Description: "Very small"
+    LOW:
+      Description: "Low"
+    MEDIUM:
+      Description: "Medium"
+    HIGH:
+      Description: "High"
     OTHER:
       Description: "Other"
 
