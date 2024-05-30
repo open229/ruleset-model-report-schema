@@ -5030,6 +5030,7 @@ Chiller:
       Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
       Data Type: "Numeric"
       Units: "W/W"
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5040,6 +5041,7 @@ Chiller:
       Data Type: "Numeric"
       Units: "W/W"
       Range: ">=0"
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
