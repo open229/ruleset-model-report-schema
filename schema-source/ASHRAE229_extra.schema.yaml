@@ -932,9 +932,9 @@ Space:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: "unknown"
-    service_water_heating_space_type:
-      Description: "Service water heating space type classification"
-      Data Type: "<ServiceWaterHeatingSpaceOptions2019ASHRAE901>"
+    service_water_heating_area_type:
+      Description: "Service water heating area type classification"
+      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
       RMD Test: False
       AppG Used By TCDs: "unknown"
