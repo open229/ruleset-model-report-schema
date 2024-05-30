@@ -5755,6 +5755,14 @@ ServiceWaterPiping:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: "unknown"
+    are_thermal_losses_modeled:
+      Description: "Indicates if thermal losses from the service water heating piping are modeled"
+      Data Type: "Boolean"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     insulation_thickness:
       Description: "Pipe insulation thickness"
       Data Type: "Numeric"
