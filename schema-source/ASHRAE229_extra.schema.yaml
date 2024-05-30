@@ -4063,7 +4063,7 @@ Terminal:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: "unknown"
-    max_heating_airflow:
+    maximum_heating_airflow:
       Description: "Zone terminal maximum heating airflow"
       Data Type: "Numeric"
       Units: "L/s"
