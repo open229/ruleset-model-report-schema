@@ -3694,9 +3694,9 @@ AirEconomizerOptions:
 EnergyRecoveryOptions:
   Object Type: "Enumeration"
   Enumerators:
-    SENSIBLE_HEAT_EXHANGE:
+    SENSIBLE_HEAT_EXCHANGE:
       Description: "Sensible heat exchange"
-    ENTHALPY_HEAT_EXHANGE:
+    ENTHALPY_HEAT_EXCHANGE:
       Description: "Enthalpy heat exchange"
     SENSIBLE_HEAT_WHEEL:
       Description: "Sensible heat wheel"
