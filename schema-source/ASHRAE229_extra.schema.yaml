@@ -253,7 +253,7 @@ RulesetModelDescription:
     fluid_loops:
       Description: "Fluid loops on the site"
       Data Type: "[{FluidLoop}]"
-      Notes: "Contains a list of fluid loops on the site."
+      Notes: "Contains a list of fluid loops on the site that are not child loops. In primary/secondary piping systems or more complicated piping systems, this data element should include a list of the the primary loops. Child loops should appear in FluidLoop.child_loops. "
       RMD Test: "Secondary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
