@@ -320,7 +320,7 @@
 | `TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS`                                                                                 | Transient Residential - Common corridors                                                                                   |       |
 | `TRANSIENT_RESIDENTIAL_DWELLING_UNIT`                                                                                    | Transient Residential - Dwelling unit                                                                                      |       |
 
-# ServiceWaterHeatingSpaceOptions2019ASHRAE901
+# ServiceWaterHeatingAreaOptions2019ASHRAE901
 |            Enumerator             |              Description               | Notes |
 |-----------------------------------|----------------------------------------|-------|
 | `AUTOMOTIVE_FACILITY`             | Automotive facility                    |       |
@@ -427,8 +427,8 @@
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-------|
 | `UNENCLOSED`    | The space on the other side of the surface is assumed to be unenclosed. The space on the other side of the surface is not explicity modeled.    |       |
 | `UNCONDITIONED` | The space on the other side of the surface is assumed to be unconditioned. The space on the other side of the surface is not explicity modeled. |       |
-| `UNHEATED`      | Surface adjacent to a environment that is not heated but enclosed. The space on the other side of the surface is not explicity modeled.         |       |
-| `SEMIHEATED`    | Surface adjacent to a environment that is semi-heated. The space on the other side of the surface is not explicity modeled.                     |       |
+| `UNHEATED`      | Surface adjacent to a environment that is not heated but enclosed.                                                                              |       |
+| `SEMIHEATED`    | Surface adjacent to a environment that is semi-heated.                                                                                          |       |
 
 # ConstructionClassificationOptions2019ASHRAE901
 |            Enumerator            |          Description           | Notes |
