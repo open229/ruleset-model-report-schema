@@ -17,6 +17,8 @@ The following is a list of software that generated RPD files:
 
 [EnergyPlus createRulesetProjectDescription](https://github.com/JasonGlazer/createRulesetProjectDescription) - open source
 
+[eQUEST-229RPDGenerator](https://github.com/Karpman-Consulting/eQUEST-229RPDGenerator/tree/development) - open source
+
 More are expected to be added in the future.
 
 ## Example Ruleset Checking Tool Implementations
