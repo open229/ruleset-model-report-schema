@@ -1,7 +1,0 @@
-digraph G {
-    size="7.5, 20";
-    rankdir=LR;
-  Output2019ASHRAE901 -> OutputInstance
-  OutputInstance -> SourceResult
-  OutputInstance -> EndUseResult
-}

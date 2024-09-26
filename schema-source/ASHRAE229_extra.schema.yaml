@@ -10,7 +10,7 @@ Schema:
   Object Type: "Meta"
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
-  Version: "0.0.36"
+  Version: "0.0.37"
   References:
     - "Enumerations2019ASHRAE901"
     - "EnumerationsRESNET"
@@ -253,7 +253,7 @@ RulesetModelDescription:
     fluid_loops:
       Description: "Fluid loops on the site"
       Data Type: "[{FluidLoop}]"
-      Notes: "Contains a list of fluid loops on the site."
+      Notes: "Contains a list of fluid loops on the site that are not child loops. In primary/secondary piping systems or more complicated piping systems, this data element should include a list of the the primary loops. Child loops should appear in FluidLoop.child_loops. "
       RMD Test: "Secondary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -542,6 +542,15 @@ BuildingSegment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    service_water_heating_area_type:
+      Description: "Service water heating area type classification"
+      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+      RMD Test: False
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
 
 Zone:
   Object Type: "Data Group"
@@ -695,9 +704,9 @@ Zone:
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
     served_by_service_water_heating_system:
-      Description: "A service water heating system serving the zone"
+      Description: "A service water heating system distribution serving the zone"
       Data Type: "Reference"
-      Notes: "Contains a single ID of the service water heating system serving the zone - from Unique Identification Number in ServiceWaterHeatingSystem. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
+      Notes: "Contains the ID of the service water heating distribution system serving the zone. The ID is a unique identification for a specific ServiceWaterHeatingSystem data group. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -932,9 +941,9 @@ Space:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    service_water_heating_space_type:
-      Description: "Service water heating space type classification"
-      Data Type: "<ServiceWaterHeatingSpaceOptions2019ASHRAE901>"
+    service_water_heating_area_type:
+      Description: "Service water heating area type classification"
+      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
       RMD Test: False
       AppG Used By TCDs: "unknown"
@@ -981,8 +990,12 @@ StatusOptions:
       Description: "Existing"
     EXISTING_PLUS_NEW:
       Description: "Existing plus new"
+    FUTURE:
+      Description: "Future"
     ALTERED:
       Description: "Altered"
+    ALTERED_ROOF_SURFACE:
+      Description: "Altered roof surface"
     OTHER:
       Description: "Other"
 
@@ -2908,6 +2921,7 @@ HeatingSystem:
       Description: "Heatpump auxilliary heat high temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
+      Notes: "The auxiliary heat is available at or below this outside temperature to satisfy the load. If this temperature is higher than heatpump_low_shutoff_temperature then between the two temperatures, the heat pump is energized first and if any load remains, then the auxiliary heat is energized."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -2917,6 +2931,7 @@ HeatingSystem:
       Description: "Heatpump low temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
+      Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -3692,9 +3707,9 @@ AirEconomizerOptions:
 EnergyRecoveryOptions:
   Object Type: "Enumeration"
   Enumerators:
-    SENSIBLE_HEAT_EXHANGE:
+    SENSIBLE_HEAT_EXCHANGE:
       Description: "Sensible heat exchange"
-    ENTHALPY_HEAT_EXHANGE:
+    ENTHALPY_HEAT_EXCHANGE:
       Description: "Enthalpy heat exchange"
     SENSIBLE_HEAT_WHEEL:
       Description: "Sensible heat wheel"
@@ -3835,7 +3850,7 @@ Fan:
       Description: "fan shaft power"
       Data Type: "Numeric"
       Units: "W"
-      Notes: "Power delivered to the fans shaft and does not include the mechanical drive losses. Equivalent to fan brake horsepower for inch-pound units. Only used when specification_method is set to Detailed."
+      Notes: "Power delivered to the fans shaft and does not include the mechanical drive losses. Equivalent to fan brake horsepower for inch-pound units. Only used when specification_method is set to Detailed."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -4061,7 +4076,7 @@ Terminal:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    max_heating_airflow:
+    maximum_heating_airflow:
       Description: "Zone terminal maximum heating airflow"
       Data Type: "Numeric"
       Units: "L/s"
@@ -4646,8 +4661,12 @@ PumpSpeedControlOptions:
   Enumerators:
     FIXED_SPEED:
       Description: "Fixed speed"
+    TWO_SPEED:
+      Description: "Two Speed"
     VARIABLE_SPEED:
       Description: "Variable speed"
+    OTHER:
+      Description: "Other"
 
 PumpSpecificationMethodOptions:
   Object Type: "Enumeration"
@@ -5027,6 +5046,7 @@ Chiller:
       Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
       Data Type: "Numeric"
       Units: "W/W"
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5037,6 +5057,7 @@ Chiller:
       Data Type: "Numeric"
       Units: "W/W"
       Range: ">=0"
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5566,8 +5587,9 @@ ServiceWaterHeatingDistributionSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     service_water_piping:
-      Description: "Other service water piping connected to this one as children."
+      Description: "Connected service water piping"
       Data Type: "[{ServiceWaterPiping}]"
+      Notes: "Contains a list of service water piping that is associated with this service water heater distribution system."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5736,6 +5758,14 @@ ServiceWaterPiping:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    are_thermal_losses_modeled:
+      Description: "Indicates if thermal losses from the service water heating piping are modeled"
+      Data Type: "Boolean"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     insulation_thickness:
       Description: "Pipe insulation thickness"
       Data Type: "Numeric"
@@ -5960,6 +5990,15 @@ ServiceWaterHeatingEquipment:
       Data Type: "Numeric"
       Range: ">=0"
       Notes: "From CBECC-Com."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
+    draw_pattern:
+      Description: "Draw pattern"
+      Data Type: "<DrawPatternOptions>"
+      Notes: "Draw pattern referes to the water draw profile in the uniform energy factor test"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6189,6 +6228,20 @@ ComponentLocationOptions:
       Description: "Underground"
     UNCONDITIONED:
       Description: "Unconditioned"
+    OTHER:
+      Description: "Other"
+
+DrawPatternOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    VERY_SMALL:
+      Description: "Very small"
+    LOW:
+      Description: "Low"
+    MEDIUM:
+      Description: "Medium"
+    HIGH:
+      Description: "High"
     OTHER:
       Description: "Other"
 
@@ -6500,6 +6553,7 @@ ServiceWaterHeatingUse:
     served_by_distribution_system:
       Description: "ID fo the ServiceWaterHeatingDistributionSystem that serves this end use"
       Data Type: "Reference"
+      Required: True
       Notes: "From CBECC-Res. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
