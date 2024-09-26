@@ -241,7 +241,7 @@ RulesetModelDescription:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     is_measured_infiltration_based_on_test:
       Description: "Indicates whether the differential pressure difference used during measurement for infiltration values is based on pressure testing of the building."
       Data Type: "Boolean"
@@ -1052,7 +1052,7 @@ Infiltration:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     multiplier_schedule:
       Description: "Referenced to the schedule containing the multiplier for the infiltration"
       Data Type: "Reference"
@@ -1271,7 +1271,7 @@ Construction:
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     framing_layers:
       Description: "List of names of layer descriptions starting from the outside surface for the framing heat path"
       Data Type: "[{Material}]"
@@ -1299,7 +1299,7 @@ Construction:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     c_factor:
       Description: "surface C-factor"
       Data Type: "Numeric"
@@ -1310,7 +1310,7 @@ Construction:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     f_factor:
       Description: "surface F-factor"
       Data Type: "Numeric"
@@ -1321,7 +1321,7 @@ Construction:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     r_values:
       Description: "List of r-value of the insulation for the surface that correspond to values in the insulation_locations list"
       Data Type: "[Numeric]"
@@ -1331,7 +1331,7 @@ Construction:
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     has_radiant_heating:
       Description: "Includes embedded radiant heating elements"
       Data Type: "Boolean"
@@ -1409,7 +1409,7 @@ Material:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     thermal_conductivity:
       Description: "The thermal conductivity of the material layer"
       Data Type: "Numeric"
@@ -1451,7 +1451,7 @@ Material:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
 
 SurfaceOpticalProperties:
   Object Type: "Data Group"
@@ -1676,7 +1676,7 @@ Subsurface:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     dynamic_glazing_type:
       Description: "Type of dynamic glazing for the window subsurface"
       Data Type: "<SubsurfaceDynamicGlazingOptions>"
@@ -1695,7 +1695,7 @@ Subsurface:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     maximum_solar_heat_gain_coefficient:
       Description: "Maximum Subsurface SHGC for Dynamic Glazing"
       Data Type: "Numeric"
@@ -1715,7 +1715,7 @@ Subsurface:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     minimum_visible_transmittance:
       Description: "Minimum Subsurface VT for Dynamic Glazing"
       Data Type: "Numeric"
@@ -2137,7 +2137,7 @@ Transformer:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
 
 TransformerOptions:
   Object Type: "Enumeration"
@@ -2211,7 +2211,7 @@ Schedule:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     hourly_heating_design_day:
       Description: "Hourly values for heating design day"
       Data Type: "[Numeric][0..24]"
@@ -2220,7 +2220,7 @@ Schedule:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     hourly_cooling_design_day:
       Description: "Hourly values for cooling design day"
       Data Type: "[Numeric][0..24]"
@@ -2229,7 +2229,7 @@ Schedule:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     event_times:
       Description: "Event times when the schedule changes"
       Data Type: "[Numeric]"
@@ -2304,7 +2304,7 @@ Schedule:
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     is_modified_for_workaround:
       Description: "True if any schedule has been modified for a workaround"
       Data Type: "Boolean"
@@ -2668,7 +2668,7 @@ Elevator:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     cab_lighting_multiplier_schedule:
       Description: "Elevator lighting multiplier schedule name"
       Data Type: "Reference"
@@ -2677,7 +2677,7 @@ Elevator:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
 
 ElevatorOptions:
   Object Type: "Enumeration"
@@ -3309,7 +3309,7 @@ FanSystem:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     temperature_control:
       Description: "Supply air temperature control type"
       Data Type: "<FanSystemTemperatureControlOptions>"
@@ -3424,7 +3424,7 @@ FanSystem:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     maximum_outdoor_airflow:
       Description: "Maximum outdoor air volume airflow"
       Data Type: "Numeric"
@@ -3554,7 +3554,7 @@ AirEnergyRecovery:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     enthalpy_recovery_ratio:
       Description: "Enthalpy recovery ratio"
       Data Type: "Numeric"
@@ -3850,7 +3850,7 @@ Fan:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     motor_efficiency:
       Description: "Fan motor efficiency"
       Data Type: "Numeric"
@@ -4243,7 +4243,7 @@ FluidLoop:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     reporting_name:
       Description: "Descriptive name used in RCT reports if id is not already a descriptive name"
       Data Type: "String"
@@ -4287,7 +4287,7 @@ FluidLoop:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     cooling_or_condensing_design_and_control:
       Description: "Fluid loop design and control used for cooling or condensing loops"
       Data Type: "{FluidLoopDesignAndControl}"
@@ -4594,7 +4594,7 @@ Pump:
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     motor_efficiency:
       Description: "Full load efficiency of the pump motor"
       Data Type: "Numeric"
@@ -4730,7 +4730,7 @@ Boiler:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     rated_capacity:
       Description: "Heating capacity"
       Data Type: "Numeric"
@@ -4740,7 +4740,7 @@ Boiler:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     minimum_load_ratio:
       Description: "Minimum fraction of full load allowed"
       Data Type: "Numeric"
@@ -4772,7 +4772,7 @@ Boiler:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     efficiency:
       Description: "Efficiency value based on the selected efficiency_metric"
       Data Type: "Numeric"
@@ -4884,7 +4884,7 @@ Chiller:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     reporting_name:
       Description: "Descriptive name used in RCT reports if id is not already a descriptive name"
       Data Type: "String"
@@ -4928,7 +4928,7 @@ Chiller:
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: False
     energy_source_type:
       Description: "Source of energy for the chiller"
       Data Type: "<EnergySourceOptions>"
@@ -5049,7 +5049,7 @@ Chiller:
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
+      AppG B_RMDs Same: True
     capacity_validation_points:
       Description: "Capacity validation points"
       Data Type: "[{ChillerCapacityValidationPoint}]"
