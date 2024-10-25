@@ -550,7 +550,7 @@ BuildingSegment:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: "unknown"
+      AppG B_RMDs Same: True
 
 Zone:
   Object Type: "Data Group"
@@ -5765,7 +5765,7 @@ ServiceWaterPiping:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: "unknown"
+      AppG B_RMDs Same: True
     insulation_thickness:
       Description: "Pipe insulation thickness"
       Data Type: "Numeric"
@@ -5994,7 +5994,7 @@ ServiceWaterHeatingEquipment:
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: "unknown"
+      AppG B_RMDs Same: True
     draw_pattern:
       Description: "Draw pattern"
       Data Type: "<DrawPatternOptions>"
