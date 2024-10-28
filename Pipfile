@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [requires]
-python_version = "3.8"
+python_version = "3.13"
 
 [dev-packages]
-pytest = ">=5.2"
+pytest = ">=8.3"
 doit = "*"
 pylint = "*"
 schema229 = {editable = true, path = "."}
