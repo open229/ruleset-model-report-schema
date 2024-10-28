@@ -3225,7 +3225,7 @@ CoolingSystemOptions:
 DehumidificationOptions:
   Object Type: "Enumeration"
   Enumerators:
-    MECHANCIAL_COOLING:
+    MECHANICAL_COOLING:
       Description: "Mechanical cooling"
     DESICCANT:
       Description: "Desiccant"
