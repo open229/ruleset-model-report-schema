@@ -989,6 +989,15 @@ SpaceFunctionOptions:
       Description: "Laboratory"
     KITCHEN:
       Description: "Kitchen"
+    PLENUM:
+      Description: "Plenum"
+      Notes: "A compartment or chamber, to which one or more ducts are connected, that forms a part of the air-distribution system and that is not used for occupancy or storage. The area of a plenum is not counted toward the floor area of a building."
+    CRAWL_SPACE:
+      Description: "Crawl space"
+      Notes: "An unoccupied, unfinished, narrow space within a building, between the ground and the first (or ground) floor. The crawl space is so named because there is typically only enough room to crawl rather than stand; anything larger than about 1 to 1.5 metres (3 ft 3 in to 4 ft 11 in) and beneath the ground floor would tend to be considered a basement. The area of a crawl space is not counted toward the floor area of a building."
+    INTERSTITIAL_SPACE:
+      Description: "Interstitial space"
+      Notes: "The area of load bearing surfaces located above or below occupied building floors that is not available for general occupancy often due to inadequate clear headroom or lack of provisions for egress, and containing building structure or services predominantly serving adjacent floors or to provide access to such systems. They are not part of the air distribution systen, conditioned, used for occupancy, or used for storage. Interstitial spaces often contain ducts, piping, conduit, and other components that serve the building systems. The area of a interstitial space is not counted toward the floor area of a building."
     OTHER:
       Description: "Other"
 
