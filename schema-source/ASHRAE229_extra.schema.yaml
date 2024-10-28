@@ -555,7 +555,7 @@ BuildingSegment:
       AppG B_RMDs Same: True
     service_water_heating_area_type:
       Description: "Service water heating area type classification"
-      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
+      Data Type: "<ServiceWaterHeatingSpaceOptions2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
       RMD Test: False
       AppG Used By TCDs: "unknown"

@@ -641,7 +641,7 @@ VentilationSpaceOptions2019ASHRAE901:
     TRANSIENT_RESIDENTIAL_DWELLING_UNIT:
       Description: "Transient Residential - Dwelling unit"
 
-ServiceWaterHeatingAreaOptions2019ASHRAE901:
+ServiceWaterHeatingSpaceOptions2019ASHRAE901:
   Object Type: "Enumeration"
   Enumerators:
 # Table G3.1.1-2 Baseline Service Water-Heating System  
