@@ -152,7 +152,7 @@
                     "items": {
                         "$ref": "ASHRAE229_extra.schema.json#/definitions/FluidLoop"
                     },
-                    "notes": "Contains a list of fluid loops on the site."
+                    "notes": "Contains a list of fluid loops on the site that are not child loops. In primary/secondary piping systems or more complicated piping systems, this data element should include a list of the the primary loops. Child loops should appear in FluidLoop.child_loops. "
                 },
                 "service_water_heating_distribution_systems": {
                     "description": "Service water heating systems on the site",
@@ -364,6 +364,11 @@
                     "description": "Classification used for HVAC",
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/HeatingVentilatingAirConditioningBuildingAreaOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
+                },
+                "service_water_heating_area_type": {
+                    "description": "Service water heating area type classification",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingAreaOptions2019ASHRAE901",
+                    "notes": "The enumeration is based on the standard used."
                 }
             },
             "required": [
@@ -469,9 +474,9 @@
                     "notes": "Multiple terminals may be used such as from a VAV system, a DOAS, and a baseboard."
                 },
                 "served_by_service_water_heating_system": {
-                    "description": "A service water heating system serving the zone",
+                    "description": "A service water heating system distribution serving the zone",
                     "type": "string",
-                    "notes": "Contains a single ID of the service water heating system serving the zone - from Unique Identification Number in ServiceWaterHeatingSystem. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
+                    "notes": "Contains the ID of the service water heating distribution system serving the zone. The ID is a unique identification for a specific ServiceWaterHeatingSystem data group. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
                 },
                 "transfer_airflow_rate": {
                     "description": "Airflow rate for transfer air",
@@ -616,9 +621,9 @@
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/VentilationSpaceOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
-                "service_water_heating_space_type": {
-                    "description": "Service water heating space type classification",
-                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceOptions2019ASHRAE901",
+                "service_water_heating_area_type": {
+                    "description": "Service water heating area type classification",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingAreaOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
                 "service_water_heating_uses": {
@@ -668,14 +673,18 @@
                 "NEW",
                 "EXISTING",
                 "EXISTING_PLUS_NEW",
+                "FUTURE",
                 "ALTERED",
+                "ALTERED_ROOF_SURFACE",
                 "OTHER"
             ],
             "descriptions": [
                 "New",
                 "Existing",
                 "Existing plus new",
+                "Future",
                 "Altered",
+                "Altered roof surface",
                 "Other"
             ]
         },
@@ -2074,12 +2083,14 @@
                 "heatpump_auxilliary_heat_high_shutoff_temperature": {
                     "description": "Heatpump auxilliary heat high temperature shutoff",
                     "type": "number",
-                    "units": "C"
+                    "units": "C",
+                    "notes": "The auxiliary heat is available at or below this outside temperature to satisfy the load. If this temperature is higher than heatpump_low_shutoff_temperature then between the two temperatures, the heat pump is energized first and if any load remains, then the auxiliary heat is energized."
                 },
                 "heatpump_low_shutoff_temperature": {
                     "description": "Heatpump low temperature shutoff",
                     "type": "number",
-                    "units": "C"
+                    "units": "C",
+                    "notes": "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
                 },
                 "humidification_type": {
                     "description": "Humidification type",
@@ -2719,8 +2730,8 @@
         "EnergyRecoveryOptions": {
             "type": "string",
             "enum": [
-                "SENSIBLE_HEAT_EXHANGE",
-                "ENTHALPY_HEAT_EXHANGE",
+                "SENSIBLE_HEAT_EXCHANGE",
+                "ENTHALPY_HEAT_EXCHANGE",
                 "SENSIBLE_HEAT_WHEEL",
                 "ENTHALPY_HEAT_WHEEL",
                 "HEAT_PIPE",
@@ -2837,7 +2848,7 @@
                     "description": "fan shaft power",
                     "type": "number",
                     "units": "W",
-                    "notes": "Power delivered to the fan\u00c2\u2019s shaft and does not include the mechanical drive losses. Equivalent to fan brake horsepower for inch-pound units. Only used when specification_method is set to Detailed."
+                    "notes": "Power delivered to the fans shaft and does not include the mechanical drive losses. Equivalent to fan brake horsepower for inch-pound units. Only used when specification_method is set to Detailed."
                 },
                 "total_efficiency": {
                     "description": "Total fan efficiency",
@@ -2989,7 +3000,7 @@
                     "type": "number",
                     "units": "L/s"
                 },
-                "max_heating_airflow": {
+                "maximum_heating_airflow": {
                     "description": "Zone terminal maximum heating airflow",
                     "type": "number",
                     "units": "L/s",
@@ -3419,11 +3430,15 @@
             "type": "string",
             "enum": [
                 "FIXED_SPEED",
-                "VARIABLE_SPEED"
+                "TWO_SPEED",
+                "VARIABLE_SPEED",
+                "OTHER"
             ],
             "descriptions": [
                 "Fixed speed",
-                "Variable speed"
+                "Two Speed",
+                "Variable speed",
+                "Other"
             ]
         },
         "PumpSpecificationMethodOptions": {
@@ -3680,13 +3695,15 @@
                 "full_load_efficiency": {
                     "description": "Full Load Efficiency expressed as a coefficient of performance (COP)",
                     "type": "number",
-                    "units": "W/W"
+                    "units": "W/W",
+                    "notes": "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
                 },
                 "part_load_efficiency": {
                     "description": "Efficiency value based on the selected part_load_efficiency_metric",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "W/W"
+                    "units": "W/W",
+                    "notes": "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
                 },
                 "part_load_efficiency_metric": {
                     "description": "The type of part load efficiency metric used",
@@ -4085,11 +4102,12 @@
                     "notes": "From CBECC-Com."
                 },
                 "service_water_piping": {
-                    "description": "Other service water piping connected to this one as children.",
+                    "description": "Connected service water piping",
                     "type": "array",
                     "items": {
                         "$ref": "ASHRAE229_extra.schema.json#/definitions/ServiceWaterPiping"
-                    }
+                    },
+                    "notes": "Contains a list of service water piping that is associated with this service water heater distribution system."
                 },
                 "distribution_compactness": {
                     "description": "Type of compact distribution system",
@@ -4211,6 +4229,10 @@
                 },
                 "is_recirculation_loop": {
                     "description": "Indicates if service water heating piping is a loop and recirculates",
+                    "type": "boolean"
+                },
+                "are_thermal_losses_modeled": {
+                    "description": "Indicates if thermal losses from the service water heating piping are modeled",
                     "type": "boolean"
                 },
                 "insulation_thickness": {
@@ -4355,6 +4377,11 @@
                     "type": "number",
                     "minimum": 0.0,
                     "notes": "From CBECC-Com."
+                },
+                "draw_pattern": {
+                    "description": "Draw pattern",
+                    "$ref": "ASHRAE229_extra.schema.json#/definitions/DrawPatternOptions",
+                    "notes": "Draw pattern referes to the water draw profile in the uniform energy factor test"
                 },
                 "first_hour_rating": {
                     "description": "First hour rating volume",
@@ -4530,6 +4557,23 @@
                 "Crawl space",
                 "Underground",
                 "Unconditioned",
+                "Other"
+            ]
+        },
+        "DrawPatternOptions": {
+            "type": "string",
+            "enum": [
+                "VERY_SMALL",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "OTHER"
+            ],
+            "descriptions": [
+                "Very small",
+                "Low",
+                "Medium",
+                "High",
                 "Other"
             ]
         },
@@ -4737,7 +4781,6 @@
                 },
                 "area_type": {
                     "description": "Service Water Heating Loop Area Type",
-                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
                 "water_serves_type": {
@@ -4781,7 +4824,8 @@
                 }
             },
             "required": [
-                "id"
+                "id",
+                "served_by_distribution_system"
             ],
             "additionalProperties": false
         },
@@ -5065,6 +5109,6 @@
             ]
         }
     },
-    "version": "0.0.36",
+    "version": "0.0.37",
     "$ref": "ASHRAE229_extra.schema.json#/definitions/RulesetProjectDescription"
 }
