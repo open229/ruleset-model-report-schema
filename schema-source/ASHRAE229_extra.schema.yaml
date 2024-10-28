@@ -265,7 +265,6 @@ RulesetProjectDescription:
       EPstatus: "DoneUsingConstant"
       EP Notes: "Set to OUTPUT_SCHEMA_ASHRAE901_2019"
 
-            
 RulesetModelDescription:
   Object Type: "Data Group"
   Data Elements:
@@ -1011,6 +1010,24 @@ BuildingSegment:
       EPout Table: ""
       EPout Column: ""
       EPstatus: "ComplianceParameter"
+      EP Notes: ""
+    service_water_heating_area_type:
+      Description: "Service water heating area type classification"
+      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
+      Notes: "The enumeration is based on the standard used."
+      RMD Test: False
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: ""
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: ""
       EP Notes: ""
 
 Zone:
@@ -1770,9 +1787,9 @@ Space:
       EPout Column: ""
       EPstatus: "DoneUsingOutput"
       EP Notes: "Undeterminable compliance parameter. Inputs in Space input object allow pass through of the enumeration value from user input."
-    service_water_heating_space_type:
-      Description: "Service water heating space type classification"
-      Data Type: "<ServiceWaterHeatingSpaceOptions2019ASHRAE901>"
+    service_water_heating_area_type:
+      Description: "Service water heating area type classification"
+      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
       RMD Test: False
       AppG Used By TCDs: "unknown"
@@ -7382,7 +7399,7 @@ Terminal:
       EPout Column: "Secondary Air Flow Rate "
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
-    max_heating_airflow:
+    maximum_heating_airflow:
       Description: "Zone terminal maximum heating airflow"
       Data Type: "Numeric"
       Units: "L/s"
@@ -9664,7 +9681,8 @@ HeatRejection:
       Description: "Fan Motor Nameplate Power"
       Data Type: "Numeric"
       Units: "W"
-      RMD Test: "The nameplate power at rating conditions. In inch-pound units is the fan motor horsepower."
+      Notes: "The nameplate power at rating conditions. In inch-pound units is the fan motor horsepower."
+      RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
@@ -10368,6 +10386,23 @@ ServiceWaterPiping:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
+    are_thermal_losses_modeled:
+      Description: "Indicates if thermal losses from the service water heating piping are modeled"
+      Data Type: "Boolean"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: ""
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: ""
+      EP Notes: ""
     insulation_thickness:
       Description: "Pipe insulation thickness"
       Data Type: "Numeric"
@@ -10812,6 +10847,24 @@ ServiceWaterHeatingEquipment:
       EPout Table: ""
       EPout Column: ""
       EPstatus: "NotStarted"
+      EP Notes: ""
+    draw_pattern:
+      Description: "Draw pattern"
+      Data Type: "<DrawPatternOptions>"
+      Notes: "Draw pattern referes to the water draw profile in the uniform energy factor test"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: ""
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: ""
       EP Notes: ""
     first_hour_rating:
       Description: "First hour rating volume"
