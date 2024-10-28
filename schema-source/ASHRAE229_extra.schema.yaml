@@ -250,6 +250,17 @@ RulesetModelDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    altitude:
+      Description: "Altitude of the building at ground level."
+      Data Type: "Numeric"
+      Range: ">-1000, <10000 "
+      Units: "m"
+      Notes: "Altitude of the building site above sea level and used for adjusting airflows. If the altitude is not provided, it is assumed to be zero and airflows are already normalized to sea level."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
     fluid_loops:
       Description: "Fluid loops on the site"
       Data Type: "[{FluidLoop}]"
