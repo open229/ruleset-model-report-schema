@@ -4860,17 +4860,17 @@ Boiler:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-    efficiency_metric:
-      Description: "The type of efficiency metric used"
-      Data Type: "<BoilerEfficiencyMetricOptions>"
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<BoilerEfficiencyMetricOptions>]"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    efficiency:
-      Description: "Efficiency value based on the selected efficiency_metric"
-      Data Type: "Numeric"
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       Range: ">=0, <=1"
       RMD Test: "Primary"
       AppG Used By TCDs: True
@@ -5118,30 +5118,20 @@ Chiller:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    full_load_efficiency:
-      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
-      Data Type: "Numeric"
-      Units: "W/W"
-      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
-      RMD Test: "Primary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
-    part_load_efficiency:
-      Description: "Efficiency value based on the selected part_load_efficiency_metric"
-      Data Type: "Numeric"
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       Units: "W/W"
       Range: ">=0"
-      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined load."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    part_load_efficiency_metric:
-      Description: "The type of part load efficiency metric used"
-      Data Type: "<ChillerPartLoadEfficiencyMetricOptions>"
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<ChillerEfficiencyMetricOptions>]"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5201,9 +5191,12 @@ Chiller:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
 
-ChillerPartLoadEfficiencyMetricOptions:
+ChillerEfficiencyMetricOptions:
   Object Type: "Enumeration"
   Enumerators:
+    FULL_LOAD_EFFICIENCY:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
+      Notes: "At minimum, the full load efficiency should be one of the metrics and values specified."
     INTEGRATED_PART_LOAD_VALUE:
       Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP)"
     NONSTANDARD_PART_LOAD_VALUE:
