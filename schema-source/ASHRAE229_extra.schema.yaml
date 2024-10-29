@@ -2843,6 +2843,14 @@ HeatingVentilatingAirConditioningSystem:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
+    humidification_type:
+      Description: "Humidification type"
+      Data Type: "<HumidificationOptions>"
+      RMD Test: False
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: False
+      AppG B_RMDs Same: True
     status_type:
       Description: "Choice of new, existing, addition, alteration, etc. for each ruleset."
       Data Type: "<StatusOptions>"
@@ -3009,14 +3017,6 @@ HeatingSystem:
       Units: "C"
       Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
       RMD Test: "Primary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
-    humidification_type:
-      Description: "Humidification type"
-      Data Type: "<HumidificationOptions>"
-      RMD Test: False
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
