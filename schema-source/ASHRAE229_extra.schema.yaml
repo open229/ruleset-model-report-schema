@@ -2120,6 +2120,15 @@ MiscellaneousEquipment:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
+    automatic_controlled_percentage:
+      Description: "Fraction of receptacles that have automatic controls."
+      Data Type: "Numeric"
+      Range: ">=0, <=1"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
 
 MiscellaneousEquipmentOptions:
   Object Type: "Enumeration"
