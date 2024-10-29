@@ -4669,7 +4669,7 @@ Pump:
     design_head:
       Description: "Head of the pump at design flow conditions"
       Data Type: "Numeric"
-      Units: "m"
+      Units: "Pa"
       Notes: "Only used when specification_method is set to Detailed"
       RMD Test: "unknown"
       AppG Used By TCDs: False
