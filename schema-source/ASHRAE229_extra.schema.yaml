@@ -2985,16 +2985,16 @@ HeatingSystem:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
-    heatpump_auxilliary_heat_type:
-      Description: "Heatpump auxilliary heat type used for backup"
-      Data Type: "<HeatpumpAuxilliaryHeatOptions>"
+    heatpump_auxiliary_heat_type:
+      Description: "Heatpump auxiliary heat type used for backup"
+      Data Type: "<HeatpumpAuxiliaryHeatOptions>"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-    heatpump_auxilliary_heat_high_shutoff_temperature:
-      Description: "Heatpump auxilliary heat high temperature shutoff"
+    heatpump_auxiliary_heat_high_shutoff_temperature:
+      Description: "Heatpump auxiliary heat high temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
       Notes: "The auxiliary heat is available at or below this outside temperature to satisfy the load. If this temperature is higher than heatpump_low_shutoff_temperature then between the two temperatures, the heat pump is energized first and if any load remains, then the auxiliary heat is energized."
@@ -3038,7 +3038,7 @@ HeatingSystemOptions:
     OTHER:
       Description: "Other"
 
-HeatpumpAuxilliaryHeatOptions:
+HeatpumpAuxiliaryHeatOptions:
   Object Type: "Enumeration"
   Enumerators:
     ELECTRIC_RESISTANCE:
