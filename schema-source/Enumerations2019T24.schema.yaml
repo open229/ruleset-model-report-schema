@@ -13,14 +13,10 @@ Schema:
 RulesetModelOptions2019T24Com:
   Object Type: "Enumeration"
   Enumerators:
-    USER:
-      Description: "The building model as described without consideration of the ruleset"
     PROPOSED_SIZING:
       Description: "The proposed building model used for sizing"
     BASELINE_SIZING:
       Description: "The baseline building model used for sizing"
-    PROPOSED:
-      Description: "The proposed building model"
     BASELINE:
       Description: "The baseline building model"
 
@@ -39,10 +35,6 @@ RulesetModelOptions2019T24Res:
 ConstructionClassificationOptions2019T24:
   Object Type: "Enumeration"
   Enumerators:
-    METAL_BUILDING: 
-      Description: "Metal building"
-    WOOD_FRAMED:
-      Description: "Wood-framed"
     MASS_LIGHT:
       Description: "Mass, light"
       Notes: "Light mass walls are walls with a heat capacity of at least 7.0 Btu/ft^2^-^o^F and less than 15.0 Btu/ft^2^-^o^F"
@@ -52,18 +44,6 @@ ConstructionClassificationOptions2019T24:
     RAISED_MASS:
       Description: "Raised mass"
       Notes: "Heavy mass walls are walls with a heat capacity of at least 15.0 Btu/ft^2^-^o^F"
-    INSULATION_ENTIRELY_ABOVE_DECK:
-      Description: "Insulation entirely above deck"
-    ATTIC:
-      Description: "Attic"
-    BELOW_GRADE_WALL:
-      Description: "Below-grade wall"
-    STEEL_JOIST:
-      Description: "Steel joist"
-    SLAB_ON_GRADE:
-      Description: "Slab-on-grade"
-    OTHER:
-      Description: "Other"
 
 ServiceWaterHeatingDistributionCompactnessOptions2019T24Com:
   Object Type: "Enumeration"
@@ -100,5 +80,3 @@ OutputSchemaOptions2019T24:
       Description: "Output schema for Title 24 Residential"
     OUTPUT_SCHEMA_T24_COMMERCIAL:
       Description: "Output schema for Title 24 Commercial"
-    OTHER:
-      Description: "other"

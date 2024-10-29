@@ -13,8 +13,6 @@ Schema:
 RulesetModelOptionsRESNET:
   Object Type: "Enumeration"
   Enumerators:
-    USER:
-      Description: "The building model as described without consideration of the ruleset"
     RATED:
       Description: "The rated model"
     REFERENCE:
@@ -37,5 +35,3 @@ OutputSchemaOptionsRESNET:
   Enumerators:
     OUTPUT_SCHEMA_RESNET:
       Description: "Output schema for RESNET"
-    OTHER:
-      Description: "other"

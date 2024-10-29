@@ -13,10 +13,6 @@ Schema:
 RulesetModelOptions2019ASHRAE901:
   Object Type: "Enumeration"
   Enumerators:
-    USER:
-      Description: "The building model as described without consideration of the ruleset"
-    PROPOSED:
-      Description: "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1"
     BASELINE_0:
       Description: "The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with no rotation"
     BASELINE_90:
@@ -843,26 +839,8 @@ AdditionalSurfaceAdjacencyOptions2019ASHRAE901:
 ConstructionClassificationOptions2019ASHRAE901:
   Object Type: "Enumeration"
   Enumerators:
-    METAL_BUILDING: 
-      Description: "Metal building"
-    WOOD_FRAMED:
-      Description: "Wood-framed"
     STEEL_FRAMED:
       Description: "Steel-framed"
-    MASS:
-      Description: "Mass"
-    INSULATION_ENTIRELY_ABOVE_DECK:
-      Description: "Insulation entirely above deck"
-    ATTIC:
-      Description: "Attic"
-    BELOW_GRADE_WALL:
-      Description: "Below-grade wall"
-    STEEL_JOIST:
-      Description: "Steel joist"
-    SLAB_ON_GRADE:
-      Description: "Slab-on-grade"
-    OTHER:
-      Description: "Other"
 
 SubsurfaceSubclassificationOptions2019ASHRAE901:
   Object Type: "Enumeration"
@@ -903,5 +881,3 @@ OutputSchemaOptions2019ASHRAE901:
   Enumerators:
     OUTPUT_SCHEMA_ASHRAE901_2019:
       Description: "Output schema for ASHRAE 90.1 2019"
-    OTHER:
-      Description: "other"

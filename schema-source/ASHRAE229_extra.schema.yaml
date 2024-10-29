@@ -158,12 +158,19 @@ RulesetProjectDescription:
       AppG B_RMDs Same: True
     output_format_type:
       Description: "Indicates the chosen format for output"
-      Data Type: "(<OutputSchemaOptions2019ASHRAE901>, <OutputSchemaOptions2019T24>, OutputSchemaOptionsRESNET)"
+      Data Type: "(<CommonOutputSchemaOptions>, <OutputSchemaOptions2019ASHRAE901>, <OutputSchemaOptions2019T24>, OutputSchemaOptionsRESNET)"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+      
+CommonOutputSchemaOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    OTHER:
+      Description: "other"
+      
 
 RulesetModelDescription:
   Object Type: "Data Group"
@@ -196,7 +203,7 @@ RulesetModelDescription:
       AppG B_RMDs Same: False
     type:
       Description: "Describes the current ruleset model description for rulesets with multiple simulation models"
-      Data Type: "(<RulesetModelOptions2019ASHRAE901>,<RulesetModelOptionsRESNET>,<RulesetModelOptions2019T24Com>,<RulesetModelOptions2019T24Res>)"
+      Data Type: "(<CommonRulesetModelOptions>,<RulesetModelOptions2019ASHRAE901>,<RulesetModelOptionsRESNET>,<RulesetModelOptions2019T24Com>,<RulesetModelOptions2019T24Res>)"
       Required: True
       Notes: "Will usually designate which simulation this RulesetModelDescription refers to such as: PROPOSED, BASELINE_0, USER, RATED, REFERENCE"
       RMD Test: "unknown"
@@ -346,6 +353,17 @@ RulesetModelDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
+
+CommonRulesetModelOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    USER:
+      Description: "The building model as described without consideration of the ruleset"
+    PROPOSED:
+      Description: "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1"
+    PROPOSED:
+      Description: "The proposed building model"
+      Notes: "The proposed building model typically transformed from the USER model following specific changes for the ruleset"
 
 Building:
   Object Type: "Data Group"
@@ -1272,7 +1290,7 @@ Construction:
       AppG B_RMDs Same: False
     classification:
       Description: "Classification for the subsurface being window, skylight, door."
-      Data Type: "(<ConstructionClassificationOptions2019ASHRAE901>, <ConstructionClassificationOptions2019T24>)"
+      Data Type: "(<CommonConstructionClassificationOptions>, <ConstructionClassificationOptions2019ASHRAE901>, <ConstructionClassificationOptions2019T24>)"
       RMD Test: False
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -1401,6 +1419,26 @@ InsulationLocationOptions:
       Description: "Insulation applied vertically next to edge of slab"
     NONE:
       Description: "None"
+    OTHER:
+      Description: "Other"
+
+CommonConstructionClassificationOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    METAL_BUILDING: 
+      Description: "Metal building"
+    WOOD_FRAMED:
+      Description: "Wood-framed"
+    INSULATION_ENTIRELY_ABOVE_DECK:
+      Description: "Insulation entirely above deck"
+    ATTIC:
+      Description: "Attic"
+    BELOW_GRADE_WALL:
+      Description: "Below-grade wall"
+    STEEL_JOIST:
+      Description: "Steel joist"
+    SLAB_ON_GRADE:
+      Description: "Slab-on-grade"
     OTHER:
       Description: "Other"
 
