@@ -339,6 +339,8 @@ LightingPurposeOptions2019ASHRAE901:
       Description: "Task"
     DECORATIVE:
       Description: "Decorative"
+    RETAIL_DISPLAY:
+      Description: "Retail display"
     UNREGULATED:
       Description: "Unregulated"
 
