@@ -1,6 +1,6 @@
 # EndUseOptions
 |            Enumerator            |          Description           | Notes |
-|----------------------------------|--------------------------------|-------|
+| -------------------------------- | ------------------------------ | ----- |
 | `INTERIOR_LIGHTING`              | Interior lighting              |       |
 | `EXTERIOR_LIGHTING`              | Exterior lighting              |       |
 | `SPACE_HEATING`                  | Space heating                  |       |
@@ -26,7 +26,7 @@
 
 # EnergySourceOptions
 |        Enumerator         |       Description       |             Notes              |
-|---------------------------|-------------------------|--------------------------------|
+| ------------------------- | ----------------------- | ------------------------------ |
 | `ELECTRICITY`             | Electricity             |                                |
 | `NATURAL_GAS`             | Natural gas             |                                |
 | `PROPANE`                 | Propane                 |                                |
@@ -39,7 +39,7 @@
 
 # Output2019ASHRAE901
 |                               Name                               |                                 Description                                  |     Data Type      | Units | Range | Req |                                                                    Notes                                                                     |
-|------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------|-------|-------|-----|----------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------ | ----- | ----- | --- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                             | Scope-unique reference identifier for instances of this data group.          | `ID`               |       |       | ✓   |                                                                                                                                              |
 | `reporting_name`                                                 | Descriptive name used in RCT reports if id is not already a descriptive name | `String`           |       |       |     |                                                                                                                                              |
 | `notes`                                                          | Supplementary information to provide context to the model reviewer           | `String`           |       |       |     |                                                                                                                                              |
@@ -56,7 +56,7 @@
 
 # OutputInstance
 |                Name                 |                                    Description                                    |              Data Type               | Units |   Range    | Req |                                                                  Notes                                                                  |
-|-------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------|-------|------------|-----|-----------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------ | ----- | ---------- | --- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                | Scope-unique reference identifier for instances of this data group.               | `ID`                                 |       |            | ✓   |                                                                                                                                         |
 | `reporting_name`                    | Descriptive name used in RCT reports if id is not already a descriptive name      | `String`                             |       |            |     |                                                                                                                                         |
 | `notes`                             | Supplementary information to provide context to the model reviewer                | `String`                             |       |            |     |                                                                                                                                         |
@@ -73,7 +73,7 @@
 
 # SourceResult
 |         Name         |                                 Description                                  |        Data Type        | Units | Range | Req |                                                        Notes                                                         |
-|----------------------|------------------------------------------------------------------------------|-------------------------|-------|-------|-----|----------------------------------------------------------------------------------------------------------------------|
+| -------------------- | ---------------------------------------------------------------------------- | ----------------------- | ----- | ----- | --- | -------------------------------------------------------------------------------------------------------------------- |
 | `id`                 | Scope-unique reference identifier for instances of this data group.          | `ID`                    |       |       | ✓   |                                                                                                                      |
 | `reporting_name`     | Descriptive name used in RCT reports if id is not already a descriptive name | `String`                |       |       |     |                                                                                                                      |
 | `notes`              | Supplementary information to provide context to the model reviewer           | `String`                |       |       |     |                                                                                                                      |
@@ -84,7 +84,7 @@
 
 # EndUseResult
 |                Name                 |                                 Description                                  |        Data Type        | Units | Range | Req | Notes |
-|-------------------------------------|------------------------------------------------------------------------------|-------------------------|-------|-------|-----|-------|
+| ----------------------------------- | ---------------------------------------------------------------------------- | ----------------------- | ----- | ----- | --- | ----- |
 | `id`                                | Scope-unique reference identifier for instances of this data group.          | `ID`                    |       |       | ✓   |       |
 | `reporting_name`                    | Descriptive name used in RCT reports if id is not already a descriptive name | `String`                |       |       |     |       |
 | `notes`                             | Supplementary information to provide context to the model reviewer           | `String`                |       |       |     |       |
