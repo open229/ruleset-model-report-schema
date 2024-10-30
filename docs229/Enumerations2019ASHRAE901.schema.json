@@ -6,16 +6,12 @@
         "RulesetModelOptions2019ASHRAE901": {
             "type": "string",
             "enum": [
-                "USER",
-                "PROPOSED",
                 "BASELINE_0",
                 "BASELINE_90",
                 "BASELINE_180",
                 "BASELINE_270"
             ],
             "descriptions": [
-                "The building model as described without consideration of the ruleset",
-                "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1",
                 "The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with no rotation",
                 "The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 90 degree rotation",
                 "The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 180 degree rotation",
@@ -480,12 +476,14 @@
                 "GENERAL",
                 "TASK",
                 "DECORATIVE",
+                "RETAIL_DISPLAY",
                 "UNREGULATED"
             ],
             "descriptions": [
                 "General",
                 "Task",
                 "Decorative",
+                "Retail display",
                 "Unregulated"
             ]
         },
@@ -807,7 +805,7 @@
                 "Transient Residential - Dwelling unit"
             ]
         },
-        "ServiceWaterHeatingAreaOptions2019ASHRAE901": {
+        "ServiceWaterHeatingSpaceOptions2019ASHRAE901": {
             "type": "string",
             "enum": [
                 "AUTOMOTIVE_FACILITY",
@@ -820,6 +818,7 @@
                 "DORMITORY",
                 "EXERCISE_CENTER",
                 "FIRE_STATION",
+                "GROCERY_STORE",
                 "GYMNASIUM",
                 "HEALTH_CARE_CLINIC",
                 "HOSPITAL_AND_OUTPATIENT_SURGERY",
@@ -857,6 +856,7 @@
                 "Dormitory",
                 "Exercise center",
                 "Fire station",
+                "Grocery store",
                 "Gymnasium",
                 "Health-care clinic",
                 "Hospital and outpatient surgery center",
@@ -1024,28 +1024,10 @@
         "ConstructionClassificationOptions2019ASHRAE901": {
             "type": "string",
             "enum": [
-                "METAL_BUILDING",
-                "WOOD_FRAMED",
-                "STEEL_FRAMED",
-                "MASS",
-                "INSULATION_ENTIRELY_ABOVE_DECK",
-                "ATTIC",
-                "BELOW_GRADE_WALL",
-                "STEEL_JOIST",
-                "SLAB_ON_GRADE",
-                "OTHER"
+                "STEEL_FRAMED"
             ],
             "descriptions": [
-                "Metal building",
-                "Wood-framed",
-                "Steel-framed",
-                "Mass",
-                "Insulation entirely above deck",
-                "Attic",
-                "Below-grade wall",
-                "Steel joist",
-                "Slab-on-grade",
-                "Other"
+                "Steel-framed"
             ]
         },
         "SubsurfaceSubclassificationOptions2019ASHRAE901": {
@@ -1091,12 +1073,10 @@
         "OutputSchemaOptions2019ASHRAE901": {
             "type": "string",
             "enum": [
-                "OUTPUT_SCHEMA_ASHRAE901_2019",
-                "OTHER"
+                "OUTPUT_SCHEMA_ASHRAE901_2019"
             ],
             "descriptions": [
-                "Output schema for ASHRAE 90.1 2019",
-                "other"
+                "Output schema for ASHRAE 90.1 2019"
             ]
         }
     }

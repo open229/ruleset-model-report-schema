@@ -59,6 +59,9 @@
                     "description": "Indicates the chosen format for output",
                     "oneOf": [
                         {
+                            "$ref": "ASHRAE229.schema.json#/definitions/CommonOutputSchemaOptions"
+                        },
+                        {
                             "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/OutputSchemaOptions2019ASHRAE901"
                         },
                         {
@@ -76,6 +79,15 @@
                 "ruleset_model_descriptions"
             ],
             "additionalProperties": false
+        },
+        "CommonOutputSchemaOptions": {
+            "type": "string",
+            "enum": [
+                "OTHER"
+            ],
+            "descriptions": [
+                "other"
+            ]
         },
         "RulesetModelDescription": {
             "type": "object",
@@ -96,6 +108,9 @@
                 "type": {
                     "description": "Describes the current ruleset model description for rulesets with multiple simulation models",
                     "oneOf": [
+                        {
+                            "$ref": "ASHRAE229.schema.json#/definitions/CommonRulesetModelOptions"
+                        },
                         {
                             "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/RulesetModelOptions2019ASHRAE901"
                         },
@@ -145,6 +160,14 @@
                 "is_measured_infiltration_based_on_test": {
                     "description": "Indicates whether the differential pressure difference used during measurement for infiltration values is based on pressure testing of the building.",
                     "type": "boolean"
+                },
+                "altitude": {
+                    "description": "Altitude of the building at ground level.",
+                    "type": "number",
+                    "exclusiveMinimum": -1000.0,
+                    "exclusiveMaximum": 10000.0,
+                    "units": "m",
+                    "notes": "Altitude of the building site above sea level and used for adjusting airflows. If the altitude is not provided, it is assumed to be zero and airflows are already normalized to sea level."
                 },
                 "fluid_loops": {
                     "description": "Fluid loops on the site",
@@ -225,6 +248,21 @@
                 "type"
             ],
             "additionalProperties": false
+        },
+        "CommonRulesetModelOptions": {
+            "type": "string",
+            "enum": [
+                "USER",
+                "PROPOSED"
+            ],
+            "descriptions": [
+                "The building model as described without consideration of the ruleset",
+                "The proposed building model"
+            ],
+            "notes": [
+                null,
+                "The proposed building model typically transformed from the USER model following specific changes for the ruleset"
+            ]
         },
         "Building": {
             "type": "object",
@@ -367,7 +405,7 @@
                 },
                 "service_water_heating_area_type": {
                     "description": "Service water heating area type classification",
-                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingAreaOptions2019ASHRAE901",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 }
             },
@@ -623,7 +661,6 @@
                 },
                 "service_water_heating_area_type": {
                     "description": "Service water heating area type classification",
-                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingAreaOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
                 "service_water_heating_uses": {
@@ -659,12 +696,26 @@
             "enum": [
                 "LABORATORY",
                 "KITCHEN",
+                "PLENUM",
+                "CRAWL_SPACE",
+                "INTERSTITIAL_SPACE",
                 "OTHER"
             ],
             "descriptions": [
                 "Laboratory",
                 "Kitchen",
+                "Plenum",
+                "Crawl space",
+                "Interstitial space",
                 "Other"
+            ],
+            "notes": [
+                null,
+                null,
+                "A compartment or chamber, to which one or more ducts are connected, that forms a part of the air-distribution system and that is not used for occupancy or storage. The area of a plenum is not counted toward the floor area of a building.",
+                "An unoccupied, unfinished, narrow space within a building, between the ground and the first (or ground) floor. The crawl space is so named because there is typically only enough room to crawl rather than stand; anything larger than about 1 to 1.5 metres (3 ft 3 in to 4 ft 11 in) and beneath the ground floor would tend to be considered a basement. The area of a crawl space is not counted toward the floor area of a building.",
+                "The area of load bearing surfaces located above or below occupied building floors that is not available for general occupancy often due to inadequate clear headroom or lack of provisions for egress, and containing building structure or services predominantly serving adjacent floors or to provide access to such systems. They are not part of the air distribution systen, conditioned, used for occupancy, or used for storage. Interstitial spaces often contain ducts, piping, conduit, and other components that serve the building systems. The area of a interstitial space is not counted toward the floor area of a building.",
+                null
             ]
         },
         "StatusOptions": {
@@ -771,7 +822,7 @@
                     "notes": "Notes are not used by the RCT, but may be included in RCT reports to give the reviewer additional information or context"
                 },
                 "subsurfaces": {
-                    "description": "Suburfaces that are on the surface",
+                    "description": "Subsurfaces that are on the surface",
                     "type": "array",
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/Subsurface"
@@ -864,6 +915,9 @@
                 "classification": {
                     "description": "Classification for the subsurface being window, skylight, door.",
                     "oneOf": [
+                        {
+                            "$ref": "ASHRAE229.schema.json#/definitions/CommonConstructionClassificationOptions"
+                        },
                         {
                             "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ConstructionClassificationOptions2019ASHRAE901"
                         },
@@ -972,6 +1026,29 @@
                 "Insulation fully covering the underside of the slab",
                 "Insulation applied vertically next to edge of slab",
                 "None",
+                "Other"
+            ]
+        },
+        "CommonConstructionClassificationOptions": {
+            "type": "string",
+            "enum": [
+                "METAL_BUILDING",
+                "WOOD_FRAMED",
+                "INSULATION_ENTIRELY_ABOVE_DECK",
+                "ATTIC",
+                "BELOW_GRADE_WALL",
+                "STEEL_JOIST",
+                "SLAB_ON_GRADE",
+                "OTHER"
+            ],
+            "descriptions": [
+                "Metal building",
+                "Wood-framed",
+                "Insulation entirely above deck",
+                "Attic",
+                "Below-grade wall",
+                "Steel joist",
+                "Slab-on-grade",
                 "Other"
             ]
         },
@@ -1449,6 +1526,12 @@
                 "has_automatic_control": {
                     "description": "Indicates that the receptacles have automatic controls",
                     "type": "boolean"
+                },
+                "automatic_controlled_percentage": {
+                    "description": "Fraction of receptacles that have automatic controls.",
+                    "type": "number",
+                    "minimum": 0.0,
+                    "maximum": 1.0
                 }
             },
             "required": [
@@ -1841,6 +1924,11 @@
                     "description": "The type of elevator",
                     "$ref": "ASHRAE229.schema.json#/definitions/ElevatorOptions"
                 },
+                "number_of_floors_served": {
+                    "description": "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens.",
+                    "type": "number",
+                    "minimum": 1.0
+                },
                 "motor_location_zone": {
                     "description": "Zone where the heat from the motor goes",
                     "type": "string",
@@ -1984,6 +2072,10 @@
                     "$ref": "ASHRAE229.schema.json#/definitions/HeatingSystem",
                     "notes": "References a HeatingSystem data group that provides preheat to this HVAC System. Preheat is typically a coil used to temper cold air entering an HVAC systm often when high quantities of outdoor air is expected. If the HVAC system does not have a preheat system, this entry can be left blank, or the HeatingSystem HeatingSystemOptions can be set to equal NONE in the referenced data group."
                 },
+                "humidification_type": {
+                    "description": "Humidification type",
+                    "$ref": "ASHRAE229.schema.json#/definitions/HumidificationOptions"
+                },
                 "status_type": {
                     "description": "Choice of new, existing, addition, alteration, etc. for each ruleset.",
                     "$ref": "ASHRAE229.schema.json#/definitions/StatusOptions"
@@ -2076,12 +2168,12 @@
                     },
                     "notes": "Used for furnace or heat pump."
                 },
-                "heatpump_auxilliary_heat_type": {
-                    "description": "Heatpump auxilliary heat type used for backup",
-                    "$ref": "ASHRAE229.schema.json#/definitions/HeatpumpAuxilliaryHeatOptions"
+                "heatpump_auxiliary_heat_type": {
+                    "description": "Heatpump auxiliary heat type used for backup",
+                    "$ref": "ASHRAE229.schema.json#/definitions/HeatpumpAuxiliaryHeatOptions"
                 },
-                "heatpump_auxilliary_heat_high_shutoff_temperature": {
-                    "description": "Heatpump auxilliary heat high temperature shutoff",
+                "heatpump_auxiliary_heat_high_shutoff_temperature": {
+                    "description": "Heatpump auxiliary heat high temperature shutoff",
                     "type": "number",
                     "units": "C",
                     "notes": "The auxiliary heat is available at or below this outside temperature to satisfy the load. If this temperature is higher than heatpump_low_shutoff_temperature then between the two temperatures, the heat pump is energized first and if any load remains, then the auxiliary heat is energized."
@@ -2091,10 +2183,6 @@
                     "type": "number",
                     "units": "C",
                     "notes": "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
-                },
-                "humidification_type": {
-                    "description": "Humidification type",
-                    "$ref": "ASHRAE229.schema.json#/definitions/HumidificationOptions"
                 }
             },
             "required": [
@@ -2121,7 +2209,7 @@
                 "Other"
             ]
         },
-        "HeatpumpAuxilliaryHeatOptions": {
+        "HeatpumpAuxiliaryHeatOptions": {
             "type": "string",
             "enum": [
                 "ELECTRIC_RESISTANCE",
@@ -2329,7 +2417,7 @@
         "DehumidificationOptions": {
             "type": "string",
             "enum": [
-                "MECHANCIAL_COOLING",
+                "MECHANICAL_COOLING",
                 "DESICCANT",
                 "SERIES_HEAT_RECOVERY",
                 "NONE",
@@ -2505,7 +2593,7 @@
                 "operating_schedule": {
                     "description": "Operating schedule name",
                     "type": "string",
-                    "notes": "If the schedule is not present, the fansystem  is always operating. Zero when fan is off. Constraint to use when implemented :Schedule:"
+                    "notes": "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
                 },
                 "minimum_airflow": {
                     "description": "Minimum volume airflow",
@@ -3380,7 +3468,7 @@
                 "design_head": {
                     "description": "Head of the pump at design flow conditions",
                     "type": "number",
-                    "units": "m",
+                    "units": "Pa",
                     "notes": "Only used when specification_method is set to Detailed"
                 },
                 "impeller_efficiency": {
@@ -3518,15 +3606,21 @@
                     "description": "Source of energy for the boiler",
                     "$ref": "Output2019ASHRAE901.schema.json#/definitions/EnergySourceOptions"
                 },
-                "efficiency_metric": {
-                    "description": "The type of efficiency metric used",
-                    "$ref": "ASHRAE229.schema.json#/definitions/BoilerEfficiencyMetricOptions"
+                "efficiency_metric_types": {
+                    "description": "List of efficiency metrics that correspond to the values in efficiency_metric_values list",
+                    "type": "array",
+                    "items": {
+                        "$ref": "ASHRAE229.schema.json#/definitions/BoilerEfficiencyMetricOptions"
+                    }
                 },
-                "efficiency": {
-                    "description": "Efficiency value based on the selected efficiency_metric",
-                    "type": "number",
-                    "minimum": 0.0,
-                    "maximum": 1.0
+                "efficiency_metric_values": {
+                    "description": "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list",
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "maximum": 1.0
+                    }
                 },
                 "output_validation_points": {
                     "description": "Energy validation points",
@@ -3666,9 +3760,15 @@
                     "units": "C",
                     "notes": "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C."
                 },
+                "minimum_unload_ratio": {
+                    "description": "Minimum unload ratio of full load allowed",
+                    "type": "number",
+                    "notes": "The ratio of current load to available capacity at a given simulation time step. Used only when this value is higher than the minimum_load_ratio.  Between the minimum_unload_ratio and the minimum_load_ratio, the chiller creates a false load in order to continue operating at the minimum_unload_ratio."
+                },
                 "minimum_load_ratio": {
                     "description": "Minimum fraction of full load allowed",
-                    "type": "number"
+                    "type": "number",
+                    "notes": "The ratio of current load to available capacity at a given simulation time step. Below the minimum load ratio, the chiller cycles on and off."
                 },
                 "design_flow_evaporator": {
                     "description": "Chiller evaporator design flow",
@@ -3684,7 +3784,7 @@
                     "description": "Design entering condenser temperature",
                     "type": "number",
                     "units": "C",
-                    "notes": "The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers."
+                    "notes": "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers."
                 },
                 "design_leaving_evaporator_temperature": {
                     "description": "Design leaving evaporator temperature",
@@ -3692,22 +3792,22 @@
                     "units": "C",
                     "notes": "The temperature leaving the evaporator portion of the chiller at design conditions."
                 },
-                "full_load_efficiency": {
-                    "description": "Full Load Efficiency expressed as a coefficient of performance (COP)",
-                    "type": "number",
+                "efficiency_metric_values": {
+                    "description": "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list",
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": 0.0
+                    },
                     "units": "W/W",
-                    "notes": "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
+                    "notes": "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined load."
                 },
-                "part_load_efficiency": {
-                    "description": "Efficiency value based on the selected part_load_efficiency_metric",
-                    "type": "number",
-                    "minimum": 0.0,
-                    "units": "W/W",
-                    "notes": "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
-                },
-                "part_load_efficiency_metric": {
-                    "description": "The type of part load efficiency metric used",
-                    "$ref": "ASHRAE229.schema.json#/definitions/ChillerPartLoadEfficiencyMetricOptions"
+                "efficiency_metric_types": {
+                    "description": "List of efficiency metrics that correspond to the values in efficiency_metric_values list",
+                    "type": "array",
+                    "items": {
+                        "$ref": "ASHRAE229.schema.json#/definitions/ChillerEfficiencyMetricOptions"
+                    }
                 },
                 "capacity_validation_points": {
                     "description": "Capacity validation points",
@@ -3752,17 +3852,25 @@
             ],
             "additionalProperties": false
         },
-        "ChillerPartLoadEfficiencyMetricOptions": {
+        "ChillerEfficiencyMetricOptions": {
             "type": "string",
             "enum": [
+                "FULL_LOAD_EFFICIENCY",
                 "INTEGRATED_PART_LOAD_VALUE",
                 "NONSTANDARD_PART_LOAD_VALUE",
                 "OTHER"
             ],
             "descriptions": [
+                "Full Load Efficiency expressed as a coefficient of performance (COP)",
                 "Integrated part load value efficiency expressed as a coefficient of performance (COP)",
                 "Nonstandard part load value efficiency expressed as a coefficient of performance (COP)",
                 "Other part load efficiency metric"
+            ],
+            "notes": [
+                "At minimum, the full load efficiency should be one of the metrics and values specified.",
+                null,
+                null,
+                null
             ]
         },
         "ChillerCapacityValidationPoint": {
@@ -3881,6 +3989,11 @@
                 "fluid": {
                     "description": "Fluid Cooled by Heat Rejection",
                     "$ref": "ASHRAE229.schema.json#/definitions/HeatRejectionFluidOptions"
+                },
+                "number_of_cells": {
+                    "description": "Number of cells",
+                    "type": "number",
+                    "minimum": 1.0
                 },
                 "range": {
                     "description": "Heat rejection Range",
@@ -4781,6 +4894,7 @@
                 },
                 "area_type": {
                     "description": "Service Water Heating Loop Area Type",
+                    "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
                 },
                 "water_serves_type": {
@@ -4871,6 +4985,15 @@
                 "Volume per area",
                 "Volume",
                 "Other"
+            ],
+            "notes": [
+                "The units for the use that correspond to this are watts/person",
+                "The units for the use that correspond to this are watts/m2",
+                "The units for the use that correspond to this are watts",
+                "The units for the use that correspond to this are liters/(minute-person)",
+                "The units for the use that correspond to this are liters/(minute-m2)",
+                "The units for the use that correspond to this are liters/minute",
+                null
             ]
         },
         "EnergySourceOptions": {
@@ -5109,6 +5232,6 @@
             ]
         }
     },
-    "version": "0.0.37",
+    "version": "0.1.0",
     "$ref": "ASHRAE229.schema.json#/definitions/RulesetProjectDescription"
 }
