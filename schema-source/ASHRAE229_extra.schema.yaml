@@ -6728,16 +6728,22 @@ ServiceWaterHeatingUseUnitOptions:
   Enumerators:
     POWER_PER_PERSON:
       Description: "Power per person"
+      Notes: "The units for the use that correspond to this are watts/person"
     POWER_PER_AREA:
       Description: "Power per area"
+      Notes: "The units for the use that correspond to this are watts/m2"
     POWER:
       Description: "Power"
+      Notes: "The units for the use that correspond to this are watts"
     VOLUME_PER_PERSON:
       Description: "Volume per person"
+      Notes: "The units for the use that correspond to this are liters/(minute-person)"
     VOLUME_PER_AREA:
       Description: "Volume per area"
+      Notes: "The units for the use that correspond to this are liters/(minute-m2)"
     VOLUME:
       Description: "Volume"
+      Notes: "The units for the use that correspond to this are liters/minute"
     OTHER:
       Description: "Other"
 
