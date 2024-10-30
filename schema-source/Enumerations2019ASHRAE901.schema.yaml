@@ -664,6 +664,8 @@ ServiceWaterHeatingSpaceOptions2019ASHRAE901:
       Description: "Exercise center"
     FIRE_STATION:
       Description: "Fire station"
+    GROCERY_STORE:
+      Description: "Grocery store"
     GYMNASIUM:
       Description: "Gymnasium"
     HEALTH_CARE_CLINIC:
