@@ -5075,6 +5075,7 @@ Chiller:
     minimum_load_ratio:
       Description: "Minimum fraction of full load allowed"
       Data Type: "Numeric"
+      Notes: "The ratio of current load to available capacity at a given simulation time step. Below the minimum load ratio, the chiller cycles on and off."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
