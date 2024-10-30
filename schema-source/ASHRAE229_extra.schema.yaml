@@ -5072,6 +5072,15 @@ Chiller:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    minimum_unload_ratio:
+      Description: "Minimum unload ratio of full load allowed"
+      Data Type: "Numeric"
+      Notes: "The ratio of current load to available capacity at a given simulation time step. Used only when this value is higher than the minimum_load_ratio.  Between the minimum_unload_ratio and the minimum_load_ratio, the chiller creates a false load in order to continue operating at the minimum_unload_ratio."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
     minimum_load_ratio:
       Description: "Minimum fraction of full load allowed"
       Data Type: "Numeric"
