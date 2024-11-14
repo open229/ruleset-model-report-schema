@@ -14,67 +14,58 @@
 | ----------- | ---------------------------------------------------- | --------------------------------------------- | ----------------- |
 | `Timestamp` | Date with UTC time formatted per ISO 8601 (ISO 2004) | [0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}Z | 2016-06-29T14:35Z |
 
-# CommonOutputSchemaOptions
+# AirEconomizerOptions
+|         Enumerator         |            Description            | Notes |
+| -------------------------- | --------------------------------- | ----- |
+| `FIXED_FRACTION`           | Fixed Fraction                    |       |
+| `TEMPERATURE`              | Dry-bulb temperature              |       |
+| `ENTHALPY`                 | Enthalpy                          |       |
+| `DIFFERENTIAL_TEMPERATURE` | Differential dry-bulb temperature |       |
+| `DIFFERENTIAL_ENTHALPY`    | Differential enthalpy             |       |
+| `OTHER`                    | Other                             |       |
+
+# ApplicationTemperatureOptions
+| Enumerator |    Description     |                                           Notes                                            |
+| ---------- | ------------------ | ------------------------------------------------------------------------------------------ |
+| `MEDIUM`   | Medium temperature | 3.3 C +/- 1.1 C (38 F +/- 2 F)                                                             |
+| `LOW`      | Low temperature    | -17.8 C +/- 1.1 C (0 F +/- 2 F)                                                            |
+| `VERY_LOW` | Very low           | -26.1 C +/- 1.1 C (-15 F +/- 2 F). This corresponds to the ice cream category in AHRI 1200 |
+| `OTHER`    | Other              |                                                                                            |
+
+# BoilerCombustionOptions
 | Enumerator | Description | Notes |
 | ---------- | ----------- | ----- |
-| `OTHER`    | other       |       |
+| `NATURAL`  | Natural     |       |
+| `FORCED`   | Forced      |       |
 
-# CommonRulesetModelOptions
-| Enumerator |                             Description                              |                                                      Notes                                                       |
-| ---------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `USER`     | The building model as described without consideration of the ruleset |                                                                                                                  |
-| `PROPOSED` | The proposed building model                                          | The proposed building model typically transformed from the USER model following specific changes for the ruleset |
+# BoilerEfficiencyMetricOptions
+|        Enumerator         |            Description             | Notes |
+| ------------------------- | ---------------------------------- | ----- |
+| `ANNUAL_FUEL_UTILIZATION` | Annual fuel utilization efficiency |       |
+| `THERMAL`                 | Thermal efficiency                 |       |
+| `COMBUSTION`              | Combustion efficiency              |       |
 
-# ConditioningOptions
-|     Enumerator      |    Description    | Notes |
-| ------------------- | ----------------- | ----- |
-| `HEATED_AND_COOLED` | Heated and cooled |       |
-| `HEATED_ONLY`       | Heated only       |       |
-| `SEMIHEATED`        | Semiheated        |       |
-| `UNCONDITIONED`     | Unconditioned     |       |
+# ChillerCompressorOptions
+|                Enumerator                 |               Description               | Notes |
+| ----------------------------------------- | --------------------------------------- | ----- |
+| `SCREW`                                   | Screw                                   |       |
+| `CENTRIFUGAL`                             | Centrifugal                             |       |
+| `RECIPROCATING`                           | Reciprocating                           |       |
+| `SCROLL`                                  | Scroll                                  |       |
+| `POSITIVE_DISPLACEMENT`                   | Positive displacement                   |       |
+| `SINGLE_EFFECT_INDIRECT_FIRED_ABSORPTION` | Single-effect indirect-fired absorption |       |
+| `DOUBLE_EFFECT_INDIRECT_FIRED_ABSORPTION` | Double-effect indirect-fired absorption |       |
+| `SINGLE_EFFECT_DIRECT_FIRED_ABSORPTION`   | Single-effect direct-fired absorption   |       |
+| `DOUBLE_EFFECT_DIRECT_FIRED_ABSORPTION`   | Double-effect direct-fired absorption   |       |
+| `OTHER`                                   | Other                                   |       |
 
-# SpaceFunctionOptions
-|      Enumerator      |    Description     |                                                                                                                                                                                                                                                                                                                     Notes                                                                                                                                                                                                                                                                                                                     |
-| -------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `LABORATORY`         | Laboratory         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `KITCHEN`            | Kitchen            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `PLENUM`             | Plenum             | A compartment or chamber, to which one or more ducts are connected, that forms a part of the air-distribution system and that is not used for occupancy or storage. The area of a plenum is not counted toward the floor area of a building.                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `CRAWL_SPACE`        | Crawl space        | An unoccupied, unfinished, narrow space within a building, between the ground and the first (or ground) floor. The crawl space is so named because there is typically only enough room to crawl rather than stand; anything larger than about 1 to 1.5 metres (3 ft 3 in to 4 ft 11 in) and beneath the ground floor would tend to be considered a basement. The area of a crawl space is not counted toward the floor area of a building.                                                                                                                                                                                                    |
-| `INTERSTITIAL_SPACE` | Interstitial space | The area of load bearing surfaces located above or below occupied building floors that is not available for general occupancy often due to inadequate clear headroom or lack of provisions for egress, and containing building structure or services predominantly serving adjacent floors or to provide access to such systems. They are not part of the air distribution systen, conditioned, used for occupancy, or used for storage. Interstitial spaces often contain ducts, piping, conduit, and other components that serve the building systems. The area of a interstitial space is not counted toward the floor area of a building. |
-| `OTHER`              | Other              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-
-# StatusOptions
-|       Enumerator       |     Description      | Notes |
-| ---------------------- | -------------------- | ----- |
-| `NEW`                  | New                  |       |
-| `EXISTING`             | Existing             |       |
-| `EXISTING_PLUS_NEW`    | Existing plus new    |       |
-| `FUTURE`               | Future               |       |
-| `ALTERED`              | Altered              |       |
-| `ALTERED_ROOF_SURFACE` | Altered roof surface |       |
-| `OTHER`                | Other                |       |
-
-# InfiltrationMethodOptions
-|      Enumerator      |                                                                                                                      Description                                                                                                                      | Notes |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `WEATHER_DRIVEN`     | Weather Driven. The amount of air leakage is determined by using the infiltration_flow_rate with a correlation usually involving windspeed, height, and the difference between indoor and outdoor temperature and is then multiplied by the schedule. |       |
-| `PRESSURE_BASED`     | Pressure Based. The amount of air leakage is determined by induced airflows from pressure differences between zones, air distribution system components, the outside due to wind speed and direction.                                                 |       |
-| `CONSTANT`           | Constant. The schedule is ignored.                                                                                                                                                                                                                    |       |
-| `CONSTANT_SCHEDULED` | Constant multiplied by the schedule.                                                                                                                                                                                                                  |       |
-| `OTHER`              | Other infiltration methods.                                                                                                                                                                                                                           |       |
-
-# InsulationLocationOptions
-|               Enumerator                |                                       Description                                       | Notes |
-| --------------------------------------- | --------------------------------------------------------------------------------------- | ----- |
-| `ABOVE_GROUND_WALL_EXTERIOR_CONTINUOUS` | Continous insulation on exterior of an above ground wall                                |       |
-| `ABOVE_GROUND_WALL_INTERIOR_CONTINUOUS` | Continous insulation on interior of an above ground wall                                |       |
-| `ABOVE_GROUND_WALL_FULL_CAVITY`         | Insulation within the cavity of an above ground wall that fills the entire cavity       |       |
-| `ABOVE_GROUND_WALL_PARTIAL_CAVITY`      | Insulation within the cavity of an above ground wall that fills only part of the cavity |       |
-| `SLAB_HORIZONTAL_PERIMETER`             | Insulation on underside of the slab covering the perimeter                              |       |
-| `SLAB_HORIZONTAL_FULL`                  | Insulation fully covering the underside of the slab                                     |       |
-| `SLAB_VERTICAL`                         | Insulation applied vertically next to edge of slab                                      |       |
-| `NONE`                                  | None                                                                                    |       |
-| `OTHER`                                 | Other                                                                                   |       |
+# ChillerEfficiencyMetricOptions
+|          Enumerator           |                                      Description                                       |                                          Notes                                          |
+| ----------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `FULL_LOAD_EFFICIENCY`        | Full Load Efficiency expressed as a coefficient of performance (COP)                   | At minimum, the full load efficiency should be one of the metrics and values specified. |
+| `INTEGRATED_PART_LOAD_VALUE`  | Integrated part load value efficiency expressed as a coefficient of performance (COP)  |                                                                                         |
+| `NONSTANDARD_PART_LOAD_VALUE` | Nonstandard part load value efficiency expressed as a coefficient of performance (COP) |                                                                                         |
+| `OTHER`                       | Other part load efficiency metric                                                      |                                                                                         |
 
 # CommonConstructionClassificationOptions
 |            Enumerator            |          Description           | Notes |
@@ -88,94 +79,81 @@
 | `SLAB_ON_GRADE`                  | Slab-on-grade                  |       |
 | `OTHER`                          | Other                          |       |
 
-# SurfaceClassificationOptions
-| Enumerator |           Description            | Notes |
-| ---------- | -------------------------------- | ----- |
-| `WALL`     | Vertical or nearly vertical wall |       |
-| `FLOOR`    | Floor                            |       |
-| `CEILING`  | Ceiling                          |       |
-
-# SurfaceAdjacencyOptions
-| Enumerator  |                                                                                                 Description                                                                                                  | Notes |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
-| `EXTERIOR`  | Exterior wall or roof which is adjacent to the exterior environment.                                                                                                                                         |       |
-| `GROUND`    | Slab-on-grad or below grade surface if adjacent to ground.                                                                                                                                                   |       |
-| `INTERIOR`  | Interior surface if adjacent to another space which is explicity modeled.                                                                                                                                    |       |
-| `IDENTICAL` | Surface adjacent to a environment identical to the space. Sometimes this is described as adiabatic surface since no heat is transfered. The space on the other side of the surface is not explicity modeled. |       |
-| `UNDEFINED` | The surface adjacency cannot be determined by the software.                                                                                                                                                  |       |
-
-# SurfaceConstructionInputOptions
-|  Enumerator  |               Description                | Notes |
-| ------------ | ---------------------------------------- | ----- |
-| `LAYERS`     | Construction is entered layer-by-layer.  |       |
-| `SIMPLIFIED` | Construction is entered by R-value only. |       |
-
-# SubsurfaceClassificationOptions
-| Enumerator |                     Description                     | Notes |
-| ---------- | --------------------------------------------------- | ----- |
-| `WINDOW`   | Window                                              |       |
-| `SKYLIGHT` | Skylight                                            |       |
-| `DOOR`     | Door                                                |       |
-| `OTHER`    | Other types of subsurfaces that allow light to pass |       |
-
-# SubsurfaceDynamicGlazingOptions
-|     Enumerator      |    Description    | Notes |
-| ------------------- | ----------------- | ----- |
-| `NOT_DYNAMIC`       | Not dynamic       |       |
-| `MANUAL_DYNAMIC`    | Manual dynamic    |       |
-| `AUTOMATIC_DYNAMIC` | Automatic dynamic |       |
-
-# LightingDaylightingControlOptions
-|      Enumerator      |            Description             |          Notes          |
-| -------------------- | ---------------------------------- | ----------------------- |
-| `STEPPED`            | Stepped                            |                         |
-| `CONTINUOUS_DIMMING` | Continuous Dimming                 |                         |
-| `OTHER`              | Other types of daylighting control |                         |
-| `NONE`               | None                               | No daylighting is used. |
-
-# LightingOccupancyControlOptions
-|    Enumerator     |           Description            |             Notes              |
-| ----------------- | -------------------------------- | ------------------------------ |
-| `FULL_AUTO_ON`    | Full auto on                     |                                |
-| `PARTIAL_AUTO_ON` | Parial auto on                   |                                |
-| `MANUAL_ON`       | Manual on                        |                                |
-| `OTHER`           | Other types of occupancy control |                                |
-| `NONE`            | None                             | No occupancy controls is used. |
-
-# MiscellaneousEquipmentOptions
-|             Enumerator             |           Description            | Notes |
-| ---------------------------------- | -------------------------------- | ----- |
-| `PLUG`                             | Plug                             |       |
-| `PROCESS`                          | Process                          |       |
-| `INFORMATION_TECHNOLOGY_EQUIPMENT` | Information technology equipment |       |
-| `OTHER`                            | Other                            |       |
-
-# TransformerOptions
-|   Enumerator   | Description  | Notes |
-| -------------- | ------------ | ----- |
-| `DRY_TYPE`     | Dry Type     |       |
-| `FLUID_FILLED` | Fluid Filled |       |
-| `OTHER`        | Other        |       |
-
-# ElectricalPhaseOptions
-|   Enumerator   | Description  | Notes |
-| -------------- | ------------ | ----- |
-| `SINGLE_PHASE` | Single Phase |       |
-| `THREE_PHASE`  | Three Phase  |       |
-
-# ScheduleSequenceOptions
+# CommonOutputSchemaOptions
 | Enumerator | Description | Notes |
 | ---------- | ----------- | ----- |
-| `HOURLY`   | Hourly      |       |
-| `EVENT`    | Event       |       |
+| `OTHER`    | other       |       |
 
-# ScheduleOptions
-|         Enumerator         |       Description        | Notes |
-| -------------------------- | ------------------------ | ----- |
-| `MULTIPLIER_DIMENSIONLESS` | Multiplier dimensionless |       |
-| `TEMPERATURE`              | Temperature              |       |
-| `POWER`                    | Power                    |       |
-| `FLOW_RATE`                | Flow rate                |       |
+# CommonRulesetModelOptions
+| Enumerator |                             Description                              |                                                      Notes                                                       |
+| ---------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `USER`     | The building model as described without consideration of the ruleset |                                                                                                                  |
+| `PROPOSED` | The proposed building model                                          | The proposed building model typically transformed from the USER model following specific changes for the ruleset |
+
+# ComponentLocationOptions
+|    Enumerator     |   Description   | Notes |
+| ----------------- | --------------- | ----- |
+| `IN_ZONE`         | In a zone       |       |
+| `CONDITIONED`     | Conditioned     |       |
+| `SEMICONDITIONED` | Semiconditioned |       |
+| `OUTSIDE`         | Outside         |       |
+| `GARAGE`          | Garage          |       |
+| `ATTIC`           | Attic           |       |
+| `CRAWL_SPACE`     | Crawl space     |       |
+| `UNDERGROUND`     | Underground     |       |
+| `UNCONDITIONED`   | Unconditioned   |       |
+| `OTHER`           | Other           |       |
+
+# ConditioningOptions
+|     Enumerator      |    Description    | Notes |
+| ------------------- | ----------------- | ----- |
+| `HEATED_AND_COOLED` | Heated and cooled |       |
+| `HEATED_ONLY`       | Heated only       |       |
+| `SEMIHEATED`        | Semiheated        |       |
+| `UNCONDITIONED`     | Unconditioned     |       |
+
+# CoolingDesignDayOptions
+|  Enumerator   |                           Description                            | Notes |
+| ------------- | ---------------------------------------------------------------- | ----- |
+| `COOLING_0_4` | Cooling design day 0.4% annual cumulative frequency of occurance |       |
+| `COOLING_1_0` | Cooling design day 1.0% annual cumulative frequency of occurance |       |
+| `COOLING_2_0` | Cooling design day 2.0% annual cumulative frequency of occurance |       |
+
+# CoolingMetricOptions
+|                        Enumerator                        |                                                        Description                                                        |                                                        Notes                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `FULL_LOAD_COEFFICIENT_OF_PERFORMANCE`                   | Full load efficiency expressed as a coefficient of performance at 35C/95F rated conditions                                |                                                                                                                      |
+| `FULL_LOAD_COEFFICIENT_OF_PERFORMANCE_NO_FAN`            | Full load efficiency expressed as a coefficient of performance at 35C/95F rated conditions not including indoor fan power | Descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
+| `ENERGY_EFFICIENCY_RATIO`                                | EER - Energy efficiency ratio                                                                                             |                                                                                                                      |
+| `SEASONAL_ENERGY_EFFICIENCY_RATIO`                       | SEER - Seasonal energy efficiency ratio                                                                                   |                                                                                                                      |
+| `SEASONAL_ENERGY_EFFICIENCY_RATIO_2`                     | SEER2 - Seasonal energy efficiency ratio 2                                                                                |                                                                                                                      |
+| `INTEGRATED_ENERGY_EFFICIENCY_RATIO`                     | IEER - Integrated energy efficiency ratio                                                                                 |                                                                                                                      |
+| `INTEGRATED_PART_LOAD_VALUE`                             | IPLV - Integrated part load value                                                                                         |                                                                                                                      |
+| `COMBINED_ENERGY_EFFICIENCY_RATIO`                       | CEER - Combined energy efficiency ratio                                                                                   |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_WATER_LOOP`     | Coefficient of performance at entering temperature of 30C/86F rated conditions for water loops per ISO 13256-1            |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_GROUND_WATER`   | Coefficient of performance at entering temperature of 15C/59F rated conditions for ground water per ISO 13256-1           |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_AIR_GROUND_LOOP`    | Coefficient of performance at entering temperature of 25C/77F rated conditions for ground water per ISO 13256-1           |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_WATER_LOOP`   | Coefficient of performance at entering temperature of 30C/86F rated conditions for water loops per ISO 13256-2            |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_GROUND_WATER` | Coefficient of performance at entering temperature of 15C/59F rated conditions for ground water per ISO 13256-2           |                                                                                                                      |
+| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_WATER_GROUND_LOOP`  | Coefficient of performance at entering temperature of 25C/77F rated conditions for ground water per ISO 13256-2           |                                                                                                                      |
+| `NONE`                                                   | None                                                                                                                      |                                                                                                                      |
+| `OTHER`                                                  | Other                                                                                                                     |                                                                                                                      |
+
+# CoolingSourceOptions
+|   Enumerator    |  Description  | Notes |
+| --------------- | ------------- | ----- |
+| `CHILLED_WATER` | Chilled water |       |
+| `NONE`          | None          |       |
+| `OTHER`         | Other         |       |
+
+# CoolingSystemOptions
+|     Enumerator     |   Description    | Notes |
+| ------------------ | ---------------- | ----- |
+| `DIRECT_EXPANSION` | Direct expansion |       |
+| `FLUID_LOOP`       | Fluid loop       |       |
+| `NON_MECHANICAL`   | Non-mechanical   |       |
+| `NONE`             | None             |       |
+| `OTHER`            | Other            |       |
 
 # DayOfWeekOptions
 | Enumerator  | Description | Notes |
@@ -188,20 +166,187 @@
 | `FRIDAY`    | Friday      |       |
 | `SATURDAY`  | Saturday    |       |
 
-# WeatherFileDataSourceOptions
-|       Enumerator       |                        Description                        | Notes |
-| ---------------------- | --------------------------------------------------------- | ----- |
-| `HISTORIC_AGGREGATION` | Historic data aggregated to represent typical weather     |       |
-| `HISTORIC_ACTUAL`      | Specific weather data for time period based on monitoring |       |
-| `FUTURE`               | Weather data projected to represent future conditions     |       |
-| `OTHER`                | Other                                                     |       |
+# DehumidificationOptions
+|       Enumerator       |     Description      | Notes |
+| ---------------------- | -------------------- | ----- |
+| `MECHANICAL_COOLING`   | Mechanical cooling   |       |
+| `DESICCANT`            | Desiccant            |       |
+| `SERIES_HEAT_RECOVERY` | Series heat recovery |       |
+| `NONE`                 | None                 |       |
+| `OTHER`                | Other                |       |
 
-# CoolingDesignDayOptions
-|  Enumerator   |                           Description                            | Notes |
-| ------------- | ---------------------------------------------------------------- | ----- |
-| `COOLING_0_4` | Cooling design day 0.4% annual cumulative frequency of occurance |       |
-| `COOLING_1_0` | Cooling design day 1.0% annual cumulative frequency of occurance |       |
-| `COOLING_2_0` | Cooling design day 2.0% annual cumulative frequency of occurance |       |
+# DemandControlVentilationControlOptions
+|    Enumerator    |  Description   | Notes |
+| ---------------- | -------------- | ----- |
+| `CO2_RETURN_AIR` | CO2 return air |       |
+| `CO2_ZONE`       | CO2 zone       |       |
+| `OTHER`          | Other          |       |
+| `NONE`           | None           |       |
+
+# DrawPatternOptions
+|  Enumerator  | Description | Notes |
+| ------------ | ----------- | ----- |
+| `VERY_SMALL` | Very small  |       |
+| `LOW`        | Low         |       |
+| `MEDIUM`     | Medium      |       |
+| `HIGH`       | High        |       |
+| `OTHER`      | Other       |       |
+
+# ElectricalPhaseOptions
+|   Enumerator   | Description  | Notes |
+| -------------- | ------------ | ----- |
+| `SINGLE_PHASE` | Single Phase |       |
+| `THREE_PHASE`  | Three Phase  |       |
+
+# ElevatorOptions
+| Enumerator  | Description | Notes |
+| ----------- | ----------- | ----- |
+| `HYDRAULIC` | Hydraulic   |       |
+| `TRACTION`  | Traction    |       |
+| `OTHER`     | Other       |       |
+
+# EnergyRecoveryOperationOptions
+|         Enumerator         |       Description        | Notes |
+| -------------------------- | ------------------------ | ----- |
+| `WHEN_FANS_ON`             | When fans on             |       |
+| `WHEN_MINIMUM_OUTSIDE_AIR` | When minimum outside air |       |
+| `SCHEDULED`                | Scheduled                |       |
+| `OTHER`                    | Other                    |       |
+| `NONE`                     | None                     |       |
+
+# EnergyRecoveryOptions
+|        Enumerator        |      Description       | Notes |
+| ------------------------ | ---------------------- | ----- |
+| `SENSIBLE_HEAT_EXCHANGE` | Sensible heat exchange |       |
+| `ENTHALPY_HEAT_EXCHANGE` | Enthalpy heat exchange |       |
+| `SENSIBLE_HEAT_WHEEL`    | Sensible heat wheel    |       |
+| `ENTHALPY_HEAT_WHEEL`    | Enthalpy heat wheel    |       |
+| `HEAT_PIPE`              | Heat pipe              |       |
+| `OTHER`                  | Other                  |       |
+| `NONE`                   | None                   |       |
+
+# EnergyRecoverySupplyAirTemperatureControlOptions
+|    Enumerator     |   Description   | Notes |
+| ----------------- | --------------- | ----- |
+| `FIXED_SETPOINT`  | Fixed setpoint  |       |
+| `MIXED_AIR_RESET` | Mixed air reset |       |
+| `OTHER`           | Other           |       |
+| `NONE`            | None            |       |
+
+# EnergySourceOptions
+|  Enumerator   | Description |                           Notes                           |
+| ------------- | ----------- | --------------------------------------------------------- |
+| `ELECTRICITY` | Electricity |                                                           |
+| `NATURAL_GAS` | Natural gas |                                                           |
+| `PROPANE`     | Propane     |                                                           |
+| `FUEL_OIL`    | Fuel oil    |                                                           |
+| `NONE`        | None        | No energy consumption by a utility supplied source occurs |
+| `OTHER`       | Other       |                                                           |
+
+# ExternalFluidSourceOptions
+|   Enumerator    |  Description  | Notes |
+| --------------- | ------------- | ----- |
+| `CHILLED_WATER` | Chilled water |       |
+| `HOT_WATER`     | Hot water     |       |
+| `STEAM`         | Steam         |       |
+
+# FanSpecificationMethodOptions
+| Enumerator | Description |                                              Notes                                              |
+| ---------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| `SIMPLE`   | Simple      | Specify the electric power input of fan                                                         |
+| `DETAILED` | Detailed    | Specify the brake horse power, design pressure rise through, total efficiency, motor efficiency |
+
+# FanSystemOperationOptions
+|  Enumerator  | Description | Notes |
+| ------------ | ----------- | ----- |
+| `CYCLING`    | Cycling     |       |
+| `CONTINUOUS` | Continuous  |       |
+| `KEEP_OFF`   | Off         |       |
+| `OTHER`      | Other       |       |
+
+# FanSystemSupplyFanControlOptions
+|       Enumerator       |     Description      | Notes |
+| ---------------------- | -------------------- | ----- |
+| `CONSTANT`             | Constant             |       |
+| `VARIABLE_SPEED_DRIVE` | Variable speed drive |       |
+| `MULTISPEED`           | Multispeed           |       |
+| `INLET_VANE`           | Inlet vane           |       |
+| `DISCHARGE_DAMPER`     | Discharge damper     |       |
+| `OTHER`                | Other                |       |
+
+# FanSystemSupplyFanVolumeResetOptions
+|         Enumerator         |       Description        | Notes |
+| -------------------------- | ------------------------ | ----- |
+| `CONSTANT`                 | Constant                 |       |
+| `DESIGN_LOAD_RESET`        | Design Load Reset        |       |
+| `OPERATING_CAPACITY_RESET` | Operating Capacity Reset |       |
+| `OTHER`                    | Other                    |       |
+
+# FanSystemTemperatureControlOptions
+|              Enumerator               |             Description             | Notes |
+| ------------------------------------- | ----------------------------------- | ----- |
+| `CONSTANT`                            | Constant                            |       |
+| `OUTDOOR_AIR_RESET`                   | Outdoor air reset                   |       |
+| `ZONE_RESET`                          | Zone reset                          |       |
+| `LOAD_RESET_TO_SPACE_TEMPERATURE`     | Load Reset To Space Temperature     |       |
+| `LOAD_RESET_DIFFERENTIAL_TEMPERATURE` | Load Reset Differential Temperature |       |
+| `SCHEDULED`                           | Scheduled                           |       |
+| `OTHER`                               | Other                               |       |
+
+# FluidLoopFlowControlOptions
+|   Enumerator    |  Description  | Notes |
+| --------------- | ------------- | ----- |
+| `FIXED_FLOW`    | Fixed flow    |       |
+| `VARIABLE_FLOW` | Variable flow |       |
+
+# FluidLoopOperationOptions
+|   Enumerator   |      Description       | Notes |
+| -------------- | ---------------------- | ----- |
+| `CONTINUOUS`   | Continuous             |       |
+| `INTERMITTENT` | Intermittent/on-demand |       |
+| `SCHEDULED`    | Scheduled              |       |
+
+# FluidLoopOptions
+|      Enumerator       |     Description     | Notes |
+| --------------------- | ------------------- | ----- |
+| `HEATING`             | Heating             |       |
+| `COOLING`             | Cooling             |       |
+| `HEATING_AND_COOLING` | Heating and cooling |       |
+| `CONDENSER`           | Condenser           |       |
+| `OTHER`               | Other               |       |
+
+# HeatRejectionFanOptions
+|  Enumerator   |    Description     | Notes |
+| ------------- | ------------------ | ----- |
+| `AXIAL`       | Axial or Propellor |       |
+| `CENTRIFUGAL` | Centrifugal        |       |
+| `OTHER`       | Other              |       |
+
+# HeatRejectionFanSpeedControlOptions
+|    Enumerator    |  Description   | Notes |
+| ---------------- | -------------- | ----- |
+| `CONSTANT`       | Constant       |       |
+| `TWO_SPEED`      | Two Speed      |       |
+| `VARIABLE_SPEED` | Variable Speed |       |
+| `OTHER`          | Other          |       |
+
+# HeatRejectionFluidOptions
+|  Enumerator   | Description |      Notes       |
+| ------------- | ----------- | ---------------- |
+| `WATER`       | Water       |                  |
+| `REFRIGERANT` | Refrigerant | Including R-448A |
+| `AMMONIA`     | Ammonia     |                  |
+| `OTHER`       | Other       |                  |
+
+# HeatRejectionOptions
+|           Enumerator           |                 Description                  | Notes |
+| ------------------------------ | -------------------------------------------- | ----- |
+| `OPEN_CIRCUIT_COOLING_TOWER`   | Open-circuit cooling tower                   |       |
+| `CLOSED_CIRCUIT_COOLING_TOWER` | Closed-circuit cooling tower or fluid cooler |       |
+| `DRY_COOLER`                   | Dry-cooler or air-cooled fluid cooler        |       |
+| `EVAPORATIVE_CONDENSER`        | Evaporative condenser                        |       |
+| `AIR_COOLED_CONDENSER`         | Air cooled condenser                         |       |
+| `OTHER`                        | Other                                        |       |
 
 # HeatingDesignDayOptions
 |   Enumerator   |                            Description                            | Notes |
@@ -209,11 +354,33 @@
 | `HEATING_99_6` | Heating design day 99.6% annual cumulative frequency of occurance |       |
 | `HEATING_99_0` | Heating design day 99.0% annual cumulative frequency of occurance |       |
 
-# ElevatorOptions
+# HeatingMetricOptions
+|                           Enumerator                           |                                                   Description                                                   |                                                                    Notes                                                                    |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_HIGH_TEMPERATURE`        | Efficiency at 8.3C/47F dry bulb and 6.1C/43F wet bulb                                                           |                                                                                                                                             |
+| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_LOW_TEMPERATURE`         | Efficiency at -8.3C/17F dry bulb and -9.4C/15F wet bulb                                                         |                                                                                                                                             |
+| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_HIGH_TEMPERATURE_NO_FAN` | Efficiency at 8.3C/47F dry bulb and 6.1C/43F wet bulb not including fan                                         | Used for heat pump and descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
+| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_LOW_TEMPERATURE_NO_FAN`  | Efficiency at -8.3C/17F dry bulb and -9.4C/15F wet bulb not including fan                                       | Used for heat pump and descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
+| `THERMAL_EFFICIENCY`                                           | Et - thermal efficiency                                                                                         |                                                                                                                                             |
+| `COMBUSTION_EFFICIENCY`                                        | Ec - combustion` efficiency                                                                                     |                                                                                                                                             |
+| `ANNUAL_FUEL_UTILIZATION_EFFICIENCY`                           | AFUE - annual fuel utilization efficiency                                                                       |                                                                                                                                             |
+| `HEATING_SEASONAL_PERFORMANCE_FACTOR`                          | HSPF - heating seasonal perfomrance factor                                                                      |                                                                                                                                             |
+| `HEATING_SEASONAL_PERFORMANCE_FACTOR_2`                        | HSPF2 - heating seasonal perfomrance factor 2                                                                   |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_WATER_LOOP`           | Coefficient of performance at entering temperature of 20C/68F rated conditions for water loops per ISO 13256-1  |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_GROUND_WATER`         | Coefficient of performance at entering temperature of 10C/50F rated conditions for ground water per ISO 13256-1 |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_AIR_GROUND_LOOP`          | Coefficient of performance at entering temperature of 0C/32F rated conditions for ground water per ISO 13256-1  |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_WATER_LOOP`         | Coefficient of performance at entering temperature of 20C/68F rated conditions for water loops per ISO 13256-2  |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_GROUND_WATER`       | Coefficient of performance at entering temperature of 10C/50F rated conditions for ground water per ISO 13256-2 |                                                                                                                                             |
+| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_WATER_GROUND_LOOP`        | Coefficient of performance at entering temperature of 0C/32F rated conditions for ground water per ISO 13256-2  |                                                                                                                                             |
+| `NONE`                                                         | None                                                                                                            |                                                                                                                                             |
+| `OTHER`                                                        | Other                                                                                                           |                                                                                                                                             |
+
+# HeatingSourceOptions
 | Enumerator  | Description | Notes |
 | ----------- | ----------- | ----- |
-| `HYDRAULIC` | Hydraulic   |       |
-| `TRACTION`  | Traction    |       |
+| `ELECTRIC`  | Electric    |       |
+| `HOT_WATER` | Hot water   |       |
+| `NONE`      | None        |       |
 | `OTHER`     | Other       |       |
 
 # HeatingSystemOptions
@@ -241,222 +408,58 @@
 | `NONE`      | None        |       |
 | `OTHER`     | Other       |       |
 
-# HeatingMetricOptions
-|                           Enumerator                           |                                                   Description                                                   |                                                                    Notes                                                                    |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_HIGH_TEMPERATURE`        | Efficiency at 8.3C/47F dry bulb and 6.1C/43F wet bulb                                                           |                                                                                                                                             |
-| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_LOW_TEMPERATURE`         | Efficiency at -8.3C/17F dry bulb and -9.4C/15F wet bulb                                                         |                                                                                                                                             |
-| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_HIGH_TEMPERATURE_NO_FAN` | Efficiency at 8.3C/47F dry bulb and 6.1C/43F wet bulb not including fan                                         | Used for heat pump and descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
-| `HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_LOW_TEMPERATURE_NO_FAN`  | Efficiency at -8.3C/17F dry bulb and -9.4C/15F wet bulb not including fan                                       | Used for heat pump and descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
-| `THERMAL_EFFICIENCY`                                           | Et - thermal efficiency                                                                                         |                                                                                                                                             |
-| `COMBUSTION_EFFICIENCY`                                        | Ec - combustion` efficiency                                                                                     |                                                                                                                                             |
-| `ANNUAL_FUEL_UTILIZATION_EFFICIENCY`                           | AFUE - annual fuel utilization efficiency                                                                       |                                                                                                                                             |
-| `HEATING_SEASONAL_PERFORMANCE_FACTOR`                          | HSPF - heating seasonal perfomrance factor                                                                      |                                                                                                                                             |
-| `HEATING_SEASONAL_PERFORMANCE_FACTOR_2`                        | HSPF2 - heating seasonal perfomrance factor 2                                                                   |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_WATER_LOOP`           | Coefficient of performance at entering temperature of 20C/68F rated conditions for water loops per ISO 13256-1  |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_GROUND_WATER`         | Coefficient of performance at entering temperature of 10C/50F rated conditions for ground water per ISO 13256-1 |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_AIR_GROUND_LOOP`          | Coefficient of performance at entering temperature of 0C/32F rated conditions for ground water per ISO 13256-1  |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_WATER_LOOP`         | Coefficient of performance at entering temperature of 20C/68F rated conditions for water loops per ISO 13256-2  |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_GROUND_WATER`       | Coefficient of performance at entering temperature of 10C/50F rated conditions for ground water per ISO 13256-2 |                                                                                                                                             |
-| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_WATER_GROUND_LOOP`        | Coefficient of performance at entering temperature of 0C/32F rated conditions for ground water per ISO 13256-2  |                                                                                                                                             |
-| `NONE`                                                         | None                                                                                                            |                                                                                                                                             |
-| `OTHER`                                                        | Other                                                                                                           |                                                                                                                                             |
+# InfiltrationMethodOptions
+|      Enumerator      |                                                                                                                      Description                                                                                                                      | Notes |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| `WEATHER_DRIVEN`     | Weather Driven. The amount of air leakage is determined by using the infiltration_flow_rate with a correlation usually involving windspeed, height, and the difference between indoor and outdoor temperature and is then multiplied by the schedule. |       |
+| `PRESSURE_BASED`     | Pressure Based. The amount of air leakage is determined by induced airflows from pressure differences between zones, air distribution system components, the outside due to wind speed and direction.                                                 |       |
+| `CONSTANT`           | Constant. The schedule is ignored.                                                                                                                                                                                                                    |       |
+| `CONSTANT_SCHEDULED` | Constant multiplied by the schedule.                                                                                                                                                                                                                  |       |
+| `OTHER`              | Other infiltration methods.                                                                                                                                                                                                                           |       |
 
-# CoolingSystemOptions
-|     Enumerator     |   Description    | Notes |
-| ------------------ | ---------------- | ----- |
-| `DIRECT_EXPANSION` | Direct expansion |       |
-| `FLUID_LOOP`       | Fluid loop       |       |
-| `NON_MECHANICAL`   | Non-mechanical   |       |
-| `NONE`             | None             |       |
-| `OTHER`            | Other            |       |
+# InsulationLocationOptions
+|               Enumerator                |                                       Description                                       | Notes |
+| --------------------------------------- | --------------------------------------------------------------------------------------- | ----- |
+| `ABOVE_GROUND_WALL_EXTERIOR_CONTINUOUS` | Continous insulation on exterior of an above ground wall                                |       |
+| `ABOVE_GROUND_WALL_INTERIOR_CONTINUOUS` | Continous insulation on interior of an above ground wall                                |       |
+| `ABOVE_GROUND_WALL_FULL_CAVITY`         | Insulation within the cavity of an above ground wall that fills the entire cavity       |       |
+| `ABOVE_GROUND_WALL_PARTIAL_CAVITY`      | Insulation within the cavity of an above ground wall that fills only part of the cavity |       |
+| `SLAB_HORIZONTAL_PERIMETER`             | Insulation on underside of the slab covering the perimeter                              |       |
+| `SLAB_HORIZONTAL_FULL`                  | Insulation fully covering the underside of the slab                                     |       |
+| `SLAB_VERTICAL`                         | Insulation applied vertically next to edge of slab                                      |       |
+| `NONE`                                  | None                                                                                    |       |
+| `OTHER`                                 | Other                                                                                   |       |
 
-# DehumidificationOptions
-|       Enumerator       |     Description      | Notes |
-| ---------------------- | -------------------- | ----- |
-| `MECHANICAL_COOLING`   | Mechanical cooling   |       |
-| `DESICCANT`            | Desiccant            |       |
-| `SERIES_HEAT_RECOVERY` | Series heat recovery |       |
-| `NONE`                 | None                 |       |
-| `OTHER`                | Other                |       |
+# LightingDaylightingControlOptions
+|      Enumerator      |            Description             |          Notes          |
+| -------------------- | ---------------------------------- | ----------------------- |
+| `STEPPED`            | Stepped                            |                         |
+| `CONTINUOUS_DIMMING` | Continuous Dimming                 |                         |
+| `OTHER`              | Other types of daylighting control |                         |
+| `NONE`               | None                               | No daylighting is used. |
 
-# CoolingMetricOptions
-|                        Enumerator                        |                                                        Description                                                        |                                                        Notes                                                         |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `FULL_LOAD_COEFFICIENT_OF_PERFORMANCE`                   | Full load efficiency expressed as a coefficient of performance at 35C/95F rated conditions                                |                                                                                                                      |
-| `FULL_LOAD_COEFFICIENT_OF_PERFORMANCE_NO_FAN`            | Full load efficiency expressed as a coefficient of performance at 35C/95F rated conditions not including indoor fan power | Descibes the efficiency not including the indoor supply fan. The outdoor evaporator fan power is generally included. |
-| `ENERGY_EFFICIENCY_RATIO`                                | EER - Energy efficiency ratio                                                                                             |                                                                                                                      |
-| `SEASONAL_ENERGY_EFFICIENCY_RATIO`                       | SEER - Seasonal energy efficiency ratio                                                                                   |                                                                                                                      |
-| `SEASONAL_ENERGY_EFFICIENCY_RATIO_2`                     | SEER2 - Seasonal energy efficiency ratio 2                                                                                |                                                                                                                      |
-| `INTEGRATED_ENERGY_EFFICIENCY_RATIO`                     | IEER - Integrated energy efficiency ratio                                                                                 |                                                                                                                      |
-| `INTEGRATED_PART_LOAD_VALUE`                             | IPLV - Integrated part load value                                                                                         |                                                                                                                      |
-| `COMBINED_ENERGY_EFFICIENCY_RATIO`                       | CEER - Combined energy efficiency ratio                                                                                   |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_WATER_LOOP`     | Coefficient of performance at entering temperature of 30C/86F rated conditions for water loops per ISO 13256-1            |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_AIR_GROUND_WATER`   | Coefficient of performance at entering temperature of 15C/59F rated conditions for ground water per ISO 13256-1           |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_AIR_GROUND_LOOP`    | Coefficient of performance at entering temperature of 25C/77F rated conditions for ground water per ISO 13256-1           |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_WATER_LOOP`   | Coefficient of performance at entering temperature of 30C/86F rated conditions for water loops per ISO 13256-2            |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_WATER_TO_WATER_GROUND_WATER` | Coefficient of performance at entering temperature of 15C/59F rated conditions for ground water per ISO 13256-2           |                                                                                                                      |
-| `COEFFICIENT_OF_PERFORMANCE_BRINE_TO_WATER_GROUND_LOOP`  | Coefficient of performance at entering temperature of 25C/77F rated conditions for ground water per ISO 13256-2           |                                                                                                                      |
-| `NONE`                                                   | None                                                                                                                      |                                                                                                                      |
-| `OTHER`                                                  | Other                                                                                                                     |                                                                                                                      |
+# LightingOccupancyControlOptions
+|    Enumerator     |           Description            |             Notes              |
+| ----------------- | -------------------------------- | ------------------------------ |
+| `FULL_AUTO_ON`    | Full auto on                     |                                |
+| `PARTIAL_AUTO_ON` | Parial auto on                   |                                |
+| `MANUAL_ON`       | Manual on                        |                                |
+| `OTHER`           | Other types of occupancy control |                                |
+| `NONE`            | None                             | No occupancy controls is used. |
 
-# FanSystemTemperatureControlOptions
-|              Enumerator               |             Description             | Notes |
-| ------------------------------------- | ----------------------------------- | ----- |
-| `CONSTANT`                            | Constant                            |       |
-| `OUTDOOR_AIR_RESET`                   | Outdoor air reset                   |       |
-| `ZONE_RESET`                          | Zone reset                          |       |
-| `LOAD_RESET_TO_SPACE_TEMPERATURE`     | Load Reset To Space Temperature     |       |
-| `LOAD_RESET_DIFFERENTIAL_TEMPERATURE` | Load Reset Differential Temperature |       |
-| `SCHEDULED`                           | Scheduled                           |       |
-| `OTHER`                               | Other                               |       |
+# MiscellaneousEquipmentOptions
+|             Enumerator             |           Description            | Notes |
+| ---------------------------------- | -------------------------------- | ----- |
+| `PLUG`                             | Plug                             |       |
+| `PROCESS`                          | Process                          |       |
+| `INFORMATION_TECHNOLOGY_EQUIPMENT` | Information technology equipment |       |
+| `OTHER`                            | Other                            |       |
 
-# FanSystemSupplyFanControlOptions
-|       Enumerator       |     Description      | Notes |
-| ---------------------- | -------------------- | ----- |
-| `CONSTANT`             | Constant             |       |
-| `VARIABLE_SPEED_DRIVE` | Variable speed drive |       |
-| `MULTISPEED`           | Multispeed           |       |
-| `INLET_VANE`           | Inlet vane           |       |
-| `DISCHARGE_DAMPER`     | Discharge damper     |       |
-| `OTHER`                | Other                |       |
-
-# FanSystemOperationOptions
-|  Enumerator  | Description | Notes |
-| ------------ | ----------- | ----- |
-| `CYCLING`    | Cycling     |       |
-| `CONTINUOUS` | Continuous  |       |
-| `KEEP_OFF`   | Off         |       |
-| `OTHER`      | Other       |       |
-
-# FanSystemSupplyFanVolumeResetOptions
-|         Enumerator         |       Description        | Notes |
-| -------------------------- | ------------------------ | ----- |
-| `CONSTANT`                 | Constant                 |       |
-| `DESIGN_LOAD_RESET`        | Design Load Reset        |       |
-| `OPERATING_CAPACITY_RESET` | Operating Capacity Reset |       |
-| `OTHER`                    | Other                    |       |
-
-# AirEconomizerOptions
-|         Enumerator         |            Description            | Notes |
-| -------------------------- | --------------------------------- | ----- |
-| `FIXED_FRACTION`           | Fixed Fraction                    |       |
-| `TEMPERATURE`              | Dry-bulb temperature              |       |
-| `ENTHALPY`                 | Enthalpy                          |       |
-| `DIFFERENTIAL_TEMPERATURE` | Differential dry-bulb temperature |       |
-| `DIFFERENTIAL_ENTHALPY`    | Differential enthalpy             |       |
-| `OTHER`                    | Other                             |       |
-
-# EnergyRecoveryOptions
-|        Enumerator        |      Description       | Notes |
-| ------------------------ | ---------------------- | ----- |
-| `SENSIBLE_HEAT_EXCHANGE` | Sensible heat exchange |       |
-| `ENTHALPY_HEAT_EXCHANGE` | Enthalpy heat exchange |       |
-| `SENSIBLE_HEAT_WHEEL`    | Sensible heat wheel    |       |
-| `ENTHALPY_HEAT_WHEEL`    | Enthalpy heat wheel    |       |
-| `HEAT_PIPE`              | Heat pipe              |       |
-| `OTHER`                  | Other                  |       |
-| `NONE`                   | None                   |       |
-
-# EnergyRecoveryOperationOptions
-|         Enumerator         |       Description        | Notes |
-| -------------------------- | ------------------------ | ----- |
-| `WHEN_FANS_ON`             | When fans on             |       |
-| `WHEN_MINIMUM_OUTSIDE_AIR` | When minimum outside air |       |
-| `SCHEDULED`                | Scheduled                |       |
-| `OTHER`                    | Other                    |       |
-| `NONE`                     | None                     |       |
-
-# EnergyRecoverySupplyAirTemperatureControlOptions
-|    Enumerator     |   Description   | Notes |
-| ----------------- | --------------- | ----- |
-| `FIXED_SETPOINT`  | Fixed setpoint  |       |
-| `MIXED_AIR_RESET` | Mixed air reset |       |
-| `OTHER`           | Other           |       |
-| `NONE`            | None            |       |
-
-# DemandControlVentilationControlOptions
-|    Enumerator    |  Description   | Notes |
-| ---------------- | -------------- | ----- |
-| `CO2_RETURN_AIR` | CO2 return air |       |
-| `CO2_ZONE`       | CO2 zone       |       |
-| `OTHER`          | Other          |       |
-| `NONE`           | None           |       |
-
-# FanSpecificationMethodOptions
-| Enumerator | Description |                                              Notes                                              |
-| ---------- | ----------- | ----------------------------------------------------------------------------------------------- |
-| `SIMPLE`   | Simple      | Specify the electric power input of fan                                                         |
-| `DETAILED` | Detailed    | Specify the brake horse power, design pressure rise through, total efficiency, motor efficiency |
-
-# TerminalOptions
-|      Enumerator       |     Description     | Notes |
-| --------------------- | ------------------- | ----- |
-| `VARIABLE_AIR_VOLUME` | Variable air volume |       |
-| `CONSTANT_AIR_VOLUME` | Constant air volume |       |
-| `RADIANT`             | Radiant             |       |
-| `BASEBOARD`           | Baseboard           |       |
-| `OTHER`               | Other               |       |
-
-# TerminalFanConfigurationOptions
-| Enumerator | Description | Notes |
-| ---------- | ----------- | ----- |
-| `PARALLEL` | Parallel    |       |
-| `SERIES`   | Series      |       |
-| `OTHER`    | Other       |       |
-
-# TerminalTemperatureControlOptions
-|              Enumerator               |             Description             | Notes |
-| ------------------------------------- | ----------------------------------- | ----- |
-| `CONSTANT`                            | Constant                            |       |
-| `LOAD_RESET_DIFFERENTIAL_TEMPERATURE` | Load Reset Differential Temperature |       |
-| `SCHEDULED`                           | Scheduled                           |       |
-| `OTHER`                               | Other                               |       |
-
-# HeatingSourceOptions
-| Enumerator  | Description | Notes |
-| ----------- | ----------- | ----- |
-| `ELECTRIC`  | Electric    |       |
-| `HOT_WATER` | Hot water   |       |
-| `NONE`      | None        |       |
-| `OTHER`     | Other       |       |
-
-# CoolingSourceOptions
-|   Enumerator    |  Description  | Notes |
-| --------------- | ------------- | ----- |
-| `CHILLED_WATER` | Chilled water |       |
-| `NONE`          | None          |       |
-| `OTHER`         | Other         |       |
-
-# FluidLoopFlowControlOptions
-|   Enumerator    |  Description  | Notes |
-| --------------- | ------------- | ----- |
-| `FIXED_FLOW`    | Fixed flow    |       |
-| `VARIABLE_FLOW` | Variable flow |       |
-
-# FluidLoopOptions
-|      Enumerator       |     Description     | Notes |
-| --------------------- | ------------------- | ----- |
-| `HEATING`             | Heating             |       |
-| `COOLING`             | Cooling             |       |
-| `HEATING_AND_COOLING` | Heating and cooling |       |
-| `CONDENSER`           | Condenser           |       |
-| `OTHER`               | Other               |       |
-
-# TemperatureResetOptions
-|     Enumerator      |    Description    | Notes |
-| ------------------- | ----------------- | ----- |
-| `NO_RESET`          | No Reset          |       |
-| `OUTSIDE_AIR_RESET` | Outside air reset |       |
-| `LOAD_RESET`        | Load Reset        |       |
-| `OTHER`             | Other             |       |
-
-# FluidLoopOperationOptions
-|   Enumerator   |      Description       | Notes |
-| -------------- | ---------------------- | ----- |
-| `CONTINUOUS`   | Continuous             |       |
-| `INTERMITTENT` | Intermittent/on-demand |       |
-| `SCHEDULED`    | Scheduled              |       |
+# PumpSpecificationMethodOptions
+| Enumerator | Description |                                         Notes                                         |
+| ---------- | ----------- | ------------------------------------------------------------------------------------- |
+| `SIMPLE`   | Simple      | Specify the electric power input of pump                                              |
+| `DETAILED` | Detailed    | Specify the motor nameplate power, design head, impellor efficiency, motor efficiency |
 
 # PumpSpeedControlOptions
 |    Enumerator    |  Description   | Notes |
@@ -466,86 +469,67 @@
 | `VARIABLE_SPEED` | Variable speed |       |
 | `OTHER`          | Other          |       |
 
-# PumpSpecificationMethodOptions
-| Enumerator | Description |                                         Notes                                         |
-| ---------- | ----------- | ------------------------------------------------------------------------------------- |
-| `SIMPLE`   | Simple      | Specify the electric power input of pump                                              |
-| `DETAILED` | Detailed    | Specify the motor nameplate power, design head, impellor efficiency, motor efficiency |
+# RefrigeratedCaseEquipmentCategoryOptions
+|          Enumerator           |         Description         | Notes |
+| ----------------------------- | --------------------------- | ----- |
+| `HORIZONTAL_OPEN`             | Horizontal open             |       |
+| `HORIZONTAL_SOLID_DOOR`       | Horizontal solid door       |       |
+| `HORIZONTAL_TRANSPARENT_DOOR` | Horizontal transparent door |       |
+| `SEMIVERTICAL_OPEN`           | Semivertical open           |       |
+| `SERVICE_OVER_COUNTER`        | Service over counter        |       |
+| `VERTICAL_OPEN`               | Vertical open               |       |
+| `VERTICAL_SOLID_DOOR`         | Vertical solid door         |       |
+| `VERTICAL_TRANSPARENT_DOOR`   | Vertical transparent door   |       |
+| `OTHER`                       | Other                       |       |
 
-# BoilerCombustionOptions
+# RefrigeratedCaseOptions
+|                  Enumerator                  |                Description                 | Notes |
+| -------------------------------------------- | ------------------------------------------ | ----- |
+| `COMMERCIAL_REFRIGERATION`                   | Commercial refrigeration                   |       |
+| `COMMERCIAL_REFRIGERATOR_SOLID_DOOR`         | Commercial refrigerator solid door         |       |
+| `COMMERCIAL_REFRIGERATOR_TRANSPARENT_DOOR`   | Commercial refrigerator transparent door   |       |
+| `COMMERCIAL_FREEZER_SOLID_DOOR`              | Commercial freezer solid door              |       |
+| `COMMERCIAL_FREEZER_TRANSPARENT_DOOR`        | Commercial freezer transparent door        |       |
+| `COMMERCIAL_PULLDOWN_REFRIGERATOR`           | Commercial pulldown refrigerator           |       |
+| `COMMERCIAL_REFRIGERATOR_FREEZER_SOLID_DOOR` | Commercial refrigerator freezer solid door |       |
+| `OTHER`                                      | Other                                      |       |
+
+# ScheduleOptions
+|         Enumerator         |       Description        | Notes |
+| -------------------------- | ------------------------ | ----- |
+| `MULTIPLIER_DIMENSIONLESS` | Multiplier dimensionless |       |
+| `TEMPERATURE`              | Temperature              |       |
+| `POWER`                    | Power                    |       |
+| `FLOW_RATE`                | Flow rate                |       |
+
+# ScheduleSequenceOptions
 | Enumerator | Description | Notes |
 | ---------- | ----------- | ----- |
-| `NATURAL`  | Natural     |       |
-| `FORCED`   | Forced      |       |
+| `HOURLY`   | Hourly      |       |
+| `EVENT`    | Event       |       |
 
-# BoilerEfficiencyMetricOptions
-|        Enumerator         |            Description             | Notes |
-| ------------------------- | ---------------------------------- | ----- |
-| `ANNUAL_FUEL_UTILIZATION` | Annual fuel utilization efficiency |       |
-| `THERMAL`                 | Thermal efficiency                 |       |
-| `COMBUSTION`              | Combustion efficiency              |       |
+# ServiceWaterHeaterOptions
+|           Enumerator            |                 Description                 |                         Notes                         |
+| ------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
+| `CONVENTIONAL`                  | Conventional                                |                                                       |
+| `HEAT_PUMP_PACKAGED`            | Heat pump packaged                          |                                                       |
+| `HEAT_PUMP_SPLIT`               | Heat pump split                             |                                                       |
+| `HEAT_FROM_HOT_WATER_LOOP`      | Heat from hot water loop                    | Should also specifiy hot water loop when this is used |
+| `COMBINATION_SERVICE_AND_SPACE` | Combination space and service water heater. | Should also specifiy hot water loop when this is used |
+| `OTHER`                         | Other                                       |                                                       |
 
-# ChillerEfficiencyMetricOptions
-|          Enumerator           |                                      Description                                       |                                          Notes                                          |
-| ----------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `FULL_LOAD_EFFICIENCY`        | Full Load Efficiency expressed as a coefficient of performance (COP)                   | At minimum, the full load efficiency should be one of the metrics and values specified. |
-| `INTEGRATED_PART_LOAD_VALUE`  | Integrated part load value efficiency expressed as a coefficient of performance (COP)  |                                                                                         |
-| `NONSTANDARD_PART_LOAD_VALUE` | Nonstandard part load value efficiency expressed as a coefficient of performance (COP) |                                                                                         |
-| `OTHER`                       | Other part load efficiency metric                                                      |                                                                                         |
-
-# ChillerCompressorOptions
-|                Enumerator                 |               Description               | Notes |
-| ----------------------------------------- | --------------------------------------- | ----- |
-| `SCREW`                                   | Screw                                   |       |
-| `CENTRIFUGAL`                             | Centrifugal                             |       |
-| `RECIPROCATING`                           | Reciprocating                           |       |
-| `SCROLL`                                  | Scroll                                  |       |
-| `POSITIVE_DISPLACEMENT`                   | Positive displacement                   |       |
-| `SINGLE_EFFECT_INDIRECT_FIRED_ABSORPTION` | Single-effect indirect-fired absorption |       |
-| `DOUBLE_EFFECT_INDIRECT_FIRED_ABSORPTION` | Double-effect indirect-fired absorption |       |
-| `SINGLE_EFFECT_DIRECT_FIRED_ABSORPTION`   | Single-effect direct-fired absorption   |       |
-| `DOUBLE_EFFECT_DIRECT_FIRED_ABSORPTION`   | Double-effect direct-fired absorption   |       |
-| `OTHER`                                   | Other                                   |       |
-
-# HeatRejectionOptions
-|           Enumerator           |                 Description                  | Notes |
-| ------------------------------ | -------------------------------------------- | ----- |
-| `OPEN_CIRCUIT_COOLING_TOWER`   | Open-circuit cooling tower                   |       |
-| `CLOSED_CIRCUIT_COOLING_TOWER` | Closed-circuit cooling tower or fluid cooler |       |
-| `DRY_COOLER`                   | Dry-cooler or air-cooled fluid cooler        |       |
-| `EVAPORATIVE_CONDENSER`        | Evaporative condenser                        |       |
-| `AIR_COOLED_CONDENSER`         | Air cooled condenser                         |       |
-| `OTHER`                        | Other                                        |       |
-
-# HeatRejectionFanOptions
-|  Enumerator   |    Description     | Notes |
-| ------------- | ------------------ | ----- |
-| `AXIAL`       | Axial or Propellor |       |
-| `CENTRIFUGAL` | Centrifugal        |       |
-| `OTHER`       | Other              |       |
-
-# HeatRejectionFluidOptions
-|  Enumerator   | Description |      Notes       |
-| ------------- | ----------- | ---------------- |
-| `WATER`       | Water       |                  |
-| `REFRIGERANT` | Refrigerant | Including R-448A |
-| `AMMONIA`     | Ammonia     |                  |
-| `OTHER`       | Other       |                  |
-
-# HeatRejectionFanSpeedControlOptions
-|    Enumerator    |  Description   | Notes |
-| ---------------- | -------------- | ----- |
-| `CONSTANT`       | Constant       |       |
-| `TWO_SPEED`      | Two Speed      |       |
-| `VARIABLE_SPEED` | Variable Speed |       |
-| `OTHER`          | Other          |       |
-
-# ExternalFluidSourceOptions
-|   Enumerator    |  Description  | Notes |
-| --------------- | ------------- | ----- |
-| `CHILLED_WATER` | Chilled water |       |
-| `HOT_WATER`     | Hot water     |       |
-| `STEAM`         | Steam         |       |
+# ServiceWaterHeaterTankOptions
+|                 Enumerator                  |                Description                |      Notes      |
+| ------------------------------------------- | ----------------------------------------- | --------------- |
+| `CONSUMER_INSTANTANEOUS`                    | Consumer instantaneous                    | Uses UEF        |
+| `COMMERCIAL_INSTANTANEOUS`                  | Commercial instantaneous                  | Uses TE         |
+| `CONSUMER_STORAGE`                          | Consumer storage                          | Uses UEF        |
+| `COMMERCIAL_STORAGE`                        | Consumer storage                          | Uses TE and SBL |
+| `RESIDENTIAL_DUTY_COMMERCIAL_INSTANTANEOUS` | Residential-Duty Commercial Instantaneous | Uses UEF        |
+| `INDIRECT`                                  | Indirect                                  |                 |
+| `BOILER`                                    | Boiler                                    |                 |
+| `COMMERCIAL_PACKAGED_BOILER`                | Commercial Packaged Boiler                |                 |
+| `OTHER`                                     | Other                                     |                 |
 
 # ServiceWaterHeatingConfigurationOptions
 |                      Enumerator                      |                    Description                     | Notes |
@@ -565,60 +549,6 @@
 | `STANDARD`                                           | Standard                                           |       |
 | `OTHER`                                              | Other                                              |       |
 
-# ServiceWaterHeatingHeatRecoveryOptions
-|    Enumerator    |  Description   | Notes |
-| ---------------- | -------------- | ----- |
-| `NOT_APPLICABLE` | Not applicable |       |
-| `VERTICAL`       | Vertical       |       |
-| `HORIZONTAL`     | Horizontal     |       |
-| `OTHER`          | Other          |       |
-
-# ServiceWaterHeaterOptions
-|           Enumerator            |                 Description                 |                         Notes                         |
-| ------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
-| `CONVENTIONAL`                  | Conventional                                |                                                       |
-| `HEAT_PUMP_PACKAGED`            | Heat pump packaged                          |                                                       |
-| `HEAT_PUMP_SPLIT`               | Heat pump split                             |                                                       |
-| `HEAT_FROM_HOT_WATER_LOOP`      | Heat from hot water loop                    | Should also specifiy hot water loop when this is used |
-| `COMBINATION_SERVICE_AND_SPACE` | Combination space and service water heater. | Should also specifiy hot water loop when this is used |
-| `OTHER`                         | Other                                       |                                                       |
-
-# ComponentLocationOptions
-|    Enumerator     |   Description   | Notes |
-| ----------------- | --------------- | ----- |
-| `IN_ZONE`         | In a zone       |       |
-| `CONDITIONED`     | Conditioned     |       |
-| `SEMICONDITIONED` | Semiconditioned |       |
-| `OUTSIDE`         | Outside         |       |
-| `GARAGE`          | Garage          |       |
-| `ATTIC`           | Attic           |       |
-| `CRAWL_SPACE`     | Crawl space     |       |
-| `UNDERGROUND`     | Underground     |       |
-| `UNCONDITIONED`   | Unconditioned   |       |
-| `OTHER`           | Other           |       |
-
-# DrawPatternOptions
-|  Enumerator  | Description | Notes |
-| ------------ | ----------- | ----- |
-| `VERY_SMALL` | Very small  |       |
-| `LOW`        | Low         |       |
-| `MEDIUM`     | Medium      |       |
-| `HIGH`       | High        |       |
-| `OTHER`      | Other       |       |
-
-# ServiceWaterHeaterTankOptions
-|                 Enumerator                  |                Description                |      Notes      |
-| ------------------------------------------- | ----------------------------------------- | --------------- |
-| `CONSUMER_INSTANTANEOUS`                    | Consumer instantaneous                    | Uses UEF        |
-| `COMMERCIAL_INSTANTANEOUS`                  | Commercial instantaneous                  | Uses TE         |
-| `CONSUMER_STORAGE`                          | Consumer storage                          | Uses UEF        |
-| `COMMERCIAL_STORAGE`                        | Consumer storage                          | Uses TE and SBL |
-| `RESIDENTIAL_DUTY_COMMERCIAL_INSTANTANEOUS` | Residential-Duty Commercial Instantaneous | Uses UEF        |
-| `INDIRECT`                                  | Indirect                                  |                 |
-| `BOILER`                                    | Boiler                                    |                 |
-| `COMMERCIAL_PACKAGED_BOILER`                | Commercial Packaged Boiler                |                 |
-| `OTHER`                                     | Other                                     |                 |
-
 # ServiceWaterHeatingFixtureOptions
 |    Enumerator    |       Description       | Notes |
 | ---------------- | ----------------------- | ----- |
@@ -631,6 +561,14 @@
 | `CLOTHES_WASHER` | Clothes washing machine |       |
 | `OTHER`          | Other                   |       |
 
+# ServiceWaterHeatingHeatRecoveryOptions
+|    Enumerator    |  Description   | Notes |
+| ---------------- | -------------- | ----- |
+| `NOT_APPLICABLE` | Not applicable |       |
+| `VERTICAL`       | Vertical       |       |
+| `HORIZONTAL`     | Horizontal     |       |
+| `OTHER`          | Other          |       |
+
 # ServiceWaterHeatingUseUnitOptions
 |     Enumerator      |    Description    |                                  Notes                                   |
 | ------------------- | ----------------- | ------------------------------------------------------------------------ |
@@ -642,48 +580,110 @@
 | `VOLUME`            | Volume            | The units for the use that correspond to this are liters/minute          |
 | `OTHER`             | Other             |                                                                          |
 
-# EnergySourceOptions
-|  Enumerator   | Description |                           Notes                           |
-| ------------- | ----------- | --------------------------------------------------------- |
-| `ELECTRICITY` | Electricity |                                                           |
-| `NATURAL_GAS` | Natural gas |                                                           |
-| `PROPANE`     | Propane     |                                                           |
-| `FUEL_OIL`    | Fuel oil    |                                                           |
-| `NONE`        | None        | No energy consumption by a utility supplied source occurs |
-| `OTHER`       | Other       |                                                           |
+# SpaceFunctionOptions
+|      Enumerator      |    Description     |                                                                                                                                                                                                                                                                                                                     Notes                                                                                                                                                                                                                                                                                                                     |
+| -------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `LABORATORY`         | Laboratory         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `KITCHEN`            | Kitchen            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `PLENUM`             | Plenum             | A compartment or chamber, to which one or more ducts are connected, that forms a part of the air-distribution system and that is not used for occupancy or storage. The area of a plenum is not counted toward the floor area of a building.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `CRAWL_SPACE`        | Crawl space        | An unoccupied, unfinished, narrow space within a building, between the ground and the first (or ground) floor. The crawl space is so named because there is typically only enough room to crawl rather than stand; anything larger than about 1 to 1.5 metres (3 ft 3 in to 4 ft 11 in) and beneath the ground floor would tend to be considered a basement. The area of a crawl space is not counted toward the floor area of a building.                                                                                                                                                                                                    |
+| `INTERSTITIAL_SPACE` | Interstitial space | The area of load bearing surfaces located above or below occupied building floors that is not available for general occupancy often due to inadequate clear headroom or lack of provisions for egress, and containing building structure or services predominantly serving adjacent floors or to provide access to such systems. They are not part of the air distribution systen, conditioned, used for occupancy, or used for storage. Interstitial spaces often contain ducts, piping, conduit, and other components that serve the building systems. The area of a interstitial space is not counted toward the floor area of a building. |
+| `OTHER`              | Other              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-# RefrigeratedCaseOptions
-|                  Enumerator                  |                Description                 | Notes |
-| -------------------------------------------- | ------------------------------------------ | ----- |
-| `COMMERCIAL_REFRIGERATION`                   | Commercial refrigeration                   |       |
-| `COMMERCIAL_REFRIGERATOR_SOLID_DOOR`         | Commercial refrigerator solid door         |       |
-| `COMMERCIAL_REFRIGERATOR_TRANSPARENT_DOOR`   | Commercial refrigerator transparent door   |       |
-| `COMMERCIAL_FREEZER_SOLID_DOOR`              | Commercial freezer solid door              |       |
-| `COMMERCIAL_FREEZER_TRANSPARENT_DOOR`        | Commercial freezer transparent door        |       |
-| `COMMERCIAL_PULLDOWN_REFRIGERATOR`           | Commercial pulldown refrigerator           |       |
-| `COMMERCIAL_REFRIGERATOR_FREEZER_SOLID_DOOR` | Commercial refrigerator freezer solid door |       |
-| `OTHER`                                      | Other                                      |       |
+# StatusOptions
+|       Enumerator       |     Description      | Notes |
+| ---------------------- | -------------------- | ----- |
+| `NEW`                  | New                  |       |
+| `EXISTING`             | Existing             |       |
+| `EXISTING_PLUS_NEW`    | Existing plus new    |       |
+| `FUTURE`               | Future               |       |
+| `ALTERED`              | Altered              |       |
+| `ALTERED_ROOF_SURFACE` | Altered roof surface |       |
+| `OTHER`                | Other                |       |
 
-# RefrigeratedCaseEquipmentCategoryOptions
-|          Enumerator           |         Description         | Notes |
-| ----------------------------- | --------------------------- | ----- |
-| `HORIZONTAL_OPEN`             | Horizontal open             |       |
-| `HORIZONTAL_SOLID_DOOR`       | Horizontal solid door       |       |
-| `HORIZONTAL_TRANSPARENT_DOOR` | Horizontal transparent door |       |
-| `SEMIVERTICAL_OPEN`           | Semivertical open           |       |
-| `SERVICE_OVER_COUNTER`        | Service over counter        |       |
-| `VERTICAL_OPEN`               | Vertical open               |       |
-| `VERTICAL_SOLID_DOOR`         | Vertical solid door         |       |
-| `VERTICAL_TRANSPARENT_DOOR`   | Vertical transparent door   |       |
-| `OTHER`                       | Other                       |       |
+# SubsurfaceClassificationOptions
+| Enumerator |                     Description                     | Notes |
+| ---------- | --------------------------------------------------- | ----- |
+| `WINDOW`   | Window                                              |       |
+| `SKYLIGHT` | Skylight                                            |       |
+| `DOOR`     | Door                                                |       |
+| `OTHER`    | Other types of subsurfaces that allow light to pass |       |
 
-# ApplicationTemperatureOptions
-| Enumerator |    Description     |                                           Notes                                            |
-| ---------- | ------------------ | ------------------------------------------------------------------------------------------ |
-| `MEDIUM`   | Medium temperature | 3.3 C +/- 1.1 C (38 F +/- 2 F)                                                             |
-| `LOW`      | Low temperature    | -17.8 C +/- 1.1 C (0 F +/- 2 F)                                                            |
-| `VERY_LOW` | Very low           | -26.1 C +/- 1.1 C (-15 F +/- 2 F). This corresponds to the ice cream category in AHRI 1200 |
-| `OTHER`    | Other              |                                                                                            |
+# SubsurfaceDynamicGlazingOptions
+|     Enumerator      |    Description    | Notes |
+| ------------------- | ----------------- | ----- |
+| `NOT_DYNAMIC`       | Not dynamic       |       |
+| `MANUAL_DYNAMIC`    | Manual dynamic    |       |
+| `AUTOMATIC_DYNAMIC` | Automatic dynamic |       |
+
+# SurfaceAdjacencyOptions
+| Enumerator  |                                                                                                 Description                                                                                                  | Notes |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| `EXTERIOR`  | Exterior wall or roof which is adjacent to the exterior environment.                                                                                                                                         |       |
+| `GROUND`    | Slab-on-grad or below grade surface if adjacent to ground.                                                                                                                                                   |       |
+| `INTERIOR`  | Interior surface if adjacent to another space which is explicity modeled.                                                                                                                                    |       |
+| `IDENTICAL` | Surface adjacent to a environment identical to the space. Sometimes this is described as adiabatic surface since no heat is transfered. The space on the other side of the surface is not explicity modeled. |       |
+| `UNDEFINED` | The surface adjacency cannot be determined by the software.                                                                                                                                                  |       |
+
+# SurfaceClassificationOptions
+| Enumerator |           Description            | Notes |
+| ---------- | -------------------------------- | ----- |
+| `WALL`     | Vertical or nearly vertical wall |       |
+| `FLOOR`    | Floor                            |       |
+| `CEILING`  | Ceiling                          |       |
+
+# SurfaceConstructionInputOptions
+|  Enumerator  |               Description                | Notes |
+| ------------ | ---------------------------------------- | ----- |
+| `LAYERS`     | Construction is entered layer-by-layer.  |       |
+| `SIMPLIFIED` | Construction is entered by R-value only. |       |
+
+# TemperatureResetOptions
+|     Enumerator      |    Description    | Notes |
+| ------------------- | ----------------- | ----- |
+| `NO_RESET`          | No Reset          |       |
+| `OUTSIDE_AIR_RESET` | Outside air reset |       |
+| `LOAD_RESET`        | Load Reset        |       |
+| `OTHER`             | Other             |       |
+
+# TerminalFanConfigurationOptions
+| Enumerator | Description | Notes |
+| ---------- | ----------- | ----- |
+| `PARALLEL` | Parallel    |       |
+| `SERIES`   | Series      |       |
+| `OTHER`    | Other       |       |
+
+# TerminalOptions
+|      Enumerator       |     Description     | Notes |
+| --------------------- | ------------------- | ----- |
+| `VARIABLE_AIR_VOLUME` | Variable air volume |       |
+| `CONSTANT_AIR_VOLUME` | Constant air volume |       |
+| `RADIANT`             | Radiant             |       |
+| `BASEBOARD`           | Baseboard           |       |
+| `OTHER`               | Other               |       |
+
+# TerminalTemperatureControlOptions
+|              Enumerator               |             Description             | Notes |
+| ------------------------------------- | ----------------------------------- | ----- |
+| `CONSTANT`                            | Constant                            |       |
+| `LOAD_RESET_DIFFERENTIAL_TEMPERATURE` | Load Reset Differential Temperature |       |
+| `SCHEDULED`                           | Scheduled                           |       |
+| `OTHER`                               | Other                               |       |
+
+# TransformerOptions
+|   Enumerator   | Description  | Notes |
+| -------------- | ------------ | ----- |
+| `DRY_TYPE`     | Dry Type     |       |
+| `FLUID_FILLED` | Fluid Filled |       |
+| `OTHER`        | Other        |       |
+
+# WeatherFileDataSourceOptions
+|       Enumerator       |                        Description                        | Notes |
+| ---------------------- | --------------------------------------------------------- | ----- |
+| `HISTORIC_AGGREGATION` | Historic data aggregated to represent typical weather     |       |
+| `HISTORIC_ACTUAL`      | Specific weather data for time period based on monitoring |       |
+| `FUTURE`               | Weather data projected to represent future conditions     |       |
+| `OTHER`                | Other                                                     |       |
 
 # RulesetProjectDescription
 |             Name             |                                                                  Description                                                                  |                                                          Data Type                                                           | Units | Range | Req |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |

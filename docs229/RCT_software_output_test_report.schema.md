@@ -1,3 +1,9 @@
+# EvaluationTypeOptions
+|   Enumerator    |       Description        | Notes |
+| --------------- | ------------------------ | ----- |
+| `FULL`          | Full Evaluation          |       |
+| `APPLICABILITY` | Applicability Evaluation |       |
+
 # OutcomeOptions
 |    Enumerator    |  Description   | Notes |
 | ---------------- | -------------- | ----- |
@@ -5,12 +11,6 @@
 | `FAIL`           | Fail           |       |
 | `NOT_APPLICABLE` | Not applicable |       |
 | `UNDETERMINED`   | Undetermined   |       |
-
-# EvaluationTypeOptions
-|   Enumerator    |       Description        | Notes |
-| --------------- | ------------------------ | ----- |
-| `FULL`          | Full Evaluation          |       |
-| `APPLICABILITY` | Applicability Evaluation |       |
 
 # RulesetCheckingToolSoftwareOutputReport
 |       Name       |                               Description                                |   Data Type    | Units | Range | Req |                                                           Notes                                                           |
