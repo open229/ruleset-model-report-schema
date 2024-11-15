@@ -54,25 +54,38 @@ TestCaseReport:
     files_utilized:
       Description: "Names of all user and software created files utilized by the ruleset project description generation software to produce the values used in creating the associated ruleset project description"
       Data Type: "[String]"
+    specification_tests:
+      Description: "Specification tests of the test case"
+      Data Type: "[{SpecificationTest}]"
+
+SpecificationTest:
+  Object Type: "Data Group"
+  Data Elements:
+    data_path:
+      Description: "Data path to locate instances of the test specification within the test case"
+      Data Type: "String"
+    evaluation_criteria:
+      Description: "Evaluation criteria used for the test specification"
+      Data Type: "<EvaluationCriteriaOptions>"
     test_results:
-      Description: "Results of the tests for the test case"
+      Description: "Test results for various instances of the test specification within the test case"
       Data Type: "[{TestResult}]"
+    notes:
+      Description: "Notes on the test results for the test specification"
+      Data Type: "String"
 
 TestResult:
   Object Type: "Data Group"
   Data Elements:
-    data_path:
-      Description: "Data path to locate the tested data element"
+    instance_id:
+      Description: "ID corresponding to the instance of the data group to which the test specification data element belongs"
       Data Type: "String"
-    evaluation_criteria:
-      Description: "Evaluation criteria used for the test"
-      Data Type: "<EvaluationCriteriaOptions>"
+    data_element:
+      Description: "Data element name corresponding to the test specification"
+      Data Type: "String"
     test_outcome:
       Description: "Outcome of the test"
       Data Type: "<TestOutcomeOptions>"
-    notes:
-      Description: "Notes on the test outcome"
-      Data Type: "String"
 
 EvaluationCriteriaOptions:
   Object Type: "Enumeration"

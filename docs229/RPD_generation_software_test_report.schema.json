@@ -65,12 +65,37 @@
                         "type": "string"
                     }
                 },
+                "specification_tests": {
+                    "description": "Specification tests of the test case",
+                    "type": "array",
+                    "items": {
+                        "$ref": "RPD_generation_software_test_report.schema.json#/definitions/SpecificationTest"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "SpecificationTest": {
+            "type": "object",
+            "properties": {
+                "data_path": {
+                    "description": "Data path to locate instances of the test specification within the test case",
+                    "type": "string"
+                },
+                "evaluation_criteria": {
+                    "description": "Evaluation criteria used for the test specification",
+                    "$ref": "RPD_generation_software_test_report.schema.json#/definitions/EvaluationCriteriaOptions"
+                },
                 "test_results": {
-                    "description": "Results of the tests for the test case",
+                    "description": "Test results for various instances of the test specification within the test case",
                     "type": "array",
                     "items": {
                         "$ref": "RPD_generation_software_test_report.schema.json#/definitions/TestResult"
                     }
+                },
+                "notes": {
+                    "description": "Notes on the test results for the test specification",
+                    "type": "string"
                 }
             },
             "additionalProperties": false
@@ -78,21 +103,17 @@
         "TestResult": {
             "type": "object",
             "properties": {
-                "data_path": {
-                    "description": "Data path to locate the tested data element",
+                "instance_id": {
+                    "description": "ID corresponding to the instance of the data group to which the test specification data element belongs",
                     "type": "string"
                 },
-                "evaluation_criteria": {
-                    "description": "Evaluation criteria used for the test",
-                    "$ref": "RPD_generation_software_test_report.schema.json#/definitions/EvaluationCriteriaOptions"
+                "data_element": {
+                    "description": "Data element name corresponding to the test specification",
+                    "type": "string"
                 },
                 "test_outcome": {
                     "description": "Outcome of the test",
                     "$ref": "RPD_generation_software_test_report.schema.json#/definitions/TestOutcomeOptions"
-                },
-                "notes": {
-                    "description": "Notes on the test outcome",
-                    "type": "string"
                 }
             },
             "additionalProperties": false
