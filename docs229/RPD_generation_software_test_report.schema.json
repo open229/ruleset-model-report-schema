@@ -103,8 +103,12 @@
         "TestResult": {
             "type": "object",
             "properties": {
-                "instance_id": {
-                    "description": "ID corresponding to the instance of the data group to which the test specification data element belongs",
+                "generated_instance_id": {
+                    "description": "ID corresponding to the instance of the data group in the generated ruleset project description file to which the test specification data element belongs",
+                    "type": "string"
+                },
+                "reference_instance_id": {
+                    "description": "ID corresponding to the instance of the data group in the reference ruleset project description file to which the test specification data element belongs",
                     "type": "string"
                 },
                 "data_element": {

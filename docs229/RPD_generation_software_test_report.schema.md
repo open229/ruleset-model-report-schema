@@ -41,9 +41,10 @@
 | `notes`               | Notes on the test results for the test specification                              | `String`                      |       |       |     |       |
 
 # TestResult
-|      Name      |                                               Description                                               |       Data Type        | Units | Range | Req | Notes |
-| -------------- | ------------------------------------------------------------------------------------------------------- | ---------------------- | ----- | ----- | --- | ----- |
-| `instance_id`  | ID corresponding to the instance of the data group to which the test specification data element belongs | `String`               |       |       |     |       |
-| `data_element` | Data element name corresponding to the test specification                                               | `String`               |       |       |     |       |
-| `test_outcome` | Outcome of the test                                                                                     | `<TestOutcomeOptions>` |       |       |     |       |
+|          Name           |                                                                        Description                                                                        |       Data Type        | Units | Range | Req | Notes |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----- | ----- | --- | ----- |
+| `generated_instance_id` | ID corresponding to the instance of the data group in the generated ruleset project description file to which the test specification data element belongs | `String`               |       |       |     |       |
+| `reference_instance_id` | ID corresponding to the instance of the data group in the reference ruleset project description file to which the test specification data element belongs | `String`               |       |       |     |       |
+| `data_element`          | Data element name corresponding to the test specification                                                                                                 | `String`               |       |       |     |       |
+| `test_outcome`          | Outcome of the test                                                                                                                                       | `<TestOutcomeOptions>` |       |       |     |       |
 
