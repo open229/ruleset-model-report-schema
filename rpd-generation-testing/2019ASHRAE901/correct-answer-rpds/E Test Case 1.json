@@ -31,7 +31,7 @@
                                     "heating_system": {
                                         "id": "Heating Sys - Core Zone 1",
                                         "type": "HEAT_PUMP",
-                                        "heatpump_auxilliary_heat_type": "ELECTRIC_RESISTANCE",
+                                        "heatpump_auxiliary_heat_type": "ELECTRIC_RESISTANCE",
                                         "design_capacity": 11723,
                                         "rated_capacity": 17584,
                                         "is_sized_based_on_design_day": true,
@@ -42,7 +42,7 @@
                                         "efficiency_metric_values": [
                                             3.1
                                         ],
-                                        "heatpump_auxilliary_heat_high_shutoff_temperature": 4.4,
+                                        "heatpump_auxiliary_heat_high_shutoff_temperature": 4.4,
                                         "heatpump_low_shutoff_temperature": -23.3
                                     },
                                     "fan_system": {
@@ -93,7 +93,7 @@
                                     "heating_system": {
                                         "id": "Heating Sys - Prm Zone 1 (South)",
                                         "type": "HEAT_PUMP",
-                                        "heatpump_auxilliary_heat_type": "ELECTRIC_RESISTANCE",
+                                        "heatpump_auxiliary_heat_type": "ELECTRIC_RESISTANCE",
                                         "design_capacity": 11723,
                                         "rated_capacity": 17584,
                                         "is_sized_based_on_design_day": true,
@@ -104,7 +104,7 @@
                                         "efficiency_metric_values": [
                                             3.1
                                         ],
-                                        "heatpump_auxilliary_heat_high_shutoff_temperature": 4.4,
+                                        "heatpump_auxiliary_heat_high_shutoff_temperature": 4.4,
                                         "heatpump_low_shutoff_temperature": -23.3
                                     },
                                     "fan_system": {
@@ -155,7 +155,7 @@
                                     "heating_system": {
                                         "id": "Heating Sys - Prm Zone 2 (East)",
                                         "type": "HEAT_PUMP",
-                                        "heatpump_auxilliary_heat_type": "ELECTRIC_RESISTANCE",
+                                        "heatpump_auxiliary_heat_type": "ELECTRIC_RESISTANCE",
                                         "design_capacity": 11723,
                                         "rated_capacity": 17584,
                                         "is_sized_based_on_design_day": true,
@@ -166,7 +166,7 @@
                                         "efficiency_metric_values": [
                                             3.1
                                         ],
-                                        "heatpump_auxilliary_heat_high_shutoff_temperature": 4.4,
+                                        "heatpump_auxiliary_heat_high_shutoff_temperature": 4.4,
                                         "heatpump_low_shutoff_temperature": -23.3
                                     },
                                     "fan_system": {
@@ -217,7 +217,7 @@
                                     "heating_system": {
                                         "id": "Heating Sys - Prm Zone 3 (North)",
                                         "type": "HEAT_PUMP",
-                                        "heatpump_auxilliary_heat_type": "ELECTRIC_RESISTANCE",
+                                        "heatpump_auxiliary_heat_type": "ELECTRIC_RESISTANCE",
                                         "design_capacity": 11723,
                                         "rated_capacity": 17584,
                                         "is_sized_based_on_design_day": true,
@@ -228,7 +228,7 @@
                                         "efficiency_metric_values": [
                                             3.1
                                         ],
-                                        "heatpump_auxilliary_heat_high_shutoff_temperature": 4.4,
+                                        "heatpump_auxiliary_heat_high_shutoff_temperature": 4.4,
                                         "heatpump_low_shutoff_temperature": -23.3
                                     },
                                     "fan_system": {
@@ -279,7 +279,7 @@
                                     "heating_system": {
                                         "id": "Heating Sys - Prm Zone 4 (West)",
                                         "type": "HEAT_PUMP",
-                                        "heatpump_auxilliary_heat_type": "ELECTRIC_RESISTANCE",
+                                        "heatpump_auxiliary_heat_type": "ELECTRIC_RESISTANCE",
                                         "design_capacity": 11723,
                                         "rated_capacity": 17584,
                                         "is_sized_based_on_design_day": true,
@@ -290,7 +290,7 @@
                                         "efficiency_metric_values": [
                                             3.1
                                         ],
-                                        "heatpump_auxilliary_heat_high_shutoff_temperature": 4.4,
+                                        "heatpump_auxiliary_heat_high_shutoff_temperature": 4.4,
                                         "heatpump_low_shutoff_temperature": -23.3
                                     },
                                     "fan_system": {
@@ -739,7 +739,7 @@
                                                         "specific_heat": 1090
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.478345
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 1 South Wall Optical Properties",
@@ -932,7 +932,7 @@
                                                         "r_value": 0.099
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.180874
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 2 East Wall Optical Properties",
@@ -1157,7 +1157,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 01",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165
@@ -1274,7 +1274,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Roof Resistance 01",
-                                                        "r_value": 2.7948686
+                                                        "r_value": 2.657503
                                                     }
                                                 ],
                                                 "u_factor": 0.35779857
@@ -1374,7 +1374,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 02",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165

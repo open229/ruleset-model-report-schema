@@ -26,12 +26,14 @@
                                     "preheat_system": {
                                         "id": "Preheat Coil 1",
                                         "type": "ELECTRIC_RESISTANCE",
-                                        "rated_capacity": 87921,
+                                        "rated_capacity": 43961,
                                         "heating_coil_setpoint": 10
                                     },
                                     "fan_system": {
                                         "id": "VAV Fan System 1",
                                         "fan_control": "VARIABLE_SPEED_DRIVE",
+                                        "operation_during_occupied": "CONTINUOUS",
+                                        "operation_during_unoccupied": "KEEP_OFF",
                                         "has_lock_out_central_heat_during_unoccupied": true,
                                         "supply_fans": [
                                             {
@@ -260,6 +262,7 @@
                                             },
                                             "fan_configuration": "PARALLEL",
                                             "primary_airflow": 943.9,
+                                            "secondary_airflow": 2831.7,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
                                             "minimum_airflow": 141.6,
@@ -485,7 +488,7 @@
                                                         "specific_heat": 1090
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.478345
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 1 South Wall Optical Properties",
@@ -516,6 +519,7 @@
                                             },
                                             "fan_configuration": "PARALLEL",
                                             "primary_airflow": 943.9,
+                                            "secondary_airflow": 2831.7,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
                                             "minimum_airflow": 141.6,
@@ -685,7 +689,7 @@
                                                         "r_value": 0.099
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.180874
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 2 East Wall Optical Properties",
@@ -741,6 +745,7 @@
                                             },
                                             "fan_configuration": "PARALLEL",
                                             "primary_airflow": 943.9,
+                                            "secondary_airflow": 2831.7,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
                                             "minimum_airflow": 141.6,
@@ -917,7 +922,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 01",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165
@@ -977,6 +982,7 @@
                                             },
                                             "fan_configuration": "PARALLEL",
                                             "primary_airflow": 943.9,
+                                            "secondary_airflow": 2831.7,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
                                             "minimum_airflow": 141.6,
@@ -1041,7 +1047,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Roof Resistance 01",
-                                                        "r_value": 2.7948686
+                                                        "r_value": 2.657503
                                                     }
                                                 ],
                                                 "u_factor": 0.35779857
@@ -1141,7 +1147,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 02",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165
@@ -1175,6 +1181,7 @@
                                             },
                                             "fan_configuration": "PARALLEL",
                                             "primary_airflow": 943.9,
+                                            "secondary_airflow": 2831.7,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
                                             "minimum_airflow": 141.6,
@@ -45059,7 +45066,8 @@
                     "is_chilled_water_pump_interlocked": false,
                     "compressor_type": "SCREW",
                     "energy_source_type": "ELECTRICITY",
-                    "design_capacity": 87921,
+                    "rated_capacity": 87921,
+                    "design_capacity": 98765,
                     "minimum_load_ratio": 0.25,
                     "rated_entering_condenser_temperature": 29.4,
                     "rated_leaving_evaporator_temperature": 10,
@@ -45108,7 +45116,7 @@
                 {
                     "id": "CHW Loop 1",
                     "type": "COOLING",
-                    "pump_power_per_flow_rate": 349,
+                    "pump_power_per_flow_rate": 348.7,
                     "cooling_or_condensing_design_and_control": {
                         "id": "Primary CHW Design and Control",
                         "design_supply_temperature": 6.7,

@@ -679,7 +679,7 @@
                                                         "specific_heat": 1090
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.478345
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 1 South Wall Optical Properties",
@@ -872,7 +872,7 @@
                                                         "r_value": 0.099
                                                     }
                                                 ],
-                                                "u_factor": 0.477396
+                                                "u_factor": 0.180874
                                             },
                                             "optical_properties": {
                                                 "id": "Prm Zone 2 East Wall Optical Properties",
@@ -1097,7 +1097,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 01",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165
@@ -1214,7 +1214,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Roof Resistance 01",
-                                                        "r_value": 2.7948686
+                                                        "r_value": 2.657503
                                                     }
                                                 ],
                                                 "u_factor": 0.35779857
@@ -1314,7 +1314,7 @@
                                                 "primary_layers": [
                                                     {
                                                         "id": "Exterior Wall Resistance 02",
-                                                        "r_value": 2.095711
+                                                        "r_value": 1.946018
                                                     }
                                                 ],
                                                 "u_factor": 0.477165
