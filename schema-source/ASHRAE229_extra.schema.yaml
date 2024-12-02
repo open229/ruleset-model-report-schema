@@ -5413,6 +5413,16 @@ HeatRejection:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
+    fan_design_electric_power:
+      Description: "Fan design electric power"
+      Data Type: "Numeric"
+      Units: "W"
+      Notes: "Only used when fan_shaft_power and fan_motor_efficiency and fan_motor_nameplate_power cannot be provided."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     fan_shaft_power:
       Description: "Fan Shaft Power"
       Data Type: "Numeric"
