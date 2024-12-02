@@ -6092,44 +6092,22 @@ ServiceWaterHeatingEquipment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    energy_factor:
-      Description: "Energy factor"
-      Data Type: "Numeric"
-      Range: ">=0"
-      Notes: "From CBECC-Com."
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<ServiceWaterHeatingEfficiencyMetricOptions>]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-    thermal_efficiency:
-      Description: "Service water heating heater thermal efficiency"
-      Data Type: "Numeric"
-      Range: ">=0"
+      AppG B_RMDs Same: "unknown"
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-    standby_loss_fraction:
-      Description: "Standby loss fraction"
-      Data Type: "Numeric"
-      Notes: "From CBECC-Com."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-    uniform_energy_factor:
-      Description: "Uniform energy factor"
-      Data Type: "Numeric"
-      Range: ">=0"
-      Notes: "From CBECC-Com."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
+      AppG B_RMDs Same: "unknown"
     draw_pattern:
       Description: "Draw pattern"
       Data Type: "<DrawPatternOptions>"
@@ -6324,21 +6302,20 @@ ServiceWaterHeatingEquipment:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
 
-ServiceWaterHeaterOptions:
+ServiceWaterHeatingEfficiencyMetricOptions:
   Object Type: "Enumeration"
   Enumerators:
-    CONVENTIONAL:
-      Description: "Conventional"
-    HEAT_PUMP_PACKAGED:
-      Description: "Heat pump packaged"
-    HEAT_PUMP_SPLIT:
-      Description: "Heat pump split"
-    HEAT_FROM_HOT_WATER_LOOP:
-      Description: "Heat from hot water loop"
-      Notes: "Should also specifiy hot water loop when this is used"
-    COMBINATION_SERVICE_AND_SPACE:
-      Description: "Combination space and service water heater."
-      Notes: "Should also specifiy hot water loop when this is used"
+    ENERGY_FACTOR:
+      Description: "Energy factor"
+    UNIFORM_ENERGY_FACTOR:
+      Description: "Uniform energy factor"
+    THERMAL_EFFICIENCY:
+      Description: "Thermal efficiency"
+    STANDBY_LOSS_FRACTION:
+      Description: "Standby loss fraction"
+    STANDBY_LOSS_ENERGY:
+      Description: "Standby loss fraction"
+      Notes: "Units are watts and can be converted from STANDBY_LOSS_FRACTION based forumulat found in CBECC-Res User Manual"
     OTHER:
       Description: "Other"
 
