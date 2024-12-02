@@ -265,6 +265,12 @@ RulesetProjectDescription:
       EPstatus: "DoneUsingConstant"
       EP Notes: "Set to OUTPUT_SCHEMA_ASHRAE901_2019"
 
+CommonOutputSchemaOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    OTHER:
+      Description: "other"
+
 RulesetModelDescription:
   Object Type: "Data Group"
   Data Elements:
@@ -430,6 +436,25 @@ RulesetModelDescription:
       EPout Table: ""
       EPout Column: ""
       EPstatus: "ComplianceParameter"
+      EP Notes: ""
+    altitude:
+      Description: "Altitude of the building at ground level."
+      Data Type: "Numeric"
+      Range: ">-1000, <10000 "
+      Units: "m"
+      Notes: "Altitude of the building site above sea level and used for adjusting airflows. If the altitude is not provided, it is assumed to be zero and airflows are already normalized to sea level."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: ""
       EP Notes: ""
     fluid_loops:
       Description: "Fluid loops on the site"
@@ -606,6 +631,17 @@ RulesetModelDescription:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
+
+CommonRulesetModelOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    USER:
+      Description: "The building model as described without consideration of the ruleset"
+    PROPOSED:
+      Description: "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1"
+    PROPOSED:
+      Description: "The proposed building model"
+      Notes: "The proposed building model typically transformed from the USER model following specific changes for the ruleset"
 
 Building:
   Object Type: "Data Group"
@@ -2580,6 +2616,26 @@ InsulationLocationOptions:
     OTHER:
       Description: "Other"
 
+CommonConstructionClassificationOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    METAL_BUILDING: 
+      Description: "Metal building"
+    WOOD_FRAMED:
+      Description: "Wood-framed"
+    INSULATION_ENTIRELY_ABOVE_DECK:
+      Description: "Insulation entirely above deck"
+    ATTIC:
+      Description: "Attic"
+    BELOW_GRADE_WALL:
+      Description: "Below-grade wall"
+    STEEL_JOIST:
+      Description: "Steel joist"
+    SLAB_ON_GRADE:
+      Description: "Slab-on-grade"
+    OTHER:
+      Description: "Other"
+
 Material:
   Object Type: "Data Group"
   Data Elements:
@@ -3825,6 +3881,23 @@ MiscellaneousEquipment:
       EPout Column: ""
       EPstatus: "ComplianceParameter"
       EP Notes: ""
+    automatic_controlled_percentage:
+      Description: "Fraction of receptacles that have automatic controls."
+      Data Type: "Numeric"
+      Range: ">=0, <=1"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: ""
+      EP Notes: ""
 
 MiscellaneousEquipmentOptions:
   Object Type: "Enumeration"
@@ -4660,6 +4733,23 @@ Elevator:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
+    number_of_floors_served:
+      Description: "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens."
+      Data Type: "Numeric"
+      Range: ">=1"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     motor_location_zone:
       Description: "Zone where the heat from the motor goes"
       Data Type: "Reference"
@@ -5106,6 +5196,22 @@ HeatingVentilatingAirConditioningSystem:
       EPout Column: "first column"
       EPstatus: "NotStarted"
       EP Notes: "Used by RCT. Would need to analyze structure of topology to determine if this is preheat system."
+    humidification_type:
+      Description: "Humidification type"
+      Data Type: "<HumidificationOptions>"
+      RMD Test: False
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: False
+      AppG B_RMDs Same: True
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     status_type:
       Description: "Choice of new, existing, addition, alteration, etc. for each ruleset."
       Data Type: "<StatusOptions>"
@@ -5429,23 +5535,6 @@ HeatingSystem:
       EPout Column: "Minimum Outdoor Dry-Bulb Temperature for Compressor Operation"
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
-    humidification_type:
-      Description: "Humidification type"
-      Data Type: "<HumidificationOptions>"
-      RMD Test: False
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "NotStarted"
-      EP Notes: "Look for Humidifier:Steam:Electric, Humidifier:steam:Gas on branch. Should be covered by topology report."
 
 HeatingSystemOptions:
   Object Type: "Enumeration"
@@ -8633,15 +8722,14 @@ Boiler:
       EPout Column: "Fuel Type"
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
-    efficiency_metric:
-      Description: "The type of efficiency metric used"
-      Data Type: "<BoilerEfficiencyMetricOptions>"
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<BoilerEfficiencyMetricOptions>]"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-      Used by RCT Test: True
       EPin Object: ""
       EPin Field: ""
       EPout File: ""
@@ -8649,17 +8737,16 @@ Boiler:
       EPout Table: ""
       EPout Column: ""
       EPstatus: "DoneUsingConstant"
-      EP Notes: "Constant, always put in THERMAL"
-    efficiency:
-      Description: "Efficiency value based on the selected efficiency_metric"
-      Data Type: "Numeric"
+      EP Notes: "Constant, always put in THERMAL, need to revise."
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       Range: ">=0, <=1"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-      Used by RCT Test: True
       EPin Object: "Boiler:HotWater, Boiler:Steam"
       EPin Field: "Nominal Thermal Efficiency"
       EPout File: "table.html"
@@ -8667,7 +8754,7 @@ Boiler:
       EPout Table: "Boilers"
       EPout Column: "Reference Efficiency"
       EPstatus: "DoneUsingOutput"
-      EP Notes: ""
+      EP Notes: "Need to revise."
     output_validation_points:
       Description: "Energy validation points"
       Data Type: "[{BoilerOutputValidationPoint}]"
@@ -9025,6 +9112,23 @@ Chiller:
       EPout Column: "Rated Leaving Evaporator Temperature"
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
+    minimum_unload_ratio:
+      Description: "Minimum unload ratio of full load allowed"
+      Data Type: "Numeric"
+      Notes: "The ratio of current load to available capacity at a given simulation time step. Used only when this value is higher than the minimum_load_ratio.  Between the minimum_unload_ratio and the minimum_load_ratio, the chiller creates a false load in order to continue operating at the minimum_unload_ratio."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     minimum_load_ratio:
       Description: "Minimum fraction of full load allowed"
       Data Type: "Numeric"
@@ -9107,17 +9211,17 @@ Chiller:
       EPout Column: "Reference Leaving Evaporator Temperature"
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
-    full_load_efficiency:
-      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
-      Data Type: "Numeric"
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       Units: "W/W"
-      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying it's full capacity."
+      Range: ">=0"
+      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined load."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-      Used by RCT Test: True
       EPin Object: "Chiller:Electric:EIR, Chiller:Electric:ReformulatedEIR, ..."
       EPin Field: "Reference COP"
       EPout File: "table.html"
@@ -9125,44 +9229,23 @@ Chiller:
       EPout Table: "Chiller"
       EPout Column: "Rated Efficiency "
       EPstatus: "DoneUsingOutput"
-      EP Notes: ""
-    part_load_efficiency:
-      Description: "Efficiency value based on the selected part_load_efficiency_metric"
-      Data Type: "Numeric"
-      Units: "W/W"
-      Range: ">=0"
-      Notes: "The useful cooling energy supplied by the chiller divided by the electric energy into the chiller both in the same units when the chiller is supplying a predefined part of it's full capacity."
-      RMD Test: "Primary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: False
-      Used by RCT Test: True
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: "table.html"
-      EPout Report: "Equipment Summary"
-      EPout Table: "Chiller"
-      EPout Column: "IPLV in SI Units"
-      EPstatus: "DoneUsingOutput"
-      EP Notes: ""
-    part_load_efficiency_metric:
-      Description: "The type of part load efficiency metric used"
-      Data Type: "<ChillerPartLoadEfficiencyMetricOptions>"
+      EP Notes: "Need to revise"
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<ChillerEfficiencyMetricOptions>]"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-      Used by RCT Test: True
       EPin Object: ""
       EPin Field: ""
       EPout File: ""
       EPout Report: ""
       EPout Table: ""
       EPout Column: ""
-      EPstatus: "DoneUsingConstant"
-      EP Notes: "Constant as IPLV"
+      EPstatus: "NotStarted"
+      EP Notes: ""
     capacity_validation_points:
       Description: "Capacity validation points"
       Data Type: "[{ChillerCapacityValidationPoint}]"
@@ -9587,6 +9670,23 @@ HeatRejection:
       EPout Table: "Cooling Towers and Fluid Coolers"
       EPout Column: "Fluid Type"
       EPstatus: "DoneUsingOutput"
+      EP Notes: ""
+    number_of_cells:
+      Description: "Number of cells"
+      Data Type: "Numeric"
+      Range: ">=1"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: False
+      AppG B_RMDs Same: True
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
       EP Notes: ""
     range:
       Description: "Heat rejection Range"
