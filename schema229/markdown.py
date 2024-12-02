@@ -131,7 +131,14 @@ def write_tables(instance, output_path, append=True):
           "RMD Test",
           "AppG Used By TCDs",
           "AppG P_RMD Equals U_RMD",
-          "AppG B_RMD Equals P_RMD"
+          "AppG B_RMD Equals P_RMD",
+          "Used by RCT Test",
+          "EPin Object",
+          "EPin Field",
+          "EPout File",
+          "EPout Table",
+          "EPout Column",
+          "EP Notes"
         ]
         writer_headers = copy.copy(ORIGINAL_DATA_GROUP_TABLE_HEADERS)
         elements_obj = data_groups[dg]["Data Elements"]

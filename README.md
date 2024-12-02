@@ -1,6 +1,14 @@
-# Ruleset Model Report Schema
+# Ruleset Evaluation Schema and Related Schemas
 
-A schema development package consistent with ASHRAE Standard 229P.
+ASHRAE Standard 229P includes several schemas being developed in this repository:
+
+- Ruleset Evaluation Schema 
+- Ruleset Checking Tool Software Testing Report Schema
+- Ruleset Checking Tool Project Evaluation Report Schema
+
+The public review version of the schemas are contained in the [main](https://github.com/open229/ruleset-model-description-schema/tree/main) branch. The [develop](https://github.com/open229/ruleset-model-description-schema) branch is the branch where work is continuing and will contain changes that are not part of the public review draft. The develop branch is also the default branch for all new changes.
+
+See [the resources page](https://github.com/open229/ruleset-model-description-schema/blob/develop/RESOURCES.md) containing a collection of resources for developers of RPD generation tools. 
 
 **Warning!**  As the proposed ASHRAE Standard 229P has not yet been published, the content in this repository is subject to change and should be considered unstable for application development.
 

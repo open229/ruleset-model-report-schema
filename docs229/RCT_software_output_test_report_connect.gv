@@ -1,0 +1,11 @@
+digraph G {
+    size="10, 10";
+    ranksep="1.4";
+  RulesetCheckingToolSoftwareOutputReport -> RuleTest [color="yellow"]
+  RulesetCheckingToolSoftwareOutputReport[fontsize="32" shape="box" height="0.7"]
+  RuleTest[fontsize="32" shape="box" height="0.7"]
+  RuleTest -> Evaluation [color="darkred"]
+  Evaluation[fontsize="32" shape="box" height="0.7"]
+  Evaluation -> CalculatedValue [color="cyan"]
+  CalculatedValue[fontsize="32" shape="box" height="0.7"]
+}

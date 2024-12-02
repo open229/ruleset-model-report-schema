@@ -37,7 +37,14 @@ def task_strip_extra_data_element_fields():
               "RMD Test",
               "AppG Used By TCDs",
               "AppG P_RMD Equals U_RMD",
-              "AppG B_RMD Equals P_RMD"
+              "AppG B_RMD Equals P_RMD",
+              "Used by RCT Test",
+              "EPin Object",
+              "EPin Field",
+              "EPout File",
+              "EPout Table",
+              "EPout Column",
+              "EP Notes"
             ],
             os.path.join(SOURCE_PATH, 'ASHRAE229_extra.schema.yaml'),
             os.path.join(SOURCE_PATH, 'ASHRAE229.schema.yaml')
