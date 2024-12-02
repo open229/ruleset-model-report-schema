@@ -5316,6 +5316,8 @@ ChillerCompressorOptions:
       Description: "Scroll"
     POSITIVE_DISPLACEMENT:
       Description: "Positive displacement"
+    HEAT_PUMP:
+      Description: "Heat pump"
     SINGLE_EFFECT_INDIRECT_FIRED_ABSORPTION:
       Description: "Single-effect indirect-fired absorption"
     DOUBLE_EFFECT_INDIRECT_FIRED_ABSORPTION:
