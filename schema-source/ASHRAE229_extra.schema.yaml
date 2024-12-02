@@ -2956,9 +2956,10 @@ HeatingSystem:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-    is_sized_based_on_design_day:
-      Description: "True if the component is sized by the simulation software for the design day"
+    is_calculated_size:
+      Description: "True if the component is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -3192,9 +3193,10 @@ CoolingSystem:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-    is_sized_based_on_design_day:
-      Description: "True if the component is sized by the simulation software for the design day"
+    is_calculated_size:
+      Description: "True if the component is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.cooling_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -3875,9 +3877,10 @@ Fan:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    is_airflow_sized_based_on_design_day:
-      Description: "True if the airflow is sized by the simulation software for the design day"
+    is_airflow_calculated:
+      Description: "True if the airflow is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For air flows determinined by software, including the simulation software, this should be true. For air flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For air flows reflecting the an actual piece of equipment this should be false. If the air flow is a calculated sum of hardcoded zone air flow values this should be false."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -4714,9 +4717,10 @@ Pump:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
-    is_flow_sized_based_on_design_day:
-      Description: "True if the design_flow is sized by the simulation software for the design day"
+    is_flow_calculated:
+      Description: "True if the design_flow is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For flows determinined by software, including the simulation software, this should be true. For flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For flows reflecting the an actual piece of equipment this should be false."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
