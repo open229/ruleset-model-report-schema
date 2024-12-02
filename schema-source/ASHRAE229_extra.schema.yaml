@@ -264,7 +264,7 @@ RulesetProjectDescription:
       EPout Column: ""
       EPstatus: "DoneUsingConstant"
       EP Notes: "Set to OUTPUT_SCHEMA_ASHRAE901_2019"
-
+      
 CommonOutputSchemaOptions:
   Object Type: "Enumeration"
   Enumerators:
@@ -7706,6 +7706,7 @@ Terminal:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     
+
 TerminalOptions:
   Object Type: "Enumeration"
   Enumerators:
