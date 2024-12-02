@@ -113,6 +113,10 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
+    schema_version:
+      Description: "Version of the schema used for generating the file"
+      Data Type: "String"
+      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
     data_timestamp:
       Description: "Date and time of data publication"
       Data Type: "Timestamp"
