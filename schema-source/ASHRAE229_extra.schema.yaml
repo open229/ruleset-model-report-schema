@@ -10,7 +10,7 @@ Schema:
   Object Type: "Meta"
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
-  Version: "0.0.37"
+  Version: "0.1.0"
   References:
     - "Enumerations2019ASHRAE901"
     - "EnumerationsRESNET"
@@ -249,7 +249,7 @@ RulesetProjectDescription:
       EP Notes: ""
     output_format_type:
       Description: "Indicates the chosen format for output"
-      Data Type: "(<OutputSchemaOptions2019ASHRAE901>, <OutputSchemaOptions2019T24>, OutputSchemaOptionsRESNET)"
+      Data Type: "(<CommonOutputSchemaOptions>, <OutputSchemaOptions2019ASHRAE901>, <OutputSchemaOptions2019T24>, OutputSchemaOptionsRESNET)"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -270,6 +270,7 @@ CommonOutputSchemaOptions:
   Enumerators:
     OTHER:
       Description: "other"
+      
 
 RulesetModelDescription:
   Object Type: "Data Group"
@@ -329,7 +330,7 @@ RulesetModelDescription:
       EP Notes: ""
     type:
       Description: "Describes the current ruleset model description for rulesets with multiple simulation models"
-      Data Type: "(<RulesetModelOptions2019ASHRAE901>,<RulesetModelOptionsRESNET>,<RulesetModelOptions2019T24Com>,<RulesetModelOptions2019T24Res>)"
+      Data Type: "(<CommonRulesetModelOptions>,<RulesetModelOptions2019ASHRAE901>,<RulesetModelOptionsRESNET>,<RulesetModelOptions2019T24Com>,<RulesetModelOptions2019T24Res>)"
       Required: True
       Notes: "Will usually designate which simulation this RulesetModelDescription refers to such as: PROPOSED, BASELINE_0, USER, RATED, REFERENCE"
       RMD Test: "unknown"
@@ -1049,7 +1050,7 @@ BuildingSegment:
       EP Notes: ""
     service_water_heating_area_type:
       Description: "Service water heating area type classification"
-      Data Type: "<ServiceWaterHeatingAreaOptions2019ASHRAE901>"
+      Data Type: "<ServiceWaterHeatingSpaceOptions2019ASHRAE901>"
       Notes: "The enumeration is based on the standard used."
       RMD Test: False
       AppG Used By TCDs: "unknown"
@@ -1878,6 +1879,15 @@ SpaceFunctionOptions:
       Description: "Laboratory"
     KITCHEN:
       Description: "Kitchen"
+    PLENUM:
+      Description: "Plenum"
+      Notes: "A compartment or chamber, to which one or more ducts are connected, that forms a part of the air-distribution system and that is not used for occupancy or storage. The area of a plenum is not counted toward the floor area of a building."
+    CRAWL_SPACE:
+      Description: "Crawl space"
+      Notes: "An unoccupied, unfinished, narrow space within a building, between the ground and the first (or ground) floor. The crawl space is so named because there is typically only enough room to crawl rather than stand; anything larger than about 1 to 1.5 metres (3 ft 3 in to 4 ft 11 in) and beneath the ground floor would tend to be considered a basement. The area of a crawl space is not counted toward the floor area of a building."
+    INTERSTITIAL_SPACE:
+      Description: "Interstitial space"
+      Notes: "The area of load bearing surfaces located above or below occupied building floors that is not available for general occupancy often due to inadequate clear headroom or lack of provisions for egress, and containing building structure or services predominantly serving adjacent floors or to provide access to such systems. They are not part of the air distribution systen, conditioned, used for occupancy, or used for storage. Interstitial spaces often contain ducts, piping, conduit, and other components that serve the building systems. The area of a interstitial space is not counted toward the floor area of a building."
     OTHER:
       Description: "Other"
 
@@ -2377,7 +2387,7 @@ Construction:
       EP Notes: ""
     classification:
       Description: "Classification for the subsurface being window, skylight, door."
-      Data Type: "(<ConstructionClassificationOptions2019ASHRAE901>, <ConstructionClassificationOptions2019T24>)"
+      Data Type: "(<CommonConstructionClassificationOptions>, <ConstructionClassificationOptions2019ASHRAE901>, <ConstructionClassificationOptions2019T24>)"
       RMD Test: False
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5489,16 +5499,16 @@ HeatingSystem:
       EPout Column: ""
       EPstatus: "PartialUsingOutput"
       EP Notes: "parial support for heat pumps and furnaces "
-    heatpump_auxilliary_heat_type:
-      Description: "Heatpump auxilliary heat type used for backup"
-      Data Type: "<HeatpumpAuxilliaryHeatOptions>"
+    heatpump_auxiliary_heat_type:
+      Description: "Heatpump auxiliary heat type used for backup"
+      Data Type: "<HeatpumpAuxiliaryHeatOptions>"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
-    heatpump_auxilliary_heat_high_shutoff_temperature:
-      Description: "Heatpump auxilliary heat high temperature shutoff"
+    heatpump_auxiliary_heat_high_shutoff_temperature:
+      Description: "Heatpump auxiliary heat high temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
       Notes: "The auxiliary heat is available at or below this outside temperature to satisfy the load. If this temperature is higher than heatpump_low_shutoff_temperature then between the two temperatures, the heat pump is energized first and if any load remains, then the auxiliary heat is energized."
@@ -5552,7 +5562,7 @@ HeatingSystemOptions:
     OTHER:
       Description: "Other"
 
-HeatpumpAuxilliaryHeatOptions:
+HeatpumpAuxiliaryHeatOptions:
   Object Type: "Enumeration"
   Enumerators:
     ELECTRIC_RESISTANCE:
@@ -5930,7 +5940,7 @@ CoolingSystemOptions:
 DehumidificationOptions:
   Object Type: "Enumeration"
   Enumerators:
-    MECHANCIAL_COOLING:
+    MECHANICAL_COOLING:
       Description: "Mechanical cooling"
     DESICCANT:
       Description: "Desiccant"
@@ -6319,7 +6329,7 @@ FanSystem:
     operating_schedule:
       Description: "Operating schedule name"
       Data Type: "Reference"
-      Notes: "If the schedule is not present, the fansystem  is always operating. Zero when fan is off. Constraint to use when implemented :Schedule:"
+      Notes: "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -8388,7 +8398,7 @@ Pump:
     design_head:
       Description: "Head of the pump at design flow conditions"
       Data Type: "Numeric"
-      Units: "m"
+      Units: "Pa"
       Notes: "Only used when specification_method is set to Detailed"
       RMD Test: "unknown"
       AppG Used By TCDs: False
@@ -9132,6 +9142,7 @@ Chiller:
     minimum_load_ratio:
       Description: "Minimum fraction of full load allowed"
       Data Type: "Numeric"
+      Notes: "The ratio of current load to available capacity at a given simulation time step. Below the minimum load ratio, the chiller cycles on and off."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -9354,9 +9365,12 @@ Chiller:
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
 
-ChillerPartLoadEfficiencyMetricOptions:
+ChillerEfficiencyMetricOptions:
   Object Type: "Enumeration"
   Enumerators:
+    FULL_LOAD_EFFICIENCY:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
+      Notes: "At minimum, the full load efficiency should be one of the metrics and values specified."
     INTEGRATED_PART_LOAD_VALUE:
       Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP)"
     NONSTANDARD_PART_LOAD_VALUE:
@@ -12083,16 +12097,22 @@ ServiceWaterHeatingUseUnitOptions:
   Enumerators:
     POWER_PER_PERSON:
       Description: "Power per person"
+      Notes: "The units for the use that correspond to this are watts/person"
     POWER_PER_AREA:
       Description: "Power per area"
+      Notes: "The units for the use that correspond to this are watts/m2"
     POWER:
       Description: "Power"
+      Notes: "The units for the use that correspond to this are watts"
     VOLUME_PER_PERSON:
       Description: "Volume per person"
+      Notes: "The units for the use that correspond to this are liters/(minute-person)"
     VOLUME_PER_AREA:
       Description: "Volume per area"
+      Notes: "The units for the use that correspond to this are liters/(minute-m2)"
     VOLUME:
       Description: "Volume"
+      Notes: "The units for the use that correspond to this are liters/minute"
     OTHER:
       Description: "Other"
 
