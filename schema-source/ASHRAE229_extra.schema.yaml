@@ -3047,7 +3047,7 @@ HeatingSystem:
       Description: "Heatpump low temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
+      Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliary heat. For heat pumps with no lower temperature limit, this value should not be provided or else set to -999."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
