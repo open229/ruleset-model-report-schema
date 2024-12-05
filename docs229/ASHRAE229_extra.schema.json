@@ -24,6 +24,11 @@
                     "type": "string",
                     "notes": "Notes are not used by the RCT, but may be included in RCT reports to give the reviewer additional information or context"
                 },
+                "schema_version": {
+                    "description": "Version of the schema used for generating the file",
+                    "type": "string",
+                    "notes": "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
+                },
                 "data_timestamp": {
                     "description": "Date and time of data publication",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/Timestamp",
@@ -1673,6 +1678,16 @@
                     },
                     "notes": "Used when schedule_sequence_type is HOURLY."
                 },
+                "hourly_heating_design_year": {
+                    "description": "Hourly values for heating design year",
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 8784,
+                    "items": {
+                        "type": "number"
+                    },
+                    "notes": "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the design_year_ignore_indicator value will be ignored."
+                },
                 "hourly_cooling_design_day": {
                     "description": "Hourly values for cooling design day",
                     "type": "array",
@@ -1682,6 +1697,21 @@
                         "type": "number"
                     },
                     "notes": "Used when schedule_sequence_type is HOURLY."
+                },
+                "hourly_cooling_design_year": {
+                    "description": "Hourly values for cooling design year",
+                    "type": "array",
+                    "minItems": 0,
+                    "maxItems": 8784,
+                    "items": {
+                        "type": "number"
+                    },
+                    "notes": "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the design_year_ignore_indicator value will be ignored."
+                },
+                "design_year_ignore_indicator": {
+                    "description": "Flag value used to indicate an hour that was ignored for the design years.",
+                    "type": "number",
+                    "notes": "Use a value that would otherwise not make sense for the schedule. Common value would be -1 or -999."
                 },
                 "event_times": {
                     "description": "Event times when the schedule changes",
@@ -2105,7 +2135,7 @@
                 "type": {
                     "description": "Heating system type",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/HeatingSystemOptions",
-                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
                 },
                 "energy_source_type": {
                     "description": "Source of energy for the heating system",
@@ -2141,9 +2171,10 @@
                     "minimum": 0.0,
                     "notes": "Used for furnace or heat pump."
                 },
-                "is_sized_based_on_design_day": {
-                    "description": "True if the component is sized by the simulation software for the design day",
-                    "type": "boolean"
+                "is_calculated_size": {
+                    "description": "True if the component is sized by software",
+                    "type": "boolean",
+                    "notes": "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
                 },
                 "heating_coil_setpoint": {
                     "description": "Setpoint of the air leaving the heating coil",
@@ -2182,7 +2213,7 @@
                     "description": "Heatpump low temperature shutoff",
                     "type": "number",
                     "units": "C",
-                    "notes": "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
+                    "notes": "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliary heat. For heat pumps with no lower temperature limit, this value should not be provided or else set to -999."
                 }
             },
             "required": [
@@ -2316,7 +2347,7 @@
                 "type": {
                     "description": "Cooling system type",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/CoolingSystemOptions",
-                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
                 },
                 "design_total_cool_capacity": {
                     "description": "Design total cooling capacity",
@@ -2351,9 +2382,10 @@
                     "type": "number",
                     "minimum": 0.0
                 },
-                "is_sized_based_on_design_day": {
-                    "description": "True if the component is sized by the simulation software for the design day",
-                    "type": "boolean"
+                "is_calculated_size": {
+                    "description": "True if the component is sized by software",
+                    "type": "boolean",
+                    "notes": "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.cooling_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
                 },
                 "chilled_water_loop": {
                     "description": "Referenced to the Chilled water fluid loop",
@@ -2905,9 +2937,10 @@
                     "units": "L/s",
                     "notes": "The design airlow may be determined by sizing performed by the software. This value should be provided if sized by the simulation software as an output or explicitly provided as a simulation input."
                 },
-                "is_airflow_sized_based_on_design_day": {
-                    "description": "True if the airflow is sized by the simulation software for the design day",
-                    "type": "boolean"
+                "is_airflow_calculated": {
+                    "description": "True if the airflow is sized by software",
+                    "type": "boolean",
+                    "notes": "Determined in accordance with generally accepted engineering standards. For air flows determinined by software, including the simulation software, this should be true. For air flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For air flows reflecting the an actual piece of equipment this should be false. If the air flow is a calculated sum of hardcoded zone air flow values this should be false."
                 },
                 "specification_method": {
                     "description": "Options for how the fan is specified",
@@ -3041,7 +3074,7 @@
                 "type": {
                     "description": "Type of terminal",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/TerminalOptions",
-                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+                    "notes": "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
                 },
                 "served_by_heating_ventilating_air_conditioning_system": {
                     "description": "HVAC system serving the terminal",
@@ -3164,6 +3197,7 @@
                 "CONSTANT_AIR_VOLUME",
                 "RADIANT",
                 "BASEBOARD",
+                "VARIABLE_REFRIGERANT_FLOW",
                 "OTHER"
             ],
             "descriptions": [
@@ -3171,6 +3205,7 @@
                 "Constant air volume",
                 "Radiant",
                 "Baseboard",
+                "Variable refrigerant flow indoor unit",
                 "Other"
             ]
         },
@@ -3495,9 +3530,10 @@
                     "units": "L/s",
                     "notes": "This value should be provided if determined by sizing performed by the software or explicitly provided."
                 },
-                "is_flow_sized_based_on_design_day": {
-                    "description": "True if the design_flow is sized by the simulation software for the design day",
-                    "type": "boolean"
+                "is_flow_calculated": {
+                    "description": "True if the design_flow is sized by software",
+                    "type": "boolean",
+                    "notes": "Determined in accordance with generally accepted engineering standards. For flows determinined by software, including the simulation software, this should be true. For flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For flows reflecting the an actual piece of equipment this should be false."
                 },
                 "output_validation_points": {
                     "description": "Energy validation points",
@@ -3618,8 +3654,7 @@
                     "type": "array",
                     "items": {
                         "type": "number",
-                        "minimum": 0.0,
-                        "maximum": 1.0
+                        "minimum": 0.0
                     }
                 },
                 "output_validation_points": {
@@ -3938,6 +3973,7 @@
                 "RECIPROCATING",
                 "SCROLL",
                 "POSITIVE_DISPLACEMENT",
+                "HEAT_PUMP",
                 "SINGLE_EFFECT_INDIRECT_FIRED_ABSORPTION",
                 "DOUBLE_EFFECT_INDIRECT_FIRED_ABSORPTION",
                 "SINGLE_EFFECT_DIRECT_FIRED_ABSORPTION",
@@ -3950,6 +3986,7 @@
                 "Reciprocating",
                 "Scroll",
                 "Positive displacement",
+                "Heat pump",
                 "Single-effect indirect-fired absorption",
                 "Double-effect indirect-fired absorption",
                 "Single-effect direct-fired absorption",
@@ -4004,6 +4041,12 @@
                     "description": "Heat rejection Approach",
                     "type": "number",
                     "units": "K"
+                },
+                "fan_design_electric_power": {
+                    "description": "Fan design electric power",
+                    "type": "number",
+                    "units": "W",
+                    "notes": "Only used when fan_shaft_power and fan_motor_efficiency and fan_motor_nameplate_power cannot be provided."
                 },
                 "fan_shaft_power": {
                     "description": "Fan Shaft Power",
@@ -4469,27 +4512,19 @@
                     "type": "string",
                     "notes": "Data elements linking data groups by reference that don't make sense without the reference are shown as required. Few other data elements than this type and id data elements are shown as required. Other data elements may be required by specific rulesets. Constraint to use when implemented :ServiceWaterHeatingDistributionSystem:"
                 },
-                "energy_factor": {
-                    "description": "Energy factor",
-                    "type": "number",
-                    "minimum": 0.0,
-                    "notes": "From CBECC-Com."
+                "efficiency_metric_types": {
+                    "description": "List of efficiency metrics that correspond to the values in efficiency_metric_values list",
+                    "type": "array",
+                    "items": {
+                        "$ref": "ASHRAE229_extra.schema.json#/definitions/ServiceWaterHeatingEfficiencyMetricOptions"
+                    }
                 },
-                "thermal_efficiency": {
-                    "description": "Service water heating heater thermal efficiency",
-                    "type": "number",
-                    "minimum": 0.0
-                },
-                "standby_loss_fraction": {
-                    "description": "Standby loss fraction",
-                    "type": "number",
-                    "notes": "From CBECC-Com."
-                },
-                "uniform_energy_factor": {
-                    "description": "Uniform energy factor",
-                    "type": "number",
-                    "minimum": 0.0,
-                    "notes": "From CBECC-Com."
+                "efficiency_metric_values": {
+                    "description": "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
                 },
                 "draw_pattern": {
                     "description": "Draw pattern",
@@ -4587,8 +4622,7 @@
                     "notes": "From CBECC-Com."
                 },
                 "heater_type": {
-                    "description": "Service water heater type",
-                    "$ref": "ASHRAE229_extra.schema.json#/definitions/ServiceWaterHeaterOptions"
+                    "description": "Service water heater type"
                 },
                 "tank": {
                     "description": "Tank that is part of the service water heating equipment",
@@ -4619,30 +4653,30 @@
             ],
             "additionalProperties": false
         },
-        "ServiceWaterHeaterOptions": {
+        "ServiceWaterHeatingEfficiencyMetricOptions": {
             "type": "string",
             "enum": [
-                "CONVENTIONAL",
-                "HEAT_PUMP_PACKAGED",
-                "HEAT_PUMP_SPLIT",
-                "HEAT_FROM_HOT_WATER_LOOP",
-                "COMBINATION_SERVICE_AND_SPACE",
+                "ENERGY_FACTOR",
+                "UNIFORM_ENERGY_FACTOR",
+                "THERMAL_EFFICIENCY",
+                "STANDBY_LOSS_FRACTION",
+                "STANDBY_LOSS_ENERGY",
                 "OTHER"
             ],
             "descriptions": [
-                "Conventional",
-                "Heat pump packaged",
-                "Heat pump split",
-                "Heat from hot water loop",
-                "Combination space and service water heater.",
+                "Energy factor",
+                "Uniform energy factor",
+                "Thermal efficiency",
+                "Standby loss fraction",
+                "Standby loss fraction",
                 "Other"
             ],
             "notes": [
                 null,
                 null,
                 null,
-                "Should also specifiy hot water loop when this is used",
-                "Should also specifiy hot water loop when this is used",
+                null,
+                "Units are watts and can be converted from STANDBY_LOSS_FRACTION based forumulat found in CBECC-Res User Manual",
                 null
             ]
         },
@@ -4671,6 +4705,18 @@
                 "Underground",
                 "Unconditioned",
                 "Other"
+            ],
+            "notes": [
+                "The component is located in a zone modeled in the simulation e.g., heat transfer through the surfaces surrounding the zone may impact the space temperature. This should be used instead of the other enumeration options when the zone is being modeled in the simulation.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a conditioned location.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to the outdoors.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an underground area.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list.",
+                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an area not otherwise described by a different enumeration."
             ]
         },
         "DrawPatternOptions": {
@@ -5232,6 +5278,6 @@
             ]
         }
     },
-    "version": "0.1.0",
+    "version": "0.1.1",
     "$ref": "ASHRAE229_extra.schema.json#/definitions/RulesetProjectDescription"
 }
