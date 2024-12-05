@@ -6113,7 +6113,7 @@ ServiceWaterHeatingEquipment:
     draw_pattern:
       Description: "Draw pattern"
       Data Type: "<DrawPatternOptions>"
-      Notes: "Draw pattern referes to the water draw profile in the uniform energy factor test"
+      Notes: "Draw pattern refers to the water draw profile in the uniform energy factor test. See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6311,6 +6311,7 @@ ServiceWaterHeatingEfficiencyMetricOptions:
       Description: "Energy factor"
     UNIFORM_ENERGY_FACTOR:
       Description: "Uniform energy factor"
+      Notes: "See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information."
     THERMAL_EFFICIENCY:
       Description: "Thermal efficiency"
     STANDBY_LOSS_FRACTION:
