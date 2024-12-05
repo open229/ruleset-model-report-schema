@@ -4908,7 +4908,7 @@ Boiler:
     efficiency_metric_values:
       Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
       Data Type: "[Numeric]"
-      Range: ">=0, <=1"
+      Range: ">=0"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
