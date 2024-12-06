@@ -268,13 +268,14 @@
                                             "is_supply_ducted": true,
                                             "type": "VARIABLE_AIR_VOLUME",
                                             "served_by_heating_ventilating_air_conditioning_system": "RPD_Test_System_7_VAV_HW_Reheat",
+                                            "has_demand_control_ventilation": true,
                                             "heating_source": "HOT_WATER",
                                             "heating_from_loop": "Boiler Loop 1",
                                             "heating_capacity": 1758.42642,
                                             "primary_airflow": 943.9,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
-                                            "minimum_outdoor_airflow": 94.4
+                                            "minimum_outdoor_airflow": 250.1
                                         }
                                     ],
                                     "spaces": [
@@ -511,7 +512,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 1 INFILTRATION",
                                         "modeling_method": "WEATHER_DRIVEN",
-                                        "flow_rate": 0.114117,
+                                        "flow_rate": 114.1,
                                         "multiplier_schedule": "Prm Zone 1 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -520,13 +521,14 @@
                                             "is_supply_ducted": true,
                                             "type": "VARIABLE_AIR_VOLUME",
                                             "served_by_heating_ventilating_air_conditioning_system": "RPD_Test_System_7_VAV_HW_Reheat",
+                                            "has_demand_control_ventilation": true,
                                             "heating_source": "HOT_WATER",
                                             "heating_from_loop": "Boiler Loop 1",
                                             "heating_capacity": 1758.42642,
                                             "primary_airflow": 943.9,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
-                                            "minimum_outdoor_airflow": 94.4
+                                            "minimum_outdoor_airflow": 52.7
                                         }
                                     ],
                                     "spaces": [
@@ -733,7 +735,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 2 INFILTRATION",
                                         "modeling_method": "CONSTANT",
-                                        "flow_rate": 0.077315
+                                        "flow_rate": 77.3
                                     },
                                     "terminals": [
                                         {
@@ -741,13 +743,14 @@
                                             "is_supply_ducted": true,
                                             "type": "VARIABLE_AIR_VOLUME",
                                             "served_by_heating_ventilating_air_conditioning_system": "RPD_Test_System_7_VAV_HW_Reheat",
+                                            "has_demand_control_ventilation": true,
                                             "heating_source": "HOT_WATER",
                                             "heating_from_loop": "Boiler Loop 1",
                                             "heating_capacity": 1758.42642,
                                             "primary_airflow": 943.9,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
-                                            "minimum_outdoor_airflow": 94.4
+                                            "minimum_outdoor_airflow": 33.3
                                         }
                                     ],
                                     "spaces": [
@@ -964,7 +967,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 3 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.080542,
+                                        "flow_rate": 80.5,
                                         "multiplier_schedule": "Prm Zone 3 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -973,13 +976,14 @@
                                             "is_supply_ducted": true,
                                             "type": "VARIABLE_AIR_VOLUME",
                                             "served_by_heating_ventilating_air_conditioning_system": "RPD_Test_System_7_VAV_HW_Reheat",
+                                            "has_demand_control_ventilation": true,
                                             "heating_source": "HOT_WATER",
                                             "heating_from_loop": "Boiler Loop 1",
                                             "heating_capacity": 1758.42642,
                                             "primary_airflow": 943.9,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
-                                            "minimum_outdoor_airflow": 94.4
+                                            "minimum_outdoor_airflow": 52.7
                                         }
                                     ],
                                     "spaces": [
@@ -1158,7 +1162,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 4 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.053702,
+                                        "flow_rate": 53.7,
                                         "multiplier_schedule": "Prm Zone 4 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -1167,13 +1171,14 @@
                                             "is_supply_ducted": true,
                                             "type": "VARIABLE_AIR_VOLUME",
                                             "served_by_heating_ventilating_air_conditioning_system": "RPD_Test_System_7_VAV_HW_Reheat",
+                                            "has_demand_control_ventilation": true,
                                             "heating_source": "HOT_WATER",
                                             "heating_from_loop": "Boiler Loop 1",
                                             "heating_capacity": 1758.42642,
                                             "primary_airflow": 943.9,
                                             "supply_design_heating_setpoint_temperature": 32.2,
                                             "supply_design_cooling_setpoint_temperature": 12.8,
-                                            "minimum_outdoor_airflow": 94.4
+                                            "minimum_outdoor_airflow": 33.3
                                         }
                                     ],
                                     "spaces": [

@@ -640,7 +640,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 1 INFILTRATION",
                                         "modeling_method": "WEATHER_DRIVEN",
-                                        "flow_rate": 0.114117,
+                                        "flow_rate": 114.1,
                                         "multiplier_schedule": "Prm Zone 1 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -859,7 +859,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 2 INFILTRATION",
                                         "modeling_method": "CONSTANT",
-                                        "flow_rate": 0.077315
+                                        "flow_rate": 77.3
                                     },
                                     "terminals": [
                                         {
@@ -1087,7 +1087,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 3 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.080542,
+                                        "flow_rate": 80.5,
                                         "multiplier_schedule": "Prm Zone 3 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -1278,7 +1278,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 4 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.053702,
+                                        "flow_rate": 53.7,
                                         "multiplier_schedule": "Prm Zone 4 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -45168,7 +45168,6 @@
                     "id": "Chiller 1",
                     "cooling_loop": "CHW Loop 1",
                     "is_chilled_water_pump_interlocked": false,
-                    "is_condenser_water_pump_interlocked": true,
                     "compressor_type": "SCREW",
                     "energy_source_type": "ELECTRICITY",
                     "design_capacity": 87921,
@@ -45222,8 +45221,9 @@
                     "pump_power_per_flow_rate": 348.7,
                     "cooling_or_condensing_design_and_control": {
                         "id": "Primary CHW Design and Control",
+                        "minimum_flow_fraction": 0.25,
                         "design_supply_temperature": 6.7,
-                        "design_return_temperature": 12.8,
+                        "design_return_temperature": 13.3,
                         "outdoor_high_for_loop_supply_reset_temperature": 26.7,
                         "outdoor_low_for_loop_supply_reset_temperature": 15.6,
                         "loop_supply_temperature_at_outdoor_high": 6.7,

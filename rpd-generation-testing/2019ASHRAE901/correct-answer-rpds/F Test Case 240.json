@@ -34,6 +34,7 @@
                                         "water_source_heat_pump_loop": "CW Loop 1",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
+                                        "is_sized_based_on_design_day": false,
                                         "efficiency_metric_values": [
                                             4.3
                                         ],
@@ -46,7 +47,7 @@
                                         "fan_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
-                                        "minimum_outdoor_airflow": 472.0,
+                                        "minimum_outdoor_airflow": 94.4,
                                         "supply_fans": [
                                             {
                                                 "id": "Supply Fan - Core Zone 1",
@@ -80,6 +81,7 @@
                                         "water_source_heat_pump_loop": "CW Loop 1",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
+                                        "is_sized_based_on_design_day": false,
                                         "efficiency_metric_values": [
                                             4.3
                                         ],
@@ -92,7 +94,7 @@
                                         "fan_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
-                                        "minimum_outdoor_airflow": 472.0,
+                                        "minimum_outdoor_airflow": 94.4,
                                         "supply_fans": [
                                             {
                                                 "id": "Supply Fan - Prm Zone 1 (South)",
@@ -126,6 +128,7 @@
                                         "water_source_heat_pump_loop": "CW Loop 1",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
+                                        "is_sized_based_on_design_day": false,
                                         "efficiency_metric_values": [
                                             4.3
                                         ],
@@ -138,7 +141,7 @@
                                         "fan_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
-                                        "minimum_outdoor_airflow": 472.0,
+                                        "minimum_outdoor_airflow": 94.4,
                                         "supply_fans": [
                                             {
                                                 "id": "Supply Fan - Prm Zone 2 (East)",
@@ -172,6 +175,7 @@
                                         "water_source_heat_pump_loop": "CW Loop 1",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
+                                        "is_sized_based_on_design_day": false,
                                         "efficiency_metric_values": [
                                             4.3
                                         ],
@@ -184,7 +188,7 @@
                                         "fan_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
-                                        "minimum_outdoor_airflow": 472.0,
+                                        "minimum_outdoor_airflow": 94.4,
                                         "supply_fans": [
                                             {
                                                 "id": "Supply Fan - Prm Zone 3 (North)",
@@ -218,6 +222,7 @@
                                         "water_source_heat_pump_loop": "CW Loop 1",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
+                                        "is_sized_based_on_design_day": false,
                                         "efficiency_metric_values": [
                                             4.3
                                         ],
@@ -230,7 +235,7 @@
                                         "fan_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
-                                        "minimum_outdoor_airflow": 472.0,
+                                        "minimum_outdoor_airflow": 94.4,
                                         "supply_fans": [
                                             {
                                                 "id": "Supply Fan - Prm Zone 4 (West)",
@@ -245,9 +250,8 @@
                                 {
                                     "id": "RPD_Test_System_P_WSHP_DOAS",
                                     "cooling_system": {
-                                        "id": "HP Cooling Coil 1",
+                                        "id": "DX Cooling Coil 1",
                                         "type": "DIRECT_EXPANSION",
-                                        "condenser_water_loop": "CW Loop 1",
                                         "design_sensible_cool_capacity": 11723,
                                         "rated_total_cool_capacity": 17584,
                                         "is_sized_based_on_design_day": false,
@@ -260,20 +264,19 @@
                                     },
                                     "heating_system": {
                                         "id": "HP Heating Coil 1",
-                                        "type": "HEAT_PUMP",
-                                        "water_source_heat_pump_loop": "CW Loop 1",
+                                        "type": "FURNACE",
                                         "design_capacity": 17500,
                                         "rated_capacity": 17584,
                                         "efficiency_metric_values": [
-                                            4.3
+                                            0.78
                                         ],
                                         "efficiency_metric_types": [
-                                            "HEAT_PUMP_COEFFICIENT_OF_PERFORMANCE_HIGH_TEMPERATURE_NO_FAN"
+                                            "ANNUAL_FUEL_UTILIZATION_EFFICIENCY"
                                         ]
                                     },
                                     "fan_system": {
                                         "id": "CAV Fan System 1",
-                                        "fan_control": "VARIABLE_SPEED_DRIVE",
+                                        "fan_control": "CONSTANT",
                                         "temperature_control": "CONSTANT",
                                         "operation_during_occupied": "CONTINUOUS",
                                         "operation_during_unoccupied": "KEEP_OFF",
@@ -732,7 +735,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 1 INFILTRATION",
                                         "modeling_method": "WEATHER_DRIVEN",
-                                        "flow_rate": 0.114117,
+                                        "flow_rate": 114.1,
                                         "multiplier_schedule": "Prm Zone 1 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -960,7 +963,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 2 INFILTRATION",
                                         "modeling_method": "CONSTANT",
-                                        "flow_rate": 0.077315
+                                        "flow_rate": 77.3
                                     },
                                     "terminals": [
                                         {
@@ -1197,7 +1200,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 3 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.080542,
+                                        "flow_rate": 80.5,
                                         "multiplier_schedule": "Prm Zone 3 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -1397,7 +1400,7 @@
                                     "infiltration": {
                                         "id": "Prm Zone 4 INFILTRATION",
                                         "modeling_method": "CONSTANT_SCHEDULED",
-                                        "flow_rate": 0.053702,
+                                        "flow_rate": 53.7,
                                         "multiplier_schedule": "Prm Zone 4 INFILTRATION SCH"
                                     },
                                     "terminals": [
@@ -45335,7 +45338,9 @@
                         "design_supply_temperature": 21.1,
                         "is_sized_using_coincident_load": true,
                         "operation": "CONTINUOUS",
-                        "flow_control": "VARIABLE_FLOW"
+                        "flow_control": "VARIABLE_FLOW",
+                        "minimum_flow_fraction": 0.25,
+                        "temperature_reset_type": "NO_RESET"
                     }
                 }
             ],
