@@ -3515,7 +3515,7 @@ FanSystem:
     operating_schedule:
       Description: "Operating schedule name"
       Data Type: "Reference"
-      Notes: "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
+      Notes: "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. While a zero indicates the fan is off, it may still be activated during that hour by other controls such as providing fan cycling at night to maintain the unoccupied set point. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
