@@ -2628,7 +2628,7 @@ Elevator:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     number_of_floors_served:
-      Description: "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens."
+      Description: "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens. Exclude levels serving only parking garages or other levels explicity not part of the building."
       Data Type: "Numeric"
       Range: ">=1"
       RMD Test: "unknown"
