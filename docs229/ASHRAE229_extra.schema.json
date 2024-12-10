@@ -772,14 +772,14 @@
                     "description": "Meaured air leakage rate from infiltration of outside air",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "m3/s",
+                    "units": "L/s",
                     "notes": "Based on the pressure described in ASHRAE229.measured_infiltration_pressure_difference. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
                 },
                 "flow_rate": {
                     "description": "Design infiltration flow rate",
                     "type": "number",
                     "minimum": 0.0,
-                    "units": "m3/s",
+                    "units": "L/s",
                     "notes": "Infiltration flow rate for simulation infiltration models unadjusted for temperature difference or windspeed or schedule often with a windspeed at 10 mph (4.5 m/s).  This may vary in meaning between simulation engines. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
                 },
                 "multiplier_schedule": {
@@ -1528,10 +1528,6 @@
                     "description": "Type of miscellaneous equipment",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/MiscellaneousEquipmentOptions"
                 },
-                "has_automatic_control": {
-                    "description": "Indicates that the receptacles have automatic controls",
-                    "type": "boolean"
-                },
                 "automatic_controlled_percentage": {
                     "description": "Fraction of receptacles that have automatic controls.",
                     "type": "number",
@@ -1955,7 +1951,7 @@
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/ElevatorOptions"
                 },
                 "number_of_floors_served": {
-                    "description": "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens.",
+                    "description": "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens. Exclude levels serving only parking garages or other levels explicity not part of the building.",
                     "type": "number",
                     "minimum": 1.0
                 },
@@ -2625,7 +2621,7 @@
                 "operating_schedule": {
                     "description": "Operating schedule name",
                     "type": "string",
-                    "notes": "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
+                    "notes": "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. While a zero indicates the fan is off, it may still be activated during that hour by other controls such as providing fan cycling at night to maintain the unoccupied set point. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
                 },
                 "minimum_airflow": {
                     "description": "Minimum volume airflow",
@@ -4529,7 +4525,7 @@
                 "draw_pattern": {
                     "description": "Draw pattern",
                     "$ref": "ASHRAE229_extra.schema.json#/definitions/DrawPatternOptions",
-                    "notes": "Draw pattern referes to the water draw profile in the uniform energy factor test"
+                    "notes": "Draw pattern refers to the water draw profile in the uniform energy factor test. See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information."
                 },
                 "first_hour_rating": {
                     "description": "First hour rating volume",
@@ -4673,7 +4669,7 @@
             ],
             "notes": [
                 null,
-                null,
+                "See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information.",
                 null,
                 null,
                 "Units are watts and can be converted from STANDBY_LOSS_FRACTION based forumulat found in CBECC-Res User Manual",
