@@ -1090,7 +1090,7 @@ Infiltration:
       Description: "Meaured air leakage rate from infiltration of outside air"
       Data Type: "Numeric"
       Range: ">=0"
-      Units: "m3/s"
+      Units: "L/s"
       Notes: "Based on the pressure described in ASHRAE229.measured_infiltration_pressure_difference. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
       RMD Test: "unknown"
       AppG Used By TCDs: False
@@ -1101,7 +1101,7 @@ Infiltration:
       Description: "Design infiltration flow rate"
       Data Type: "Numeric"
       Range: ">=0"
-      Units: "m3/s"
+      Units: "L/s"
       Notes: "Infiltration flow rate for simulation infiltration models unadjusted for temperature difference or windspeed or schedule often with a windspeed at 10 mph (4.5 m/s).  This may vary in meaning between simulation engines. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
       RMD Test: "Primary"
       AppG Used By TCDs: True
