@@ -556,7 +556,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -565,7 +565,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -574,7 +574,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -779,7 +779,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 41.838,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -1001,7 +1001,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -1010,7 +1010,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -1019,7 +1019,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 21.456,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
@@ -1242,7 +1242,7 @@
                                                     "classification": "WINDOW",
                                                     "glazed_area": 41.838,
                                                     "opaque_area": 0.0,
-                                                    "u_factor": 3.29,
+                                                    "u_factor": 2.2033,
                                                     "solar_heat_gain_coefficient": 0.387,
                                                     "visible_transmittance": 0.417
                                                 },
