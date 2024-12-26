@@ -140,6 +140,24 @@ RulesetProjectDescription:
       EPout Column: ""
       EPstatus: "DoneUsingConstant"
       EP Notes: ""
+    schema_version:
+      Description: "Version of the schema used for generating the file"
+      Data Type: "String"
+      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
+      RMD Test: False
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     data_timestamp:
       Description: "Date and time of data publication"
       Data Type: "Timestamp"
@@ -2003,7 +2021,7 @@ Infiltration:
       Description: "Meaured air leakage rate from infiltration of outside air"
       Data Type: "Numeric"
       Range: ">=0"
-      Units: "m3/s"
+      Units: "L/s"
       Notes: "Based on the pressure described in ASHRAE229.measured_infiltration_pressure_difference. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
       RMD Test: "unknown"
       AppG Used By TCDs: False
@@ -2023,7 +2041,7 @@ Infiltration:
       Description: "Design infiltration flow rate"
       Data Type: "Numeric"
       Range: ">=0"
-      Units: "m3/s"
+      Units: "L/s"
       Notes: "Infiltration flow rate for simulation infiltration models unadjusted for temperature difference or windspeed or schedule often with a windspeed at 10 mph (4.5 m/s).  This may vary in meaning between simulation engines. If a zone includes multiple spaces and infiltration is specified at the space level the rates should be aggregated to the zone."
       RMD Test: "Primary"
       AppG Used By TCDs: True
@@ -3874,23 +3892,6 @@ MiscellaneousEquipment:
       EPout Column: ""
       EPstatus: "ComplianceParameter"
       EP Notes: "If ElectricEquipment:ITE:AirCooled then can be set to INFORMATION_TECHNOLOGY_EQUIPMENT but no way to differentiate between PLUG and PROCESS."
-    has_automatic_control:
-      Description: "Indicates that the receptacles have automatic controls"
-      Data Type: "Boolean"
-      RMD Test: False
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: False
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "ComplianceParameter"
-      EP Notes: ""
     automatic_controlled_percentage:
       Description: "Fraction of receptacles that have automatic controls."
       Data Type: "Numeric"
@@ -4215,6 +4216,24 @@ Schedule:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
+    hourly_heating_design_year:
+      Description: "Hourly values for heating design year"
+      Data Type: "[Numeric][0..8784]"
+      Notes: "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the design_year_ignore_indicator value will be ignored."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     hourly_cooling_design_day:
       Description: "Hourly values for cooling design day"
       Data Type: "[Numeric][0..24]"
@@ -4225,6 +4244,42 @@ Schedule:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
       Used by RCT Test: False
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
+    hourly_cooling_design_year:
+      Description: "Hourly values for cooling design year"
+      Data Type: "[Numeric][0..8784]"
+      Notes: "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the design_year_ignore_indicator value will be ignored."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
+    design_year_ignore_indicator:
+      Description: "Flag value used to indicate an hour that was ignored for the design years."
+      Data Type: "Numeric"
+      Notes: "Use a value that would otherwise not make sense for the schedule. Common value would be -1 or -999."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
+      Used by RCT Test: "unknown"
       EPin Object: ""
       EPin Field: ""
       EPout File: ""
@@ -4744,7 +4799,7 @@ Elevator:
       EPstatus: "NotStarted"
       EP Notes: ""
     number_of_floors_served:
-      Description: "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens."
+      Description: "Number of floors served by the elevator. This includes all unique full height building levels adjacent to the elevator shaft that are between the top and bottom floors where the elevator opens. Exclude levels serving only parking garages or other levels explicity not part of the building."
       Data Type: "Numeric"
       Range: ">=1"
       RMD Test: "unknown"
@@ -5299,7 +5354,7 @@ HeatingSystem:
     type:
       Description: "Heating system type"
       Data Type: "<HeatingSystemOptions>"
-      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5426,9 +5481,10 @@ HeatingSystem:
       EPout Column: "Coil Total Capacity at Ideal Loads Peak and Coil Final Gross Total Capacity"
       EPstatus: "DoneUsingOutput"
       EP Notes: "compute the sizing factor"
-    is_sized_based_on_design_day:
-      Description: "True if the component is sized by the simulation software for the design day"
+    is_calculated_size:
+      Description: "True if the component is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5507,6 +5563,15 @@ HeatingSystem:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     heatpump_auxiliary_heat_high_shutoff_temperature:
       Description: "Heatpump auxiliary heat high temperature shutoff"
       Data Type: "Numeric"
@@ -5684,7 +5749,7 @@ CoolingSystem:
     type:
       Description: "Cooling system type"
       Data Type: "<CoolingSystemOptions>"
-      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5797,9 +5862,10 @@ CoolingSystem:
       EPout Column: "Coil Total Capacity at Ideal Loads Peak and Coil Final Gross Total Capacity"
       EPstatus: "DoneUsingOutput"
       EP Notes: "compute the sizing factor"
-    is_sized_based_on_design_day:
-      Description: "True if the component is sized by the simulation software for the design day"
+    is_calculated_size:
+      Description: "True if the component is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For capacities determinined by software, including the simulation software, this should be true. For capacities that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.cooling_design_day_type. For capacities reflecting the an actual piece of equipment this should be false."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -6329,7 +6395,7 @@ FanSystem:
     operating_schedule:
       Description: "Operating schedule name"
       Data Type: "Reference"
-      Notes: "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
+      Notes: "If the schedule is not present, the fansystem  is always operating. Schedule values of zero when fan is scheduled to be off and one when the fan is scheduled to be on. While a zero indicates the fan is off, it may still be activated during that hour by other controls such as providing fan cycling at night to maintain the unoccupied set point. No values beside 0 and 1 are allowed. Constraint to use when implemented :Schedule:"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -6966,9 +7032,10 @@ Fan:
       EPout Column: "Max Air Flow Rate"
       EPstatus: "DoneUsingOutput"
       EP Notes: ""
-    is_airflow_sized_based_on_design_day:
-      Description: "True if the airflow is sized by the simulation software for the design day"
+    is_airflow_calculated:
+      Description: "True if the airflow is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For air flows determinined by software, including the simulation software, this should be true. For air flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For air flows reflecting the an actual piece of equipment this should be false. If the air flow is a calculated sum of hardcoded zone air flow values this should be false."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -7318,7 +7385,7 @@ Terminal:
     type:
       Description: "Type of terminal"
       Data Type: "<TerminalOptions>"
-      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. System configurations that are at the zone and only include fans and coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, and chilled beams) should be reported in the schema using Terminal with the chilled water and hot water systems described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
+      Notes: "System configurations that typically are at the zone and include a compressor (such as packaged terminal air conditioning, packaged terminal heat pumps, window air conditioning units, and water loop heat pumps) should be reported in the schema using HeatingSystem and CoolingSystem. Systems that include gas or electric furnaces should be reported in the schema using HeatingSystem. Distributed systems where each zone is individually served by dedicated fans and/or coils (such as four-pipe fan coil, two-pipe fan coil, radiant systems, baseboards, chilled beams, and variable refrigerant flow indoor units) should be reported in the schema using Terminal with the cooling and heating described in the cooling_source and heating_source data elements (and any other relevant Terminal Data elements). Evaporative cooling systems should be described in CoolingSystem. Passive diffusers with no coil or fan should be described in Terminal."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -7718,6 +7785,8 @@ TerminalOptions:
       Description: "Radiant"
     BASEBOARD:
       Description: "Baseboard"
+    VARIABLE_REFRIGERANT_FLOW:
+      Description: "Variable refrigerant flow indoor unit"
     OTHER:
       Description: "Other"
 
@@ -8489,9 +8558,10 @@ Pump:
       EPout Column: "Water Flow"
       EPstatus: "DoneUsingOutput"
       EP Notes: "convert from m3/s to l/s"
-    is_flow_sized_based_on_design_day:
-      Description: "True if the design_flow is sized by the simulation software for the design day"
+    is_flow_calculated:
+      Description: "True if the design_flow is sized by software"
       Data Type: "Boolean"
+      Notes: "Determined in accordance with generally accepted engineering standards. For flows determinined by software, including the simulation software, this should be true. For flows that are autosized values should be true. Typically when true, the sizing is based on one or more design days, or other time periods, and should be consistent with the weather.heating_design_day_type and weather.cooling_design_day_type. For flows reflecting the an actual piece of equipment this should be false."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -8752,7 +8822,7 @@ Boiler:
     efficiency_metric_values:
       Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
       Data Type: "[Numeric]"
-      Range: ">=0, <=1"
+      Range: ">=0"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -9549,6 +9619,8 @@ ChillerCompressorOptions:
       Description: "Scroll"
     POSITIVE_DISPLACEMENT:
       Description: "Positive displacement"
+    HEAT_PUMP:
+      Description: "Heat pump"
     SINGLE_EFFECT_INDIRECT_FIRED_ABSORPTION:
       Description: "Single-effect indirect-fired absorption"
     DOUBLE_EFFECT_INDIRECT_FIRED_ABSORPTION:
@@ -9738,6 +9810,25 @@ HeatRejection:
       EPout Table: "Cooling Towers and Fluid Coolers"
       EPout Column: "Approach"
       EPstatus: "DoneUsingOutput"
+      EP Notes: ""
+    fan_design_electric_power:
+      Description: "Fan design electric power"
+      Data Type: "Numeric"
+      Units: "W"
+      Notes: "Only used when fan_shaft_power and fan_motor_efficiency and fan_motor_nameplate_power cannot be provided."
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
       EP Notes: ""
     fan_shaft_power:
       Description: "Fan Shaft Power"
@@ -10875,17 +10966,15 @@ ServiceWaterHeatingEquipment:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
-    energy_factor:
-      Description: "Energy factor"
-      Data Type: "Numeric"
-      Range: ">=0"
-      Notes: "From CBECC-Com."
+    efficiency_metric_types:
+      Description: "List of efficiency metrics that correspond to the values in efficiency_metric_values list"
+      Data Type: "[<ServiceWaterHeatingEfficiencyMetricOptions>]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
+      AppG B_RMDs Same: "unknown"
+      Used by RCT Test: "unknown"
       EPin Object: ""
       EPin Field: ""
       EPout File: ""
@@ -10894,53 +10983,15 @@ ServiceWaterHeatingEquipment:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
-    thermal_efficiency:
-      Description: "Service water heating heater thermal efficiency"
-      Data Type: "Numeric"
-      Range: ">=0"
+    efficiency_metric_values:
+      Description: "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list"
+      Data Type: "[Numeric]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "NotStarted"
-      EP Notes: ""
-    standby_loss_fraction:
-      Description: "Standby loss fraction"
-      Data Type: "Numeric"
-      Notes: "From CBECC-Com."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "NotStarted"
-      EP Notes: ""
-    uniform_energy_factor:
-      Description: "Uniform energy factor"
-      Data Type: "Numeric"
-      Range: ">=0"
-      Notes: "From CBECC-Com."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
+      AppG B_RMDs Same: "unknown"
+      Used by RCT Test: "unknown"
       EPin Object: ""
       EPin Field: ""
       EPout File: ""
@@ -10952,7 +11003,7 @@ ServiceWaterHeatingEquipment:
     draw_pattern:
       Description: "Draw pattern"
       Data Type: "<DrawPatternOptions>"
-      Notes: "Draw pattern referes to the water draw profile in the uniform energy factor test"
+      Notes: "Draw pattern refers to the water draw profile in the uniform energy factor test. See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -11332,6 +11383,22 @@ ServiceWaterHeatingEquipment:
       EPstatus: "NotStarted"
       EP Notes: ""
 
+ServiceWaterHeatingEfficiencyMetricOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    ENERGY_FACTOR:
+      Description: "Energy factor"
+    UNIFORM_ENERGY_FACTOR:
+      Description: "Uniform energy factor"
+      Notes: "See 10 CFR 430 Appendix E Uniform Test Method for Measuring the Energy Consumption of Water Heaters for more information."
+    THERMAL_EFFICIENCY:
+      Description: "Thermal efficiency"
+    STANDBY_LOSS_FRACTION:
+      Description: "Standby loss fraction"
+    STANDBY_LOSS_ENERGY:
+      Description: "Standby loss fraction"
+      Notes: "Units are watts and can be converted from STANDBY_LOSS_FRACTION based forumulat found in CBECC-Res User Manual"
+
 ServiceWaterHeaterOptions:
   Object Type: "Enumeration"
   Enumerators:
@@ -11355,24 +11422,34 @@ ComponentLocationOptions:
   Enumerators:
     IN_ZONE:
       Description: "In a zone"
+      Notes: "The component is located in a zone modeled in the simulation e.g., heat transfer through the surfaces surrounding the zone may impact the space temperature. This should be used instead of the other enumeration options when the zone is being modeled in the simulation."
     CONDITIONED:
       Description: "Conditioned"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a conditioned location."
     SEMICONDITIONED:
       Description: "Semiconditioned"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators."
     OUTSIDE:
       Description: "Outside"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to the outdoors."
     GARAGE:
       Description: "Garage"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone."
     ATTIC:
       Description: "Attic"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone."
     CRAWL_SPACE:
       Description: "Crawl space"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone."
     UNDERGROUND:
       Description: "Underground"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an underground area."
     UNCONDITIONED:
       Description: "Unconditioned"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list."
     OTHER:
       Description: "Other"
+      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an area not otherwise described by a different enumeration."
 
 DrawPatternOptions:
   Object Type: "Enumeration"
