@@ -6680,7 +6680,7 @@ ServiceWaterHeatingUse:
     use:
       Description: "Usage of service hot water"
       Data Type: "Numeric"
-      Notes: "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field."
+      Notes: "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field. When describing a flow rate, it indicates the use of hot water from the water heater unmixed with cold tap water."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6704,7 +6704,7 @@ ServiceWaterHeatingUse:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     temperature_at_fixture:
-      Description: "Reference to the schedule containing the multiplier for the use of service hot water"
+      Description: "Temperature leaving the fixture that is result of mixing hot water from the water heater and cold water from the tap."
       Data Type: "Numeric"
       Units: "C"
       Notes: "From RESNET"
@@ -6766,13 +6766,13 @@ ServiceWaterHeatingUseUnitOptions:
       Notes: "The units for the use that correspond to this are watts"
     VOLUME_PER_PERSON:
       Description: "Volume per person"
-      Notes: "The units for the use that correspond to this are liters/(minute-person)"
+      Notes: "The units for the use of hot water that correspond to this are liters/(minute-person)"
     VOLUME_PER_AREA:
       Description: "Volume per area"
-      Notes: "The units for the use that correspond to this are liters/(minute-m2)"
+      Notes: "The units for the use of hot water that correspond to this are liters/(minute-m2)"
     VOLUME:
       Description: "Volume"
-      Notes: "The units for the use that correspond to this are liters/minute"
+      Notes: "The units for the use of hot water that correspond to this are liters/minute"
     OTHER:
       Description: "Other"
 
