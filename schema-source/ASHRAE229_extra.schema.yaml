@@ -6253,14 +6253,6 @@ ServiceWaterHeatingEquipment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    heater_type:
-      Description: "Service water heater type"
-      Data Type: "<ServiceWaterHeaterOptions>"
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
     tank:
       Description: "Tank that is part of the service water heating equipment"
       Data Type: "{Tank}"
