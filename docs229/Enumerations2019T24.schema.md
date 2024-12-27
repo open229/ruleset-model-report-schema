@@ -6,12 +6,10 @@
 | `BASELINE`        | The baseline building model                 |       |
 
 # RulesetModelOptions2019T24Res
-| Enumerator |                             Description                              | Notes |
-| ---------- | -------------------------------------------------------------------- | ----- |
-| `USER`     | The building model as described without consideration of the ruleset |       |
-| `PROPOSED` | The proposed building model                                          |       |
-| `STANDARD` | The standard building model                                          |       |
-| `BASELINE` | The baseline building model                                          |       |
+| Enumerator |         Description         | Notes |
+| ---------- | --------------------------- | ----- |
+| `STANDARD` | The standard building model |       |
+| `BASELINE` | The baseline building model |       |
 
 # ConstructionClassificationOptions2019T24
 |  Enumerator   | Description |                                                      Notes                                                       |
