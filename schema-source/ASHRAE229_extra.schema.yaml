@@ -4227,7 +4227,7 @@ Terminal:
       Description: "Zone terminal minimum outdoor air volume airflow"
       Data Type: "Numeric"
       Units: "L/s"
-      Notes: "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided."
+      Notes: "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided. This should be the design flow of outdoor air based on an occupied space using the appropriate ventilation standard such as ASHRAE Standard 62.1. Adjustments to lower the value for demand controlled ventilation should be made using the minimum_outdoor_airflow_multiplier_schedule."
       RMD Test: "unknown"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -4236,7 +4236,7 @@ Terminal:
     minimum_outdoor_airflow_multiplier_schedule:
       Description: "Zone terminal minimum outdoor air volume airflow multiplier schedule name"
       Data Type: "Reference"
-      Notes: "If the schedule is not present, the multiplier is always one. Constraint to use when implemented :Schedule:"
+      Notes: "If the schedule is not present, the multiplier is always one. Often used to indicate the reduced flow needed when the space has reduced occupancy when a demand controlled ventilation control is used. Constraint to use when implemented :Schedule:"
       RMD Test: "unknown"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
