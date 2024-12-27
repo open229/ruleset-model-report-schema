@@ -10,7 +10,7 @@ Schema:
   Object Type: "Meta"
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
-  Version: "0.1.2"
+  Version: "0.1.2" 
   References:
     - "Enumerations2019ASHRAE901"
     - "EnumerationsRESNET"

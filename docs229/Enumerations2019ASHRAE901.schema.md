@@ -1,16 +1,44 @@
-# RulesetModelOptions2019ASHRAE901
-|   Enumerator   |                                                             Description                                                              | Notes |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----- |
-| `BASELINE_0`   | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with no rotation         |       |
-| `BASELINE_90`  | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 90 degree rotation  |       |
-| `BASELINE_180` | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 180 degree rotation |       |
-| `BASELINE_270` | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 270 degree rotation |       |
+# AdditionalSurfaceAdjacencyOptions2019ASHRAE901
+|   Enumerator    |                                                                   Description                                                                   | Notes |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| `UNENCLOSED`    | The space on the other side of the surface is assumed to be unenclosed. The space on the other side of the surface is not explicity modeled.    |       |
+| `UNCONDITIONED` | The space on the other side of the surface is assumed to be unconditioned. The space on the other side of the surface is not explicity modeled. |       |
+| `UNHEATED`      | Surface adjacent to a environment that is not heated but enclosed.                                                                              |       |
+| `SEMIHEATED`    | Surface adjacent to a environment that is semi-heated.                                                                                          |       |
+
+# ClimateZoneOptions2019ASHRAE901
+| Enumerator |      Description      | Notes |
+| ---------- | --------------------- | ----- |
+| `CZ0A`     | Extremely Hot - Humid |       |
+| `CZ0B`     | Extremely Hot - Dry   |       |
+| `CZ1A`     | Very Hot - Humid      |       |
+| `CZ1B`     | Very Hot - Dry        |       |
+| `CZ2A`     | Hot - Humid           |       |
+| `CZ2B`     | Hot - Dry             |       |
+| `CZ3A`     | Warm - Humid          |       |
+| `CZ3B`     | Warm - Dry            |       |
+| `CZ3C`     | Warm - Marine         |       |
+| `CZ4A`     | Mixed - Humid         |       |
+| `CZ4B`     | Mixed - Dry           |       |
+| `CZ4C`     | Mixed - Marine        |       |
+| `CZ5A`     | Cool - Humid          |       |
+| `CZ5B`     | Cool - Dry            |       |
+| `CZ5C`     | Cool - Marine         |       |
+| `CZ6A`     | Cold - Humid          |       |
+| `CZ6B`     | Cold - Dry            |       |
+| `CZ7`      | Very cold             |       |
+| `CZ8`      | Subarctic/arctic      |       |
 
 # CompliancePathOptions2019ASHRAE901
 |    Enumerator    |   Description   | Notes |
 | ---------------- | --------------- | ----- |
 | `CODE_COMPLIANT` | Code Compliance |       |
 | `BEYOND_CODE`    | Beyond Code     |       |
+
+# ConstructionClassificationOptions2019ASHRAE901
+|   Enumerator   | Description  | Notes |
+| -------------- | ------------ | ----- |
+| `STEEL_FRAMED` | Steel-framed |       |
 
 # EnvelopeSpaceOptions2019ASHRAE901
 |          Enumerator          |        Description         | Notes |
@@ -19,6 +47,49 @@
 | `RESIDENTIAL_CONDITIONED`    | Residential conditioned    |       |
 | `SEMIHEATED`                 | Semiheated                 |       |
 | `UNCONDITIONED`              | Unconditioned              |       |
+
+# ExteriorLightingAreaOptions2019ASHRAE901TableG36
+|              Enumerator              |                Description                |                                                                                        Notes                                                                                         |
+| ------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `UNCOVERED_PARKING_LOTS_AND_DRIVES`  | Uncovered parking lots and drives         |                                                                                                                                                                                      |
+| `WALKWAY_NARROW`                     | Walkway - narrow                          | Less than 10 ft wide                                                                                                                                                                 |
+| `WALKWAY_WIDE`                       | Walkway - wide                            | 10 ft wide or greater                                                                                                                                                                |
+| `PLAZA_AREAS`                        | Plaza Areas                               |                                                                                                                                                                                      |
+| `SPECIAL_FEATURE_AREAS`              | Special Feature Areas                     |                                                                                                                                                                                      |
+| `STAIRWAYS`                          | Stairways                                 |                                                                                                                                                                                      |
+| `MAIN_ENTRANCE_DOOR`                 | Main entrance door                        |                                                                                                                                                                                      |
+| `OTHER_ENTRANCE_OR_EXIT_DOORS`       | Other entrance or exit doors              |                                                                                                                                                                                      |
+| `EXTERIOR_CANOPIES`                  | Exterior canopies                         |                                                                                                                                                                                      |
+| `OUTDOOR_SALES_OPEN_AREAS`           | Outdoor sales - open areas                |                                                                                                                                                                                      |
+| `STREET_FRONTAGE`                    | Street frontage                           |                                                                                                                                                                                      |
+| `BUILDING_FACADE`                    | Building facade                           |                                                                                                                                                                                      |
+| `AUTOMATED_TELLER_MACHINES`          | Automated teller machines                 |                                                                                                                                                                                      |
+| `NIGHT_DEPOSITORIES`                 | Night depositories                        |                                                                                                                                                                                      |
+| `ENTRANCE_AND_GATEHOUSE`             | Entrance and gatehouses                   | Entrances and gatehouse inspection stations at guarded facilities.                                                                                                                   |
+| `EMERGENCY_VEHICLE_LOADING_AREA`     | Emergency vehicle loading area            | Loading areas for law enforcement, fire, ambulance and other emergency service vehicles                                                                                              |
+| `DRIVE_UP_WINDOWS_FAST_FOOD`         | Drive-up windows at fast-food restaurants |                                                                                                                                                                                      |
+| `PARKING_NEAR_24HR_RETAIL_ENTRANCES` | Parking near 24-hour retail entrances     |                                                                                                                                                                                      |
+| `MISCELLANEOUS_TRADABLE`             | Miscellaneous tradable                    | This option would most often be used by software that does not support entire schema and doesn't know if exterior lighting is in a specific type but does know if it is tradable     |
+| `MISCELLANEOUS_NON_TRADABLE`         | Miscellaneous non-tradable                | This option would most often be used by software that does not support entire schema and doesn't know if exterior lighting is in a specific type but does know if it is non-tradable |
+
+# ExteriorLightingZoneOptions2019ASHRAE901
+|            Enumerator             |            Description            |                                                                               Notes                                                                                |
+| --------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ZONE_0_UNDEVELOPED`              | Zone 0 - undeveloped              | Undeveloped areas within national parks, state parks, forest land, rural areas, and other undeveloped areas as defined by the authority having jurisdiction        |
+| `ZONE_1_DEVELOPED_RURAL_AND_PARK` | Zone 1 - developed rural and park | Developed areas of national parks, state parks, forest land, and rural areas                                                                                       |
+| `ZONE_2_RESIDENTIAL_NEIGHBORHOOD` | Zone 2 - residential neighborhood | Areas predominantly consisting of residential zoning, neighborhood business districts, light industrial with limited nighttime use and residential mixed use areas |
+| `ZONE_3_ALL_OTHER_AREAS`          | Zone 3 - all other areas          |                                                                                                                                                                    |
+| `ZONE_4_HIGH_ACTIVITY_COMMERCIAL` | Zone 4 - high-activity commercial | High-activity commercial districts in major metropolitan areas as designated by the local jurisdiction                                                             |
+
+# HeatingVentilatingAirConditioningBuildingAreaOptions2019ASHRAE901
+|       Enumerator        |      Description      | Notes |
+| ----------------------- | --------------------- | ----- |
+| `RESIDENTIAL`           | Residential           |       |
+| `PUBLIC_ASSEMBLY`       | Public assembly       |       |
+| `RETAIL`                | Retail                |       |
+| `HOSPITAL`              | Hospital              |       |
+| `HEATED_ONLY_STORAGE`   | Heated only storage   |       |
+| `OTHER_NON_RESIDENTIAL` | Other non-residential |       |
 
 # LightingBuildingAreaOptions2019ASHRAE901T951TG38
 |          Enumerator          |         Description         |                                             Notes                                              |
@@ -56,6 +127,15 @@
 | `WAREHOUSE`                  | Warehouse                   |                                                                                                |
 | `WORKSHOP`                   | Workshop                    |                                                                                                |
 | `NONE`                       | None                        | Indicates that building area method is not used and instead the space-by-space method is used. |
+
+# LightingPurposeOptions2019ASHRAE901
+|    Enumerator    |  Description   | Notes |
+| ---------------- | -------------- | ----- |
+| `GENERAL`        | General        |       |
+| `TASK`           | Task           |       |
+| `DECORATIVE`     | Decorative     |       |
+| `RETAIL_DISPLAY` | Retail display |       |
+| `UNREGULATED`    | Unregulated    |       |
 
 # LightingSpaceOptions2019ASHRAE901TG37
 |                          Enumerator                           |                                           Description                                           |                             Notes                             |
@@ -164,47 +244,89 @@
 | `WAREHOUSE_STORAGE_AREA_MEDIUM_TO_BULKY_PALLETIZED_ITEMS`     | Warehouse â€” Storage Area - Medium to bulky, palletized items                                  |                                                               |
 | `WAREHOUSE_STORAGE_AREA_SMALLER_HAND_CARRIED_ITEMS`           | Warehouse â€” Storage Area - Smaller, hand-carried items                                        |                                                               |
 
-# LightingPurposeOptions2019ASHRAE901
-|    Enumerator    |  Description   | Notes |
-| ---------------- | -------------- | ----- |
-| `GENERAL`        | General        |       |
-| `TASK`           | Task           |       |
-| `DECORATIVE`     | Decorative     |       |
-| `RETAIL_DISPLAY` | Retail display |       |
-| `UNREGULATED`    | Unregulated    |       |
+# OutputSchemaOptions2019ASHRAE901
+|           Enumerator           |            Description             | Notes |
+| ------------------------------ | ---------------------------------- | ----- |
+| `OUTPUT_SCHEMA_ASHRAE901_2019` | Output schema for ASHRAE 90.1 2019 |       |
 
-# ExteriorLightingAreaOptions2019ASHRAE901TableG36
-|              Enumerator              |                Description                |                                                                                        Notes                                                                                         |
-| ------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `UNCOVERED_PARKING_LOTS_AND_DRIVES`  | Uncovered parking lots and drives         |                                                                                                                                                                                      |
-| `WALKWAY_NARROW`                     | Walkway - narrow                          | Less than 10 ft wide                                                                                                                                                                 |
-| `WALKWAY_WIDE`                       | Walkway - wide                            | 10 ft wide or greater                                                                                                                                                                |
-| `PLAZA_AREAS`                        | Plaza Areas                               |                                                                                                                                                                                      |
-| `SPECIAL_FEATURE_AREAS`              | Special Feature Areas                     |                                                                                                                                                                                      |
-| `STAIRWAYS`                          | Stairways                                 |                                                                                                                                                                                      |
-| `MAIN_ENTRANCE_DOOR`                 | Main entrance door                        |                                                                                                                                                                                      |
-| `OTHER_ENTRANCE_OR_EXIT_DOORS`       | Other entrance or exit doors              |                                                                                                                                                                                      |
-| `EXTERIOR_CANOPIES`                  | Exterior canopies                         |                                                                                                                                                                                      |
-| `OUTDOOR_SALES_OPEN_AREAS`           | Outdoor sales - open areas                |                                                                                                                                                                                      |
-| `STREET_FRONTAGE`                    | Street frontage                           |                                                                                                                                                                                      |
-| `BUILDING_FACADE`                    | Building facade                           |                                                                                                                                                                                      |
-| `AUTOMATED_TELLER_MACHINES`          | Automated teller machines                 |                                                                                                                                                                                      |
-| `NIGHT_DEPOSITORIES`                 | Night depositories                        |                                                                                                                                                                                      |
-| `ENTRANCE_AND_GATEHOUSE`             | Entrance and gatehouses                   | Entrances and gatehouse inspection stations at guarded facilities.                                                                                                                   |
-| `EMERGENCY_VEHICLE_LOADING_AREA`     | Emergency vehicle loading area            | Loading areas for law enforcement, fire, ambulance and other emergency service vehicles                                                                                              |
-| `DRIVE_UP_WINDOWS_FAST_FOOD`         | Drive-up windows at fast-food restaurants |                                                                                                                                                                                      |
-| `PARKING_NEAR_24HR_RETAIL_ENTRANCES` | Parking near 24-hour retail entrances     |                                                                                                                                                                                      |
-| `MISCELLANEOUS_TRADABLE`             | Miscellaneous tradable                    | This option would most often be used by software that does not support entire schema and doesn't know if exterior lighting is in a specific type but does know if it is tradable     |
-| `MISCELLANEOUS_NON_TRADABLE`         | Miscellaneous non-tradable                | This option would most often be used by software that does not support entire schema and doesn't know if exterior lighting is in a specific type but does know if it is non-tradable |
+# PrescribedScheduleOptions2019ASHRAE901
+|    Enumerator    |                                                     Description                                                     | Notes |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ----- |
+| `NOT_APPLICABLE` | No prescribed schedules for Appendix G of ASHRAE Standard 90.1-2019. This field may be relavent for other rulesets. |       |
 
-# ExteriorLightingZoneOptions2019ASHRAE901
-|            Enumerator             |            Description            |                                                                               Notes                                                                                |
-| --------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ZONE_0_UNDEVELOPED`              | Zone 0 - undeveloped              | Undeveloped areas within national parks, state parks, forest land, rural areas, and other undeveloped areas as defined by the authority having jurisdiction        |
-| `ZONE_1_DEVELOPED_RURAL_AND_PARK` | Zone 1 - developed rural and park | Developed areas of national parks, state parks, forest land, and rural areas                                                                                       |
-| `ZONE_2_RESIDENTIAL_NEIGHBORHOOD` | Zone 2 - residential neighborhood | Areas predominantly consisting of residential zoning, neighborhood business districts, light industrial with limited nighttime use and residential mixed use areas |
-| `ZONE_3_ALL_OTHER_AREAS`          | Zone 3 - all other areas          |                                                                                                                                                                    |
-| `ZONE_4_HIGH_ACTIVITY_COMMERCIAL` | Zone 4 - high-activity commercial | High-activity commercial districts in major metropolitan areas as designated by the local jurisdiction                                                             |
+# RulesetModelOptions2019ASHRAE901
+|   Enumerator   |                                                             Description                                                              | Notes |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| `BASELINE_0`   | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with no rotation         |       |
+| `BASELINE_90`  | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 90 degree rotation  |       |
+| `BASELINE_180` | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 180 degree rotation |       |
+| `BASELINE_270` | The building model that corresponds with the Baseline Buildings Performance column of Appendix G Table G3.1 with 270 degree rotation |       |
+
+# ServiceWaterHeatingSpaceOptions2019ASHRAE901
+|            Enumerator             |              Description               | Notes |
+| --------------------------------- | -------------------------------------- | ----- |
+| `AUTOMOTIVE_FACILITY`             | Automotive facility                    |       |
+| `CONVENIENCE_STORE`               | Convenience store                      |       |
+| `CONVENTION_CENTER`               | Convention center                      |       |
+| `COURTHOUSE`                      | Courthouse                             |       |
+| `DINING_BAR_LOUNGE_LEISURE`       | Dining: Bar lounge/leisure             |       |
+| `DINING_CAFETERIA_FAST_FOOD`      | Dining: Cafeteria/fast food            |       |
+| `DINING_FAMILY`                   | Dining: Family                         |       |
+| `DORMITORY`                       | Dormitory                              |       |
+| `EXERCISE_CENTER`                 | Exercise center                        |       |
+| `FIRE_STATION`                    | Fire station                           |       |
+| `GROCERY_STORE`                   | Grocery store                          |       |
+| `GYMNASIUM`                       | Gymnasium                              |       |
+| `HEALTH_CARE_CLINIC`              | Health-care clinic                     |       |
+| `HOSPITAL_AND_OUTPATIENT_SURGERY` | Hospital and outpatient surgery center |       |
+| `HOTEL`                           | Hotel                                  |       |
+| `LIBRARY`                         | Library                                |       |
+| `MANUFACTURING_FACILITY`          | Manufacturing facility                 |       |
+| `MOTEL`                           | Motel                                  |       |
+| `MOTION_PICTURE_THEATER`          | Motion picture theater                 |       |
+| `MULTIFAMILY`                     | Multifamily                            |       |
+| `MUSEUM`                          | Museum                                 |       |
+| `OFFICE`                          | Office                                 |       |
+| `PARKING_GARAGE`                  | Parking garage                         |       |
+| `PENITENTIARY`                    | Penitentiary                           |       |
+| `PERFORMING_ARTS_THEATER`         | Performing arts theater                |       |
+| `POLICE_STATION`                  | Police station                         |       |
+| `POST_OFFICE`                     | Post office                            |       |
+| `RELIGIOUS_FACILITY`              | Religious facility                     |       |
+| `RETAIL`                          | Retail                                 |       |
+| `SCHOOL_UNIVERSITY`               | School/university                      |       |
+| `SPORTS_ARENA`                    | Sports arena                           |       |
+| `TOWN_HALL`                       | Town hall                              |       |
+| `TRANSPORTATION`                  | Transportation                         |       |
+| `WAREHOUSE`                       | Warehouse                              |       |
+| `WORKSHOP`                        | Workshop                               |       |
+| `ALL_OTHERS`                      | All others                             |       |
+
+# SubsurfaceFrameOptions2019ASHRAE901
+|        Enumerator        |          Description           | Notes |
+| ------------------------ | ------------------------------ | ----- |
+| `ALUMINUM_WITHOUT_BREAK` | Aluminum without Thermal Break |       |
+| `ALUMINUM_WITH_BREAK`    | Aluminum with Thermal Break    |       |
+| `REINFORCED_VINYL`       | Reninforced Vinyl              |       |
+| `ALUMINUM_CLAD_WOOD`     | Aluminum Clad Wood             |       |
+| `WOOD`                   | Wood                           |       |
+| `VINYL`                  | Vinyl                          |       |
+| `STRUCTURAL_GLAZING`     | Structural Glazing             |       |
+| `METAL_WITHOUT_BREAK`    | Metal without Thermal Break    |       |
+| `METAL_WITH_BREAK`       | Metal with Thermal Break       |       |
+| `FIBERGLASS`             | Fiberglass                     |       |
+| `OTHER`                  | Other                          |       |
+
+# SubsurfaceSubclassificationOptions2019ASHRAE901
+|       Enumerator        |                                                                                        Description                                                                                        | Notes |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| `METAL_COILING_DOOR`    | an upward-acting, nonswinging door assembly consisting of interlocking horizontal slats or sheets that, upon opening the door, roll up around a horizontal barrel above the door opening. |       |
+| `NONSWINGING_DOOR`      | roll-up, metal coiling, sliding, and any other door that is not a swinging door.                                                                                                          |       |
+| `SECTIONAL_GARAGE_DOOR` | an upward-acting, nonswinging door assembly made of two or more horizontal panels hinged together vertically.                                                                             |       |
+| `SWINGING_DOOR`         | a door having an operable opaque panel with hinges or pivots on one side.                                                                                                                 |       |
+| `SPANDREL_GLASS`        | opaque glass that conceals structural building components from being visible from the exterior of the building                                                                            |       |
+| `GLASS_BLOCK`           | a translucent, hollow or solid block of glass for glazing openings or constructing partitions                                                                                             |       |
+| `OTHER`                 | other subclassifications                                                                                                                                                                  |       |
 
 # VentilationSpaceOptions2019ASHRAE901
 |                                                        Enumerator                                                        |                                                        Description                                                         | Notes |
@@ -319,69 +441,6 @@
 | `TRANSIENT_RESIDENTIAL_COMMON_CORRIDORS`                                                                                 | Transient Residential - Common corridors                                                                                   |       |
 | `TRANSIENT_RESIDENTIAL_DWELLING_UNIT`                                                                                    | Transient Residential - Dwelling unit                                                                                      |       |
 
-# ServiceWaterHeatingSpaceOptions2019ASHRAE901
-|            Enumerator             |              Description               | Notes |
-| --------------------------------- | -------------------------------------- | ----- |
-| `AUTOMOTIVE_FACILITY`             | Automotive facility                    |       |
-| `CONVENIENCE_STORE`               | Convenience store                      |       |
-| `CONVENTION_CENTER`               | Convention center                      |       |
-| `COURTHOUSE`                      | Courthouse                             |       |
-| `DINING_BAR_LOUNGE_LEISURE`       | Dining: Bar lounge/leisure             |       |
-| `DINING_CAFETERIA_FAST_FOOD`      | Dining: Cafeteria/fast food            |       |
-| `DINING_FAMILY`                   | Dining: Family                         |       |
-| `DORMITORY`                       | Dormitory                              |       |
-| `EXERCISE_CENTER`                 | Exercise center                        |       |
-| `FIRE_STATION`                    | Fire station                           |       |
-| `GROCERY_STORE`                   | Grocery store                          |       |
-| `GYMNASIUM`                       | Gymnasium                              |       |
-| `HEALTH_CARE_CLINIC`              | Health-care clinic                     |       |
-| `HOSPITAL_AND_OUTPATIENT_SURGERY` | Hospital and outpatient surgery center |       |
-| `HOTEL`                           | Hotel                                  |       |
-| `LIBRARY`                         | Library                                |       |
-| `MANUFACTURING_FACILITY`          | Manufacturing facility                 |       |
-| `MOTEL`                           | Motel                                  |       |
-| `MOTION_PICTURE_THEATER`          | Motion picture theater                 |       |
-| `MULTIFAMILY`                     | Multifamily                            |       |
-| `MUSEUM`                          | Museum                                 |       |
-| `OFFICE`                          | Office                                 |       |
-| `PARKING_GARAGE`                  | Parking garage                         |       |
-| `PENITENTIARY`                    | Penitentiary                           |       |
-| `PERFORMING_ARTS_THEATER`         | Performing arts theater                |       |
-| `POLICE_STATION`                  | Police station                         |       |
-| `POST_OFFICE`                     | Post office                            |       |
-| `RELIGIOUS_FACILITY`              | Religious facility                     |       |
-| `RETAIL`                          | Retail                                 |       |
-| `SCHOOL_UNIVERSITY`               | School/university                      |       |
-| `SPORTS_ARENA`                    | Sports arena                           |       |
-| `TOWN_HALL`                       | Town hall                              |       |
-| `TRANSPORTATION`                  | Transportation                         |       |
-| `WAREHOUSE`                       | Warehouse                              |       |
-| `WORKSHOP`                        | Workshop                               |       |
-| `ALL_OTHERS`                      | All others                             |       |
-
-# ClimateZoneOptions2019ASHRAE901
-| Enumerator |      Description      | Notes |
-| ---------- | --------------------- | ----- |
-| `CZ0A`     | Extremely Hot - Humid |       |
-| `CZ0B`     | Extremely Hot - Dry   |       |
-| `CZ1A`     | Very Hot - Humid      |       |
-| `CZ1B`     | Very Hot - Dry        |       |
-| `CZ2A`     | Hot - Humid           |       |
-| `CZ2B`     | Hot - Dry             |       |
-| `CZ3A`     | Warm - Humid          |       |
-| `CZ3B`     | Warm - Dry            |       |
-| `CZ3C`     | Warm - Marine         |       |
-| `CZ4A`     | Mixed - Humid         |       |
-| `CZ4B`     | Mixed - Dry           |       |
-| `CZ4C`     | Mixed - Marine        |       |
-| `CZ5A`     | Cool - Humid          |       |
-| `CZ5B`     | Cool - Dry            |       |
-| `CZ5C`     | Cool - Marine         |       |
-| `CZ6A`     | Cold - Humid          |       |
-| `CZ6B`     | Cold - Dry            |       |
-| `CZ7`      | Very cold             |       |
-| `CZ8`      | Subarctic/arctic      |       |
-
 # VerticalFenestrationBuildingAreaOptions2019ASHRAE901
 |            Enumerator             |            Description            | Notes |
 | --------------------------------- | --------------------------------- | ----- |
@@ -401,63 +460,4 @@
 | `SCHOOL_SECONDARY_AND_UNIVERSITY` | School (secondary and university) |       |
 | `WAREHOUSE_NONREFRIGERATED`       | Warehouse (nonrefrigerated)       |       |
 | `OTHER`                           | Other                             |       |
-
-# SubsurfaceFrameOptions2019ASHRAE901
-|        Enumerator        |          Description           | Notes |
-| ------------------------ | ------------------------------ | ----- |
-| `ALUMINUM_WITHOUT_BREAK` | Aluminum without Thermal Break |       |
-| `ALUMINUM_WITH_BREAK`    | Aluminum with Thermal Break    |       |
-| `REINFORCED_VINYL`       | Reninforced Vinyl              |       |
-| `ALUMINUM_CLAD_WOOD`     | Aluminum Clad Wood             |       |
-| `WOOD`                   | Wood                           |       |
-| `VINYL`                  | Vinyl                          |       |
-| `STRUCTURAL_GLAZING`     | Structural Glazing             |       |
-| `METAL_WITHOUT_BREAK`    | Metal without Thermal Break    |       |
-| `METAL_WITH_BREAK`       | Metal with Thermal Break       |       |
-| `FIBERGLASS`             | Fiberglass                     |       |
-| `OTHER`                  | Other                          |       |
-
-# PrescribedScheduleOptions2019ASHRAE901
-|    Enumerator    |                                                     Description                                                     | Notes |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ----- |
-| `NOT_APPLICABLE` | No prescribed schedules for Appendix G of ASHRAE Standard 90.1-2019. This field may be relavent for other rulesets. |       |
-
-# AdditionalSurfaceAdjacencyOptions2019ASHRAE901
-|   Enumerator    |                                                                   Description                                                                   | Notes |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `UNENCLOSED`    | The space on the other side of the surface is assumed to be unenclosed. The space on the other side of the surface is not explicity modeled.    |       |
-| `UNCONDITIONED` | The space on the other side of the surface is assumed to be unconditioned. The space on the other side of the surface is not explicity modeled. |       |
-| `UNHEATED`      | Surface adjacent to a environment that is not heated but enclosed.                                                                              |       |
-| `SEMIHEATED`    | Surface adjacent to a environment that is semi-heated.                                                                                          |       |
-
-# ConstructionClassificationOptions2019ASHRAE901
-|   Enumerator   | Description  | Notes |
-| -------------- | ------------ | ----- |
-| `STEEL_FRAMED` | Steel-framed |       |
-
-# SubsurfaceSubclassificationOptions2019ASHRAE901
-|       Enumerator        |                                                                                        Description                                                                                        | Notes |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `METAL_COILING_DOOR`    | an upward-acting, nonswinging door assembly consisting of interlocking horizontal slats or sheets that, upon opening the door, roll up around a horizontal barrel above the door opening. |       |
-| `NONSWINGING_DOOR`      | roll-up, metal coiling, sliding, and any other door that is not a swinging door.                                                                                                          |       |
-| `SECTIONAL_GARAGE_DOOR` | an upward-acting, nonswinging door assembly made of two or more horizontal panels hinged together vertically.                                                                             |       |
-| `SWINGING_DOOR`         | a door having an operable opaque panel with hinges or pivots on one side.                                                                                                                 |       |
-| `SPANDREL_GLASS`        | opaque glass that conceals structural building components from being visible from the exterior of the building                                                                            |       |
-| `GLASS_BLOCK`           | a translucent, hollow or solid block of glass for glazing openings or constructing partitions                                                                                             |       |
-| `OTHER`                 | other subclassifications                                                                                                                                                                  |       |
-
-# HeatingVentilatingAirConditioningBuildingAreaOptions2019ASHRAE901
-|       Enumerator        |      Description      | Notes |
-| ----------------------- | --------------------- | ----- |
-| `RESIDENTIAL`           | Residential           |       |
-| `PUBLIC_ASSEMBLY`       | Public assembly       |       |
-| `RETAIL`                | Retail                |       |
-| `HOSPITAL`              | Hospital              |       |
-| `HEATED_ONLY_STORAGE`   | Heated only storage   |       |
-| `OTHER_NON_RESIDENTIAL` | Other non-residential |       |
-
-# OutputSchemaOptions2019ASHRAE901
-|           Enumerator           |            Description             | Notes |
-| ------------------------------ | ---------------------------------- | ----- |
-| `OUTPUT_SCHEMA_ASHRAE901_2019` | Output schema for ASHRAE 90.1 2019 |       |
 
