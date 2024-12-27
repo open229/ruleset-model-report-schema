@@ -565,7 +565,8 @@
                 "air_distribution_effectiveness": {
                     "description": "Air distribution effectiveness",
                     "type": "number",
-                    "minimum": 0.0
+                    "minimum": 0.0,
+                    "notes": "The zone air distribution effectiveness as defined in ASHRAE Standard 62.1 and shown as Ez."
                 },
                 "aggregation_factor": {
                     "description": "Aggregation factor",
@@ -3146,12 +3147,12 @@
                     "description": "Zone terminal minimum outdoor air volume airflow",
                     "type": "number",
                     "units": "L/s",
-                    "notes": "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided."
+                    "notes": "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided. This should be the design flow of outdoor air based on an occupied space using the appropriate ventilation standard such as ASHRAE Standard 62.1. Adjustments to lower the value for demand controlled ventilation should be made using the minimum_outdoor_airflow_multiplier_schedule."
                 },
                 "minimum_outdoor_airflow_multiplier_schedule": {
                     "description": "Zone terminal minimum outdoor air volume airflow multiplier schedule name",
                     "type": "string",
-                    "notes": "If the schedule is not present, the multiplier is always one. Constraint to use when implemented :Schedule:"
+                    "notes": "If the schedule is not present, the multiplier is always one. Often used to indicate the reduced flow needed when the space has reduced occupancy when a demand controlled ventilation control is used. Constraint to use when implemented :Schedule:"
                 },
                 "heating_capacity": {
                     "description": "Heating capacity for baseboard or radiant system or reheat",
@@ -4424,6 +4425,11 @@
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterPiping"
                     }
+                },
+                "service_water_heating_design_and_control": {
+                    "description": "Design and control used for service heating piping",
+                    "$ref": "ASHRAE229.schema.json#/definitions/FluidLoopDesignAndControl",
+                    "notes": "References a FluidLoopDesignAndControl data group which describes how the service water piping is sized and controlled"
                 }
             },
             "required": [
@@ -4616,9 +4622,6 @@
                     "description": "Indicates whether the water heater has electrical ignition",
                     "type": "boolean",
                     "notes": "From CBECC-Com."
-                },
-                "heater_type": {
-                    "description": "Service water heater type"
                 },
                 "tank": {
                     "description": "Tank that is part of the service water heating equipment",
@@ -4951,7 +4954,7 @@
                 "use": {
                     "description": "Usage of service hot water",
                     "type": "number",
-                    "notes": "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field."
+                    "notes": "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field. When describing a flow rate, it indicates the use of hot water from the water heater unmixed with cold tap water."
                 },
                 "use_units": {
                     "description": "Type of units for use of service hot water",
@@ -4963,7 +4966,7 @@
                     "notes": "If the schedule is not present, the multiplier is always one. Constraint to use when implemented :Schedule:"
                 },
                 "temperature_at_fixture": {
-                    "description": "Reference to the schedule containing the multiplier for the use of service hot water",
+                    "description": "Temperature leaving the fixture that is result of mixing hot water from the water heater and cold water from the tap.",
                     "type": "number",
                     "units": "C",
                     "notes": "From RESNET"
@@ -5032,9 +5035,9 @@
                 "The units for the use that correspond to this are watts/person",
                 "The units for the use that correspond to this are watts/m2",
                 "The units for the use that correspond to this are watts",
-                "The units for the use that correspond to this are liters/(minute-person)",
-                "The units for the use that correspond to this are liters/(minute-m2)",
-                "The units for the use that correspond to this are liters/minute",
+                "The units for the use of hot water that correspond to this are liters/(minute-person)",
+                "The units for the use of hot water that correspond to this are liters/(minute-m2)",
+                "The units for the use of hot water that correspond to this are liters/minute",
                 null
             ]
         },
@@ -5274,6 +5277,6 @@
             ]
         }
     },
-    "version": "0.1.1",
+    "version": "0.1.2",
     "$ref": "ASHRAE229.schema.json#/definitions/RulesetProjectDescription"
 }
