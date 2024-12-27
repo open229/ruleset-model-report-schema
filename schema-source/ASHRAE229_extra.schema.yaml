@@ -818,6 +818,7 @@ Zone:
       Description: "Air distribution effectiveness"
       Data Type: "Numeric"
       Range: ">=0"
+      Notes: "The zone air distribution effectiveness as defined in ASHRAE Standard 62.1 and shown as Ez."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
