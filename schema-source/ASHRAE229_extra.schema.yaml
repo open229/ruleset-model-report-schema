@@ -364,8 +364,6 @@ CommonRulesetModelOptions:
     USER:
       Description: "The building model as described without consideration of the ruleset"
     PROPOSED:
-      Description: "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1"
-    PROPOSED:
       Description: "The proposed building model"
       Notes: "The proposed building model typically transformed from the USER model following specific changes for the ruleset"
 
