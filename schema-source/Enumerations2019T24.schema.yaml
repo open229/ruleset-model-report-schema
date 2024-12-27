@@ -23,10 +23,6 @@ RulesetModelOptions2019T24Com:
 RulesetModelOptions2019T24Res:
   Object Type: "Enumeration"
   Enumerators:
-    USER:
-      Description: "The building model as described without consideration of the ruleset"
-    PROPOSED:
-      Description: "The proposed building model"
     STANDARD:
       Description: "The standard building model"
     BASELINE:
