@@ -2299,7 +2299,7 @@ Schedule:
     hourly_heating_design_year:
       Description: "Hourly values for heating design year"
       Data Type: "[Numeric][0..8784]"
-      Notes: "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the design_year_ignore_indicator value will be ignored."
+      Notes: "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the value -999 will be ignored."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -2317,21 +2317,12 @@ Schedule:
     hourly_cooling_design_year:
       Description: "Hourly values for cooling design year"
       Data Type: "[Numeric][0..8784]"
-      Notes: "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the design_year_ignore_indicator value will be ignored."
+      Notes: "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the value -999 will be ignored."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    design_year_ignore_indicator:
-      Description: "Flag value used to indicate an hour that was ignored for the design years."
-      Data Type: "Numeric"
-      Notes: "Use a value that would otherwise not make sense for the schedule. Common value would be -1 or -999."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: "unknown"
     event_times:
       Description: "Event times when the schedule changes"
       Data Type: "[Numeric]"
