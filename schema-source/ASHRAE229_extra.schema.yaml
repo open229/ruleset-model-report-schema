@@ -5955,6 +5955,15 @@ ServiceWaterPiping:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    service_water_heating_design_and_control:
+      Description: "Design and control used for service heating piping"
+      Data Type: "{FluidLoopDesignAndControl}"
+      Notes: "References a FluidLoopDesignAndControl data group which describes how the service water piping is sized and controlled"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
 
 SolarThermal:
   Object Type: "Data Group"
