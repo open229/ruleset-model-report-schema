@@ -1683,7 +1683,7 @@
                     "items": {
                         "type": "number"
                     },
-                    "notes": "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the design_year_ignore_indicator value will be ignored."
+                    "notes": "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the value -999 will be ignored."
                 },
                 "hourly_cooling_design_day": {
                     "description": "Hourly values for cooling design day",
@@ -1703,12 +1703,7 @@
                     "items": {
                         "type": "number"
                     },
-                    "notes": "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the design_year_ignore_indicator value will be ignored."
-                },
-                "design_year_ignore_indicator": {
-                    "description": "Flag value used to indicate an hour that was ignored for the design years.",
-                    "type": "number",
-                    "notes": "Use a value that would otherwise not make sense for the schedule. Common value would be -1 or -999."
+                    "notes": "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the value -999 will be ignored."
                 },
                 "event_times": {
                     "description": "Event times when the schedule changes",
