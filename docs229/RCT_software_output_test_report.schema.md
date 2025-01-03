@@ -1,20 +1,20 @@
+# EvaluationTypeOptions
+|   Enumerator    |       Description        | Notes |
+| --------------- | ------------------------ | ----- |
+| `FULL`          | Full Evaluation          |       |
+| `APPLICABILITY` | Applicability Evaluation |       |
+
 # OutcomeOptions
 |    Enumerator    |  Description   | Notes |
-|------------------|----------------|-------|
+| ---------------- | -------------- | ----- |
 | `PASS`           | Pass           |       |
 | `FAIL`           | Fail           |       |
 | `NOT_APPLICABLE` | Not applicable |       |
 | `UNDETERMINED`   | Undetermined   |       |
 
-# EvaluationTypeOptions
-|   Enumerator    |       Description        | Notes |
-|-----------------|--------------------------|-------|
-| `FULL`          | Full Evaluation          |       |
-| `APPLICABILITY` | Applicability Evaluation |       |
-
 # RulesetCheckingToolSoftwareOutputReport
 |       Name       |                               Description                                |   Data Type    | Units | Range | Req |                                                           Notes                                                           |
-|------------------|--------------------------------------------------------------------------|----------------|-------|-------|-----|---------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------ | -------------- | ----- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------- |
 | `title`          | Title of software output report from Ruleset Checking Tool               | `String`       |       |       |     | Existing template value shows- RULESET CHECKING TOOL                                                                      |
 | `purpose`        | Reason for the report                                                    | `String`       |       |       |     | Existing template value shows- RCT Ruleset Software Testing Report                                                        |
 | `tool_name`      | Name of the ruleset checking tool that produced the data file            | `String`       |       |       |     |                                                                                                                           |
@@ -26,7 +26,7 @@
 
 # RuleTest
 |                     Name                     |                        Description                        |         Data Type         | Units | Range | Req |                                                                                                                                                        Notes                                                                                                                                                         |
-|----------------------------------------------|-----------------------------------------------------------|---------------------------|-------|-------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------- | --------------------------------------------------------- | ------------------------- | ----- | ----- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `rule_id`                                    | The identification of the specific rule                   | `String`                  |       |       | ✓   | Existing template value shows- 5-5                                                                                                                                                                                                                                                                                   |
 | `test_id`                                    | The identification of the test case for the specific rule | `String`                  |       |       | ✓   | Existing template value shows- a                                                                                                                                                                                                                                                                                     |
 | `test_description`                           | Textual description of the test for the rule              | `String`                  |       |       |     | Existing template value shows- Description of rule: Building is located in climate zone 4A and includes a space that has residential occupancy type and is conditioned based on heating capacity of the HVAC system that servies the parent zone. The baseline roof U-factor for the space is established correctly. |
@@ -40,7 +40,7 @@
 
 # Evaluation
 |         Name         |                   Description                   |       Data Type       | Units | Range | Req |                                   Notes                                    |
-|----------------------|-------------------------------------------------|-----------------------|-------|-------|-----|----------------------------------------------------------------------------|
+| -------------------- | ----------------------------------------------- | --------------------- | ----- | ----- | --- | -------------------------------------------------------------------------- |
 | `data_group_id`      | The ID of the data group being evaluated        | `String`              |       |       | ✓   | The ID of any type of data group. Existing template value shows- Surface 1 |
 | `messages`           | List of messages from evaluation                | `[String]`            |       |       |     | Existing template value shows- message                                     |
 | `evaluation_outcome` | Expected outcome                                | `<OutcomeOptions>`    |       |       | ✓   | Existing template value shows- PASS                                        |
@@ -48,7 +48,7 @@
 
 # CalculatedValue
 |    Name    |       Description       |          Data Type           | Units | Range | Req |                                                                                                                                                                            Notes                                                                                                                                                                             |
-|------------|-------------------------|------------------------------|-------|-------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ----------------------- | ---------------------------- | ----- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `variable` | Variable                | `String`                     |       |       |     | Existing template value shows- roof_u_factor                                                                                                                                                                                                                                                                                                                 |
 | `value`    | Value                   | `(Numeric, Boolean, String)` |       |       |     | Existing template value shows- 0.063                                                                                                                                                                                                                                                                                                                         |
 | `unit`     | Units                   | `String`                     |       |       |     | Existing template value shows- Btu/(hr*ft2*R)                                                                                                                                                                                                                                                                                                                |

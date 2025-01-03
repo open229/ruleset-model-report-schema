@@ -1,20 +1,20 @@
+# EvaluationTypeOptions
+|   Enumerator    |       Description        | Notes |
+| --------------- | ------------------------ | ----- |
+| `FULL`          | Full Evaluation          |       |
+| `APPLICABILITY` | Applicability Evaluation |       |
+
 # OutcomeOptions
 |    Enumerator    |  Description   | Notes |
-|------------------|----------------|-------|
+| ---------------- | -------------- | ----- |
 | `PASS`           | Pass           |       |
 | `FAIL`           | Fail           |       |
 | `NOT_APPLICABLE` | Not applicable |       |
 | `UNDETERMINED`   | Undetermined   |       |
 
-# EvaluationTypeOptions
-|   Enumerator    |       Description        | Notes |
-|-----------------|--------------------------|-------|
-| `FULL`          | Full Evaluation          |       |
-| `APPLICABILITY` | Applicability Evaluation |       |
-
 # RulesetCheckingToolProjectOutputReport
 |       Name       |                                  Description                                   |       Data Type       | Units | Range | Req |                                         Notes                                          |
-|------------------|--------------------------------------------------------------------------------|-----------------------|-------|-------|-----|----------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------ | --------------------- | ----- | ----- | --- | -------------------------------------------------------------------------------------- |
 | `title`          | Title of project output report from Ruleset Checking Tool                      | `String`              |       |       |     | Existing template value shows- ASHRAE STD 229P RULESET CHECKING TOOL                   |
 | `purpose`        | Reason for the report                                                          | `String`              |       |       |     | Existing template value shows- Project Testing Report                                  |
 | `tool_name`      | Name of the ruleset checking tool that produced the data file                  | `String`              |       |       |     |                                                                                        |
@@ -27,7 +27,7 @@
 
 # Rule
 |        Name        |                    Description                     |         Data Type         | Units | Range | Req |                                                                                                                  Notes                                                                                                                  |
-|--------------------|----------------------------------------------------|---------------------------|-------|-------|-----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------ | -------------------------------------------------- | ------------------------- | ----- | ----- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `rule_id`          | The identification of the specific rule            | `String`                  |       |       | ✓   | Existing template value shows- 1-1                                                                                                                                                                                                      |
 | `description`      | Textual description of the rule                    | `String`                  |       |       |     | Existing template value shows- Description of rule 1-1.                                                                                                                                                                                 |
 | `evaluation_type`  | Indicator if full evaluated rule                   | `<EvaluationTypeOptions>` |       |       |     |                                                                                                                                                                                                                                         |
@@ -37,7 +37,7 @@
 
 # Evaluation
 |        Name         |               Description                |       Data Type       | Units | Range | Req |                                                                          Notes                                                                          |
-|---------------------|------------------------------------------|-----------------------|-------|-------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | ---------------------------------------- | --------------------- | ----- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data_group_id`     | The ID of the data group being evaluated | `String`              |       |       | ✓   | The ID of any type of data group. This is a string and not a reference data type since the RPD file would be separate. Existing template value shows- 1 |
 | `outcome`           | Outcome                                  | `<OutcomeOptions>`    |       |       |     | Existing template value shows- PASS                                                                                                                     |
 | `messages`          | List of messages from evaluation         | `[String]`            |       |       |     |                                                                                                                                                         |
@@ -45,7 +45,7 @@
 
 # CalculatedValue
 |    Name    |       Description       |          Data Type           | Units | Range | Req |                                                                                                                                                                            Notes                                                                                                                                                                             |
-|------------|-------------------------|------------------------------|-------|-------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ----------------------- | ---------------------------- | ----- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `variable` | Variable                | `String`                     |       |       |     | Existing template value shows- calculated_value1                                                                                                                                                                                                                                                                                                             |
 | `value`    | Value                   | `(Numeric, Boolean, String)` |       |       |     | Existing template value shows- 1.0                                                                                                                                                                                                                                                                                                                           |
 | `unit`     | Units                   | `String`                     |       |       |     | For example- Btu/(hr*ft2*R)                                                                                                                                                                                                                                                                                                                                  |
@@ -53,7 +53,7 @@
 
 # FileDescription
 |         Name         |                      Description                      | Data Type | Units | Range | Req |                                                                                                          Notes                                                                                                           |
-|----------------------|-------------------------------------------------------|-----------|-------|-------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------- | ----------------------------------------------------- | --------- | ----- | ----- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `ruleset_model_type` | Describes the type of model associated with the file. | `String`  |       |       | ✓   | A string representation of the enumeration value for RulesetModelDescription.type in the 229 Ruleset Evaluation Schema. For 90.1 Appendix G would be USER, PROPOSED, BASELINE_0, BASELINE_90, BASELINE_180, BASELINE_270 |
 | `file_name`          | Value                                                 | `String`  |       |       | ✓   | The name of the json file with file extension and may include the file path. Existing template value shows- user_rmr.json, baseline_rmr.json, proposed_rmr.json                                                          |
 

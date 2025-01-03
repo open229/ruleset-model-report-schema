@@ -62,7 +62,7 @@ def write_tables(instance, output_path, append=True):
     # Enumerations
     if len(enumerations) > 0:
       writer.headers = ["Enumerator", "Description", "Notes"]
-      for enum in enumerations:
+      for enum in sorted(enumerations.keys()):
         writer.table_name = enum
         enumerators = []
         for enumerator in enumerations[enum]["Enumerators"]:
