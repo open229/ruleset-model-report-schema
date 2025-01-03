@@ -10,7 +10,7 @@ Schema:
   Object Type: "Meta"
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
-  Version: "0.1.1"
+  Version: "0.1.2"
   References:
     - "Enumerations2019ASHRAE901"
     - "EnumerationsRESNET"
@@ -656,8 +656,6 @@ CommonRulesetModelOptions:
   Enumerators:
     USER:
       Description: "The building model as described without consideration of the ruleset"
-    PROPOSED:
-      Description: "The building model that corresponds with the Proposed Buildings Performance column of Appendix G Table G3.1"
     PROPOSED:
       Description: "The proposed building model"
       Notes: "The proposed building model typically transformed from the USER model following specific changes for the ruleset"
@@ -1534,6 +1532,7 @@ Zone:
       Description: "Air distribution effectiveness"
       Data Type: "Numeric"
       Range: ">=0"
+      Notes: "The zone air distribution effectiveness as defined in ASHRAE Standard 62.1 and shown as Ez."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -4219,7 +4218,7 @@ Schedule:
     hourly_heating_design_year:
       Description: "Hourly values for heating design year"
       Data Type: "[Numeric][0..8784]"
-      Notes: "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the design_year_ignore_indicator value will be ignored."
+      Notes: "Used when schedule_sequence_type is HOURLY. Use when more than a 24 hour period was used for sizing. Values with the value -999 will be ignored."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -4255,30 +4254,12 @@ Schedule:
     hourly_cooling_design_year:
       Description: "Hourly values for cooling design year"
       Data Type: "[Numeric][0..8784]"
-      Notes: "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the design_year_ignore_indicator value will be ignored."
+      Notes: "Used when schedule_sequence_type is HOURLY.  Use when more than a 24 hour period was used for sizing.  Values with the value -999 will be ignored."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-      Used by RCT Test: "unknown"
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "NotStarted"
-      EP Notes: ""
-    design_year_ignore_indicator:
-      Description: "Flag value used to indicate an hour that was ignored for the design years."
-      Data Type: "Numeric"
-      Notes: "Use a value that would otherwise not make sense for the schedule. Common value would be -1 or -999."
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: "unknown"
       Used by RCT Test: "unknown"
       EPin Object: ""
       EPin Field: ""
@@ -5595,7 +5576,7 @@ HeatingSystem:
       Description: "Heatpump low temperature shutoff"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliar heat."
+      Notes: "The heat pump is available at above this outdoor temperature to satsify the load. The heat pump is always energized first to meet any heating load prior to the use of auxiliary heat. For heat pumps with no lower temperature limit, this value should not be provided or else set to -999."
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -7656,7 +7637,7 @@ Terminal:
       Description: "Zone terminal minimum outdoor air volume airflow"
       Data Type: "Numeric"
       Units: "L/s"
-      Notes: "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided."
+      Notes: "This value should be provided if fan airflow determined by sizing performed by the software or explicitly provided. This should be the design flow of outdoor air based on an occupied space using the appropriate ventilation standard such as ASHRAE Standard 62.1. Adjustments to lower the value for demand controlled ventilation should be made using the minimum_outdoor_airflow_multiplier_schedule."
       RMD Test: "unknown"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -7674,7 +7655,7 @@ Terminal:
     minimum_outdoor_airflow_multiplier_schedule:
       Description: "Zone terminal minimum outdoor air volume airflow multiplier schedule name"
       Data Type: "Reference"
-      Notes: "If the schedule is not present, the multiplier is always one. Constraint to use when implemented :Schedule:"
+      Notes: "If the schedule is not present, the multiplier is always one. Often used to indicate the reduced flow needed when the space has reduced occupancy when a demand controlled ventilation control is used. Constraint to use when implemented :Schedule:"
       RMD Test: "unknown"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -9255,6 +9236,15 @@ Chiller:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
     design_entering_condenser_temperature:
       Description: "Design entering condenser temperature"
       Data Type: "Numeric"
@@ -10708,7 +10698,25 @@ ServiceWaterPiping:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
-
+    service_water_heating_design_and_control:
+      Description: "Design and control used for service heating piping"
+      Data Type: "{FluidLoopDesignAndControl}"
+      Notes: "References a FluidLoopDesignAndControl data group which describes how the service water piping is sized and controlled"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: True
+      Used by RCT Test: "unknown"
+      EPin Object: ""
+      EPin Field: ""
+      EPout File: ""
+      EPout Report: ""
+      EPout Table: ""
+      EPout Column: ""
+      EPstatus: "NotStarted"
+      EP Notes: ""
+      
 SolarThermal:
   Object Type: "Data Group"
   Data Elements:
@@ -11294,23 +11302,6 @@ ServiceWaterHeatingEquipment:
       EPout Column: ""
       EPstatus: "NotStarted"
       EP Notes: ""
-    heater_type:
-      Description: "Service water heater type"
-      Data Type: "<ServiceWaterHeaterOptions>"
-      RMD Test: "unknown"
-      AppG Used By TCDs: "unknown"
-      AppG P_RMD Equals U_RMD: "unknown"
-      AppG B_RMD Equals P_RMD: "unknown"
-      AppG B_RMDs Same: True
-      Used by RCT Test: False
-      EPin Object: ""
-      EPin Field: ""
-      EPout File: ""
-      EPout Report: ""
-      EPout Table: ""
-      EPout Column: ""
-      EPstatus: "NotStarted"
-      EP Notes: ""
     tank:
       Description: "Tank that is part of the service water heating equipment"
       Data Type: "{Tank}"
@@ -11398,22 +11389,6 @@ ServiceWaterHeatingEfficiencyMetricOptions:
     STANDBY_LOSS_ENERGY:
       Description: "Standby loss fraction"
       Notes: "Units are watts and can be converted from STANDBY_LOSS_FRACTION based forumulat found in CBECC-Res User Manual"
-
-ServiceWaterHeaterOptions:
-  Object Type: "Enumeration"
-  Enumerators:
-    CONVENTIONAL:
-      Description: "Conventional"
-    HEAT_PUMP_PACKAGED:
-      Description: "Heat pump packaged"
-    HEAT_PUMP_SPLIT:
-      Description: "Heat pump split"
-    HEAT_FROM_HOT_WATER_LOOP:
-      Description: "Heat from hot water loop"
-      Notes: "Should also specifiy hot water loop when this is used"
-    COMBINATION_SERVICE_AND_SPACE:
-      Description: "Combination space and service water heater."
-      Notes: "Should also specifiy hot water loop when this is used"
     OTHER:
       Description: "Other"
 
@@ -12044,7 +12019,7 @@ ServiceWaterHeatingUse:
     use:
       Description: "Usage of service hot water"
       Data Type: "Numeric"
-      Notes: "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field."
+      Notes: "This field together with the use_units and use_multiplier_schedule fields allow detailed description of the ServiceWaterHeating use in the units selected in the use_units field. When describing a flow rate, it indicates the use of hot water from the water heater unmixed with cold tap water."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -12095,7 +12070,7 @@ ServiceWaterHeatingUse:
       EPstatus: "NotStarted"
       EP Notes: ""
     temperature_at_fixture:
-      Description: "Reference to the schedule containing the multiplier for the use of service hot water"
+      Description: "Temperature leaving the fixture that is result of mixing hot water from the water heater and cold water from the tap."
       Data Type: "Numeric"
       Units: "C"
       Notes: "From RESNET"
@@ -12184,13 +12159,13 @@ ServiceWaterHeatingUseUnitOptions:
       Notes: "The units for the use that correspond to this are watts"
     VOLUME_PER_PERSON:
       Description: "Volume per person"
-      Notes: "The units for the use that correspond to this are liters/(minute-person)"
+      Notes: "The units for the use of hot water that correspond to this are liters/(minute-person)"
     VOLUME_PER_AREA:
       Description: "Volume per area"
-      Notes: "The units for the use that correspond to this are liters/(minute-m2)"
+      Notes: "The units for the use of hot water that correspond to this are liters/(minute-m2)"
     VOLUME:
       Description: "Volume"
-      Notes: "The units for the use that correspond to this are liters/minute"
+      Notes: "The units for the use of hot water that correspond to this are liters/minute"
     OTHER:
       Description: "Other"
 
