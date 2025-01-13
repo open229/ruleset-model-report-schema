@@ -26,6 +26,7 @@ Output2019ASHRAE901:
     output_instance:  
       Description: "References output that correspond to specific simulation model."
       Data Type: "{OutputInstance}"
+      Required: True
       Notes: "A seperate file is expected for each simulation model including outputs that correspond with building rotations."
     performance_cost_index:
       Description: "Performance cost index for the project"
@@ -93,28 +94,23 @@ OutputInstance:
       Description: "Unmet load hours for heating and cooling"
       Data Type: "Numeric"
       Units: "hr"
-      Required: True
       Notes: "This would be the coincident unmet load hours so if the same hour is during heating and during cooling it would only count as one hour."
     unmet_load_hours_heating:
       Description: "Unmet load hours for heating"
       Data Type: "Numeric"
       Units: "hr"
-      Required: True
     unmet_occupied_load_hours_heating:
       Description: "Unmet load hours for heating when the zone is occupied"
       Data Type: "Numeric"
       Units: "hr"
-      Required: True
     unmet_load_hours_cooling:
       Description: "Unmet load hours for cooling"
       Data Type: "Numeric"
       Units: "hr"
-      Required: True
     unmet_occupied_load_hours_cooling:
       Description: "Unmet load hours for cooling when the zone is occupied"
       Data Type: "Numeric"
       Units: "hr"
-      Required: True
     annual_source_results:
       Description: "Annual results by source"
       Data Type: "[{SourceResult}]"
@@ -123,7 +119,6 @@ OutputInstance:
       Description: "Building peak cooling load"
       Data Type: "Numeric"
       Units: "W"
-      Required: True
     annual_end_use_results:
       Description: "Annual end use results"
       Data Type: "[{EndUseResult}]"
@@ -145,23 +140,19 @@ SourceResult:
     energy_source:
       Description: "End use type"
       Data Type: "<EnergySourceOptions>"
-      Required: True
     annual_consumption:
       Description: "Annual energy consumption"
       Data Type: "Numeric"
       Units: "J"
-      Required: True
       Notes: "For energy_source ON_SITE_RENEWABLES this value is negative."
     annual_demand:
       Description: "Annual site demand"
       Data Type: "Numeric"
       Units: "J"
-      Required: True
       Notes: "This corresponds to the coincident demand for end-use results."
     annual_cost:
       Description: "Annual cost"
       Data Type: "Numeric"
-      Required: True
       Notes: "The units are the local monetary units such as dollars. For energy_source ON_SITE_RENEWABLES this value is negative."
     
 EndUseResult:
@@ -180,26 +171,21 @@ EndUseResult:
     type:
       Description: "End use type"
       Data Type: "<EndUseOptions>"
-      Required: True
     energy_source:
       Description: "End source"
       Data Type: "<EnergySourceOptions>"
-      Required: True
     annual_site_energy_use:
       Description: "Annual site energy use"
       Data Type: "Numeric"
       Units: "J"
-      Required: True
     annual_site_coincident_demand:
       Description: "Annual site coincident demand"
       Data Type: "Numeric"
       Units: "J"
-      Required: True
     annual_site_non_coincident_demand:
       Description: "Annual site non-coincident demand"
       Data Type: "Numeric"
       Units: "J"
-      Required: True
     is_regulated:
       Description: "Indicates whether the end use consumption is from regulated equipment"
       Data Type: "Boolean"
