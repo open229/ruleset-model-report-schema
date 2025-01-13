@@ -5882,7 +5882,7 @@ ServiceWaterPiping:
     loop_pipe_location:
       Description: "Loop pipe location"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Com."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Com."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5891,7 +5891,7 @@ ServiceWaterPiping:
     location_zone:
       Description: "Zone reference of where the component is located when IN_ZONE is selected from ComponentLocationOptions"
       Data Type: "Reference"
-      Notes: "From CBECC-Com. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Com. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6183,7 +6183,7 @@ ServiceWaterHeatingEquipment:
     compressor_heat_rejection_source:
       Description: "Heat pump heat rejection source"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Res."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see compressor_heat_rejection_zone. From CBECC-Res. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6192,7 +6192,7 @@ ServiceWaterHeatingEquipment:
     compressor_heat_rejection_zone:
       Description: "Heat pump heat rejection zone"
       Data Type: "Reference"
-      Notes: "From CBECC-Res. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Res. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6291,36 +6291,33 @@ ServiceWaterHeatingEfficiencyMetricOptions:
 ComponentLocationOptions:
   Object Type: "Enumeration"
   Enumerators:
-    IN_ZONE:
-      Description: "In a zone"
-      Notes: "The component is located in a zone modeled in the simulation e.g., heat transfer through the surfaces surrounding the zone may impact the space temperature. This should be used instead of the other enumeration options when the zone is being modeled in the simulation."
     CONDITIONED:
       Description: "Conditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a conditioned location."
+      Notes: "The component location has thermal properties similar to those of a conditioned location."
     SEMICONDITIONED:
       Description: "Semiconditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators."
+      Notes: "The component location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators."
     OUTSIDE:
       Description: "Outside"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to the outdoors."
+      Notes: "The component location has thermal properties similar to the outdoors."
     GARAGE:
       Description: "Garage"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone."
     ATTIC:
       Description: "Attic"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone."
     CRAWL_SPACE:
       Description: "Crawl space"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone."
     UNDERGROUND:
       Description: "Underground"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an underground area."
+      Notes: "The component location has thermal properties similar to those of an underground area."
     UNCONDITIONED:
       Description: "Unconditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list."
+      Notes: "The component location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list."
     OTHER:
       Description: "Other"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an area not otherwise described by a different enumeration."
+      Notes: "The component location has thermal properties similar to those of an area not otherwise described by a different enumeration."
 
 DrawPatternOptions:
   Object Type: "Enumeration"
@@ -6552,7 +6549,7 @@ Tank:
     location:
       Description: "Location"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Res."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Res. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6561,7 +6558,7 @@ Tank:
     location_zone:
       Description: "Tank zone location"
       Data Type: "Reference"
-      Notes: "Only used when tank_location indicates the tank is located in a zone. From CBECC-Res. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
