@@ -1299,14 +1299,6 @@ Construction:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    surface_construction_input_option:
-      Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
-      Data Type: "<SurfaceConstructionInputOptions>"
-      RMD Test: "Primary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
     fraction_framing:
       Description: "Fraction of the construction that is framing."
       Data Type: "Numeric"
@@ -1320,7 +1312,7 @@ Construction:
     primary_layers:
       Description: "List of names of layer descriptions starting from the outside surface for primary heat path"
       Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers."
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers. When Construction.primary_layers are specified, the Construction.r_values should not be used. The list of primary_layers should include at least one Material that has mass with Material.density and Material.specific_heat specified."
       RMD Test: "Primary"
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
@@ -1329,14 +1321,14 @@ Construction:
     framing_layers:
       Description: "List of names of layer descriptions starting from the outside surface for the framing heat path"
       Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers."
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers. Only used when primary_layers is also populated."
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     insulation_locations:
-      Description: "List of locations for the insulation related to the surface that correspoond to the values in the r_values list"
+      Description: "List of locations for the insulation related to the surface that correspoond to the values in the r_values list. Only used when r_values are specified."
       Data Type: "[<InsulationLocationOptions>]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
@@ -1381,6 +1373,7 @@ Construction:
       Data Type: "[Numeric]"
       Range: ">=0"
       Units: "K-m2/W"
+      Notes: "When Construction.r_values are specified, the Construction.primary_layers should not be used."
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
@@ -1640,14 +1633,6 @@ SurfaceAdjacencyOptions:
       Description: "Surface adjacent to a environment identical to the space. Sometimes this is described as adiabatic surface since no heat is transfered. The space on the other side of the surface is not explicity modeled."
     UNDEFINED:
       Description: "The surface adjacency cannot be determined by the software."
-
-SurfaceConstructionInputOptions:
-  Object Type: "Enumeration"
-  Enumerators:
-    LAYERS:
-      Description: "Construction is entered layer-by-layer."
-    SIMPLIFIED:
-      Description: "Construction is entered by R-value only."
 
 Subsurface:
   Object Type: "Data Group"
