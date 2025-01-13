@@ -2960,9 +2960,8 @@ HeatingSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     oversizing_factor:
-      Description: "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing."
+      Description: "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing. Negative numbers indicate undersizing."
       Data Type: "Numeric"
-      Range: ">=0"
       Notes: "Used for furnace or heat pump."
       RMD Test: "Primary"
       AppG Used By TCDs: True
@@ -3198,9 +3197,8 @@ CoolingSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     oversizing_factor:
-      Description: "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing."
+      Description: "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing. Negative numbers indicate undersizing."
       Data Type: "Numeric"
-      Range: ">=0"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
