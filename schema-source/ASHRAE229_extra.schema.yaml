@@ -6578,7 +6578,7 @@ ServiceWaterHeaterTankOptions:
       Description: "Consumer storage"
       Notes: "Uses UEF"
     COMMERCIAL_STORAGE:
-      Description: "Consumer storage"
+      Description: "Commercial storage"
       Notes: "Uses TE and SBL"
     RESIDENTIAL_DUTY_COMMERCIAL_INSTANTANEOUS:
       Description: "Residential-Duty Commercial Instantaneous"
