@@ -1223,7 +1223,7 @@ Surface:
     adjacent_zone:
       Description: "ID of the adjacent zone for interior surface. Only required when adjacent zone is explicity modeled when adjacent_to is set to INTERIOR."
       Data Type: "Reference"
-      Notes: "Constraint to use when implemented :Zone:"
+      Notes: "Each interior surface between two zones should be described only once as a surface. No duplication of an interior surface facing each zone is necessary. Constraint to use when implemented :Zone:"
       RMD Test: False
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
