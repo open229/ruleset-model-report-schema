@@ -5037,7 +5037,7 @@ Chiller:
     design_capacity:
       Description: "Chiller Design Cooling Capacity"
       Data Type: "Numeric"
-      Notes: "The capacity of the chiller at design conditions."
+      Notes: "The capacity of the chiller at design conditions. This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
       Units: "W"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
@@ -5048,7 +5048,7 @@ Chiller:
       Description: "Chiller Rated Cooling Capacity"
       Data Type: "Numeric"
       Units: "W"
-      Notes: "At rating conditions."
+      Notes: "The capacity of the chiller at rating conditions. This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5058,7 +5058,7 @@ Chiller:
       Description: "Rated entering condenser temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled."
+      Notes: "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5068,7 +5068,7 @@ Chiller:
       Description: "Rated leaving evaporator temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C."
+      Notes: "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5114,7 +5114,7 @@ Chiller:
       Description: "Design entering condenser temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers."
+      Notes: "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5124,7 +5124,7 @@ Chiller:
       Description: "Design leaving evaporator temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The temperature leaving the evaporator portion of the chiller at design conditions."
+      Notes: "The temperature leaving the evaporator portion of the chiller at design conditions. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5206,13 +5206,18 @@ Chiller:
 ChillerEfficiencyMetricOptions:
   Object Type: "Enumeration"
   Enumerators:
-    FULL_LOAD_EFFICIENCY:
-      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
-      Notes: "At minimum, the full load efficiency should be one of the metrics and values specified."
+    FULL_LOAD_EFFICIENCY_RATED:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP) at rated conditions"
+      Notes: "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
+    FULL_LOAD_EFFICIENCY_DESIGN:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP) at design conditions"
+      Notes: "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature. At minimum, the full load efficiency design should be one of the metrics and values specified."
     INTEGRATED_PART_LOAD_VALUE:
-      Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP)"
+      Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP) at rated conditions"
+      Notes: "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
     NONSTANDARD_PART_LOAD_VALUE:
-      Description: "Nonstandard part load value efficiency expressed as a coefficient of performance (COP)"
+      Description: "Nonstandard part load value efficiency expressed as a coefficient of performance (COP) at design conditions"
+      Notes: "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
     OTHER:
       Description: "Other part load efficiency metric"
 
