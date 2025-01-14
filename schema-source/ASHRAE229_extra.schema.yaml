@@ -5026,6 +5026,14 @@ Chiller:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
+    chiller_function:
+      Description: "Function such as chilled and/or hot water"
+      Data Type: "<ChillerFunctionOptions>"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     energy_source_type:
       Description: "Source of energy for the chiller"
       Data Type: "<EnergySourceOptions>"
@@ -5331,6 +5339,22 @@ ChillerCompressorOptions:
       Description: "Double-effect direct-fired absorption"
     OTHER:
       Description: "Other"
+
+ChillerFunctionOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    CHILLED_WATER_ONLY:
+      Description: "Chilled water only"
+      Notes: "Chiller is being used as a traditional chiller to only produce chilled water."
+    HOT_WATER_ONLY:
+      Description: "Hot water only"
+      Notes: "Chiller is being used exclusively as a heat pump instead of a boiler."
+    CHILLED_AND_HOT_WATER:
+      Description: "Chilled and hot water"
+      Notes: "Chiller can produce either chilled or hot water."
+    OTHER:
+      Description: "Other"
+
 
 HeatRejection:
   Object Type: "Data Group"
