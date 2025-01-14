@@ -1238,8 +1238,9 @@ Surface:
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
     construction:
-      Description: "Construction description of surface."
-      Data Type: "{Construction}"
+      Description: "Construction description of surface or an ID of another Construction."
+      Data Type: "({Construction}, Reference)"
+      Notes: "The construction data group can either appear here or a reference to an ID of a Construction used in a previous Surface. When the reference is used, the constraint to use when implemented is to :Construction:"
       RMD Test: "Secondary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -1310,18 +1311,18 @@ Construction:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     primary_layers:
-      Description: "List of names of layer descriptions starting from the outside surface for primary heat path"
-      Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers. When Construction.primary_layers are specified, the Construction.r_values should not be used. The list of primary_layers should include at least one Material that has mass with Material.density and Material.specific_heat specified."
+      Description: "List of names, or IDs, of layer descriptions starting from the outside surface for primary heat path"
+      Data Type: "[({Material}, Reference)]"
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers. When Construction.primary_layers are specified, the Construction.r_values should not be used. The list of primary_layers should include at least one Material that has mass with Material.density and Material.specific_heat specified. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
       RMD Test: "Primary"
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     framing_layers:
-      Description: "List of names of layer descriptions starting from the outside surface for the framing heat path"
-      Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers. Only used when primary_layers is also populated."
+      Description: "List of names, or IDs, of layer descriptions starting from the outside surface for the framing heat path"
+      Data Type: "[({Material}, Reference)]"
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers. Only used when primary_layers is also populated. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5354,7 +5355,6 @@ ChillerFunctionOptions:
       Notes: "Chiller can produce either chilled or hot water."
     OTHER:
       Description: "Other"
-
 
 HeatRejection:
   Object Type: "Data Group"
