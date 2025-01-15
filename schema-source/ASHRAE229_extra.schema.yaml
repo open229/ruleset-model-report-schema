@@ -585,6 +585,7 @@ BuildingSegment:
     service_water_heating_uses:
       Description: "List of service water heating uses"
       Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
+      Notes: "This data element also appears in Space. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -993,6 +994,7 @@ Space:
     service_water_heating_uses:
       Description: "List of service water heating uses"
       Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
+      Notes: "This data element also appears in BuildingSegment. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
