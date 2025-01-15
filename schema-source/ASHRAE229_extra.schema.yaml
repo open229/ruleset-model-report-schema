@@ -162,6 +162,14 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    output:
+      Description: "Output"
+      Data Type: "({Output2019ASHRAE901})"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
       
 CommonOutputSchemaOptions:
   Object Type: "Enumeration"
@@ -401,9 +409,9 @@ RulesetModelDescription:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: True
       AppG B_RMDs Same: True
-    output:
-      Description: "Output"
-      Data Type: "({Output2019ASHRAE901})"
+    model_output:
+      Description: "Model output for a single instance"
+      Data Type: "({OutputInstance2019ASHRAE901})"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"

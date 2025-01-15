@@ -23,53 +23,43 @@ Output2019ASHRAE901:
     notes:
       Description: "Supplementary information to provide context to the model reviewer"
       Data Type: "String"
-    output_instance:  
-      Description: "References output that correspond to specific simulation model."
-      Data Type: "{OutputInstance}"
-      Required: True
-      Notes: "A seperate file is expected for each simulation model including outputs that correspond with building rotations."
     performance_cost_index:
       Description: "Performance cost index for the project"
       Data Type: "Numeric"
-      Notes: "This output is appropriate for the overall project not specific instance of a model."
     baseline_building_unregulated_energy_cost:
       Description: "baseline building unregulated energy cost."
       Data Type: "Numeric"
-      Notes: "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+      Notes: "The units are the local monetary units such as dollars."
     baseline_building_regulated_energy_cost:
       Description: "baseline building regulated energy cost."
       Data Type: "Numeric"
-      Notes: "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+      Notes: "The units are the local monetary units such as dollars."
     baseline_building_performance_energy_cost:
       Description: "baseline building performance energy cost."
       Data Type: "Numeric"
-      Notes: "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+      Notes: "The units are the local monetary units such as dollars."
     total_area_weighted_building_performance_factor:
       Description: "Total area weighted building performance factor"
       Data Type: "Numeric"
-      Notes: "This output is appropriate for the overall project not specific instance of a model."
     total_area_weighted_building_performance_factor:
       Description: "Total area weighted building performance factor"
       Data Type: "Numeric"
-      Notes: "This output is appropriate for the overall project not specific instance of a model."
     performance_cost_index_target:
       Description: "Performance cost index target for the project"
       Data Type: "Numeric"
-      Notes: "This output is appropriate for the overall project not specific instance of a model."
     total_proposed_building_energy_cost_including_renewable_energy:
       Description: "Total proposed building energy cost including renewable energy."
       Data Type: "Numeric"
-      Notes: "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+      Notes: "The units are the local monetary units such as dollars."
     total_proposed_building_energy_cost_excluding_renewable_energy:
       Description: "Total proposed building energy cost excluding renewable energy."
       Data Type: "Numeric"
-      Notes: "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+      Notes: "The units are the local monetary units such as dollars."
     percent_renewable_energy_savings:
       Description: "Percent renewable energy savings"
       Data Type: "Numeric"
-      Notes: "This output is appropriate for the overall project not specific instance of a model."
 
-OutputInstance:
+OutputInstance2019ASHRAE901:
   Object Type: "Data Group"
   Data Elements:
     id:
@@ -82,14 +72,6 @@ OutputInstance:
     notes:
       Description: "Supplementary information to provide context to the model reviewer"
       Data Type: "String"
-    ruleset_model_type:
-      Description: "Describes the current model instance for rulesets with multiple simulation models"
-      Data Type: "<RulesetModelOptions2019ASHRAE901>"
-    rotation_angle:
-      Description: "Rotation angle of the building model."
-      Data Type: "Numeric"
-      Range: ">=0, <360"
-      Notes: "Usually 0, 90, 180, or 270."
     unmet_load_hours:
       Description: "Unmet load hours for heating and cooling"
       Data Type: "Numeric"
