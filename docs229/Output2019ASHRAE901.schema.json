@@ -18,55 +18,46 @@
                     "description": "Supplementary information to provide context to the model reviewer",
                     "type": "string"
                 },
-                "output_instance": {
-                    "description": "References output that correspond to specific simulation model.",
-                    "$ref": "Output2019ASHRAE901.schema.json#/definitions/OutputInstance",
-                    "notes": "A seperate file is expected for each simulation model including outputs that correspond with building rotations."
-                },
                 "performance_cost_index": {
                     "description": "Performance cost index for the project",
-                    "type": "number",
-                    "notes": "This output is appropriate for the overall project not specific instance of a model."
+                    "type": "number"
                 },
                 "baseline_building_unregulated_energy_cost": {
                     "description": "baseline building unregulated energy cost.",
                     "type": "number",
-                    "notes": "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+                    "notes": "The units are the local monetary units such as dollars."
                 },
                 "baseline_building_regulated_energy_cost": {
                     "description": "baseline building regulated energy cost.",
                     "type": "number",
-                    "notes": "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+                    "notes": "The units are the local monetary units such as dollars."
                 },
                 "baseline_building_performance_energy_cost": {
                     "description": "baseline building performance energy cost.",
                     "type": "number",
-                    "notes": "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+                    "notes": "The units are the local monetary units such as dollars."
                 },
                 "total_area_weighted_building_performance_factor": {
                     "description": "Total area weighted building performance factor",
-                    "type": "number",
-                    "notes": "This output is appropriate for the overall project not specific instance of a model."
+                    "type": "number"
                 },
                 "performance_cost_index_target": {
                     "description": "Performance cost index target for the project",
-                    "type": "number",
-                    "notes": "This output is appropriate for the overall project not specific instance of a model."
+                    "type": "number"
                 },
                 "total_proposed_building_energy_cost_including_renewable_energy": {
                     "description": "Total proposed building energy cost including renewable energy.",
                     "type": "number",
-                    "notes": "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+                    "notes": "The units are the local monetary units such as dollars."
                 },
                 "total_proposed_building_energy_cost_excluding_renewable_energy": {
                     "description": "Total proposed building energy cost excluding renewable energy.",
                     "type": "number",
-                    "notes": "The units are the local monetary units such as dollars. This output is appropriate for the overall project not specific instance of a model."
+                    "notes": "The units are the local monetary units such as dollars."
                 },
                 "percent_renewable_energy_savings": {
                     "description": "Percent renewable energy savings",
-                    "type": "number",
-                    "notes": "This output is appropriate for the overall project not specific instance of a model."
+                    "type": "number"
                 }
             },
             "required": [
@@ -74,7 +65,7 @@
             ],
             "additionalProperties": false
         },
-        "OutputInstance": {
+        "OutputInstance2019ASHRAE901": {
             "type": "object",
             "properties": {
                 "id": {
@@ -88,16 +79,6 @@
                 "notes": {
                     "description": "Supplementary information to provide context to the model reviewer",
                     "type": "string"
-                },
-                "ruleset_model_type": {
-                    "description": "Describes the current model instance for rulesets with multiple simulation models"
-                },
-                "rotation_angle": {
-                    "description": "Rotation angle of the building model.",
-                    "type": "number",
-                    "minimum": 0.0,
-                    "exclusiveMaximum": 360.0,
-                    "notes": "Usually 0, 90, 180, or 270."
                 },
                 "unmet_load_hours": {
                     "description": "Unmet load hours for heating and cooling",
@@ -148,13 +129,7 @@
                 }
             },
             "required": [
-                "id",
-                "unmet_load_hours",
-                "unmet_load_hours_heating",
-                "unmet_occupied_load_hours_heating",
-                "unmet_load_hours_cooling",
-                "unmet_occupied_load_hours_cooling",
-                "building_peak_cooling_load"
+                "id"
             ],
             "additionalProperties": false
         },
@@ -196,11 +171,7 @@
                 }
             },
             "required": [
-                "id",
-                "energy_source",
-                "annual_consumption",
-                "annual_demand",
-                "annual_cost"
+                "id"
             ],
             "additionalProperties": false
         },
@@ -248,12 +219,7 @@
                 }
             },
             "required": [
-                "id",
-                "type",
-                "energy_source",
-                "annual_site_energy_use",
-                "annual_site_coincident_demand",
-                "annual_site_non_coincident_demand"
+                "id"
             ],
             "additionalProperties": false
         },

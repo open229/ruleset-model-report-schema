@@ -10,7 +10,7 @@ Schema:
   Object Type: "Meta"
   Title: "ASHRAE 229"
   Description: "Base schema for ASHRAE 229 representations"
-  Version: "0.1.2" 
+  Version: "0.1.3" 
   References:
     - "Enumerations2019ASHRAE901"
     - "EnumerationsRESNET"
@@ -113,20 +113,6 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    schema_version:
-      Description: "Version of the schema used for generating the file"
-      Data Type: "String"
-      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
-    data_timestamp:
-      Description: "Date and time of data publication"
-      Data Type: "Timestamp"
-      Required: True
-      Notes: "Date and time of publication of the data"
-    data_version:
-      Description: "Integer version identifier for the data"
-      Data Type: "Integer"
-      Range: ">=1"
-      Notes: "Used by data publisher to track revisions of the data and shall be incremented for each data revision"
     ruleset_model_descriptions:  
       Description: "A list of the ruleset model descriptions within the project each with a unique ruleset_model_type."
       Data Type: "[{RulesetModelDescription}]"
@@ -136,22 +122,14 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
-    calendar:
-      Description: "Information on the calendar used with the simulation."
-      Data Type: "{Calendar}"
-      RMD Test: False
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
-    weather:
-      Description: "Information on the local weather conditions used with the simulation."
-      Data Type: "{Weather}"
-      RMD Test: "secondary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
+    metadata:
+      Description: "Metadata"
+      Data Type: "{Metadata}"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     compliance_path:
       Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
       Data Type: "<CompliancePathOptions2019ASHRAE901>"
@@ -168,13 +146,75 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    output:
+      Description: "Output"
+      Data Type: "({Output2019ASHRAE901})"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
       
 CommonOutputSchemaOptions:
   Object Type: "Enumeration"
   Enumerators:
     OTHER:
       Description: "other"
-      
+
+Metadata:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique data set identifier"
+      Data Type: "UUID"
+      Notes: "Assigned by *data publisher* to identify this data. `id` shall remain unchanged for revisions of the same data."
+    schema_author:
+      Description: "Name of the organization that published the schema"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the organization that defined the schema. Is should be set to: ASHRAE SPC 229 Schema Working Group"
+    schema_name:
+      Description: "Schema name or identifier"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the schema used to define the data content. It should be set to Ruleset Evaluation Schema"
+    schema_version:
+      Description: "The version of the schema the data complies with"
+      Data Type: "Version"
+      Required: True
+      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
+    schema_url:
+      Description: "The Uniform Resource Locator (url) for the schema definition and/or documentation"
+      Data Type: "String"
+      Notes: "Should be set to: https://github.com/open229/ruleset-model-description-schema"
+    author:
+      Description: "Name of the entity creating the serialization"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the organization that created the file"
+    description:
+      Description: "Description of data content (suitable for display)"
+      Data Type: "String"
+      Required: True
+    time_of_creation:
+      Description: "Timestamp indicating when the serialization was created"
+      Data Type: "Timestamp"
+      Required: True
+      Notes: "Updated anytime any data content is modified."
+    version:
+      Description: "Integer version identifier for the data"
+      Data Type: "Version"
+      Notes: "Used by data publisher to track revisions of the data. Shall be incremented for each data revision"
+    source:
+      Description: "Source(s) of the data"
+      Data Type: "String"
+      Notes: "Used by data publisher to document methods (e.g., software and version) used to generate data. **Informative note:** `source` may be different from other data source(s) included elsewhere within the data"
+    disclaimer:
+      Description: "Characterization of accuracy, limitations, and applicability of this data"
+      Data Type: "String"
+    notes:
+      Description: "Additional Information"
+      Data Type: "String"
 
 RulesetModelDescription:
   Object Type: "Data Group"
@@ -349,9 +389,25 @@ RulesetModelDescription:
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: True
       AppG B_RMDs Same: True
-    output:
-      Description: "Output"
-      Data Type: "({Output2019ASHRAE901})"
+    calendar:
+      Description: "Information on the calendar used with the simulation."
+      Data Type: "{Calendar}"
+      RMD Test: False
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+    weather:
+      Description: "Information on the local weather conditions used with the simulation."
+      Data Type: "{Weather}"
+      RMD Test: "secondary"
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+    model_output:
+      Description: "Model output for a single instance"
+      Data Type: "({OutputInstance2019ASHRAE901})"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -582,6 +638,15 @@ BuildingSegment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    service_water_heating_uses:
+      Description: "List of service water heating uses"
+      Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
+      Notes: "This data element also appears in Space. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
 
 Zone:
   Object Type: "Data Group"
@@ -795,7 +860,7 @@ Zone:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "W"
-      Notes: "The power consumed by a fan used in a non-mechancial cooling device such as a ceiling fan."
+      Notes: "The power consumed by a fan used in a non-mechancial cooling device such as supply or exhaust fans typically for warehouse applications with high air change rates."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -806,7 +871,7 @@ Zone:
       Data Type: "Numeric"
       Range: ">=0"
       Units: "L/s"
-      Notes: "The airflow of a fan used in a non-mechancial cooling device such as a ceiling fan."
+      Notes: "The airflow of a fan used in a non-mechancial cooling device such as a supply or exhaust fans typically for warehouse applications with high air change rates."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -984,7 +1049,8 @@ Space:
       AppG B_RMDs Same: True
     service_water_heating_uses:
       Description: "List of service water heating uses"
-      Data Type: "[{ServiceWaterHeatingUse}]"
+      Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
+      Notes: "This data element also appears in BuildingSegment. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
@@ -1223,7 +1289,7 @@ Surface:
     adjacent_zone:
       Description: "ID of the adjacent zone for interior surface. Only required when adjacent zone is explicity modeled when adjacent_to is set to INTERIOR."
       Data Type: "Reference"
-      Notes: "Constraint to use when implemented :Zone:"
+      Notes: "Each interior surface between two zones should be described only once as a surface. No duplication of an interior surface facing each zone is necessary. Constraint to use when implemented :Zone:"
       RMD Test: False
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -1238,8 +1304,9 @@ Surface:
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: True
     construction:
-      Description: "Construction description of surface."
-      Data Type: "{Construction}"
+      Description: "Construction description of surface or an ID of another Construction."
+      Data Type: "({Construction}, Reference)"
+      Notes: "The construction data group can either appear here or a reference to an ID of a Construction used in a previous Surface. When the reference is used, the constraint to use when implemented is to :Construction:"
       RMD Test: "Secondary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -1299,14 +1366,6 @@ Construction:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
-    surface_construction_input_option:
-      Description: "Identifies whether construction is entered layer-by-layer or simplified (R-value)"
-      Data Type: "<SurfaceConstructionInputOptions>"
-      RMD Test: "Primary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
     fraction_framing:
       Description: "Fraction of the construction that is framing."
       Data Type: "Numeric"
@@ -1318,25 +1377,25 @@ Construction:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     primary_layers:
-      Description: "List of names of layer descriptions starting from the outside surface for primary heat path"
-      Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers."
+      Description: "List of names, or IDs, of layer descriptions starting from the outside surface for primary heat path"
+      Data Type: "[({Material}, Reference)]"
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers. When Construction.primary_layers are specified, the Construction.r_values should not be used. The list of primary_layers should include at least one Material that has mass with Material.density and Material.specific_heat specified. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
       RMD Test: "Primary"
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     framing_layers:
-      Description: "List of names of layer descriptions starting from the outside surface for the framing heat path"
-      Data Type: "[{Material}]"
-      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers."
+      Description: "List of names, or IDs, of layer descriptions starting from the outside surface for the framing heat path"
+      Data Type: "[({Material}, Reference)]"
+      Notes: "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers. Only used when primary_layers is also populated. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
     insulation_locations:
-      Description: "List of locations for the insulation related to the surface that correspoond to the values in the r_values list"
+      Description: "List of locations for the insulation related to the surface that correspoond to the values in the r_values list. Only used when r_values are specified."
       Data Type: "[<InsulationLocationOptions>]"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
@@ -1381,6 +1440,7 @@ Construction:
       Data Type: "[Numeric]"
       Range: ">=0"
       Units: "K-m2/W"
+      Notes: "When Construction.r_values are specified, the Construction.primary_layers should not be used."
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
@@ -1640,14 +1700,6 @@ SurfaceAdjacencyOptions:
       Description: "Surface adjacent to a environment identical to the space. Sometimes this is described as adiabatic surface since no heat is transfered. The space on the other side of the surface is not explicity modeled."
     UNDEFINED:
       Description: "The surface adjacency cannot be determined by the software."
-
-SurfaceConstructionInputOptions:
-  Object Type: "Enumeration"
-  Enumerators:
-    LAYERS:
-      Description: "Construction is entered layer-by-layer."
-    SIMPLIFIED:
-      Description: "Construction is entered by R-value only."
 
 Subsurface:
   Object Type: "Data Group"
@@ -2960,9 +3012,8 @@ HeatingSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     oversizing_factor:
-      Description: "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing."
+      Description: "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing. Negative numbers indicate undersizing."
       Data Type: "Numeric"
-      Range: ">=0"
       Notes: "Used for furnace or heat pump."
       RMD Test: "Primary"
       AppG Used By TCDs: True
@@ -3198,9 +3249,8 @@ CoolingSystem:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     oversizing_factor:
-      Description: "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing."
+      Description: "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing. Negative numbers indicate undersizing."
       Data Type: "Numeric"
-      Range: ">=0"
       RMD Test: "Primary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
@@ -5043,6 +5093,14 @@ Chiller:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
+    chiller_function:
+      Description: "Function such as chilled and/or hot water"
+      Data Type: "<ChillerFunctionOptions>"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     energy_source_type:
       Description: "Source of energy for the chiller"
       Data Type: "<EnergySourceOptions>"
@@ -5054,7 +5112,7 @@ Chiller:
     design_capacity:
       Description: "Chiller Design Cooling Capacity"
       Data Type: "Numeric"
-      Notes: "The capacity of the chiller at design conditions."
+      Notes: "The capacity of the chiller at design conditions. This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
       Units: "W"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
@@ -5065,7 +5123,7 @@ Chiller:
       Description: "Chiller Rated Cooling Capacity"
       Data Type: "Numeric"
       Units: "W"
-      Notes: "At rating conditions."
+      Notes: "The capacity of the chiller at rating conditions. This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5075,7 +5133,7 @@ Chiller:
       Description: "Rated entering condenser temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled."
+      Notes: "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5085,7 +5143,7 @@ Chiller:
       Description: "Rated leaving evaporator temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C."
+      Notes: "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5131,7 +5189,7 @@ Chiller:
       Description: "Design entering condenser temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers."
+      Notes: "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5141,7 +5199,7 @@ Chiller:
       Description: "Design leaving evaporator temperature"
       Data Type: "Numeric"
       Units: "C"
-      Notes: "The temperature leaving the evaporator portion of the chiller at design conditions."
+      Notes: "The temperature leaving the evaporator portion of the chiller at design conditions. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5223,13 +5281,18 @@ Chiller:
 ChillerEfficiencyMetricOptions:
   Object Type: "Enumeration"
   Enumerators:
-    FULL_LOAD_EFFICIENCY:
-      Description: "Full Load Efficiency expressed as a coefficient of performance (COP)"
-      Notes: "At minimum, the full load efficiency should be one of the metrics and values specified."
+    FULL_LOAD_EFFICIENCY_RATED:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP) at rated conditions"
+      Notes: "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
+    FULL_LOAD_EFFICIENCY_DESIGN:
+      Description: "Full Load Efficiency expressed as a coefficient of performance (COP) at design conditions"
+      Notes: "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
     INTEGRATED_PART_LOAD_VALUE:
-      Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP)"
+      Description: "Integrated part load value efficiency expressed as a coefficient of performance (COP) at rated conditions"
+      Notes: "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature and should corresond with the AHRI rated conditions for the equipment."
     NONSTANDARD_PART_LOAD_VALUE:
-      Description: "Nonstandard part load value efficiency expressed as a coefficient of performance (COP)"
+      Description: "Nonstandard part load value efficiency expressed as a coefficient of performance (COP) at design conditions"
+      Notes: "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
     OTHER:
       Description: "Other part load efficiency metric"
 
@@ -5341,6 +5404,21 @@ ChillerCompressorOptions:
       Description: "Single-effect direct-fired absorption"
     DOUBLE_EFFECT_DIRECT_FIRED_ABSORPTION:
       Description: "Double-effect direct-fired absorption"
+    OTHER:
+      Description: "Other"
+
+ChillerFunctionOptions:
+  Object Type: "Enumeration"
+  Enumerators:
+    CHILLED_WATER_ONLY:
+      Description: "Chilled water only"
+      Notes: "Chiller is being used as a traditional chiller to only produce chilled water."
+    HOT_WATER_ONLY:
+      Description: "Hot water only"
+      Notes: "Chiller is being used exclusively as a heat pump instead of a boiler."
+    CHILLED_AND_HOT_WATER:
+      Description: "Chilled and hot water"
+      Notes: "Chiller can produce either chilled or hot water."
     OTHER:
       Description: "Other"
 
@@ -5707,8 +5785,8 @@ ServiceWaterHeatingDistributionSystem:
       AppG B_RMDs Same: True
     service_water_piping:
       Description: "Connected service water piping"
-      Data Type: "[{ServiceWaterPiping}]"
-      Notes: "Contains a list of service water piping that is associated with this service water heater distribution system."
+      Data Type: "{ServiceWaterPiping}"
+      Notes: "Contains the service water piping that is associated with this service water heater distribution system."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5899,7 +5977,7 @@ ServiceWaterPiping:
     loop_pipe_location:
       Description: "Loop pipe location"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Com."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Com."
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -5908,7 +5986,7 @@ ServiceWaterPiping:
     location_zone:
       Description: "Zone reference of where the component is located when IN_ZONE is selected from ComponentLocationOptions"
       Data Type: "Reference"
-      Notes: "From CBECC-Com. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Com. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6200,7 +6278,7 @@ ServiceWaterHeatingEquipment:
     compressor_heat_rejection_source:
       Description: "Heat pump heat rejection source"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Res."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see compressor_heat_rejection_zone. From CBECC-Res. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6209,7 +6287,7 @@ ServiceWaterHeatingEquipment:
     compressor_heat_rejection_zone:
       Description: "Heat pump heat rejection zone"
       Data Type: "Reference"
-      Notes: "From CBECC-Res. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Res. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6308,36 +6386,33 @@ ServiceWaterHeatingEfficiencyMetricOptions:
 ComponentLocationOptions:
   Object Type: "Enumeration"
   Enumerators:
-    IN_ZONE:
-      Description: "In a zone"
-      Notes: "The component is located in a zone modeled in the simulation e.g., heat transfer through the surfaces surrounding the zone may impact the space temperature. This should be used instead of the other enumeration options when the zone is being modeled in the simulation."
     CONDITIONED:
       Description: "Conditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a conditioned location."
+      Notes: "The component location has thermal properties similar to those of a conditioned location."
     SEMICONDITIONED:
       Description: "Semiconditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators."
+      Notes: "The component location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators."
     OUTSIDE:
       Description: "Outside"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to the outdoors."
+      Notes: "The component location has thermal properties similar to the outdoors."
     GARAGE:
       Description: "Garage"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone."
     ATTIC:
       Description: "Attic"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone."
     CRAWL_SPACE:
       Description: "Crawl space"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone."
+      Notes: "The component location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone."
     UNDERGROUND:
       Description: "Underground"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an underground area."
+      Notes: "The component location has thermal properties similar to those of an underground area."
     UNCONDITIONED:
       Description: "Unconditioned"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list."
+      Notes: "The component location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list."
     OTHER:
       Description: "Other"
-      Notes: "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an area not otherwise described by a different enumeration."
+      Notes: "The component location has thermal properties similar to those of an area not otherwise described by a different enumeration."
 
 DrawPatternOptions:
   Object Type: "Enumeration"
@@ -6569,7 +6644,7 @@ Tank:
     location:
       Description: "Location"
       Data Type: "<ComponentLocationOptions>"
-      Notes: "From CBECC-Res."
+      Notes: "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Res. "
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6578,7 +6653,7 @@ Tank:
     location_zone:
       Description: "Tank zone location"
       Data Type: "Reference"
-      Notes: "Only used when tank_location indicates the tank is located in a zone. From CBECC-Res. Constraint to use when implemented :Zone:"
+      Notes: "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. Constraint to use when implemented :Zone:"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
@@ -6598,7 +6673,7 @@ ServiceWaterHeaterTankOptions:
       Description: "Consumer storage"
       Notes: "Uses UEF"
     COMMERCIAL_STORAGE:
-      Description: "Consumer storage"
+      Description: "Commercial storage"
       Notes: "Uses TE and SBL"
     RESIDENTIAL_DUTY_COMMERCIAL_INSTANTANEOUS:
       Description: "Residential-Duty Commercial Instantaneous"
