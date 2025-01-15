@@ -123,29 +123,13 @@ RulesetProjectDescription:
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
     metadata:
-      Description: "Information on the calendar used with the simulation."
+      Description: "Metadata"
       Data Type: "{Metadata}"
       RMD Test: "unknown"
       AppG Used By TCDs: "unknown"
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: "unknown"
-    calendar:
-      Description: "Information on the calendar used with the simulation."
-      Data Type: "{Calendar}"
-      RMD Test: False
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
-    weather:
-      Description: "Information on the local weather conditions used with the simulation."
-      Data Type: "{Weather}"
-      RMD Test: "secondary"
-      AppG Used By TCDs: True
-      AppG P_RMD Equals U_RMD: True
-      AppG B_RMD Equals P_RMD: True
-      AppG B_RMDs Same: True
     compliance_path:
       Description: "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code"
       Data Type: "<CompliancePathOptions2019ASHRAE901>"
@@ -405,6 +389,22 @@ RulesetModelDescription:
       Data Type: "<ExteriorLightingZoneOptions2019ASHRAE901>"
       Notes: "The site designation type for exterior lighting classification."
       RMD Test: False
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+    calendar:
+      Description: "Information on the calendar used with the simulation."
+      Data Type: "{Calendar}"
+      RMD Test: False
+      AppG Used By TCDs: True
+      AppG P_RMD Equals U_RMD: True
+      AppG B_RMD Equals P_RMD: True
+      AppG B_RMDs Same: True
+    weather:
+      Description: "Information on the local weather conditions used with the simulation."
+      Data Type: "{Weather}"
+      RMD Test: "secondary"
       AppG Used By TCDs: True
       AppG P_RMD Equals U_RMD: True
       AppG B_RMD Equals P_RMD: True
