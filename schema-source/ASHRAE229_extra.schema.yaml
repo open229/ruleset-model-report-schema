@@ -113,20 +113,6 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: False
       AppG B_RMD Equals P_RMD: False
       AppG B_RMDs Same: False
-    schema_version:
-      Description: "Version of the schema used for generating the file"
-      Data Type: "String"
-      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
-    data_timestamp:
-      Description: "Date and time of data publication"
-      Data Type: "Timestamp"
-      Required: True
-      Notes: "Date and time of publication of the data"
-    data_version:
-      Description: "Integer version identifier for the data"
-      Data Type: "Integer"
-      Range: ">=1"
-      Notes: "Used by data publisher to track revisions of the data and shall be incremented for each data revision"
     ruleset_model_descriptions:  
       Description: "A list of the ruleset model descriptions within the project each with a unique ruleset_model_type."
       Data Type: "[{RulesetModelDescription}]"
@@ -136,6 +122,14 @@ RulesetProjectDescription:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: False
+    metadata:
+      Description: "Information on the calendar used with the simulation."
+      Data Type: "{Metadata}"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
     calendar:
       Description: "Information on the calendar used with the simulation."
       Data Type: "{Calendar}"
@@ -174,7 +168,65 @@ CommonOutputSchemaOptions:
   Enumerators:
     OTHER:
       Description: "other"
-      
+
+Metadata:
+  Object Type: "Data Group"
+  Data Elements:
+    id:
+      Description: "Unique data set identifier"
+      Data Type: "UUID"
+      Notes: "Assigned by *data publisher* to identify this data. `id` shall remain unchanged for revisions of the same data."
+    schema_author:
+      Description: "Name of the organization that published the schema"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the organization that defined the schema. Is should be set to: ASHRAE SPC 229 Schema Working Group"
+    schema_name:
+      Description: "Schema name or identifier"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the schema used to define the data content. It should be set to Ruleset Evaluation Schema"
+    schema_version:
+      Description: "The version of the schema the data complies with"
+      Data Type: "Version"
+      Required: True
+      Notes: "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
+    schema_url:
+      Description: "The Uniform Resource Locator (url) for the schema definition and/or documentation"
+      Data Type: "String"
+      Notes: "Should be set to: https://github.com/open229/ruleset-model-description-schema"
+    author:
+      Description: "Name of the entity creating the serialization"
+      Data Type: "String"
+      Required: True
+      Notes: "Identifies the organization that created the file"
+    description:
+      Description: "Description of data content (suitable for display)"
+      Data Type: "String"
+      Required: True
+    time_of_creation:
+      Description: "Timestamp indicating when the serialization was created"
+      Data Type: "Timestamp"
+      Required: True
+      Notes: "Updated anytime any data content is modified."
+    version:
+      Description: "Integer version identifier for the data"
+      Data Type: "Version"
+      Notes:
+        - "Used by data publisher to track revisions of the data"
+        - "Shall be incremented for each data revision"
+    source:
+      Description: "Source(s) of the data"
+      Data Type: "String"
+      Notes:
+        - "Used by data publisher to document methods (e.g., software and version) used to generate data"
+        - "**Informative note:** `source` may be different from other data source(s) included elsewhere within the data"
+    disclaimer:
+      Description: "Characterization of accuracy, limitations, and applicability of this data"
+      Data Type: "String"
+    notes:
+      Description: "Additional Information"
+      Data Type: "String"
 
 RulesetModelDescription:
   Object Type: "Data Group"
