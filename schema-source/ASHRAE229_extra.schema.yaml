@@ -582,6 +582,14 @@ BuildingSegment:
       AppG P_RMD Equals U_RMD: "unknown"
       AppG B_RMD Equals P_RMD: "unknown"
       AppG B_RMDs Same: True
+    service_water_heating_uses:
+      Description: "List of service water heating uses"
+      Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
+      RMD Test: "unknown"
+      AppG Used By TCDs: "unknown"
+      AppG P_RMD Equals U_RMD: "unknown"
+      AppG B_RMD Equals P_RMD: "unknown"
+      AppG B_RMDs Same: "unknown"
 
 Zone:
   Object Type: "Data Group"
@@ -984,7 +992,7 @@ Space:
       AppG B_RMDs Same: True
     service_water_heating_uses:
       Description: "List of service water heating uses"
-      Data Type: "[{ServiceWaterHeatingUse}]"
+      Data Type: "[({ServiceWaterHeatingUse}, Reference)]"
       RMD Test: False
       AppG Used By TCDs: False
       AppG P_RMD Equals U_RMD: "unknown"
