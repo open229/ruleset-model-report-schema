@@ -1,11 +1,11 @@
 digraph G {
     size="10, 10";
     ranksep="1.4";
-  RulesetProjectDescriptionGenerationSoftwareTestReport -> TestCaseReport [color="cyan"]
+  RulesetProjectDescriptionGenerationSoftwareTestReport -> TestCaseReport [color="brown"]
   RulesetProjectDescriptionGenerationSoftwareTestReport[fontsize="32" shape="box" height="0.7"]
   TestCaseReport[fontsize="32" shape="box" height="0.7"]
-  TestCaseReport -> SpecificationTest [color="blue"]
+  TestCaseReport -> SpecificationTest [color="black"]
   SpecificationTest[fontsize="32" shape="box" height="0.7"]
-  SpecificationTest -> TestResult [color="darkviolet"]
+  SpecificationTest -> TestResult [color="darkred"]
   TestResult[fontsize="32" shape="box" height="0.7"]
 }

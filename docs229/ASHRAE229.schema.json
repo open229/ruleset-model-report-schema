@@ -24,22 +24,6 @@
                     "type": "string",
                     "notes": "Notes are not used by the RCT, but may be included in RCT reports to give the reviewer additional information or context"
                 },
-                "schema_version": {
-                    "description": "Version of the schema used for generating the file",
-                    "type": "string",
-                    "notes": "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
-                },
-                "data_timestamp": {
-                    "description": "Date and time of data publication",
-                    "$ref": "ASHRAE229.schema.json#/definitions/Timestamp",
-                    "notes": "Date and time of publication of the data"
-                },
-                "data_version": {
-                    "description": "Integer version identifier for the data",
-                    "type": "integer",
-                    "minimum": 1,
-                    "notes": "Used by data publisher to track revisions of the data and shall be incremented for each data revision"
-                },
                 "ruleset_model_descriptions": {
                     "description": "A list of the ruleset model descriptions within the project each with a unique ruleset_model_type.",
                     "type": "array",
@@ -48,13 +32,9 @@
                     },
                     "notes": "For submissions with ruleset model descriptions (i.e., user, proposed, baseline,..) generated as separate files, only one model description would be defined for each ASHRAE229 ruleset project description json file. For submissions where the software always produces all ruleset model descriptions together, multiple model descriptions would appear in the same ASHRAE229 ruleset project description json file. Some rulesets may restrict the submission process including the number of files and number of model descriptions per file. Multiple model descriptions may be required by rulesets that require models at various tiers or levels of performance. Model descriptions may also be used by References between data groups and are restricted to be within the same ruleset model description. For 90.1-2019 appendix G model descriptions would be created for the following models: user, proposed, baseline at 0 degrees, baseline at 90 degrees, baseline at 180 degrees, and baseline at 270 degrees. All IDs within a ruleset model description should be unique for each type of data group. Between ruleset model descriptions, IDs should be the same for the same component. For example, a Surface with an ID of LobbyFrontSurface is very likely to have the same geometry for all ruleset model descriptions except perhaps the azimuth so that surface should have the ID LobbyFrontSurface for all ruleset model descriptions."
                 },
-                "calendar": {
-                    "description": "Information on the calendar used with the simulation.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/Calendar"
-                },
-                "weather": {
-                    "description": "Information on the local weather conditions used with the simulation.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/Weather"
+                "metadata": {
+                    "description": "Metadata",
+                    "$ref": "ASHRAE229.schema.json#/definitions/Metadata"
                 },
                 "compliance_path": {
                     "description": "Indicates the chosen compliance path if the ruleset has multiple compliance paths such as 90.1 Appendix G has code compliance and beyond code",
@@ -76,11 +56,18 @@
                             "$ref": "EnumerationsRESNET.schema.json#/definitions/OutputSchemaOptionsRESNET"
                         }
                     ]
+                },
+                "output": {
+                    "description": "Output",
+                    "oneOf": [
+                        {
+                            "$ref": "Output2019ASHRAE901.schema.json#/definitions/Output2019ASHRAE901"
+                        }
+                    ]
                 }
             },
             "required": [
                 "id",
-                "data_timestamp",
                 "ruleset_model_descriptions"
             ],
             "additionalProperties": false
@@ -93,6 +80,74 @@
             "descriptions": [
                 "other"
             ]
+        },
+        "Metadata": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Unique data set identifier",
+                    "notes": "Assigned by *data publisher* to identify this data. `id` shall remain unchanged for revisions of the same data."
+                },
+                "schema_author": {
+                    "description": "Name of the organization that published the schema",
+                    "type": "string",
+                    "notes": "Identifies the organization that defined the schema. Is should be set to: ASHRAE SPC 229 Schema Working Group"
+                },
+                "schema_name": {
+                    "description": "Schema name or identifier",
+                    "type": "string",
+                    "notes": "Identifies the schema used to define the data content. It should be set to Ruleset Evaluation Schema"
+                },
+                "schema_version": {
+                    "description": "The version of the schema the data complies with",
+                    "notes": "Common versions may include 0.0.36 from the first public review period. This is the value of the version field in the top of the ASRAE229.schema.json file or the version in the ASHRAE229.schema.yaml Schema data group."
+                },
+                "schema_url": {
+                    "description": "The Uniform Resource Locator (url) for the schema definition and/or documentation",
+                    "type": "string",
+                    "notes": "Should be set to: https://github.com/open229/ruleset-model-description-schema"
+                },
+                "author": {
+                    "description": "Name of the entity creating the serialization",
+                    "type": "string",
+                    "notes": "Identifies the organization that created the file"
+                },
+                "description": {
+                    "description": "Description of data content (suitable for display)",
+                    "type": "string"
+                },
+                "time_of_creation": {
+                    "description": "Timestamp indicating when the serialization was created",
+                    "$ref": "ASHRAE229.schema.json#/definitions/Timestamp",
+                    "notes": "Updated anytime any data content is modified."
+                },
+                "version": {
+                    "description": "Integer version identifier for the data",
+                    "notes": "Used by data publisher to track revisions of the data. Shall be incremented for each data revision"
+                },
+                "source": {
+                    "description": "Source(s) of the data",
+                    "type": "string",
+                    "notes": "Used by data publisher to document methods (e.g., software and version) used to generate data. **Informative note:** `source` may be different from other data source(s) included elsewhere within the data"
+                },
+                "disclaimer": {
+                    "description": "Characterization of accuracy, limitations, and applicability of this data",
+                    "type": "string"
+                },
+                "notes": {
+                    "description": "Additional Information",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "schema_author",
+                "schema_name",
+                "schema_version",
+                "author",
+                "description",
+                "time_of_creation"
+            ],
+            "additionalProperties": false
         },
         "RulesetModelDescription": {
             "type": "object",
@@ -239,11 +294,19 @@
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ExteriorLightingZoneOptions2019ASHRAE901",
                     "notes": "The site designation type for exterior lighting classification."
                 },
-                "output": {
-                    "description": "Output",
+                "calendar": {
+                    "description": "Information on the calendar used with the simulation.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/Calendar"
+                },
+                "weather": {
+                    "description": "Information on the local weather conditions used with the simulation.",
+                    "$ref": "ASHRAE229.schema.json#/definitions/Weather"
+                },
+                "model_output": {
+                    "description": "Model output for a single instance",
                     "oneOf": [
                         {
-                            "$ref": "Output2019ASHRAE901.schema.json#/definitions/Output2019ASHRAE901"
+                            "$ref": "Output2019ASHRAE901.schema.json#/definitions/OutputInstance2019ASHRAE901"
                         }
                     ]
                 }
@@ -412,6 +475,12 @@
                     "description": "Service water heating area type classification",
                     "$ref": "Enumerations2019ASHRAE901.schema.json#/definitions/ServiceWaterHeatingSpaceOptions2019ASHRAE901",
                     "notes": "The enumeration is based on the standard used."
+                },
+                "service_water_heating_uses": {
+                    "description": "List of service water heating uses",
+                    "type": "array",
+                    "items": {},
+                    "notes": "This data element also appears in Space. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
                 }
             },
             "required": [
@@ -553,14 +622,14 @@
                     "type": "number",
                     "minimum": 0.0,
                     "units": "W",
-                    "notes": "The power consumed by a fan used in a non-mechancial cooling device such as a ceiling fan."
+                    "notes": "The power consumed by a fan used in a non-mechancial cooling device such as supply or exhaust fans typically for warehouse applications with high air change rates."
                 },
                 "non_mechanical_cooling_fan_airflow": {
                     "description": "Non-mechanical cooling fan airflow",
                     "type": "number",
                     "minimum": 0.0,
                     "units": "L/s",
-                    "notes": "The airflow of a fan used in a non-mechancial cooling device such as a ceiling fan."
+                    "notes": "The airflow of a fan used in a non-mechancial cooling device such as a supply or exhaust fans typically for warehouse applications with high air change rates."
                 },
                 "air_distribution_effectiveness": {
                     "description": "Air distribution effectiveness",
@@ -672,9 +741,8 @@
                 "service_water_heating_uses": {
                     "description": "List of service water heating uses",
                     "type": "array",
-                    "items": {
-                        "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterHeatingUse"
-                    }
+                    "items": {},
+                    "notes": "This data element also appears in BuildingSegment. A list of ServiceWaterHeatingUse data groups can either appear here or a list of references to IDs of a ServiceWaterHeatingUse already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :ServiceWaterHeatingUse:"
                 }
             },
             "required": [
@@ -878,15 +946,23 @@
                 "adjacent_zone": {
                     "description": "ID of the adjacent zone for interior surface. Only required when adjacent zone is explicity modeled when adjacent_to is set to INTERIOR.",
                     "type": "string",
-                    "notes": "Constraint to use when implemented :Zone:"
+                    "notes": "Each interior surface between two zones should be described only once as a surface. No duplication of an interior surface facing each zone is necessary. Constraint to use when implemented :Zone:"
                 },
                 "does_cast_shade": {
                     "description": "Determines whether the surface is modeled as casting shade on other exterior surfaces",
                     "type": "boolean"
                 },
                 "construction": {
-                    "description": "Construction description of surface.",
-                    "$ref": "ASHRAE229.schema.json#/definitions/Construction"
+                    "description": "Construction description of surface or an ID of another Construction.",
+                    "oneOf": [
+                        {
+                            "$ref": "ASHRAE229.schema.json#/definitions/Construction"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "notes": "The construction data group can either appear here or a reference to an ID of a Construction used in a previous Surface. When the reference is used, the constraint to use when implemented is to :Construction:"
                 },
                 "optical_properties": {
                     "description": "Optical properties of the surface.",
@@ -932,10 +1008,6 @@
                         }
                     ]
                 },
-                "surface_construction_input_option": {
-                    "description": "Identifies whether construction is entered layer-by-layer or simplified (R-value)",
-                    "$ref": "ASHRAE229.schema.json#/definitions/SurfaceConstructionInputOptions"
-                },
                 "fraction_framing": {
                     "description": "Fraction of the construction that is framing.",
                     "type": "number",
@@ -944,23 +1016,19 @@
                     "notes": "Fraction of the construction using framing_layers, the remaining portion uses the primary_layers. If blank, assume zero framing."
                 },
                 "primary_layers": {
-                    "description": "List of names of layer descriptions starting from the outside surface for primary heat path",
+                    "description": "List of names, or IDs, of layer descriptions starting from the outside surface for primary heat path",
                     "type": "array",
-                    "items": {
-                        "$ref": "ASHRAE229.schema.json#/definitions/Material"
-                    },
-                    "notes": "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers."
+                    "items": {},
+                    "notes": "For constructions with framing and cavity heat transfer paths, use this for the cavity. For constructions with homogeneous layer, use this element only. Air films should not be included in the list of layers. When Construction.primary_layers are specified, the Construction.r_values should not be used. The list of primary_layers should include at least one Material that has mass with Material.density and Material.specific_heat specified. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
                 },
                 "framing_layers": {
-                    "description": "List of names of layer descriptions starting from the outside surface for the framing heat path",
+                    "description": "List of names, or IDs, of layer descriptions starting from the outside surface for the framing heat path",
                     "type": "array",
-                    "items": {
-                        "$ref": "ASHRAE229.schema.json#/definitions/Material"
-                    },
-                    "notes": "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers."
+                    "items": {},
+                    "notes": "For constructions with framing and cavity heat transfer paths, use this for the framing otherwise leave blank. Air films should not be included in the list of layers. Only used when primary_layers is also populated. A list of material data groups can either appear here or a list of references to IDs of a Materials already defined somewhere else or a mixture of both. When a reference is used, the constraint to use when implemented is to :Material:"
                 },
                 "insulation_locations": {
-                    "description": "List of locations for the insulation related to the surface that correspoond to the values in the r_values list",
+                    "description": "List of locations for the insulation related to the surface that correspoond to the values in the r_values list. Only used when r_values are specified.",
                     "type": "array",
                     "items": {
                         "$ref": "ASHRAE229.schema.json#/definitions/InsulationLocationOptions"
@@ -994,7 +1062,8 @@
                         "type": "number",
                         "minimum": 0.0
                     },
-                    "units": "K-m2/W"
+                    "units": "K-m2/W",
+                    "notes": "When Construction.r_values are specified, the Construction.primary_layers should not be used."
                 },
                 "has_radiant_heating": {
                     "description": "Includes embedded radiant heating elements",
@@ -1198,17 +1267,6 @@
                 "Interior surface if adjacent to another space which is explicity modeled.",
                 "Surface adjacent to a environment identical to the space. Sometimes this is described as adiabatic surface since no heat is transfered. The space on the other side of the surface is not explicity modeled.",
                 "The surface adjacency cannot be determined by the software."
-            ]
-        },
-        "SurfaceConstructionInputOptions": {
-            "type": "string",
-            "enum": [
-                "LAYERS",
-                "SIMPLIFIED"
-            ],
-            "descriptions": [
-                "Construction is entered layer-by-layer.",
-                "Construction is entered by R-value only."
             ]
         },
         "Subsurface": {
@@ -2158,9 +2216,8 @@
                     "notes": "At rating conditions. The rated capacity is generally used to determine efficiency level when efficiency level is based on size. It is net heating capacity taking into account the heat from the indoor fan."
                 },
                 "oversizing_factor": {
-                    "description": "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing.",
+                    "description": "The oversizing factor applied to the peak load that results in the heat capacity. Zero indicates no oversizing. Negative numbers indicate undersizing.",
                     "type": "number",
-                    "minimum": 0.0,
                     "notes": "Used for furnace or heat pump."
                 },
                 "is_calculated_size": {
@@ -2370,9 +2427,8 @@
                     "notes": "At rating conditions. The rated capacity is generally used to determine efficiency level when efficiency level is based on size.  It is net sensible cooling capacity taking into account the heat from the indoor fan."
                 },
                 "oversizing_factor": {
-                    "description": "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing.",
-                    "type": "number",
-                    "minimum": 0.0
+                    "description": "The oversizing factor applied to the peak load that results in the cool capacity. Zero indicates no oversizing. Negative numbers indicate undersizing.",
+                    "type": "number"
                 },
                 "is_calculated_size": {
                     "description": "True if the component is sized by software",
@@ -3759,6 +3815,10 @@
                     "description": "Compressor Type",
                     "$ref": "ASHRAE229.schema.json#/definitions/ChillerCompressorOptions"
                 },
+                "chiller_function": {
+                    "description": "Function such as chilled and/or hot water",
+                    "$ref": "ASHRAE229.schema.json#/definitions/ChillerFunctionOptions"
+                },
                 "energy_source_type": {
                     "description": "Source of energy for the chiller",
                     "$ref": "Output2019ASHRAE901.schema.json#/definitions/EnergySourceOptions"
@@ -3767,25 +3827,25 @@
                     "description": "Chiller Design Cooling Capacity",
                     "type": "number",
                     "units": "W",
-                    "notes": "The capacity of the chiller at design conditions."
+                    "notes": "The capacity of the chiller at design conditions. This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature."
                 },
                 "rated_capacity": {
                     "description": "Chiller Rated Cooling Capacity",
                     "type": "number",
                     "units": "W",
-                    "notes": "At rating conditions."
+                    "notes": "The capacity of the chiller at rating conditions. This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature."
                 },
                 "rated_entering_condenser_temperature": {
                     "description": "Rated entering condenser temperature",
                     "type": "number",
                     "units": "C",
-                    "notes": "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled."
+                    "notes": "The rated outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. For AHRI conditions for inch-pound ratings for air cooled chillers are 35C/95F and water cooled are 29.4C/85F. The AHRI conditions for SI ratings are 35C for air cooled chillers and 30C for water cooled. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
                 },
                 "rated_leaving_evaporator_temperature": {
                     "description": "Rated leaving evaporator temperature",
                     "type": "number",
                     "units": "C",
-                    "notes": "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C."
+                    "notes": "For AHRI conditions for inch-pound ratings are 6.7C/44F. For AHRI conditions for SI ratings are 7C. This should correpond with the rated capacity and the FULL_LOAD_EFFICIENCY_RATED and INTEGRATED_PART_LOAD_VALUE. "
                 },
                 "minimum_unload_ratio": {
                     "description": "Minimum unload ratio of full load allowed",
@@ -3811,13 +3871,13 @@
                     "description": "Design entering condenser temperature",
                     "type": "number",
                     "units": "C",
-                    "notes": "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers."
+                    "notes": "The temperature entering the condenser portion of the chiller at design conditions. The design outside air dry-bulb temperature for air cooled chillers or design entering condenser water temperature for water cooled chillers. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
                 },
                 "design_leaving_evaporator_temperature": {
                     "description": "Design leaving evaporator temperature",
                     "type": "number",
                     "units": "C",
-                    "notes": "The temperature leaving the evaporator portion of the chiller at design conditions."
+                    "notes": "The temperature leaving the evaporator portion of the chiller at design conditions. This should correpond with the design_capacity and the FULL_LOAD_EFFICIENCY_DESIGN and NONSTANDARD_PART_LOAD_VALUE."
                 },
                 "efficiency_metric_values": {
                     "description": "List of efficiency metric values that correspond to the descriptors in efficiency_metric_types list",
@@ -3882,21 +3942,24 @@
         "ChillerEfficiencyMetricOptions": {
             "type": "string",
             "enum": [
-                "FULL_LOAD_EFFICIENCY",
+                "FULL_LOAD_EFFICIENCY_RATED",
+                "FULL_LOAD_EFFICIENCY_DESIGN",
                 "INTEGRATED_PART_LOAD_VALUE",
                 "NONSTANDARD_PART_LOAD_VALUE",
                 "OTHER"
             ],
             "descriptions": [
-                "Full Load Efficiency expressed as a coefficient of performance (COP)",
-                "Integrated part load value efficiency expressed as a coefficient of performance (COP)",
-                "Nonstandard part load value efficiency expressed as a coefficient of performance (COP)",
+                "Full Load Efficiency expressed as a coefficient of performance (COP) at rated conditions",
+                "Full Load Efficiency expressed as a coefficient of performance (COP) at design conditions",
+                "Integrated part load value efficiency expressed as a coefficient of performance (COP) at rated conditions",
+                "Nonstandard part load value efficiency expressed as a coefficient of performance (COP) at design conditions",
                 "Other part load efficiency metric"
             ],
             "notes": [
-                "At minimum, the full load efficiency should be one of the metrics and values specified.",
-                null,
-                null,
+                "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature.",
+                "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature.",
+                "This should correspond with the rated_entering_condenser_temperature and rated_leaving_evaporator_temperature and should corresond with the AHRI rated conditions for the equipment.",
+                "This should correspond with the design_entering_condenser_temperature and design_leaving_evaporator_temperature.",
                 null
             ]
         },
@@ -3984,6 +4047,27 @@
                 "Single-effect direct-fired absorption",
                 "Double-effect direct-fired absorption",
                 "Other"
+            ]
+        },
+        "ChillerFunctionOptions": {
+            "type": "string",
+            "enum": [
+                "CHILLED_WATER_ONLY",
+                "HOT_WATER_ONLY",
+                "CHILLED_AND_HOT_WATER",
+                "OTHER"
+            ],
+            "descriptions": [
+                "Chilled water only",
+                "Hot water only",
+                "Chilled and hot water",
+                "Other"
+            ],
+            "notes": [
+                "Chiller is being used as a traditional chiller to only produce chilled water.",
+                "Chiller is being used exclusively as a heat pump instead of a boiler.",
+                "Chiller can produce either chilled or hot water.",
+                null
             ]
         },
         "HeatRejection": {
@@ -4251,11 +4335,8 @@
                 },
                 "service_water_piping": {
                     "description": "Connected service water piping",
-                    "type": "array",
-                    "items": {
-                        "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterPiping"
-                    },
-                    "notes": "Contains a list of service water piping that is associated with this service water heater distribution system."
+                    "$ref": "ASHRAE229.schema.json#/definitions/ServiceWaterPiping",
+                    "notes": "Contains the service water piping that is associated with this service water heater distribution system."
                 },
                 "distribution_compactness": {
                     "description": "Type of compact distribution system",
@@ -4393,12 +4474,12 @@
                 "loop_pipe_location": {
                     "description": "Loop pipe location",
                     "$ref": "ASHRAE229.schema.json#/definitions/ComponentLocationOptions",
-                    "notes": "From CBECC-Com."
+                    "notes": "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Com."
                 },
                 "location_zone": {
                     "description": "Zone reference of where the component is located when IN_ZONE is selected from ComponentLocationOptions",
                     "type": "string",
-                    "notes": "From CBECC-Com. Constraint to use when implemented :Zone:"
+                    "notes": "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Com. Constraint to use when implemented :Zone:"
                 },
                 "length": {
                     "description": "Pipe length",
@@ -4585,12 +4666,12 @@
                 "compressor_heat_rejection_source": {
                     "description": "Heat pump heat rejection source",
                     "$ref": "ASHRAE229.schema.json#/definitions/ComponentLocationOptions",
-                    "notes": "From CBECC-Res."
+                    "notes": "Indicates the type of location for the component but does not indicate if it impacts the simulation, see compressor_heat_rejection_zone. From CBECC-Res. "
                 },
                 "compressor_heat_rejection_zone": {
                     "description": "Heat pump heat rejection zone",
                     "type": "string",
-                    "notes": "From CBECC-Res. Constraint to use when implemented :Zone:"
+                    "notes": "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. From CBECC-Res. Constraint to use when implemented :Zone:"
                 },
                 "compressor_capacity_validation_points": {
                     "description": "Capacity validation points",
@@ -4677,7 +4758,6 @@
         "ComponentLocationOptions": {
             "type": "string",
             "enum": [
-                "IN_ZONE",
                 "CONDITIONED",
                 "SEMICONDITIONED",
                 "OUTSIDE",
@@ -4689,7 +4769,6 @@
                 "OTHER"
             ],
             "descriptions": [
-                "In a zone",
                 "Conditioned",
                 "Semiconditioned",
                 "Outside",
@@ -4701,16 +4780,15 @@
                 "Other"
             ],
             "notes": [
-                "The component is located in a zone modeled in the simulation e.g., heat transfer through the surfaces surrounding the zone may impact the space temperature. This should be used instead of the other enumeration options when the zone is being modeled in the simulation.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a conditioned location.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to the outdoors.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an underground area.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list.",
-                "The component is not in a zone modeled in the simulation, and its location has thermal properties similar to those of an area not otherwise described by a different enumeration."
+                "The component location has thermal properties similar to those of a conditioned location.",
+                "The component location has thermal properties similar to those of a semi-conditioned location. It is usually kept warm enough to prevent freezing and often only cooled by passive ventilators.",
+                "The component location has thermal properties similar to the outdoors.",
+                "The component location has thermal properties similar to those of a garage. It may or may not have passive ventilators and share an insulated wall with a conditioned zone.",
+                "The component location has thermal properties similar to those of an attic. It may have passive ventilators or not, is often warmer during summer, especially on sunny days, and may share an insulated ceiling with a conditioned zone.",
+                "The component location has thermal properties similar to those of a crawl space beneath a building. It may or may not have passive ventilators and share an insulated floor with a conditioned zone.",
+                "The component location has thermal properties similar to those of an underground area.",
+                "The component location has thermal properties similar to those of an unconditioned area other than one of the other enumerations in this list.",
+                "The component location has thermal properties similar to those of an area not otherwise described by a different enumeration."
             ]
         },
         "DrawPatternOptions": {
@@ -4867,12 +4945,12 @@
                 "location": {
                     "description": "Location",
                     "$ref": "ASHRAE229.schema.json#/definitions/ComponentLocationOptions",
-                    "notes": "From CBECC-Res."
+                    "notes": "Indicates the type of location for the component but does not indicate if it impacts the simulation, see location_zone. From CBECC-Res. "
                 },
                 "location_zone": {
                     "description": "Tank zone location",
                     "type": "string",
-                    "notes": "Only used when tank_location indicates the tank is located in a zone. From CBECC-Res. Constraint to use when implemented :Zone:"
+                    "notes": "When present, it indicates that heat transfer into or out of the component turns into a cooling or heating load in the simulation. Constraint to use when implemented :Zone:"
                 }
             },
             "required": [
@@ -4897,7 +4975,7 @@
                 "Consumer instantaneous",
                 "Commercial instantaneous",
                 "Consumer storage",
-                "Consumer storage",
+                "Commercial storage",
                 "Residential-Duty Commercial Instantaneous",
                 "Indirect",
                 "Boiler",
@@ -5272,6 +5350,6 @@
             ]
         }
     },
-    "version": "0.1.2",
+    "version": "0.1.3",
     "$ref": "ASHRAE229.schema.json#/definitions/RulesetProjectDescription"
 }

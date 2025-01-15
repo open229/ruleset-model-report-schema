@@ -1,13 +1,13 @@
 digraph G {
     size="10, 10";
     ranksep="1.4";
-  RulesetCheckingToolProjectOutputReport -> FileDescription [color="darkred"]
+  RulesetCheckingToolProjectOutputReport -> FileDescription [color="black"]
   RulesetCheckingToolProjectOutputReport[fontsize="32" shape="box" height="0.7"]
   FileDescription[fontsize="32" shape="box" height="0.7"]
-  RulesetCheckingToolProjectOutputReport -> Rule [color="brown"]
+  RulesetCheckingToolProjectOutputReport -> Rule [color="darkorange"]
   Rule[fontsize="32" shape="box" height="0.7"]
-  Rule -> Evaluation [color="brown"]
+  Rule -> Evaluation [color="darkorange"]
   Evaluation[fontsize="32" shape="box" height="0.7"]
-  Evaluation -> CalculatedValue [color="darkred"]
+  Evaluation -> CalculatedValue [color="black"]
   CalculatedValue[fontsize="32" shape="box" height="0.7"]
 }

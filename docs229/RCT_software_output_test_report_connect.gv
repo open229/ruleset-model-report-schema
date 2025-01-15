@@ -4,8 +4,8 @@ digraph G {
   RulesetCheckingToolSoftwareOutputReport -> RuleTest [color="firebrick"]
   RulesetCheckingToolSoftwareOutputReport[fontsize="32" shape="box" height="0.7"]
   RuleTest[fontsize="32" shape="box" height="0.7"]
-  RuleTest -> Evaluation [color="cyan"]
+  RuleTest -> Evaluation [color="turquoise"]
   Evaluation[fontsize="32" shape="box" height="0.7"]
-  Evaluation -> CalculatedValue [color="yellow"]
+  Evaluation -> CalculatedValue [color="firebrick"]
   CalculatedValue[fontsize="32" shape="box" height="0.7"]
 }
