@@ -80,138 +80,278 @@ class DataGroup:
         self._types = type_list
         self._refs = ref_list
 
-
     def add_data_group(self, group_name, group_subdict):
-        elements = {'type': 'object',
-                    'properties' : dict()}
-        required = list()
+        elements = {
+            'type': 'object',
+            'properties': dict()
+        }
+        required = []
+
         for e in group_subdict:
             element = group_subdict[e]
+            # 1) Copy over description, if present
             if 'Description' in element:
-                elements['properties'][e] = {'description' : element['Description']}
+                elements['properties'][e] = {'description': element['Description']}
+            else:
+                elements['properties'][e] = {}
+
+            # 2) Parse Data Type into JSON Schema
             if 'Data Type' in element:
                 self._create_type_entry(group_subdict[e], elements['properties'][e])
+
+            # 3) Units, Notes
             if 'Units' in element:
                 elements['properties'][e]['units'] = element['Units']
             if 'Notes' in element:
                 elements['properties'][e]['notes'] = element['Notes']
+
+            # 4) Required fields
             if 'Required' in element:
                 required.append(e)
+
         if required:
             elements['required'] = required
+
+        # Disallow additional properties by default
         elements['additionalProperties'] = False
 
-        return {group_name : elements}
-
+        return {group_name: elements}
 
     def _create_type_entry(self, parent_dict, target_dict):
-        '''Create type node and its nested nodes if necessary.'''
+        """
+        Create type node and its nested nodes if necessary.
+        Uses _parse_data_type for recursive parsing, then applies range constraints.
+        """
         try:
-            # If the type is an array, extract the surrounding [] first (using non-greedy qualifier "?")
-            m = re.findall(r'\[(.*?)\]', parent_dict['Data Type'])
-            if m:
-                # 1. 'type' entry
-                target_dict['type'] = 'array'
-                # 2. 'm[in/ax]Items' entry
-                if len(m) > 1:
-                    # Parse ellipsis range-notation e.g. '[1..]'
-                    mnmx = re.match(r'([0-9]*)(\.*\.*)([0-9]*)', m[1])
-                    target_dict['minItems'] = int(mnmx.group(1))
-                    if (mnmx.group(2) and mnmx.group(3)):
-                        target_dict['maxItems'] = int(mnmx.group(3))
-                    elif not mnmx.group(2):
-                        target_dict['maxItems'] = int(mnmx.group(1))
-                # 3. 'items' entry
-                target_dict['items'] = dict()
-                self._get_simple_type(m[0], target_dict['items'])
-                #target_dict['items'][k] = v
-                if 'Range' in parent_dict:
-                    self._get_simple_minmax(parent_dict['Range'], target_dict['items'])
-            else:
-                # If the type is oneOf a set
-                m = re.findall(r'^\((.*)\)', parent_dict['Data Type'])
-                if m:
-                    target_dict['oneOf'] = list()
-                    choices = m[0].split(',')
-                    for c in choices:
-                        c = c.strip()
-                        target_dict['oneOf'].append(dict())
-                        self._get_simple_type(c, target_dict['oneOf'][-1])
-                else:
-                    # 1. 'type' entry
-                    self._get_simple_type(parent_dict['Data Type'], target_dict)
-                    # 2. 'm[in/ax]imum' entry
-                    self._get_simple_minmax(parent_dict['Range'], target_dict)
-        except KeyError as ke:
-            #print('KeyError; no key exists called', ke)
+            data_type_str = parent_dict['Data Type']
+            # 1) Recursively parse the data_type_str
+            parsed_type = self._parse_data_type(data_type_str)
+
+            # 2) Merge the parsed structure into target_dict
+            target_dict.update(parsed_type)
+
+            # 3) Apply min/max or other numeric constraints if Range is provided
+            if 'Range' in parent_dict:
+                self._get_simple_minmax(parent_dict['Range'], target_dict)
+
+        except KeyError:
+            # If no 'Data Type' key exists, do nothing
             pass
 
+    def _parse_data_type(self, data_type_str):
+        """
+        Recursively parse the data_type_str to handle:
+          - Array patterns: [ ... ] possibly followed by [X..Y]
+          - OneOf patterns: ( ... ) with comma-separated choices
+          - Otherwise a simple type.
+
+        Examples:
+          "[Numeric][0..8784]"
+          "([{Material}], [Reference])"
+          "[({ServiceWaterHeatingUse}, Reference)]"
+        """
+        data_type_str = data_type_str.strip()
+
+        # ---------------------------------------------------------
+        # 1) Check if it's an Array pattern: "^[ ... ]" possibly "[X..Y]"
+        #    e.g. "[foo]" or "[foo][0..10]"
+        # ---------------------------------------------------------
+        # Explanation of the regex:
+        #   ^\[       : starts with '['
+        #   (.+?)     : capture everything inside the first bracket (non-greedy)
+        #   \]        : end bracket
+        #   (?:       : begin non-capturing group for the optional second bracket
+        #     \[      : literal '['
+        #     (.+?)   : capture everything inside the second bracket
+        #     \]      : literal ']'
+        #   )?        : make this group optional
+        #   $         : end of string
+        array_match = re.match(r'^\[(.+?)\](?:\[(.+?)\])?$', data_type_str)
+        if array_match:
+            array_dict = {'type': 'array'}
+            items_str = array_match.group(1)   # the part inside the first brackets
+            range_str = array_match.group(2)   # the part inside the optional second brackets
+
+            # Recursively parse whatever's in the [ ... ] as the "items"
+            array_dict['items'] = self._parse_data_type(items_str)
+
+            # If there's a second bracket like [0..8784], parse that as minItems/maxItems
+            if range_str:
+                # Attempt a simple "X..Y" parse
+                m = re.match(r'^(\d*)(\.\.)(\d*)$', range_str.strip())
+                if m:
+                    min_str, dots, max_str = m.groups()
+                    # Convert min part if digit
+                    if min_str.isdigit():
+                        array_dict['minItems'] = int(min_str)
+                    # Convert max part if digit
+                    if max_str.isdigit():
+                        array_dict['maxItems'] = int(max_str)
+                else:
+                    # If not matched, you could handle or log it differently
+                    pass
+
+            return array_dict
+
+        # ---------------------------------------------------------
+        # 2) Check if it's a OneOf pattern: "^( ... )$"
+        #    e.g. "( a, b )" or "([{Material}], [Reference])"
+        # ---------------------------------------------------------
+        # Explanation of the regex:
+        #   ^\(    : starts with '('
+        #   (.+)   : capture everything until the last ')'
+        #   \)$    : ends with ')'
+        oneof_match = re.match(r'^\((.+)\)$', data_type_str)
+        if oneof_match:
+            # We have something that needs to be split by commas at top level
+            inside_str = oneof_match.group(1)  # content inside parentheses
+
+            # Split on commas at top level (ignore nested parentheses/brackets)
+            choices = self._split_top_level(inside_str, ',')
+
+            # Recursively parse each choice
+            return {
+                'oneOf': [
+                    self._parse_data_type(choice.strip())
+                    for choice in choices
+                ]
+            }
+
+        # ---------------------------------------------------------
+        # 3) Otherwise, treat as a "simple type"
+        # ---------------------------------------------------------
+        simple_dict = {}
+        self._get_simple_type(data_type_str, simple_dict)
+        return simple_dict
+
+    def _split_top_level(self, text, delimiter):
+        """
+        Split 'text' by 'delimiter' at the top nesting level only,
+        ignoring commas that appear inside nested parentheses or brackets.
+
+        For example:
+            "({ServiceWaterHeatingUse}, Reference)" should NOT split
+             into 2 items at the comma inside because it's nested.
+            "({ServiceWaterHeatingUse}, Reference)" is just one chunk.
+
+        Another example:
+            "([{Material}], [Reference])"
+             => top-level splits into 2 chunks: "[{Material}]" and "[Reference]"
+        """
+        results = []
+        bracket_level = 0
+        paren_level = 0
+        current = []
+
+        for ch in text:
+            if ch == '[':
+                bracket_level += 1
+                current.append(ch)
+            elif ch == ']':
+                bracket_level -= 1
+                current.append(ch)
+            elif ch == '(':
+                paren_level += 1
+                current.append(ch)
+            elif ch == ')':
+                paren_level -= 1
+                current.append(ch)
+            elif ch == delimiter and bracket_level == 0 and paren_level == 0:
+                # We are at a top-level comma => split here
+                results.append(''.join(current))
+                current = []
+            else:
+                current.append(ch)
+
+        # Append the last chunk if any
+        if current:
+            results.append(''.join(current))
+
+        return results
 
     def _get_simple_type(self, type_str, target_dict_to_append):
-        ''' Return the internal type described by type_str, along with its json-appropriate key.
-
-            First, attempt to capture enum, definition, or special string type as references;
-            then default to fundamental types with simple key "type".
-        '''
+        """
+        Return the internal type described by type_str, along with its json-appropriate key.
+        If it matches one of the known references, add a "$ref".
+        Otherwise, use self._types to map to fundamental schema type(s).
+        """
         enum_or_def = r'(\{|\<)(.*)(\}|\>)'
         internal_type = None
         nested_type = None
+
         m = re.match(enum_or_def, type_str)
+        # Check if it is an enumeration or definition
         if m:
-            # Find the internal type. It might be inside nested-type syntax, but more likely
-            # is a simple definition or enumeration.
+            # Possibly something like "{Material}" or "<SomeDefinition>"
             m_nested = re.match(r'.*?\((.*)\)', m.group(2))
             if m_nested:
-                # Rare case of a nested specification e.g. 'ASHRAE205(rs_id=RS0005)'
+                # Rare case e.g. 'ASHRAE205(rs_id=RS0005)'
                 internal_type = m.group(2).split('(')[0]
                 nested_type = m_nested.group(1)
             else:
                 internal_type = m.group(2)
         else:
+            # No braces/brackets => just use as-is
             internal_type = type_str
-        # Look through the references to assign a source to the type
-        for key in self._refs:
-            if internal_type in self._refs[key]:
-                internal_type = key + '.schema.json#/definitions/' + internal_type
-                target_dict_to_append['$ref'] = internal_type
-                if nested_type:
-                    # Always in the form 'rs_id=RSXXXX'
-                    target_dict_to_append['rs_id'] = nested_type.split('=')[1]
-                return
 
+        # Check references
+        if self._refs:
+            for key in self._refs:
+                if internal_type in self._refs[key]:
+                    # Found a matching $ref
+                    internal_type = key + '.schema.json#/definitions/' + internal_type
+                    target_dict_to_append['$ref'] = internal_type
+                    if nested_type:
+                        # e.g. 'rs_id=RSXXXX'
+                        target_dict_to_append['rs_id'] = nested_type.split('=')[1]
+                    return
+
+        # If no $ref, map to a known type (e.g. "Numeric" => "number")
         try:
             if '/' in type_str:
-                # e.g. "Numeric/Null" becomes a list of 'type's
-                #return ('type', [self._types[t] for t in type_str.split('/')])
-                target_dict_to_append['type'] = [self._types[t] for t in type_str.split('/')]
+                # e.g. "Numeric/Null" => ["number", "null"]
+                type_parts = type_str.split('/')
+                mapped = [self._types[t.strip()] for t in type_parts]
+                target_dict_to_append['type'] = mapped
             else:
                 target_dict_to_append['type'] = self._types[type_str]
         except KeyError:
+            # If the type is not recognized, you might log or handle differently
             print('Type not processed:', type_str)
-        return
-
 
     def _get_simple_minmax(self, range_str, target_dict):
-        '''Process Range into min and max fields.'''
-        if range_str is not None:
-            ranges = range_str.split(',')
-            minimum=None
-            maximum=None
-            if 'type' not in target_dict:
-                target_dict['type'] = None
-            for r in ranges:
-                try:
-                    numerical_value = re.findall(r'[+-]?\d*\.?\d+|\d+', r)[0]
-                    if '>' in r:
-                        minimum = (float(numerical_value) if 'number' in target_dict['type'] else int(numerical_value))
-                        mn = 'exclusiveMinimum' if '=' not in r else 'minimum'
-                        target_dict[mn] = minimum
-                    elif '<' in r:
-                        maximum = (float(numerical_value) if 'number' in target_dict['type']  else int(numerical_value))
-                        mx = 'exclusiveMaximum' if '=' not in r else 'maximum'
-                        target_dict[mx] = maximum
-                except ValueError:
-                    pass
+        """
+        Process Range into min/max or exclusiveMin/exclusiveMax fields.
+        E.g. '>=0, <100' => 'minimum':0, 'exclusiveMaximum':100
+        """
+        if range_str is None:
+            return
+
+        ranges = range_str.split(',')
+        if 'type' not in target_dict:
+            target_dict['type'] = None
+
+        for r in ranges:
+            try:
+                # Extract the numeric part
+                numerical_value = re.findall(r'[+-]?\d*\.?\d+|\d+', r)[0]
+                if '>' in r:
+                    # > or >=
+                    minimum = (float(numerical_value)
+                               if target_dict['type'] == 'number'
+                               else int(numerical_value))
+                    mn = 'exclusiveMinimum' if '=' not in r else 'minimum'
+                    target_dict[mn] = minimum
+                elif '<' in r:
+                    # < or <=
+                    maximum = (float(numerical_value)
+                               if target_dict['type'] == 'number'
+                               else int(numerical_value))
+                    mx = 'exclusiveMaximum' if '=' not in r else 'maximum'
+                    target_dict[mx] = maximum
+            except (ValueError, IndexError):
+                # If there's no valid number or something else fails, skip
+                pass
 
 
 # -------------------------------------------------------------------------------------------------
@@ -304,6 +444,7 @@ class JSON_translator:
             refs = schema_section['References']
         refs.append(self._schema_name)
         for ref_file in refs:
+            ref_file = "ASHRAE229_extra" if ref_file == "ASHRAE229" else ref_file
             ext_dict = load(os.path.join(self._source_dir, ref_file + '.schema.yaml'))
             external_objects = list()
             for base_item in [name for name in ext_dict if ext_dict[name]['Object Type'] in (
