@@ -444,7 +444,6 @@ class JSON_translator:
             refs = schema_section['References']
         refs.append(self._schema_name)
         for ref_file in refs:
-            ref_file = "ASHRAE229_extra" if ref_file == "ASHRAE229" else ref_file
             ext_dict = load(os.path.join(self._source_dir, ref_file + '.schema.yaml'))
             external_objects = list()
             for base_item in [name for name in ext_dict if ext_dict[name]['Object Type'] in (
