@@ -1,8 +1,8 @@
 import json
 import yaml
 import os
-from collections import OrderedDict
 import re
+
 
 def get_extension(file):
     return os.path.splitext(file)[1]
@@ -10,7 +10,7 @@ def get_extension(file):
 
 def load(input_file_path):
     ext = get_extension(input_file_path).lower()
-    if (ext == '.json'):
+    if ext == '.json':
         with open(input_file_path, 'r') as input_file:
             return json.load(input_file)
     elif (ext == '.yaml') or (ext == '.yml'):
@@ -22,8 +22,8 @@ def load(input_file_path):
 
 def dump(content, output_file_path):
     ext = get_extension(output_file_path).lower()
-    if (ext == '.json'):
-        with open(output_file_path,'w') as output_file:
+    if ext == '.json':
+        with open(output_file_path, 'w') as output_file:
             json.dump(content, output_file, indent=4)
     elif (ext == '.yaml') or (ext == '.yml'):
         with open(output_file_path, 'w') as out_file:
@@ -52,17 +52,17 @@ def dict_compare(d1, d2, errors, level=0, lineage=None, hide_value_mismatches=Fa
             if d1_keys != d2_keys:
                 added = [k for k in d2_keys if k not in d1_keys]
                 removed = [k for k in d1_keys if k not in d2_keys]
-                err = ''
                 if added and not hide_key_mismatches:
                     errors.append(f'Keys added to second dictionary at level {level}, lineage {lineage}: {added}')
                 if removed and not hide_key_mismatches:
                     errors.append(f'Keys removed from first dictionary at level {level}, lineage {lineage}: {removed}.')
                 return False
             else:
-            # Enter this part of the code if both dictionaries have all keys shared at this level
+                # Enter this part of the code if both dictionaries have all keys shared at this level
                 shared_keys = d1_keys
                 for k in shared_keys:
-                    dict_compare(d1[k], d2[k], errors, level+1, lineage+[k], hide_value_mismatches, hide_key_mismatches)
+                    dict_compare(d1[k], d2[k], errors, level + 1, lineage + [k], hide_value_mismatches,
+                                 hide_key_mismatches)
         elif d1 != d2:
             # Here, we could use the util.objects_near_equal to compare objects. Currently, d1 and
             # d2 may have any type, i.e. float 1.0 will be considered equal to int 1.
@@ -130,13 +130,32 @@ class DataGroup:
             # 2) Merge the parsed structure into target_dict
             target_dict.update(parsed_type)
 
-            # 3) Apply min/max or other numeric constraints if Range is provided
+            # 3) If there's a 'Range' key, apply numeric min/max constraints
             if 'Range' in parent_dict:
-                self._get_simple_minmax(parent_dict['Range'], target_dict)
-
+                # If the top-level is an array, always push Range constraints
+                # into the items schema (recursively if oneOf is present)
+                if parsed_type.get("type") == "array":
+                    items_schema = target_dict.setdefault("items", {})
+                    self._apply_range_to_item_schema(parent_dict['Range'], items_schema)
+                else:
+                    # Non-array => apply to the current dictionary
+                    self._get_simple_minmax(parent_dict['Range'], target_dict)
         except KeyError:
             # If no 'Data Type' key exists, do nothing
             pass
+
+    def _apply_range_to_item_schema(self, range_str, item_schema):
+        """
+        Helper to apply numeric min/max constraints inside 'items' or within each sub-schema
+        of a 'oneOf'. That way, 'minimum' or 'maximum' never end up at the array level.
+        """
+        # If items has a oneOf array, apply constraints to each branch
+        if "oneOf" in item_schema:
+            for sub_schema in item_schema["oneOf"]:
+                self._get_simple_minmax(range_str, sub_schema)
+        else:
+            # Plain (non-oneOf) schema for items
+            self._get_simple_minmax(range_str, item_schema)
 
     def _parse_data_type(self, data_type_str):
         """
@@ -169,8 +188,8 @@ class DataGroup:
         array_match = re.match(r'^\[(.+?)\](?:\[(.+?)\])?$', data_type_str)
         if array_match:
             array_dict = {'type': 'array'}
-            items_str = array_match.group(1)   # the part inside the first brackets
-            range_str = array_match.group(2)   # the part inside the optional second brackets
+            items_str = array_match.group(1)  # the part inside the first brackets
+            range_str = array_match.group(2)  # the part inside the optional second brackets
 
             # Recursively parse whatever's in the [ ... ] as the "items"
             array_dict['items'] = self._parse_data_type(items_str)
@@ -188,8 +207,7 @@ class DataGroup:
                     if max_str.isdigit():
                         array_dict['maxItems'] = int(max_str)
                 else:
-                    # If not matched, you could handle or log it differently
-                    pass
+                    print('Range not processed:', range_str)
 
             return array_dict
 
@@ -224,7 +242,8 @@ class DataGroup:
         self._get_simple_type(data_type_str, simple_dict)
         return simple_dict
 
-    def _split_top_level(self, text, delimiter):
+    @staticmethod
+    def _split_top_level(text, delimiter):
         """
         Split 'text' by 'delimiter' at the top nesting level only,
         ignoring commas that appear inside nested parentheses or brackets.
@@ -276,7 +295,6 @@ class DataGroup:
         Otherwise, use self._types to map to fundamental schema type(s).
         """
         enum_or_def = r'(\{|\<)(.*)(\}|\>)'
-        internal_type = None
         nested_type = None
 
         m = re.match(enum_or_def, type_str)
@@ -319,7 +337,8 @@ class DataGroup:
             # If the type is not recognized, you might log or handle differently
             print('Type not processed:', type_str)
 
-    def _get_simple_minmax(self, range_str, target_dict):
+    @staticmethod
+    def _get_simple_minmax(range_str, target_dict):
         """
         Process Range into min/max or exclusiveMin/exclusiveMax fields.
         E.g. '>=0, <100' => 'minimum':0, 'exclusiveMaximum':100
@@ -359,23 +378,23 @@ class Enumeration:
 
     def __init__(self, name, description=None):
         self._name = name
-        self._enumerants = list() # list of tuple:[value, description, display_text, notes]
+        self._enumerants = list()  # list of tuple:[value, description, display_text, notes]
         self.entry = dict()
         self.entry[self._name] = dict()
         if description:
             self.entry[self._name]['description'] = description
 
     def add_enumerator(self, value, description=None, display_text=None, notes=None):
-        '''Store information grouped as a tuple per enumerant.'''
+        """Store information grouped as a tuple per enumerant."""
         self._enumerants.append((value, description, display_text, notes))
 
     def create_dictionary_entry(self):
-        '''Convert information currently grouped per enumerant, into json groups for
+        """Convert information currently grouped per enumerant, into json groups for
            the whole enumeration.
-        '''
+        """
         z = list(zip(*self._enumerants))
         enums = {'type': 'string',
-                 'enum' : z[0]}
+                 'enum': z[0]}
         if any(z[2]):
             enums['enum_text'] = z[2]
         if any(z[1]):
@@ -387,23 +406,28 @@ class Enumeration:
 
 
 # -------------------------------------------------------------------------------------------------
-class JSON_translator:
+class JsonTranslator:
     def __init__(self):
         self._references = dict()
         self._fundamental_data_types = dict()
-
-
-    def load_common_schema(self, input_file_path):
-        '''Load and process a yaml schema into its json schema equivalent.'''
         self._schema = {'$schema': 'http://json-schema.org/draft-07/schema#',
                         'title': None,
                         'description': None,
-                        'definitions' : dict()}
+                        'definitions': dict()}
+        self._contents = None
+        self._source_dir = None
+        self._schema_name = None
+
+    def load_common_schema(self, input_file_path):
+        """Load and process a yaml schema into its json schema equivalent."""
+
         self._references.clear()
-        self._source_dir = os.path.dirname(os.path.abspath(input_file_path))
-        self._schema_name = os.path.splitext(os.path.splitext(os.path.basename(input_file_path))[0])[0]
         self._fundamental_data_types.clear()
         self._contents = load(input_file_path)
+
+        self._source_dir = os.path.dirname(os.path.abspath(input_file_path))
+        self._schema_name = os.path.splitext(os.path.splitext(os.path.basename(input_file_path))[0])[0]
+
         sch = dict()
         # Iterate through the dictionary, looking for known types
         for base_level_tag in self._contents:
@@ -413,9 +437,10 @@ class JSON_translator:
                     self._load_meta_info(self._contents[base_level_tag])
                 if obj_type == 'String Type':
                     if 'Is Regex' in self._contents[base_level_tag]:
-                        sch = {**sch, **({base_level_tag : {"type":"string", "regex":True}})}
+                        sch = {**sch, **({base_level_tag: {"type": "string", "regex": True}})}
                     else:
-                        sch = {**sch, **({base_level_tag : {"type":"string", "pattern":self._contents[base_level_tag]['JSON Schema Pattern']}})}
+                        sch = {**sch, **({base_level_tag: {"type": "string", "pattern": self._contents[base_level_tag][
+                            'JSON Schema Pattern']}})}
                 if obj_type == 'Enumeration':
                     sch = {**sch, **(self._process_enumeration(base_level_tag))}
                 if obj_type in ['Data Group',
@@ -425,13 +450,12 @@ class JSON_translator:
                                 'Rating Data Group']:
                     dg = DataGroup(base_level_tag, self._fundamental_data_types, self._references)
                     sch = {**sch, **(dg.add_data_group(base_level_tag,
-                                     self._contents[base_level_tag]['Data Elements']))}
+                                                       self._contents[base_level_tag]['Data Elements']))}
         self._schema['definitions'] = sch
         return self._schema
 
-
     def _load_meta_info(self, schema_section):
-        '''Store the global/common types and the types defined by any named references.'''
+        """Store the global/common types and the types defined by any named references."""
         self._schema['title'] = schema_section['Title']
         self._schema['description'] = schema_section['Description']
         if 'Version' in schema_section:
@@ -447,78 +471,81 @@ class JSON_translator:
             ext_dict = load(os.path.join(self._source_dir, ref_file + '.schema.yaml'))
             external_objects = list()
             for base_item in [name for name in ext_dict if ext_dict[name]['Object Type'] in (
-                ['Enumeration',
-                    'Data Group',
-                    'String Type',
-                    'Map Variables',
-                    'Rating Data Group',
-                    'Performance Map',
-                    'Grid Variables',
-                    'Lookup Variables'])]:
+                    ['Enumeration',
+                     'Data Group',
+                     'String Type',
+                     'Map Variables',
+                     'Rating Data Group',
+                     'Performance Map',
+                     'Grid Variables',
+                     'Lookup Variables'])]:
                 external_objects.append(base_item)
             self._references[ref_file] = external_objects
             for base_item in [name for name in ext_dict if ext_dict[name]['Object Type'] == 'Data Type']:
                 self._fundamental_data_types[base_item] = ext_dict[base_item]['JSON Schema Type']
 
-
     def _process_enumeration(self, name_key):
-        ''' Collect all Enumerators in an Enumeration block. '''
+        """ Collect all Enumerators in an Enumeration block. """
         enums = self._contents[name_key]['Enumerators']
         description = self._contents[name_key].get('Description')
         definition = Enumeration(name_key, description)
         for key in enums:
             try:
-                descr = enums[key]['Description']  if 'Description'  in enums[key] else None
+                descr = enums[key]['Description'] if 'Description' in enums[key] else None
                 displ = enums[key]['Display Text'] if 'Display Text' in enums[key] else None
-                notes = enums[key]['Notes']        if 'Notes'        in enums[key] else None
+                notes = enums[key]['Notes'] if 'Notes' in enums[key] else None
                 definition.add_enumerator(key, descr, displ, notes)
-            except TypeError: # key's value is None
+            except TypeError:  # key's value is None
                 definition.add_enumerator(key)
         return definition.create_dictionary_entry()
 
 
 # -------------------------------------------------------------------------------------------------
-def print_comparison(original_dir, generated_dir, file_name_root, err):
-    '''Compare generated dictionary to original; send results to stdout.'''
-    same = compare_dicts(os.path.join(original_dir, file_name_root + '.schema.json'),
-                         os.path.join(generated_dir, file_name_root + '.schema.json'),
+def print_comparison(original_dir, generated_dir, filename_root, err):
+    """Compare generated dictionary to original; send results to stdout."""
+    same = compare_dicts(os.path.join(original_dir, filename_root + '.schema.json'),
+                         os.path.join(generated_dir, filename_root + '.schema.json'),
                          err)
     if not same:
-        print(f'\nError(s) while matching {file_name_root}: Original(1) vs Generated(2)')
+        print(f'\nError(s) while matching {filename_root}: Original(1) vs Generated(2)')
         for e in err:
             print(e)
     else:
-        print(f"Translation of {file_name_root} successful.")
+        print(f"Translation of {filename_root} successful.")
+
 
 # -------------------------------------------------------------------------------------------------
 
+
 def translate_file(input_file_path, output_file_path):
-    j = JSON_translator()
+    j = JsonTranslator()
     schema_instance = j.load_common_schema(input_file_path)
     dump(schema_instance, output_file_path)
 
+
 def translate_dir(input_dir_path, output_dir_path):
-    j = JSON_translator()
+    j = JsonTranslator()
     for file_name in sorted(os.listdir(input_dir_path)):
         if '.schema.yaml' in file_name:
-            file_name_root = os.path.splitext(os.path.splitext(file_name)[0])[0]
-            schema_instance = j.load_common_schema(os.path.join(input_dir_path,file_name))
-            dump(schema_instance, os.path.join(output_dir_path, file_name_root + '.schema.json'))
+            filename_root = os.path.splitext(os.path.splitext(file_name)[0])[0]
+            schema_instance = j.load_common_schema(os.path.join(input_dir_path, file_name))
+            dump(schema_instance, os.path.join(output_dir_path, filename_root + '.schema.json'))
 
 
 if __name__ == '__main__':
     import sys
 
-    source_dir_path = os.path.join(os.path.dirname(__file__),'..','schema-source')
-    build_dir_path = os.path.join(os.path.dirname(__file__),'..','build')
+    source_dir_path = os.path.join(os.path.dirname(__file__), '..', 'schema-source')
+    build_dir_path = os.path.join(os.path.dirname(__file__), '..', 'build')
     if not os.path.exists(build_dir_path):
         os.mkdir(build_dir_path)
-    schema_dir_path = os.path.join(build_dir_path,'schema')
+    schema_dir_path = os.path.join(build_dir_path, 'schema')
     if not os.path.exists(schema_dir_path):
         os.mkdir(schema_dir_path)
 
     if len(sys.argv) == 2:
         file_name_root = sys.argv[1]
-        translate_file(os.path.join(source_dir_path, f'{file_name_root}.schema.yaml'), os.path.join(schema_dir_path, file_name_root + '.schema.json'))
+        translate_file(os.path.join(source_dir_path, f'{file_name_root}.schema.yaml'),
+                       os.path.join(schema_dir_path, file_name_root + '.schema.json'))
     else:
         translate_dir(source_dir_path, schema_dir_path)
